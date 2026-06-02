@@ -1,13 +1,183 @@
-Smart Bachat
-Complete Gulf worker financial tool — salary, savings, rights, and dreams in one place.
-$2.99
-one-time payment — yours forever
-Salary split calculator
-Monthly savings tracker + streaks
-Help Now — labor rights guide
-Dream goal planner
-Family Shield messages
-EOSD calculator
-Urdu + Bengali language support
-All 6 Gulf countries supported
-Works on any mobile phone
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Smart Saathi — Digital tools for Gulf workers and South Asian families. Salary management, savings tracker, labor rights guide.">
+<title>SmartSaathi — Gulf Worker Tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--g:#2D6A4F;--g2:#40916C;--g3:#74C69D;--bg:#080E0A;--bgc:#0F1A12;--tx:#EEF7F0;--ts:#B8D4BE;--tm:#5E8A68;--a:#F4A261;--red:#E07A7A;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;}
+a{color:var(--g3);text-decoration:none;}
+/* NAV */
+nav{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(116,198,157,.1);position:sticky;top:0;background:rgba(8,14,10,.95);backdrop-filter:blur(10px);z-index:100;}
+.nav-logo{font-size:20px;font-weight:800;color:var(--g3);}
+.nav-login{padding:8px 20px;border:1.5px solid rgba(116,198,157,.4);border-radius:8px;font-size:14px;font-weight:600;color:var(--g3);}
+/* HERO */
+.hero{padding:80px 24px 60px;text-align:center;max-width:640px;margin:0 auto;}
+.hero-badge{display:inline-block;padding:6px 16px;background:rgba(116,198,157,.1);border:1px solid rgba(116,198,157,.25);border-radius:20px;font-size:13px;color:var(--g3);margin-bottom:24px;}
+.hero h1{font-size:clamp(32px,6vw,52px);font-weight:800;line-height:1.15;margin-bottom:20px;}
+.hero h1 span{color:var(--g3);}
+.hero p{font-size:17px;color:var(--ts);margin-bottom:36px;line-height:1.7;}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{padding:16px 32px;background:linear-gradient(135deg,var(--g2),var(--g));border:none;border-radius:12px;color:#fff;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;}
+.btn-secondary{padding:16px 32px;background:transparent;border:1.5px solid rgba(116,198,157,.35);border-radius:12px;color:var(--g3);font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;}
+/* TRUST BAR */
+.trust{padding:24px;border-top:1px solid rgba(116,198,157,.08);border-bottom:1px solid rgba(116,198,157,.08);display:flex;justify-content:center;gap:40px;flex-wrap:wrap;}
+.trust-item{text-align:center;}
+.trust-num{font-size:26px;font-weight:800;color:var(--g3);}
+.trust-lbl{font-size:12px;color:var(--tm);}
+/* FEATURES */
+.section{padding:64px 24px;max-width:900px;margin:0 auto;}
+.section-title{font-size:28px;font-weight:800;text-align:center;margin-bottom:8px;}
+.section-sub{font-size:15px;color:var(--ts);text-align:center;margin-bottom:40px;}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.feat{background:var(--bgc);border:1px solid rgba(116,198,157,.13);border-radius:16px;padding:24px;}
+.feat-ico{font-size:32px;margin-bottom:12px;}
+.feat-title{font-size:16px;font-weight:700;margin-bottom:8px;color:var(--tx);}
+.feat-desc{font-size:14px;color:var(--ts);line-height:1.7;}
+/* WHO */
+.who{background:var(--bgc);border-radius:20px;padding:40px 24px;margin:0 24px;border:1px solid rgba(116,198,157,.13);}
+.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:28px;}
+.who-item{display:flex;align-items:flex-start;gap:12px;}
+.who-ico{font-size:24px;flex-shrink:0;}
+.who-text{font-size:14px;color:var(--ts);line-height:1.6;}
+.who-text strong{color:var(--tx);display:block;margin-bottom:3px;}
+/* PRICING */
+#pricing{padding:64px 24px;max-width:480px;margin:0 auto;text-align:center;}
+.price-card{background:var(--bgc);border:2px solid rgba(116,198,157,.35);border-radius:20px;padding:40px 32px;position:relative;overflow:hidden;}
+.price-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--g3),transparent);}
+.price-badge{display:inline-block;padding:5px 14px;background:rgba(116,198,157,.12);border-radius:20px;font-size:12px;font-weight:700;color:var(--g3);margin-bottom:16px;letter-spacing:.05em;text-transform:uppercase;}
+.price-name{font-size:22px;font-weight:800;margin-bottom:8px;}
+.price-desc{font-size:14px;color:var(--ts);margin-bottom:24px;line-height:1.6;}
+.price-amount{font-size:56px;font-weight:800;color:var(--g3);line-height:1;}
+.price-period{font-size:14px;color:var(--tm);margin-bottom:28px;}
+.price-features{text-align:left;margin-bottom:28px;display:flex;flex-direction:column;gap:10px;}
+.pf{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ts);}
+.pf::before{content:'✅';flex-shrink:0;}
+.price-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--g2),var(--g));border:none;border-radius:12px;color:#fff;font-size:17px;font-weight:700;cursor:pointer;}
+.price-note{font-size:12px;color:var(--tm);margin-top:12px;}
+/* FOOTER */
+footer{padding:40px 24px;border-top:1px solid rgba(116,198,157,.08);text-align:center;}
+.footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;}
+.footer-links a{font-size:13px;color:var(--tm);}
+.footer-copy{font-size:12px;color:var(--tm);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">💰 SmartSaathi</div>
+  <a href="/login" class="nav-login">Login</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🌍 For Gulf Workers & South Asian Families</div>
+  <h1>Tools that help you <span>save more,</span> stress less.</h1>
+  <p>Smart digital tools built for Pakistani and Bangladeshi workers in the Gulf — and families back home. Simple. Honest. Affordable.</p>
+  <div class="hero-btns">
+    <a href="#pricing" class="btn-primary">Get Access — $2.99</a>
+    <a href="#features" class="btn-secondary">See What's Inside</a>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-item"><div class="trust-num">$2.99</div><div class="trust-lbl">One-time only</div></div>
+  <div class="trust-item"><div class="trust-num">No</div><div class="trust-lbl">Monthly fees ever</div></div>
+  <div class="trust-item"><div class="trust-num">6</div><div class="trust-lbl">Gulf countries supported</div></div>
+  <div class="trust-item"><div class="trust-num">2</div><div class="trust-lbl">Languages — Urdu & Bengali</div></div>
+</div>
+
+<!-- FEATURES -->
+<div class="section" id="features">
+  <div class="section-title">Everything in Smart Bachat</div>
+  <div class="section-sub">One tool. Six powerful features. Built for Gulf workers.</div>
+  <div class="features">
+    <div class="feat">
+      <div class="feat-ico">💰</div>
+      <div class="feat-title">Salary Split (Taqseem)</div>
+      <div class="feat-desc">Divide your salary into smart buckets — home, expenses, savings, emergency. See exactly where every riyal goes.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-ico">📊</div>
+      <div class="feat-title">Savings Tracker</div>
+      <div class="feat-desc">Track monthly savings with streaks and celebrations. Stay motivated every single month.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-ico">🆘</div>
+      <div class="feat-title">Help Now</div>
+      <div class="feat-desc">Salary not received? Iqama issue? Step-by-step guidance for real problems Gulf workers face daily.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-ico">🌟</div>
+      <div class="feat-title">Dream Planner</div>
+      <div class="feat-desc">Set your return goal — house, business, debt-free. See exactly how many months of saving it takes.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-ico">🛡️</div>
+      <div class="feat-title">Family Shield</div>
+      <div class="feat-desc">Pre-written WhatsApp replies for family financial pressure. Emotionally honest. Copy and send.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-ico">🏆</div>
+      <div class="feat-title">EOSD Calculator</div>
+      <div class="feat-desc">Know your end-of-service entitlement before you leave. Your legal right — calculated instantly.</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHO IS IT FOR -->
+<div style="max-width:900px;margin:0 auto;padding:0 24px 64px">
+  <div class="who">
+    <div class="section-title">Who Is This For?</div>
+    <div class="who-grid">
+      <div class="who-item"><div class="who-ico">👷</div><div class="who-text"><strong>Gulf Workers</strong>Pakistani & Bangladeshi workers in Saudi, UAE, Qatar, Kuwait, Bahrain, Oman</div></div>
+      <div class="who-item"><div class="who-ico">🏠</div><div class="who-text"><strong>Families Back Home</strong>Wives and parents managing remittances and home finances</div></div>
+      <div class="who-item"><div class="who-ico">📱</div><div class="who-text"><strong>Mobile First</strong>Works on any Android or iPhone — no app download needed</div></div>
+      <div class="who-item"><div class="who-ico">🌍</div><div class="who-text"><strong>Two Languages</strong>Full Urdu and Bengali support — switch anytime</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div id="pricing">
+  <div class="section-title">Simple Pricing</div>
+  <div class="section-sub" style="margin-bottom:28px">One payment. Lifetime access. No surprises.</div>
+  <div class="price-card">
+    <div class="price-badge">Lifetime Access</div>
+    <div class="price-name">Smart Bachat</div>
+    <div class="price-desc">Complete Gulf worker financial tool — salary, savings, rights, and dreams in one place.</div>
+    <div class="price-amount">$2.99</div>
+    <div class="price-period">one-time payment — yours forever</div>
+    <div class="price-features">
+      <div class="pf">Salary split calculator</div>
+      <div class="pf">Monthly savings tracker + streaks</div>
+      <div class="pf">Help Now — labor rights guide</div>
+      <div class="pf">Dream goal planner</div>
+      <div class="pf">Family Shield messages</div>
+      <div class="pf">EOSD calculator</div>
+      <div class="pf">Urdu + Bengali language support</div>
+      <div class="pf">All 6 Gulf countries supported</div>
+      <div class="pf">Works on any mobile phone</div>
+    </div>
+    <button class="price-btn" onclick="window.location.href='/checkout'">Get Smart Bachat — $2.99</button>
+    <div class="price-note">Secure payment via Paddle • Instant access after payment • No subscription</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="/terms">Terms of Service</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/refund">Refund Policy</a>
+    <a href="mailto:hello@smartsaathi.app">Contact</a>
+  </div>
+  <div class="footer-copy">© 2025 SmartSaathi. All rights reserved. Operated by an individual seller.</div>
+</footer>
+
+</body>
+</html>
