@@ -78,9 +78,10 @@ footer{padding:40px 24px;border-top:1px solid rgba(116,198,157,.08);text-align:c
     hash.includes('access_token') ||
     search.includes('code=') ||
     search.includes('token_hash=') ||
-    search.includes('token=')
+    search.includes('token=') ||
+    search.includes('type=magiclink')
   ) {
-    window.location.replace('/login' + search + hash);
+    window.location.replace('/app' + search + hash);
   }
 })();
 </script>
