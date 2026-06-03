@@ -10,7 +10,6 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:#080E0A;color:#EEF7F0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;}
-/* GATE SCREEN */
 .gate{position:fixed;inset:0;background:#080E0A;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;padding:24px;text-align:center;}
 .gate.hidden{display:none;}
 .gate-ico{font-size:56px;margin-bottom:12px;}
@@ -18,82 +17,78 @@ body{background:#080E0A;color:#EEF7F0;font-family:-apple-system,BlinkMacSystemFo
 .gate-sub{font-size:14px;color:#5E8A68;margin-bottom:28px;line-height:1.6;max-width:300px;}
 .gate-btn{width:100%;max-width:300px;padding:16px;background:linear-gradient(135deg,#40916C,#1B4332);border:none;border-radius:14px;color:#fff;font-size:16px;font-weight:700;cursor:pointer;margin-bottom:10px;font-family:inherit;}
 .gate-btn-out{background:transparent;border:1.5px solid rgba(116,198,157,.35);color:#74C69D;}
-.spinner-wrap{display:flex;align-items:center;justify-content:center;gap:12px;color:#5E8A68;font-size:14px;}
-.spinner{width:20px;height:20px;border:2px solid rgba(116,198,157,.15);border-top-color:#74C69D;border-radius:50%;animation:spin .7s linear infinite;}
+.spin-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;color:#5E8A68;font-size:14px;}
+.spinner{width:36px;height:36px;border:2px solid rgba(116,198,157,.15);border-top-color:#74C69D;border-radius:50%;animation:spin .7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
-/* APP FRAME */
 #appFrame{width:100%;height:100vh;border:none;display:none;}
 </style>
 </head>
 <body>
 
-<!-- LOADING GATE -->
 <div class="gate" id="gateLoading">
-  <div class="spinner-wrap">
+  <div class="spin-wrap">
     <div class="spinner"></div>
-    Checking access...
+    <span>Checking access...</span>
   </div>
 </div>
 
-<!-- NOT LOGGED IN GATE -->
 <div class="gate hidden" id="gateLogin">
   <div class="gate-ico">🔐</div>
   <div class="gate-title">Login Required</div>
-  <div class="gate-sub">Smart Bachat use karne ke liye login karein.</div>
+  <div class="gate-sub">Smart Bachat use karne ke liye pehle login karein.</div>
   <button class="gate-btn" onclick="window.location.href='/login'">Login Karein</button>
-  <button class="gate-btn gate-btn-out" onclick="window.location.href='/'">Smart Bachat Khareedein</button>
+  <button class="gate-btn gate-btn-out" onclick="window.location.href='/'">Smart Bachat Khareedein — $2.99</button>
 </div>
 
-<!-- NOT PURCHASED GATE -->
 <div class="gate hidden" id="gateNotPurchased">
   <div class="gate-ico">💰</div>
   <div class="gate-title">Access Nahi Hai</div>
-  <div class="gate-sub">Aap ne Smart Bachat abhi tak nahi khareeda. Sirf $2.99 — ek baar ka payment.</div>
-  <button class="gate-btn" onclick="window.location.href='/#pricing'">Smart Bachat Khareedein — $2.99</button>
+  <div class="gate-sub">Aap ne Smart Bachat abhi nahi khareeda. Sirf $2.99 — ek baar ka payment.</div>
+  <button class="gate-btn" onclick="window.location.href='/#pricing'">Khareedein — $2.99</button>
   <button class="gate-btn gate-btn-out" onclick="logout()">Logout</button>
 </div>
 
-<!-- APP IFRAME -->
-<iframe id="appFrame" src="/smart-bachat-tool" title="Smart Bachat App"></iframe>
+<iframe id="appFrame" src="/smart-bachat-tool" title="Smart Bachat"></iframe>
 
 <script>
-// ── CONFIG ──────────────────────────────────────────────────
 var SUPABASE_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
 var SUPABASE_KEY = 'sb_publishable_TMS0XJWriaIoBLMG8svz-w_8-qSkQts';
-var PRODUCT_ID = 'smart-bachat';
+var PRODUCT_ID   = 'smart-bachat';
 
-// ── SHOW/HIDE GATES ─────────────────────────────────────────
 function showGate(id) {
-  ['gateLoading','gateLogin','gateNotPurchased'].forEach(function(g) {
+  ['gateLoading','gateLogin','gateNotPurchased'].forEach(function(g){
     document.getElementById(g).classList.add('hidden');
   });
   document.getElementById('appFrame').style.display = 'none';
   if (id === 'app') {
     document.getElementById('appFrame').style.display = 'block';
-    document.getElementById('gateLoading').classList.add('hidden');
   } else {
     document.getElementById(id).classList.remove('hidden');
   }
 }
 
-// ── GET SESSION ─────────────────────────────────────────────
 function getSession() {
   try {
-    var s = localStorage.getItem('sb_session');
-    if (!s) return null;
-    var session = JSON.parse(s);
-    if (session.expires_at < Date.now()/1000) {
+    var raw = localStorage.getItem('sb_session');
+    if (!raw) return null;
+    var s = JSON.parse(raw);
+    if (!s.access_token) return null;
+    if (s.expires_at && s.expires_at < Date.now()/1000) {
       localStorage.removeItem('sb_session');
       return null;
     }
-    return session;
+    return s;
   } catch(e) { return null; }
 }
 
-// ── CHECK PURCHASE ──────────────────────────────────────────
+function logout() {
+  localStorage.removeItem('sb_session');
+  window.location.href = '/login';
+}
+
 async function checkPurchase(token) {
   try {
-    var res = await fetch(SUPABASE_URL + '/rest/v1/rpc/has_purchased', {
+    var r = await fetch(SUPABASE_URL + '/rest/v1/rpc/has_purchased', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -102,37 +97,118 @@ async function checkPurchase(token) {
       },
       body: JSON.stringify({ p_product_id: PRODUCT_ID })
     });
-    if (!res.ok) return false;
-    var data = await res.json();
+    if (!r.ok) return false;
+    var data = await r.json();
     return data === true;
   } catch(e) { return false; }
 }
 
-// ── LOGOUT ──────────────────────────────────────────────────
-function logout() {
-  localStorage.removeItem('sb_session');
-  window.location.href = '/login';
+// Handle magic link token if landed here directly
+async function handleTokenInURL() {
+  var url = new URL(window.location.href);
+  var hash = window.location.hash;
+
+  // Hash fragment: #access_token=xxx
+  if (hash && hash.includes('access_token')) {
+    var params = {};
+    hash.substring(1).split('&').forEach(function(p) {
+      var kv = p.split('=');
+      params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1]||'');
+    });
+    if (params.access_token) {
+      localStorage.setItem('sb_session', JSON.stringify({
+        access_token: params.access_token,
+        refresh_token: params.refresh_token || '',
+        expires_at: Date.now()/1000 + parseInt(params.expires_in||3600)
+      }));
+      history.replaceState(null,'','/app');
+      return true;
+    }
+  }
+
+  // Token in query params — verify with Supabase
+  var token = url.searchParams.get('token');
+  var tokenHash = url.searchParams.get('token_hash');
+  var type = url.searchParams.get('type') || 'magiclink';
+  var code = url.searchParams.get('code');
+
+  var body = null;
+  if (tokenHash) body = { token_hash: tokenHash, type: type };
+  else if (token) body = { token: token, type: type };
+
+  if (body) {
+    try {
+      var r = await fetch(SUPABASE_URL + '/auth/v1/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY },
+        body: JSON.stringify(body)
+      });
+      var data = await r.json();
+      if (data.access_token) {
+        localStorage.setItem('sb_session', JSON.stringify({
+          access_token: data.access_token,
+          refresh_token: data.refresh_token || '',
+          expires_at: Date.now()/1000 + (data.expires_in || 3600)
+        }));
+        history.replaceState(null,'','/app');
+        return true;
+      }
+    } catch(e) {}
+  }
+
+  if (code) {
+    try {
+      var r2 = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=pkce', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY
+        },
+        body: JSON.stringify({ auth_code: code })
+      });
+      var data2 = await r2.json();
+      if (data2.access_token) {
+        localStorage.setItem('sb_session', JSON.stringify({
+          access_token: data2.access_token,
+          refresh_token: data2.refresh_token || '',
+          expires_at: Date.now()/1000 + (data2.expires_in || 3600)
+        }));
+        history.replaceState(null,'','/app');
+        return true;
+      }
+    } catch(e) {}
+  }
+
+  return false;
 }
 
-// ── MAIN CHECK ──────────────────────────────────────────────
 window.addEventListener('load', async function() {
-  var session = getSession();
+  // First check if there is a token in URL
+  var url = new URL(window.location.href);
+  var hasToken = window.location.hash.includes('access_token') ||
+                 url.searchParams.get('token') ||
+                 url.searchParams.get('token_hash') ||
+                 url.searchParams.get('code');
 
-  // Not logged in
+  if (hasToken) {
+    await handleTokenInURL();
+  }
+
+  // Now check session
+  var session = getSession();
   if (!session) {
     showGate('gateLogin');
     return;
   }
 
   // Check purchase
-  var hasPurchased = await checkPurchase(session.access_token);
-
-  if (!hasPurchased) {
+  var purchased = await checkPurchase(session.access_token);
+  if (!purchased) {
     showGate('gateNotPurchased');
     return;
   }
 
-  // All good — show the app
   showGate('app');
 });
 </script>
