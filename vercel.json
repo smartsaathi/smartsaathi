@@ -1,9 +1,21 @@
 {
+  "outputDirectory": "public",
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/terms",   "destination": "/terms.html"   },
-    { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/refund",  "destination": "/refund.html"  }
-  ]
+    { "source": "/login",    "destination": "/login.html"    },
+    { "source": "/app",      "destination": "/app.html"      },
+    { "source": "/checkout", "destination": "/checkout.html" },
+    { "source": "/success",  "destination": "/success.html"  },
+    { "source": "/terms",    "destination": "/terms.html"    },
+    { "source": "/privacy",  "destination": "/privacy.html"  },
+    { "source": "/refund",   "destination": "/refund.html"   },
+    { "source": "/smart-bachat-tool", "destination": "/smart-bachat-tool.html" }
+  ],
+  "functions": {
+    "api/webhook.js": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  }
 }
