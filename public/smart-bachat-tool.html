@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#080E0A">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Smart Bachat</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Hind:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--g1:#1B4332;--g3:#40916C;--g4:#74C69D;--a2:#F4A261;--a3:#FFD166;--bg:#080E0A;--bgc:#0F1A12;--bgp:#162019;--tx:#EEF7F0;--ts:#B8D4BE;--tm:#5E8A68;--bd:rgba(116,198,157,.13);--bdb:rgba(116,198,157,.32);--red:#E07A7A;--blue:#74B3CE;--pur:#B08FD4;--gold:#F0C040;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Hind',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;font-size:15px;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 5% 0%,rgba(45,106,79,.09),transparent 60%);pointer-events:none;z-index:0;}
+.wrap{position:relative;z-index:1;max-width:460px;margin:0 auto;padding-bottom:24px;}
+.screen{display:none;}.screen.active{display:block;animation:fu .28s ease both;}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#scSplash.active{display:flex!important;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:32px 24px;text-align:center;}
+.ldr{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s;}
+.ldr.gone{opacity:0;pointer-events:none;}
+.lring{width:40px;height:40px;border:2px solid rgba(116,198,157,.1);border-top-color:var(--g4);border-radius:50%;animation:spin .75s linear infinite;margin-bottom:10px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(50px);background:var(--bgp);border:1px solid var(--bdb);border-radius:12px;padding:10px 18px;font-size:13px;color:var(--g4);z-index:700;transition:transform .3s;white-space:nowrap;pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.hidden{display:none!important;}
+/* COMMON */
+.card{background:var(--bgc);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:10px;}
+.inp{width:100%;background:var(--bgp);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;color:var(--tx);font-family:'Hind',sans-serif;font-size:17px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.inp:focus{border-color:var(--g4);}
+.inp::placeholder{color:var(--tm);}
+.btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--g3),var(--g1));border:none;border-radius:14px;color:#fff;font-family:'Baloo 2',sans-serif;font-size:17px;font-weight:700;cursor:pointer;}
+.btn:active{transform:scale(.97);}
+.btn-out{background:transparent;border:1.5px solid var(--bdb);color:var(--g4);}
+.btn-wa{background:linear-gradient(135deg,#128C7E,#075E54);}
+.f7{font-family:'Baloo 2',sans-serif;font-weight:700;}
+.f8{font-family:'Baloo 2',sans-serif;font-weight:800;}
+/* PHONE GATE */
+#scPhone.active{display:flex!important;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:32px 20px;text-align:center;}
+.phone-pg{display:flex;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:340px;}
+.ph-logo{font-size:60px;animation:pulse 2s ease-in-out infinite;}
+.ph-title{font-size:26px;color:var(--g4);}
+.ph-sub{font-size:15px;color:var(--ts);}
+.ph-inp-wrap{display:flex;align-items:center;background:var(--bgp);border:2px solid var(--bd);border-radius:14px;overflow:hidden;width:100%;transition:border-color .2s;}
+.ph-inp-wrap:focus-within{border-color:var(--g4);}
+.ph-prefix{padding:16px 14px;font-size:17px;font-weight:700;color:var(--g4);background:rgba(116,198,157,.07);border-right:1px solid var(--bd);flex-shrink:0;}
+.ph-inp{flex:1;background:transparent;border:none;padding:16px 14px;color:var(--tx);font-size:20px;font-weight:700;outline:none;letter-spacing:2px;}
+.ph-inp::placeholder{color:var(--tm);font-weight:400;letter-spacing:0;}
+.ph-err{font-size:13px;color:var(--red);padding:4px 0;}
+.ph-note{font-size:12px;color:var(--tm);}
+/* SPLASH */
+.splash-logo{font-size:70px;margin-bottom:10px;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.splash-name{font-size:30px;color:var(--g4);margin-bottom:14px;}
+.splash-lines{margin-bottom:44px;}
+.sl-ur{font-size:17px;color:var(--a2);line-height:1.9;}
+.sl-bn{font-size:15px;color:var(--tm);line-height:1.9;}
+.splash-btn{width:100%;max-width:300px;padding:18px;background:linear-gradient(135deg,var(--g3),var(--g1));border:none;border-radius:16px;color:#fff;font-family:'Baloo 2',sans-serif;font-size:17px;font-weight:800;cursor:pointer;box-shadow:0 8px 28px rgba(45,106,79,.38);}
+/* ONBOARDING */
+.ob-pg{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:36px 20px 80px;}
+.ob-dots{display:flex;gap:8px;margin-bottom:28px;}
+.od{width:8px;height:8px;border-radius:50%;background:rgba(116,198,157,.2);}
+.od.on{background:var(--g4);width:24px;border-radius:4px;}
+.ob-icon{font-size:50px;margin-bottom:10px;}
+.ob-title{font-size:22px;color:var(--g4);margin-bottom:5px;text-align:center;}
+.ob-sub{font-size:13px;color:var(--tm);text-align:center;margin-bottom:24px;}
+.lang-grid{display:flex;flex-direction:column;gap:12px;width:100%;max-width:320px;}
+.lang-btn{display:flex;align-items:center;gap:16px;padding:20px 18px;background:var(--bgc);border:2px solid var(--bd);border-radius:16px;cursor:pointer;width:100%;}
+.lang-btn.act{border-color:var(--g4);background:rgba(116,198,157,.07);}
+.lang-flag{font-size:34px;}
+.lang-name{font-size:18px;color:var(--tx);}
+.lang-nat{font-size:12px;color:var(--tm);margin-top:2px;}
+.lang-btn.act .lang-nat{color:var(--g4);}
+.ctry-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;width:100%;max-width:340px;}
+.cc{display:flex;flex-direction:column;align-items:center;padding:16px 8px;background:var(--bgc);border:2px solid var(--bd);border-radius:14px;cursor:pointer;}
+.cc.act{border-color:var(--g4);background:rgba(116,198,157,.07);}
+.cc-flag{font-size:30px;margin-bottom:6px;}
+.cc-name{font-size:11px;color:var(--ts);text-align:center;font-weight:600;}
+.cc.act .cc-name{color:var(--g4);}
+.ob-next{margin-top:20px;width:100%;max-width:340px;}
+.rlbl{font-size:11px;letter-spacing:.1em;color:var(--tm);text-transform:uppercase;margin-bottom:6px;}
+/* REALITY SCREEN */
+#scReal.active{display:flex!important;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:24px 20px;}
+.real-pg{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%;max-width:340px;}
+.real-inputs{width:100%;display:flex;flex-direction:column;gap:12px;}
+.real-head{text-align:center;}
+.real-icon{font-size:40px;margin-bottom:6px;}
+.real-title{font-size:22px;color:var(--g4);}
+.real-fields{display:flex;flex-direction:column;gap:10px;}
+.real-field{display:flex;flex-direction:column;}
+.real-inp-row{display:flex;align-items:center;background:var(--bgp);border:1px solid var(--bd);border-radius:12px;overflow:hidden;transition:border-color .2s;}
+.real-inp-row:focus-within{border-color:var(--g4);}
+.real-cur{padding:0 12px;font-size:14px;font-weight:700;color:var(--g4);flex-shrink:0;}
+.real-inp-num{flex:1;background:transparent;border:none;padding:14px 10px 14px 0;color:var(--tx);font-size:20px;font-weight:700;outline:none;}
+.real-inp-num::placeholder{color:var(--tm);font-weight:400;font-size:16px;}
+.real-2col{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+/* TRUTH REVEAL */
+.truth-reveal{width:100%;background:var(--bgc);border:1.5px solid rgba(244,162,97,.35);border-radius:20px;padding:28px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.tr-years{font-size:13px;color:var(--tm);margin-bottom:8px;}
+.tr-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--tm);}
+.tr-big{font-size:40px;color:var(--a2);margin:4px 0 12px;}
+.tr-divider{width:40px;height:2px;background:var(--bd);margin:8px 0;}
+.tr-saved-amt{font-size:32px;color:var(--red);margin:4px 0 16px;}
+.tr-wake{font-size:18px;font-weight:700;color:var(--g4);font-family:'Baloo 2',sans-serif;margin-bottom:8px;line-height:1.4;}
+/* HOME */
+.home-top{padding:18px 16px 10px;display:flex;justify-content:space-between;align-items:flex-start;}
+.home-greet{font-size:19px;font-weight:700;color:var(--tx);}
+.home-ctry{font-size:12px;color:var(--tm);margin-top:2px;}
+.settings-btn{width:40px;height:40px;background:var(--bgc);border:1px solid var(--bd);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;}
+.reminder{margin:0 16px 14px;padding:13px 15px;background:rgba(176,143,212,.07);border:1px solid rgba(176,143,212,.18);border-left:3px solid var(--pur);border-radius:10px;font-size:15px;color:var(--ts);font-style:italic;line-height:1.5;}
+.big4{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:0 16px 14px;}
+.b4btn{background:var(--bgc);border:2px solid var(--bd);border-radius:18px;padding:22px 14px 18px;cursor:pointer;text-align:center;position:relative;overflow:hidden;}
+.b4btn::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(116,198,157,.2),transparent);}
+.b4btn:active{transform:scale(.97);border-color:var(--g4);}
+.b4btn.emer{border-color:rgba(224,122,122,.3);}
+.b4btn.dream{border-color:rgba(244,162,97,.25);}
+.b4ico{font-size:48px;margin-bottom:10px;display:block;line-height:1;}
+.b4lbl{font-size:17px;font-weight:800;color:var(--tx);margin-bottom:4px;}
+.b4sub{font-size:10px;color:var(--tm);opacity:.8;}
+.home-stats{margin:0 16px;padding:14px 16px;background:var(--bgc);border:1px solid var(--bd);border-radius:14px;display:flex;align-items:center;justify-content:space-between;}
+.hs-item{text-align:center;}
+.hs-val{font-size:20px;font-weight:800;color:var(--g4);}
+.hs-lbl{font-size:10px;color:var(--tm);margin-top:1px;}
+.hs-sep{width:1px;height:30px;background:var(--bd);}
+.aur-btn{margin:11px 16px 0;padding:15px 18px;background:var(--bgc);border:1px solid var(--bd);border-radius:14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;}
+.aur-left{display:flex;align-items:center;gap:12px;}
+.aur-ico{font-size:22px;}
+.aur-lbl{font-size:15px;font-weight:700;color:var(--tx);}
+.aur-sub{font-size:11px;color:var(--tm);margin-top:1px;}
+/* SCREEN HEADER */
+.shdr{display:flex;align-items:center;gap:10px;padding:14px 14px 8px;}
+.back-btn{width:38px;height:38px;background:var(--bgc);border:1px solid var(--bd);border-radius:10px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;color:var(--tm);flex-shrink:0;}
+.back-btn:active{border-color:var(--g4);}
+.pg-title{font-size:18px;color:var(--g4);}
+/* AUR MADAD GRID */
+.am-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 16px 20px;}
+.amc{background:var(--bgc);border:1px solid var(--bd);border-radius:14px;padding:20px 12px;cursor:pointer;text-align:center;}
+.amc:active{border-color:var(--g4);}
+.amc-ico{font-size:28px;margin-bottom:8px;}
+.amc-title{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:3px;}
+.amc-sub{font-size:11px;color:var(--tm);}
+/* SPLIT */
+.jar{background:var(--bgc);border:1px solid var(--bd);border-radius:14px;margin-bottom:9px;overflow:hidden;cursor:pointer;}
+.jar-hd{display:flex;align-items:center;padding:15px 14px;gap:11px;min-height:64px;}
+.jar-ico{font-size:22px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:rgba(116,198,157,.06);border-radius:9px;flex-shrink:0;}
+.jar-name{font-size:15px;font-weight:700;color:var(--tx);}
+.jar-pct{font-size:10px;color:var(--tm);opacity:.7;}
+.jar-amt{text-align:right;}
+.jar-sar{font-size:22px;font-weight:800;}
+.jar-loc{font-size:11px;color:var(--tm);}
+.jchev{font-size:13px;color:var(--tm);transition:transform .3s;margin-left:6px;}
+.jar.open .jchev{transform:rotate(180deg);}
+.jbar{height:5px;background:var(--bgp);}
+.jbar-f{height:100%;background:linear-gradient(90deg,var(--g3),var(--g4));}
+.jar-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.jar.open .jar-body{max-height:220px;}
+.jsub{padding:8px 14px 12px;}
+.jsub-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(116,198,157,.05);}
+.jsub-row:last-child{border-bottom:none;}
+.jsub-l{font-size:12px;color:var(--ts);}
+.jsub-a{font-size:12px;font-weight:600;color:var(--a3);}
+.low-toggle{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:rgba(244,162,97,.06);border:1px solid rgba(244,162,97,.2);border-radius:12px;margin-bottom:10px;cursor:pointer;}
+.lt-lbl{font-size:13px;font-weight:700;color:var(--a2);}
+.lt-sub{font-size:11px;color:var(--tm);}
+.pill{width:44px;height:24px;border-radius:12px;background:var(--bgp);border:1.5px solid var(--bd);position:relative;transition:background .2s;}
+.pill.on{background:var(--g3);}
+.pill::after{content:'';position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s;}
+.pill.on::after{left:23px;}
+.leak-title{font-size:15px;font-weight:800;color:var(--g4);margin-bottom:10px;}
+.leak-row{display:flex;align-items:center;justify-content:space-between;background:var(--bgc);border:1px solid var(--bd);border-radius:11px;padding:12px 13px;margin-bottom:8px;}
+.lr-lbl{font-size:14px;color:var(--ts);}
+.lr-inp{width:82px;background:var(--bgp);border:1px solid var(--bd);border-radius:8px;padding:8px 10px;color:var(--tx);font-size:15px;text-align:center;outline:none;}
+.leak-res{margin-top:8px;padding:14px;background:rgba(231,111,81,.08);border:1px solid rgba(231,111,81,.22);border-radius:12px;font-size:14px;color:var(--ts);line-height:1.8;display:none;}
+/* TRACKER */
+.streak-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.streak-badge{font-size:16px;font-weight:700;color:var(--a2);padding:8px 16px;background:rgba(244,162,97,.1);border:1px solid rgba(244,162,97,.22);border-radius:20px;}
+.pb-wrap{background:var(--bgc);border:1px solid var(--bd);border-radius:13px;padding:13px;margin-bottom:12px;}
+.pb-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
+.pb-t{font-size:14px;font-weight:700;color:var(--tx);}
+.pb-v{font-size:14px;font-weight:700;color:var(--g4);}
+.pb-bar{height:10px;background:var(--bgp);border-radius:5px;overflow:hidden;}
+.pb-fill{height:100%;background:linear-gradient(90deg,var(--g3),var(--a3));border-radius:5px;transition:width 1s ease;}
+.pb-goal{font-size:11px;color:var(--tm);text-align:center;margin-top:4px;}
+.celebrate{display:none;text-align:center;padding:13px;background:rgba(116,198,157,.07);border:1px solid var(--bd);border-radius:13px;font-size:15px;font-weight:700;color:var(--g4);margin-bottom:10px;}
+.mrow{display:flex;align-items:center;gap:10px;padding:13px;min-height:52px;background:var(--bgc);border:1px solid var(--bd);border-radius:11px;margin-bottom:7px;}
+.mrow.done{border-color:var(--g4);background:rgba(116,198,157,.04);}
+.mrow-name{font-size:14px;color:var(--ts);flex:1;}
+.mrow.done .mrow-name{color:var(--g4);}
+.mrow-inp{width:72px;background:var(--bgp);border:1px solid var(--bd);border-radius:8px;padding:7px 9px;color:var(--tx);font-size:13px;text-align:center;outline:none;}
+.mrow-chk{font-size:18px;cursor:pointer;flex-shrink:0;}
+.chal-item{display:flex;align-items:center;gap:11px;padding:14px 13px;min-height:52px;background:var(--bgc);border:1px solid var(--bd);border-radius:11px;cursor:pointer;margin-bottom:7px;}
+.chal-item.done{border-color:var(--g4);background:rgba(116,198,157,.05);}
+.chal-ico{font-size:18px;flex-shrink:0;}
+.chal-lbl{font-size:14px;color:var(--ts);flex:1;}
+.chal-item.done .chal-lbl{color:var(--g4);}
+.chal-chk{font-size:17px;}
+.total-bar{padding:14px 16px;background:linear-gradient(135deg,rgba(116,198,157,.08),transparent);border:1px solid var(--bd);border-radius:13px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.tb-lbl{font-size:11px;color:var(--tm);}
+.tb-val{font-size:26px;font-weight:800;color:var(--g4);}
+/* HELP NOW */
+.prob-btn{display:flex;align-items:center;gap:13px;padding:18px 14px;min-height:64px;border-radius:14px;cursor:pointer;border:2px solid;background:var(--bgc);margin-bottom:10px;}
+.pb-a{border-color:rgba(244,162,97,.4);}
+.pb-b{border-color:rgba(224,122,122,.4);}
+.pb-c{border-color:rgba(176,143,212,.4);}
+.pb-d{border-color:rgba(240,192,64,.4);}
+.pb-e{border-color:rgba(116,179,206,.4);}
+.pb-g{border-color:rgba(244,162,97,.6);}
+.prob-btn.open{background:rgba(116,198,157,.03);}
+.prob-ico{font-size:30px;flex-shrink:0;}
+.prob-title{font-size:17px;font-weight:700;color:var(--tx);}
+.prob-sub{font-size:11px;color:var(--tm);margin-top:3px;opacity:.8;}
+.prob-arr{font-size:14px;color:var(--tm);transition:transform .3s;margin-left:auto;}
+.prob-btn.open .prob-arr{transform:rotate(180deg);}
+.flow-wrap{display:none;margin-bottom:10px;background:var(--bgp);border:1px solid var(--bd);border-radius:13px;overflow:hidden;}
+.flow-wrap.open{display:block;animation:fu .22s ease both;}
+.flow-body{padding:14px;}
+.step-list{display:flex;flex-direction:column;gap:10px;}
+.step-row{display:flex;align-items:flex-start;gap:10px;}
+.step-num{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--g3),var(--g1));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;margin-top:3px;}
+.step-txt{font-size:14px;color:var(--ts);line-height:1.8;flex:1;}
+.step-txt b{color:var(--g4);}
+.esc-box{background:rgba(240,192,64,.06);border:1px solid rgba(240,192,64,.2);border-radius:10px;padding:12px;margin-top:12px;}
+.esc-title{font-size:12px;font-weight:700;color:var(--gold);margin-bottom:7px;}
+.esc-row{display:flex;gap:8px;padding:4px 0;font-size:13px;color:var(--ts);}
+.esc-num{font-weight:700;color:var(--gold);flex-shrink:0;}
+.log-wrap{margin-top:12px;}
+.log-entry{background:var(--bgc);border:1px solid var(--bd);border-radius:9px;padding:10px;margin-bottom:7px;display:flex;align-items:flex-start;gap:8px;}
+.log-dot{width:7px;height:7px;border-radius:50%;background:var(--g4);flex-shrink:0;margin-top:5px;}
+.log-body{flex:1;}
+.log-txt{font-size:12px;color:var(--ts);}
+.log-date{font-size:10px;color:var(--tm);margin-top:2px;}
+.log-del{font-size:15px;cursor:pointer;color:var(--tm);}
+/* DREAM */
+.dream-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.dream-btn{padding:14px 10px;background:var(--bgc);border:2px solid var(--bd);border-radius:13px;text-align:center;cursor:pointer;}
+.dream-btn.act{border-color:var(--a2);background:rgba(244,162,97,.07);}
+.dream-ico{font-size:26px;margin-bottom:5px;}
+.dream-lbl{font-size:13px;font-weight:700;color:var(--ts);}
+.dream-btn.act .dream-lbl{color:var(--a2);}
+.dream-amt{font-size:10px;color:var(--tm);margin-top:2px;}
+.dream-inp{background:var(--bgc);border:1px solid var(--bd);border-radius:13px;padding:14px;margin-bottom:10px;}
+.di-row{display:flex;gap:10px;}
+.di-col{flex:1;}
+.di-lbl{font-size:11px;letter-spacing:.1em;color:var(--tm);text-transform:uppercase;margin-bottom:5px;}
+.dream-res{display:none;background:linear-gradient(135deg,rgba(244,162,97,.1),rgba(231,111,81,.04));border:1.5px solid rgba(244,162,97,.25);border-radius:14px;padding:18px;text-align:center;margin-bottom:12px;}
+.dr-big{font-size:32px;font-weight:800;color:var(--a2);margin-bottom:4px;}
+.dr-sub{font-size:13px;color:var(--ts);line-height:1.7;white-space:pre-line;}
+/* SHIELD */
+.pitem{background:var(--bgc);border:1px solid var(--bd);border-radius:13px;overflow:hidden;margin-bottom:9px;}
+.pitem-hd{display:flex;align-items:center;gap:11px;padding:16px 14px;min-height:56px;cursor:pointer;}
+.pitem-ico{font-size:20px;flex-shrink:0;}
+.pitem-q{font-size:15px;color:var(--ts);flex:1;line-height:1.4;}
+.pitem-arr{font-size:14px;color:var(--tm);transition:transform .3s;}
+.pitem.open .pitem-arr{transform:rotate(180deg);}
+.pitem-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.pitem.open .pitem-body{max-height:400px;}
+.pitem-ans{padding:12px 14px 14px;font-size:14px;color:var(--tx);line-height:1.9;border-top:1px solid var(--bd);}
+.pcopy-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;padding:11px;background:rgba(18,140,126,.12);border:1px solid rgba(18,140,126,.25);border-radius:10px;cursor:pointer;font-size:13px;font-weight:700;color:#4CAF88;}
+/* TIPS */
+.tip-item{display:flex;align-items:flex-start;gap:12px;padding:15px 14px;background:var(--bgc);border:1px solid var(--bd);border-radius:12px;margin-bottom:8px;}
+.tip-ico{font-size:20px;flex-shrink:0;margin-top:1px;}
+.tip-txt{font-size:14px;color:var(--ts);line-height:1.75;flex:1;}
+.tipsav{display:inline-block;margin-top:5px;padding:4px 10px;background:rgba(116,198,157,.08);border-radius:20px;font-size:12px;color:var(--g4);}
+/* EOSD */
+.eosd-box{background:linear-gradient(135deg,rgba(240,192,64,.07),transparent);border:1px solid rgba(240,192,64,.2);border-radius:13px;padding:16px;margin-bottom:10px;}
+.eosd-big{font-size:38px;font-weight:800;color:var(--gold);text-align:center;margin:10px 0 4px;}
+.eosd-rule{font-size:12px;color:var(--tm);text-align:center;line-height:1.6;}
+/* REMITTANCE */
+.rem-row{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;background:var(--bgc);border:1px solid var(--bd);border-radius:12px;margin-bottom:8px;}
+.rem-name{font-size:14px;color:var(--ts);}
+.rem-best{display:inline-block;padding:2px 8px;background:rgba(116,198,157,.1);border-radius:10px;font-size:10px;color:var(--g4);margin-left:7px;}
+.rem-fee{font-size:13px;font-weight:700;color:var(--a2);}
+/* CHECKLIST */
+.gh-item{display:flex;align-items:center;gap:11px;padding:13px 14px;background:var(--bgc);border:1px solid var(--bd);border-radius:12px;margin-bottom:8px;cursor:pointer;}
+.gh-item.done{border-color:var(--g4);background:rgba(116,198,157,.04);}
+.gh-lbl{font-size:14px;color:var(--ts);flex:1;}
+.gh-item.done .gh-lbl{text-decoration:line-through;color:var(--tm);}
+.gh-chk{font-size:18px;}
+/* READINESS METER */
+.rd-meter{background:var(--bgc);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:12px;}
+.rd-title{font-size:13px;color:var(--tm);margin-bottom:10px;}
+.rd-bar{height:14px;background:var(--bgp);border-radius:7px;overflow:hidden;margin-bottom:6px;}
+.rd-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--a2),var(--g4));border-radius:7px;transition:width .8s ease;}
+.rd-pct{font-size:26px;font-weight:800;color:var(--g4);margin-bottom:4px;}
+.rd-msg{font-size:13px;color:var(--ts);}
+.rd-item{display:flex;align-items:center;gap:12px;padding:14px;background:var(--bgc);border:1px solid var(--bd);border-radius:12px;margin-bottom:8px;}
+.rd-ico{font-size:22px;flex-shrink:0;}
+.rd-info{flex:1;}
+.rd-name{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:3px;}
+.rd-status{font-size:12px;color:var(--tm);}
+.rd-tick{font-size:20px;}
+.rd-item.done{border-color:var(--g4);background:rgba(116,198,157,.04);}
+.rd-item.done .rd-name{color:var(--g4);}
+.rd-item.done .rd-status{color:var(--g3);}
+/* SETTINGS */
+.sett-sec{font-size:11px;letter-spacing:.15em;color:var(--tm);text-transform:uppercase;margin:14px 0 8px;}
+.sett-row{display:flex;align-items:center;justify-content:space-between;padding:14px 15px;background:var(--bgc);border:1px solid var(--bd);border-radius:12px;margin-bottom:8px;cursor:pointer;}
+.sett-lbl{font-size:14px;font-weight:600;color:var(--tx);}
+.sett-opts{background:var(--bgc);border:1px solid var(--bd);border-radius:12px;overflow:hidden;margin-bottom:8px;display:none;}
+.sett-opt{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:1px solid var(--bd);cursor:pointer;font-size:14px;color:var(--ts);}
+.sett-opt:last-child{border-bottom:none;}
+.sett-opt.on{color:var(--g4);}
+.reset-btn{width:100%;padding:14px;background:transparent;border:1.5px solid rgba(224,122,122,.4);border-radius:12px;color:var(--red);font-family:'Baloo 2',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;}
+.pad{padding:0 16px 16px;}
+</style>
+</head>
+<body>
+<div id="ldr" class="ldr"><div class="lring"></div></div>
+<div id="toast" class="toast"></div>
+
+<div class="screen" id="scPhone">
+  <div class="phone-pg">
+    <div class="ph-logo">💰</div>
+    <div class="ph-title f8">Smart Bachat</div>
+    <div class="ph-sub" id="phSub">Apna Saudi number dalein</div>
+    <div class="ph-inp-wrap">
+      <div class="ph-prefix">+966</div>
+      <input class="ph-inp" id="phNum" type="tel" inputmode="numeric" maxlength="9" placeholder="5XXXXXXXX" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+    </div>
+    <div class="ph-err hidden" id="phErr">❌ Sahi number dalein (9 digits)</div>
+    <button class="btn" onclick="checkPhone()" id="phBtn" style="max-width:300px">Aage Chalein →</button>
+    <div class="ph-note" id="phNote">Sirf Saudi Arabia ka number</div>
+  </div>
+</div>
+
+<div class="screen" id="scSplash">
+  <div class="splash-logo">💰</div>
+  <div class="splash-name f8">Smart Bachat</div>
+  <div class="splash-lines">
+    <div class="sl-ur f7">خالی ہاتھ واپس مت جائیے۔</div>
+    <div class="sl-ur" style="font-size:14px;color:var(--ts)">Khali haath wapas mat jaiye.</div>
+    <div style="height:10px"></div>
+    <div class="sl-bn f7">খালি হাতে ফিরে যাবেন না।</div>
+  </div>
+  <button class="splash-btn" onclick="gS('scLang')">✅ Shuru Karein / শুরু করুন</button>
+</div>
+
+<div class="screen" id="scLang">
+  <div class="ob-pg">
+    <div class="ob-dots"><div class="od on"></div><div class="od"></div><div class="od"></div></div>
+    <div class="ob-icon">🌍</div>
+    <div class="ob-title f8" id="lT">Zaban Chunein</div>
+    <div class="lang-grid" style="margin-top:8px">
+      <div class="lang-btn" id="btnPK" onclick="selL('pk')">
+        <span class="lang-flag">🇵🇰</span>
+        <div><div class="lang-name f7">اردو</div><div class="lang-nat">Urdu / Pakistani</div></div>
+      </div>
+      <div class="lang-btn" id="btnBD" onclick="selL('bd')">
+        <span class="lang-flag">🇧🇩</span>
+        <div><div class="lang-name f7">বাংলা</div><div class="lang-nat">Bangla / Bangladeshi</div></div>
+      </div>
+    </div>
+    <div class="ob-next hidden" id="lNext"><button class="btn" onclick="goCtry()" id="lNextBtn">Agla →</button></div>
+  </div>
+</div>
+
+<div class="screen" id="scCtry">
+  <div class="ob-pg">
+    <div class="ob-dots"><div class="od"></div><div class="od on"></div><div class="od"></div></div>
+    <div class="ob-icon">🗺️</div>
+    <div class="ob-title f8" id="cT">Mulk Chunein</div>
+    <div class="ob-sub" id="cS">Rates aur rules aapke mutabiq</div>
+    <div class="ctry-grid" id="ctryGrid"></div>
+    <div class="ob-next hidden" id="cNext" style="display:flex;gap:10px">
+      <button class="btn btn-out" style="flex:0 0 auto;padding:14px 20px" onclick="gS('scLang')">←</button>
+      <button class="btn" onclick="goReal()" id="cNextBtn" style="flex:1">Agla →</button>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="scReal">
+  <div class="real-pg">
+    <div class="real-inputs" id="realInputs">
+      <div class="ob-dots" style="justify-content:center"><div class="od"></div><div class="od"></div><div class="od on"></div></div>
+      <div class="real-head">
+        <div class="real-icon">💡</div>
+        <div class="real-title f8" id="rT">Sach Ka Waqt</div>
+      </div>
+      <div class="real-fields">
+        <div class="real-field">
+          <div class="rlbl" id="rLS">MAHEENA SALARY</div>
+          <div class="real-inp-row"><div class="real-cur" id="rSC">SAR</div><input class="inp real-inp-num" type="number" id="salI" inputmode="numeric" placeholder="1800" oninput="calcR()"></div>
+        </div>
+        <div class="real-2col">
+          <div class="real-field">
+            <div class="rlbl" id="rLY">SAAL GULF MEIN</div>
+            <input class="inp" type="number" id="yrsI" inputmode="numeric" placeholder="3" oninput="calcR()">
+          </div>
+          <div class="real-field">
+            <div class="rlbl" id="rLSv">ABHI BACHAT</div>
+            <div class="real-inp-row"><div class="real-cur" id="rSvC">SAR</div><input class="inp real-inp-num" type="number" id="savI" inputmode="numeric" placeholder="0" oninput="calcR()"></div>
+          </div>
+        </div>
+        <button class="btn btn-out" style="font-size:14px;padding:12px" onclick="calcR(true)" id="rCalcBtn">Hisaab Lagao →</button>
+      </div>
+    </div>
+    <div class="truth-reveal hidden" id="tBox">
+      <div class="tr-years" id="trYears"></div>
+      <div class="tr-label" id="tEarned"></div>
+      <div class="tr-big f8" id="tBig"></div>
+      <div class="tr-divider"></div>
+      <div class="tr-label" id="tSaved"></div>
+      <div class="tr-saved-amt f8" id="tSVal"></div>
+      <div class="tr-divider"></div>
+      <div class="tr-label" id="tCouldLbl"></div>
+      <div class="tr-big f8" style="color:var(--g4);font-size:28px" id="tCould"></div>
+      <div class="tr-wake" id="tMsg"></div>
+      <button class="btn" onclick="startApp()" id="rBtn" style="margin-top:8px"></button>
+      <button class="btn btn-out" style="font-size:13px;padding:10px;margin-top:8px" onclick="G('tBox').classList.add('hidden');G('realInputs').classList.remove('hidden')">← Edit</button>
+    </div>
+    <button class="btn btn-out" style="max-width:340px;margin-top:10px;font-size:14px;padding:12px" onclick="gS('scCtry')" id="rBackBtn">←</button>
+  </div>
+</div>
+
+<div class="screen" id="scMain">
+  <div id="pgHome">
+    <div class="home-top">
+      <div><div class="home-greet f7" id="hGrt"></div><div class="home-ctry" id="hCtry"></div></div>
+      <div class="settings-btn" onclick="showPg('settings')">⚙️</div>
+    </div>
+    <div class="reminder" id="hRem"></div>
+    <div class="big4">
+      <div class="b4btn" onclick="showPg('split')"><span class="b4ico">💰</span><div class="b4lbl f8" id="b1l"></div><div class="b4sub" id="b1s"></div></div>
+      <div class="b4btn" onclick="showPg('tracker')"><span class="b4ico">📊</span><div class="b4lbl f8" id="b2l"></div><div class="b4sub" id="b2s"></div></div>
+      <div class="b4btn emer" onclick="showPg('help')"><span class="b4ico">🆘</span><div class="b4lbl f8" id="b3l"></div><div class="b4sub" id="b3s"></div></div>
+      <div class="b4btn dream" onclick="showPg('dream')"><span class="b4ico">🌟</span><div class="b4lbl f8" id="b4l"></div><div class="b4sub" id="b4s"></div></div>
+    </div>
+    <div class="home-stats">
+      <div class="hs-item"><div class="hs-val f8" id="hSav">—</div><div class="hs-lbl" id="hSavL"></div></div>
+      <div class="hs-sep"></div>
+      <div class="hs-item"><div class="hs-val f8" id="hStrk">🔥 0</div><div class="hs-lbl" id="hStrkL"></div></div>
+      <div class="hs-sep"></div>
+      <div class="hs-item"><div class="hs-val f8" id="hDrm">—</div><div class="hs-lbl" id="hDrmL"></div></div>
+    </div>
+    <div class="aur-btn" onclick="showPg('aurMadad')">
+      <div class="aur-left"><span class="aur-ico">📦</span><div><div class="aur-lbl f7" id="aurL"></div><div class="aur-sub" id="aurS"></div></div></div>
+      <span style="font-size:20px;color:var(--tm)">›</span>
+    </div>
+  </div>
+
+  <div id="pgAurMadad" class="hidden">
+    <div class="shdr"><div class="back-btn" id="amBack" onclick="showPg('home')">←</div><div class="pg-title f8" id="amT"></div></div>
+    <div class="am-grid" id="amGrid"></div>
+  </div>
+
+  <div id="pgSplit" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="spT"></div></div>
+    <div class="pad">
+      <div class="low-toggle" onclick="togLow()"><div><div class="lt-lbl f7" id="ltL"></div><div class="lt-sub" id="ltS"></div></div><div class="pill" id="lpill"></div></div>
+      <div id="jarList"></div>
+      <div class="leak-title f8" id="lkT"></div>
+      <div id="leakRows"></div>
+      <div class="leak-res" id="lkRes"></div>
+    </div>
+  </div>
+
+  <div id="pgTracker" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="trT"></div></div>
+    <div class="pad">
+      <div class="streak-row"><div class="streak-badge f7" id="strkB">🔥 0</div><button class="btn" style="width:auto;padding:9px 18px;font-size:13px" onclick="doShare()" id="shrBtn"></button></div>
+      <div class="pb-wrap"><div class="pb-hd"><div class="pb-t f7" id="pbT"></div><div class="pb-v f7" id="pbV">0%</div></div><div class="pb-bar"><div class="pb-fill" id="pbF" style="width:0%"></div></div><div class="pb-goal" id="pbG"></div></div>
+      <div class="celebrate" id="celBox"></div>
+      <div style="font-size:14px;font-weight:700;color:var(--g4);margin-bottom:8px" id="chalT"></div>
+      <div id="chalGrid"></div>
+      <div style="font-size:14px;font-weight:700;color:var(--g4);margin:10px 0 8px" id="monT"></div>
+      <div id="mGrid"></div>
+      <div class="total-bar"><span class="tb-lbl" id="totL"></span><span class="tb-val f8" id="totV"></span></div>
+    </div>
+  </div>
+
+  <div id="pgHelp" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="hlT"></div></div>
+    <div class="pad" id="probList"></div>
+  </div>
+
+  <div id="pgDream" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="drT"></div></div>
+    <div class="pad">
+      <div class="dream-grid" id="dGrid"></div>
+      <div class="dream-inp"><div class="di-row"><div class="di-col"><div class="di-lbl" id="dGL"></div><input class="inp" type="number" id="dGoal" inputmode="numeric" oninput="calcD()"></div><div class="di-col"><div class="di-lbl" id="dSL"></div><input class="inp" type="number" id="dSav" inputmode="numeric" oninput="calcD()"></div></div></div>
+      <div class="dream-res" id="dRes"><div class="dr-big f8" id="drBig"></div><div class="dr-sub" id="drSub"></div></div>
+    </div>
+  </div>
+
+  <div id="pgShield" class="hidden">
+    <div class="shdr"><div class="back-btn" id="shBack" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="shT"></div></div>
+    <div class="pad" id="pList"></div>
+  </div>
+
+  <div id="pgTips" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="tpT"></div></div>
+    <div class="pad" id="tipGrid"></div>
+  </div>
+
+  <div id="pgEosd" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="eoT"></div></div>
+    <div class="pad">
+      <div class="eosd-box"><div style="font-size:14px;font-weight:700;color:var(--gold);margin-bottom:4px" id="eoBoxT"></div><div class="eosd-big f8" id="eoBig"></div><div class="eosd-rule" id="eoRule"></div></div>
+      <div style="font-size:14px;color:var(--ts);line-height:1.75" id="eoInfo"></div>
+    </div>
+  </div>
+
+  <div id="pgRem" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="rmT"></div></div>
+    <div class="pad" id="remList"></div>
+  </div>
+
+  <div id="pgChecklist" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="ckT"></div></div>
+    <div class="pad" id="ghList"></div>
+  </div>
+
+  <div id="pgReady" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="rdT"></div></div>
+    <div class="pad" id="rdList"></div>
+  </div>
+
+  <div id="pgSettings" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="stT"></div></div>
+    <div class="pad">
+      <div class="sett-sec" id="stLL"></div>
+      <div class="sett-row" onclick="togSett('lang')"><span class="sett-lbl" id="stLC"></span><span>›</span></div>
+      <div class="sett-opts" id="soLang">
+        <div class="sett-opt" onclick="chgLang('pk')" id="soLPK">🇵🇰 Urdu <span id="soLPKc"></span></div>
+        <div class="sett-opt" onclick="chgLang('bd')" id="soLBD">🇧🇩 বাংলা <span id="soLBDc"></span></div>
+      </div>
+      <div class="sett-sec" id="stCL"></div>
+      <div class="sett-row" onclick="togSett('ctry')"><span class="sett-lbl" id="stCC"></span><span>›</span></div>
+      <div class="sett-opts" id="soCtry"></div>
+      <button class="reset-btn f7" id="stRst" onclick="doReset()"></button>
+    </div>
+  </div>
+</div>
+
+<script>
+var CTRY={
+  SA:{flag:'🇸🇦',name:'Saudi',cur:'SAR',pk:75,bd:28,labor:'MHRSD',hotline:'19911',app:'Musaned/Qiwa',embPK:'0114880840',embBD:'0112823141',eosdRule:'1/3 sal/yr (1-5yr) | 2/3/yr (5-10) | Full/yr (10+)',iqFine:'SAR 500/mo',sickPay:'30d full, 60d 75%, 30d 0%',wps:10},
+  AE:{flag:'🇦🇪',name:'UAE',cur:'AED',pk:58,bd:22,labor:'MOHRE',hotline:'800-60473',app:'MOHRE App',embPK:'026272828',embBD:'026659990',eosdRule:'21d/yr (1-5yr) | 30d/yr (5+)',iqFine:'AED 100/day',sickPay:'15d full, 30d half, 30d 0%',wps:10},
+  QA:{flag:'🇶🇦',name:'Qatar',cur:'QAR',pk:58,bd:22,labor:'ADLSA',hotline:'16008',app:'Metrash2',embPK:'44835001',embBD:'44831411',eosdRule:'3 weeks/yr of service',iqFine:'QAR 200/mo',sickPay:'2wk full, 4wk half',wps:7},
+  KW:{flag:'🇰🇼',name:'Kuwait',cur:'KWD',pk:550,bd:210,labor:'MSAL',hotline:'1844000',app:'Sahel App',embPK:'22530600',embBD:'22533988',eosdRule:'15d/yr (1-5yr) | 1mo/yr (5+)',iqFine:'KWD 10-50/mo',sickPay:'15d full, 10d half',wps:10},
+  BH:{flag:'🇧🇭',name:'Bahrain',cur:'BHD',pk:565,bd:215,labor:'LMRA',hotline:'17506055',app:'Bahrain.bh',embPK:'17786300',embBD:'17727200',eosdRule:'Half mo/yr (1-3yr) | 1mo/yr (3+)',iqFine:'BHD 10-100',sickPay:'15d full, 20d half',wps:10},
+  OM:{flag:'🇴🇲',name:'Oman',cur:'OMR',pk:550,bd:212,labor:'MLEI',hotline:'1500',app:'Tasjeel App',embPK:'24600694',embBD:'24602822',eosdRule:'15d/yr (1-3yr) | 1mo/yr (3+)',iqFine:'OMR 10-100',sickPay:'2wk full, 4wk half',wps:10}
+};
+
+var L='pk',C='SA',sal=1800,yrs=3,curSav=0,lowMode=false;
+var trData={months:{},chal:[]};
+var openFlowId=null,settOpen=null;
+var SK={lang:'sb_l',ctry:'sb_c',sal:'sb_s',yrs:'sb_y',sav:'sb_sv',started:'sb_st',tr:'sb_tr',chal:'sb_ch',gh:'sb_gh',logs:'sb_lg',low:'sb_lw'};
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function ld(k,d){try{var v=localStorage.getItem(k);return v!==null?JSON.parse(v):d;}catch(e){return d;}}
+function G(id){return document.getElementById(id);}
+function gS(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});G(id).classList.add('active');}
+function cur(){return CTRY[C].cur;}
+function rate(){return L==='pk'?CTRY[C].pk:CTRY[C].bd;}
+function lp(){return L==='pk'?'PKR':'BDT';}
+function fl(v){return lp()+' '+Math.round(v*rate()).toLocaleString();}
+function showToast(m){var e=G('toast');e.textContent=m;e.classList.add('show');setTimeout(function(){e.classList.remove('show');},2200);}
+function pk(){return L==='pk';}
+
+var D={
+pk:{
+  lT:'Zaban Chunein',cT:'Mulk Chunein',cS:'Rates aur rules aapke mutabiq',rT:'Sach Ka Waqt',
+  rLS:'MAHEENA SALARY',rLY:'KITNE SAAL GULF MEIN',rLSv:'ABHI KI BACHAT',
+  tEarned:'Aap ne total kamaya:',tSaved:'Aaj bachat hai sirf:',tMsg:'Abhi bhi waqt hai. Aaj se shuru karo.',
+  rBtn:'✅ Aaj hi Shuru Karein',
+  hGrt:'Salaam, Bhai! 👋',hSavL:'Bachat',hStrkL:'Streak',hDrmL:'Sapna',
+  rems:['Aaj bhi thodi bachat zaroor, bhai.','Ghar wale intezaar mein hain — unke liye karo.','Ek kadam aur — sapna karib hai.','Mehnat ka fal zaroor milega.','Aaj ki bachat, kal ki taaqat.','Ghar walon ka chehra yaad karo.','Har maheena ek kadam aage.'],
+  b1l:'Taqseem',b1s:'Salary ka hisaab',b2l:'Bachat',b2s:'Maheena record',b3l:'Help Now',b3s:'Foran madad',b4l:'Mera Sapna',b4s:'Wapsi goal',
+  aurL:'Aur Madad',aurS:'Shield, Tips, EOSD aur zyada',amT:'Aur Madad',
+  amCards:[{id:'shield',ico:'🛡️',t:'Family Shield',s:'Ghar ka pressure',grp:'roz'},{id:'tips',ico:'💡',t:'Bachat Tips',s:'10 asaan nuskhe',grp:'roz'},{id:'eosd',ico:'🏆',t:'EOSD',s:'Ye aapka haq hai',grp:'zaroori'},{id:'checklist',ico:'✈️',t:'Wapsi Checklist',s:'Ghar jaane se pehle',grp:'zaroori'},{id:'rem',ico:'💸',t:'Paise Bhejna',s:'Saste options',grp:'zaroori'},{id:'ready',ico:'🏡',t:'Wapsi Tayyari',s:'Kab jaane ke qabil hoon',grp:'zaroori'}],
+  spT:'💰 Taqseem',ltL:'Low Salary Mode',ltS:'1500 SAR se kam?',lkT:'🔍 Paisa Kahan Ja Raha Hai?',
+  leakCats:['☕ Chai/Juice','🚕 Taxi','🍔 Bahar Khana','📱 Extra Recharge','🎮 Entertainment','🛒 Fazool Shopping'],
+  leakRes:function(m,y){return 'Har maheena <b style="color:var(--a2)">'+m+' '+cur()+'</b> barbaad. Saal mein <b style="color:var(--a2)">'+y+' '+cur()+'</b> — ye wapsi fund ban sakta tha!';},
+  jars:[
+    {ico:'🏠',name:'Ghar Bhejna',pct:55,pL:65,sub:['Ghar ka kharcha','Maa baap dawai','Bhai behan'],col:'var(--g4)'},
+    {ico:'🍽️',name:'Apna Kharcha',pct:25,pL:25,sub:['Khana peena','Kiraya','Kapde'],col:'var(--a2)'},
+    {ico:'✈️',name:'Wapsi Fund',pct:15,pL:7,sub:['Ticket','Ghar wapsi','Seed money'],col:'var(--blue)'},
+    {ico:'🚨',name:'Aapat Fund',pct:5,pL:3,sub:['Bimari','Iqama','Emergency'],col:'var(--red)'}
+  ],
+  trT:'📊 Bachat',pbT:'Saal Ki Bachat',chalT:'7-Din Challenge',monT:'Maheena Wari',totL:'Kul Bachat',shrBtn:'📤 Share',
+  chals:[{ico:'☕',l:'7 din chai ki dukaan nahi'},{ico:'🚕',l:'7 din sirf paidal ya bus'},{ico:'💰',l:'Roz SAR 10 bachat'},{ico:'🕌',l:'Jumma ke baad bazar nahi'},{ico:'🍳',l:'7 din ghar ka khana'}],
+  months:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+  celebrates:['🎉 Ma Sha Allah! Bachat ho gayi!','🔥 3 mahine — Shabaash Bhai!','💪 Ghar walay faqr karenge!','🌟 Sapna karib aa raha hai!','🤲 Allah ne chaha — wapsi hogi!','⭐ Mehnat rang la rahi hai!','🏠 Ghar ka sapna poora hoga!'],
+  shareMsg:function(t,s){return '💰 Smart Bachat!\n'+cur()+' '+t+' bachat\n🔥 '+s+' mahine streak\nAap Akele Nahi Hain Bhai 🤝\n#SmartBachat';},
+  hlT:'🆘 Help Now',
+  helpProbs:[
+    {id:'sal',ico:'💸',t:'Salary Nahi Aayi',s:'Delay ya band',cl:'pb-a'},
+    {id:'short',ico:'⚖️',t:'Kam Salary Mili',s:'Poori nahi di',cl:'pb-b'},
+    {id:'iqama',ico:'🪪',t:'Iqama Issue',s:'Expiry qareeb',cl:'pb-d'},
+    {id:'sick',ico:'🏥',t:'Bimaar / Zakhmi',s:'Medical madad',cl:'pb-e'},
+    {id:'gohome',ico:'✈️',t:'Ghar Jana Hai',s:'Final exit plan',cl:'pb-g'}
+  ],
+  drT:'🌟 Mera Sapna',dGL:'GOAL (PKR)',dSL:'BACHAT/MAHEENA (SAR)',
+  dreams:[{ico:'🏠',l:'Ghar',pa:8000000,ba:5000000},{ico:'🛒',l:'Choti Dukaan',pa:1500000,ba:1000000},{ico:'☕',l:'Chai Dhaba',pa:800000,ba:600000},{ico:'🧵',l:'Silai Dukaan',pa:1000000,ba:800000},{ico:'📱',l:'Mobile Shop',pa:1200000,ba:900000},{ico:'🌾',l:'Zameen',pa:5000000,ba:3000000},{ico:'💳',l:'Qarz Utaarna',pa:1000000,ba:700000},{ico:'💍',l:'Shadi',pa:2000000,ba:1500000},{ico:'🕌',l:'Hajj',pa:1200000,ba:900000},{ico:'🏍️',l:'Motorcycle',pa:400000,ba:300000}],
+  dMain:function(m,y){return m+' Mahine = '+y+' Saal';},
+  dSub:function(g,s,m){return 'PKR '+g.toLocaleString()+' ke liye\nSAR '+s+'/mo pe '+m+' mahine lagenge';},
+  shT:'🛡️ Family Shield',
+  pressures:[
+    {ico:'💍',q:'Bhai ki shadi ka kharcha',a:'Bhai, dil se chahta hoon. Sab kaat ke 300-400 SAR mushkil se bachte hain. SAR 150 bhej raha hoon. Allah ne chaha hoga.'},
+    {ico:'🏠',q:'Ghar ki chhat',a:'SAR 200/maheena sirf chhat ke liye alag rakh raha hoon. 6 mahine mein jamega. Abhi zyada dena mere bas mein nahi.'},
+    {ico:'🎓',q:'Bacha ki school fees',a:'Zaroor. Agli salary mein pehle fees. Is hafte SAR 300 bhej raha hoon.'},
+    {ico:'💊',q:'Maa ki bimari',a:'Maa ka sunke dil bhaari. SAR 400 abhi bhej raha hoon. Doctor ka naam WhatsApp karo.'},
+    {ico:'👨',q:'Bhai ko Gulf bulao',a:'Yahan naye ko 2-3 mahine sirf kaam dhundhne mein lagte hain. Pehle wahan karobar — main seed money dunga.'},
+    {ico:'💰',q:'Zyada paise ki demand',a:'Zyada dene se main khud mushkil mein pad jata hoon. Thoda patience rakhein.'},
+    {ico:'🤝',q:'Izzat ka masla',a:'Izzat Allah deta hai. Jo yahan nahi unhe andaza nahi. Main mehnat se kama ke bhej raha hoon.'},
+    {ico:'👴',q:'Rishtedaar bol rahe hain',a:'Jo urgent ho seedha batao. Yahan ka kharcha woh nahi jo soch rahe. Sab theek hoga.'}
+  ],
+  cpTxt:'📋 Copy — WhatsApp ke liye',cpDone:'✅ Copy Ho Gaya!',
+  tpT:'💡 Bachat Tips',
+  tips:[
+    {ico:'🛒',t:'Hafte mein ek baar grocery — list ke bagair mat jao.',s:'50-80 SAR/hafte'},
+    {ico:'🍳',t:'Office ke liye dabba — bahar 15-25, ghar se 3-5 SAR.',s:'300+ SAR/mo'},
+    {ico:'💸',t:'Al Ansari ya STC Pay se bhejo — bank se kam charge.',s:'20-30 SAR/baar'},
+    {ico:'🏥',t:'Company ka medical card — bilkul FREE.',s:'100+ SAR'},
+    {ico:'📱',t:'Prepaid unlimited pack — extra recharge band.',s:'30-50 SAR'},
+    {ico:'🛍️',t:'Haraj app — second-hand 60-70% sasti.',s:'Variable'},
+    {ico:'☕',t:'Camp mein chai banao — roz dukaan se 40 SAR.',s:'40 SAR/mo'},
+    {ico:'🕌',t:'Eid qurbani milke karo — 5-6 log saath.',s:'200+ SAR'}
+  ],
+  eoT:'🏆 EOSD',eoBoxT:'End of Service — Aapka Haq',eoInfo:'Ye LEGAL haq hai. Company inkaar nahi kar sakti. Jate waqt zaroor maango.',
+  rmT:'💸 Paise Bhejna',
+  remSvcs:[{n:'EasyPaisa (STC Pay)',f:'0-15 SAR',b:true},{n:'Al Ansari Exchange',f:'15-25 SAR'},{n:'STC Pay Direct',f:'10-20 SAR'},{n:'Bank Transfer',f:'30-50 SAR'}],
+  ckT:'✈️ Wapsi Checklist',
+  ghItems:['Iqama photocopy lo','EOSD claim karo HR se','Company se NOC letter lo','Sab bills band karo','Medical card wapas karo','Ghar walon ko date bata do','Cash rakh lo','Ticket 48 ghante pehle confirm karo'],
+  stT:'⚙️ Settings',stLL:'ZABAN',stCL:'MULK',stRst:'🗑️ Sab Data Delete Karo',resetConfirm:'Sab data delete ho jayega. Confirm?',
+  noLog:'Koi record nahi',back:'← Wapas',
+  rdT:'🏡 Wapsi Tayyari',rdMeter:'Aapki Wapsi Tayyari',
+  rdMsg:['Abhi bahut kaam baaki hai.','Sahi raaste par ho!','Kaafi tayyar ho!','Masha Allah — bilkul tayyar!'],
+  rdItems:[
+    {ico:'🚨',n:'Aapat Fund',s:'3 mahine ki salary',k:'ef'},
+    {ico:'✈️',n:'Ticket Fund',s:'Wapsi ka ticket',k:'tf'},
+    {ico:'💳',n:'Qarz Mukt',s:'Koi qarz nahi',k:'df'},
+    {ico:'🛒',n:'Dhanda Fund',s:'Ghar mein karobar',k:'bf'},
+    {ico:'🏠',n:'Ghar Plan',s:'Rehne ki jagah',k:'hp'}
+  ]
+},
+bd:{
+  lT:'ভাষা বেছে নিন',cT:'দেশ বেছে নিন',cS:'রেট ও নিয়ম আপনার দেশ অনুযায়ী',rT:'সত্যের সময়',
+  rLS:'মাসিক বেতন',rLY:'কত বছর Gulf-এ',rLSv:'এখন বাচাত',
+  tEarned:'আপনি মোট উপার্জন করেছেন:',tSaved:'আজ বাচাত আছে মাত্র:',tMsg:'এখনও সময় আছে। আজ থেকে শুরু করুন।',
+  rBtn:'✅ আজই শুরু করুন',
+  hGrt:'সালাম, ভাই! 👋',hSavL:'বাচাত',hStrkL:'স্ট্রিক',hDrmL:'স্বপ্ন',
+  rems:['আজও একটু বাচাত করুন, ভাই।','পরিবার অপেক্ষায় — তাদের জন্য করুন।','এক পদক্ষেপ আরো — স্বপ্ন কাছে।','পরিশ্রমের ফল অবশ্যই পাবেন।','আজকের বাচাত, আগামীর শক্তি।','পরিবারের মুখ মনে করুন।','প্রতি মাস এক ধাপ এগিয়ে।'],
+  b1l:'বণ্টন',b1s:'বেতনের হিসাব',b2l:'বাচাত',b2s:'মাসিক রেকর্ড',b3l:'Help Now',b3s:'এখনই সাহায্য',b4l:'আমার স্বপ্ন',b4s:'ফেরার লক্ষ্য',
+  aurL:'আরো সাহায্য',aurS:'শিল্ড, টিপস, EOSD আরো',amT:'আরো সাহায্য',
+  amCards:[{id:'shield',ico:'🛡️',t:'পরিবার শিল্ড',s:'চাপের উত্তর',grp:'roz'},{id:'tips',ico:'💡',t:'বাচাতের টিপস',s:'১০ সহজ নুসখা',grp:'roz'},{id:'eosd',ico:'🏆',t:'EOSD',s:'এটা আপনার হক',grp:'zaroori'},{id:'checklist',ico:'✈️',t:'ফেরার চেকলিস্ট',s:'দেশে যাওয়ার আগে',grp:'zaroori'},{id:'rem',ico:'💸',t:'টাকা পাঠানো',s:'সস্তা অপশন',grp:'zaroori'},{id:'ready',ico:'🏡',t:'ফেরার প্রস্তুতি',s:'কখন ফিরতে পারব',grp:'zaroori'}],
+  spT:'💰 বণ্টন',ltL:'Low Salary Mode',ltS:'১৫০০ SAR-এর কম?',lkT:'🔍 টাকা কোথায় যাচ্ছে?',
+  leakCats:['☕ চা/জুস','🚕 ট্যাক্সি','🍔 বাইরে খাওয়া','📱 এক্সট্রা রিচার্জ','🎮 বিনোদন','🛒 অযথা কেনাকাটা'],
+  leakRes:function(m,y){return 'প্রতি মাসে <b style="color:var(--a2)">'+m+' '+cur()+'</b> নষ্ট। বছরে <b style="color:var(--a2)">'+y+' '+cur()+'</b> — এটা ফেরার ফান্ড হতো!';},
+  jars:[
+    {ico:'🏠',name:'বাড়ি পাঠানো',pct:55,pL:65,sub:['বাড়ির খরচ','বাবা-মার ওষুধ','ভাই-বোন'],col:'var(--g4)'},
+    {ico:'🍽️',name:'নিজের খরচ',pct:25,pL:25,sub:['খাওয়া','ভাড়া','কাপড়'],col:'var(--a2)'},
+    {ico:'✈️',name:'ফেরার ফান্ড',pct:15,pL:7,sub:['টিকিট','দেশে ফেরা','বীজ টাকা'],col:'var(--blue)'},
+    {ico:'🚨',name:'জরুরি ফান্ড',pct:5,pL:3,sub:['অসুস্থতা','ইকামা','জরুরি'],col:'var(--red)'}
+  ],
+  trT:'📊 বাচাত',pbT:'বছরের বাচাত',chalT:'৭-দিনের চ্যালেঞ্জ',monT:'মাসওয়ারি',totL:'মোট বাচাত',shrBtn:'📤 শেয়ার',
+  chals:[{ico:'☕',l:'৭ দিন চায়ের দোকান নয়'},{ico:'🚕',l:'৭ দিন হেঁটে বা বাসে'},{ico:'💰',l:'প্রতিদিন SAR ১০ বাচাত'},{ico:'🕌',l:'জুমার পর বাজার নয়'},{ico:'🍳',l:'৭ দিন ঘরের রান্না'}],
+  months:['জান','ফেব','মার','এপ্র','মে','জুন','জুল','আগ','সেপ','অক্ট','নভ','ডিস'],
+  celebrates:['🎉 মা শা আল্লাহ! বাচাত হয়েছে!','🔥 ৩ মাস — শাবাশ ভাই!','💪 পরিবার গর্বিত হবে!','🌟 স্বপ্ন কাছে আসছে!','🤲 আল্লাহ চাইলে ফেরা হবে!','⭐ পরিশ্রম সফল হচ্ছে!','🏠 বাড়ির স্বপ্ন পূরণ হবে!'],
+  shareMsg:function(t,s){return '💰 স্মার্ট বাচাত!\n'+cur()+' '+t+' বাচাত\n🔥 '+s+' মাস স্ট্রিক\nতুমি একা নও ভাই 🤝\n#SmartBachat';},
+  hlT:'🆘 Help Now',
+  helpProbs:[
+    {id:'sal',ico:'💸',t:'বেতন আসেনি',s:'দেরি বা বন্ধ',cl:'pb-a'},
+    {id:'short',ico:'⚖️',t:'কম বেতন পেয়েছি',s:'পুরো দেয়নি',cl:'pb-b'},
+    {id:'iqama',ico:'🪪',t:'ইকামা সমস্যা',s:'মেয়াদ শেষ হচ্ছে',cl:'pb-d'},
+    {id:'sick',ico:'🏥',t:'অসুস্থ / আহত',s:'চিকিৎসা সাহায্য',cl:'pb-e'},
+    {id:'gohome',ico:'✈️',t:'দেশে যেতে চাই',s:'Final exit পরিকল্পনা',cl:'pb-g'}
+  ],
+  drT:'🌟 আমার স্বপ্ন',dGL:'লক্ষ্য (BDT)',dSL:'বাচাত/মাস (SAR)',
+  dreams:[{ico:'🏠',l:'বাড়ি',pa:8000000,ba:5000000},{ico:'🛒',l:'ছোট দোকান',pa:1500000,ba:1000000},{ico:'☕',l:'চায়ের দোকান',pa:800000,ba:600000},{ico:'🧵',l:'সেলাই দোকান',pa:1000000,ba:800000},{ico:'📱',l:'মোবাইল শপ',pa:1200000,ba:900000},{ico:'🌾',l:'জমি',pa:5000000,ba:3000000},{ico:'💳',l:'ঋণমুক্তি',pa:1000000,ba:700000},{ico:'💍',l:'বিয়ে',pa:2000000,ba:1500000},{ico:'🕌',l:'হজ',pa:1200000,ba:900000},{ico:'🏍️',l:'মোটরবাইক',pa:400000,ba:300000}],
+  dMain:function(m,y){return m+' মাস = '+y+' বছর';},
+  dSub:function(g,s,m){return 'BDT '+g.toLocaleString()+' এর জন্য\nSAR '+s+'/মাসে '+m+' মাস লাগবে';},
+  shT:'🛡️ পরিবার শিল্ড',
+  pressures:[
+    {ico:'💍',q:'ভাইয়ের বিয়ের খরচ',a:'ভাই, মন থেকে চাই। সব কাটলে ৩০০-৪০০ SAR মুশকিল। SAR ১৫০ পাঠাচ্ছি। আল্লাহ চাইলে হবে।'},
+    {ico:'🏠',q:'বাড়ির চাল',a:'SAR ২০০/মাস শুধু চালের জন্য আলাদা রাখছি। ৬ মাসে জমবে। এখন বেশি দিলে আমি সমস্যায়।'},
+    {ico:'🎓',q:'ছেলের ভর্তির টাকা',a:'অবশ্যই। পরের বেতনে প্রথমে ভর্তি। এই সপ্তাহে SAR ৩০০ পাঠাচ্ছি।'},
+    {ico:'💊',q:'মায়ের চিকিৎসা',a:'মায়ের কথা শুনে বুক ভারী। এখনই SAR ৪০০ পাঠাচ্ছি। ডাক্তারের নাম WhatsApp করুন।'},
+    {ico:'👨',q:'ভাইকে Gulf আনতে চান',a:'নতুন এলে ২-৩ মাস কাজ খুঁজতেই যায়। দেশে ব্যবসা শুরু করুন — আমি সাহায্য করব।'},
+    {ico:'💰',q:'বেশি টাকার দাবি',a:'বেশি দিলে আমি নিজেই মুশকিলে। একটু ধৈর্য ধরুন।'},
+    {ico:'🤝',q:'ইজ্জতের ব্যাপার',a:'ইজ্জত আল্লাহ দেন। যারা এখানে নেই তারা বোঝেন না। আমি মেহনত করে পাঠাচ্ছি।'},
+    {ico:'👴',q:'আত্মীয়রা বলছেন',a:'যা দরকার সরাসরি বলুন। এখানকার খরচ কল্পনাও করা যায় না। চিন্তা করবেন না।'}
+  ],
+  cpTxt:'📋 কপি — WhatsApp-এর জন্য',cpDone:'✅ কপি হয়েছে!',
+  tpT:'💡 বাচাতের টিপস',
+  tips:[
+    {ico:'🛒',t:'সপ্তাহে একবার বাজার — তালিকা ছাড়া নয়।',s:'৫০-৮০ SAR/সপ্তাহ'},
+    {ico:'🍳',t:'অফিসে টিফিন — বাইরে ১৫-২৫, ঘর থেকে ৩-৫ SAR।',s:'৩০০+ SAR/মাস'},
+    {ico:'💸',t:'bKash বা Al Ansari — ব্যাংকের চেয়ে কম চার্জ।',s:'২০-৩০ SAR/বার'},
+    {ico:'🏥',t:'কোম্পানির মেডিকেল কার্ড — বিনামূল্যে।',s:'১০০+ SAR'},
+    {ico:'📱',t:'প্রিপেইড অনলিমিটেড প্যাক নিন।',s:'৩০-৫০ SAR'},
+    {ico:'🛍️',t:'Haraj app — সেকেন্ড-হ্যান্ড ৬০-৭০% সস্তা।',s:'পরিবর্তনশীল'},
+    {ico:'☕',t:'ক্যাম্পে চা বানান — রোজ দোকান থেকে ৪০ SAR বাঁচবে।',s:'৪০ SAR/মাস'},
+    {ico:'🕌',t:'ঈদে মিলে কোরবানি — ৫-৬ জন একসাথে।',s:'২০০+ SAR'}
+  ],
+  eoT:'🏆 EOSD',eoBoxT:'End of Service — আপনার অধিকার',eoInfo:'এটা আইনি অধিকার। কোম্পানি অস্বীকার করতে পারবে না। যাওয়ার সময় অবশ্যই চাইবেন।',
+  rmT:'💸 টাকা পাঠানো',
+  remSvcs:[{n:'bKash (STC Pay)',f:'0-15 SAR',b:true},{n:'Al Ansari Exchange',f:'15-25 SAR'},{n:'STC Pay Direct',f:'10-20 SAR'},{n:'Bank Transfer',f:'30-50 SAR'}],
+  ckT:'✈️ ফেরার চেকলিস্ট',
+  ghItems:['ইকামার ফটোকপি নিন','HR থেকে EOSD দাবি করুন','NOC চিঠি নিন','সব বিল বন্ধ করুন','মেডিকেল কার্ড ফেরত দিন','পরিবারকে তারিখ জানান','নগদ রাখুন','৪৮ ঘণ্টা আগে টিকিট নিশ্চিত করুন'],
+  stT:'⚙️ Settings',stLL:'ভাষা',stCL:'দেশ',stRst:'🗑️ সব ডেটা মুছুন',resetConfirm:'সব ডেটা মুছে যাবে। নিশ্চিত?',
+  noLog:'কোনো রেকর্ড নেই',back:'← ফিরুন',
+  rdT:'🏡 ফেরার প্রস্তুতি',rdMeter:'আপনার ফেরার প্রস্তুতি',
+  rdMsg:['এখনও অনেক কাজ বাকি।','সঠিক পথে আছেন!','অনেকটা প্রস্তুত!','মাশাআল্লাহ — সম্পূর্ণ প্রস্তুত!'],
+  rdItems:[
+    {ico:'🚨',n:'জরুরি ফান্ড',s:'৩ মাসের বেতন',k:'ef'},
+    {ico:'✈️',n:'টিকিট ফান্ড',s:'ফেরার টিকিট',k:'tf'},
+    {ico:'💳',n:'ঋণমুক্ত',s:'কোনো ঋণ নেই',k:'df'},
+    {ico:'🛒',n:'ব্যবসার ফান্ড',s:'দেশে ব্যবসা',k:'bf'},
+    {ico:'🏠',n:'বাড়ির পরিকল্পনা',s:'থাকার জায়গা',k:'hp'}
+  ]
+}
+};
+function s(){return D[L];}
+
+function getFlows(){
+  var cd=CTRY[C],p=pk();
+  return {
+    sal:{
+      steps:p?['Aaj ki <b>tarikh note karo</b> — delay ka pehla din.','Salary slip check karo — <b>'+cd.wps+' din ke andar</b> aani chahiye ('+cd.labor+').','Supervisor/HR ko <b>seedha batao</b>.','3-5 din mein nahi aayi — <b>'+cd.labor+' complaint</b>. Hotline: <b>'+cd.hotline+'</b>','App: <b>'+cd.app+'</b> — online complaint daro.','PK Embassy: <b>'+cd.embPK+'</b>']:
+             ['আজকের <b>তারিখ নোট করুন</b>।','বেতন স্লিপ দেখুন — <b>'+cd.wps+' দিনে</b> আসার কথা ('+cd.labor+')।','সুপারভাইজার/HR কে বলুন।','৩-৫ দিনেও না এলে — <b>'+cd.labor+'</b>। হটলাইন: <b>'+cd.hotline+'</b>','App: <b>'+cd.app+'</b>','BD দূতাবাস: <b>'+cd.embBD+'</b>'],
+      esc:p?['Supervisor','HR',''+cd.labor+': '+cd.hotline,'PK Embassy: '+cd.embPK]:['সুপারভাইজার','HR',''+cd.labor+': '+cd.hotline,'BD দূতাবাস: '+cd.embBD],
+      logF:p?['Tarikh','Expected amount','Company naam']:['তারিখ','পরিমাণ','কোম্পানি']
+    },
+    short:{
+      steps:p?['Salary slip check karo — <b>kya kata?</b>','Contract vs received — <b>difference nikalo.</b>','HR se kehna: <b>"Meri salary mein discrepancy hai."</b>','Jawab nahi — <b>'+cd.labor+': '+cd.hotline+'</b>','WPS ke under employer <b>poori salary dene ka paaband</b> hai.']:
+             ['বেতন স্লিপ — <b>কী কাটা?</b>','চুক্তি vs প্রাপ্ত — <b>পার্থক্য বের করুন।</b>','HR কে: <b>"বেতনে গরমিল আছে।"</b>','উত্তর না পেলে — <b>'+cd.labor+': '+cd.hotline+'</b>','WPS-এ নিয়োগকর্তা <b>আইনত বাধ্য।</b>'],
+      esc:p?['HR likhit complaint',''+cd.labor+': '+cd.hotline]:['HR লিখিত',''+cd.labor+': '+cd.hotline],
+      logF:p?['Expected','Received','Difference']:['প্রত্যাশিত','প্রাপ্ত','পার্থক্য']
+    },
+    iqama:{
+      steps:p?['Iqama ki <b>exact expiry check karo.</b>','<b>90 din pehle</b> employer ko WhatsApp karo.','Employer renewal ka <b>zimmedaar hai.</b>','Delay ho — <b>'+cd.labor+': '+cd.hotline+'</b>','Fine: <b>'+cd.iqFine+'</b> — employer ki galti = <b>woh bharta hai.</b>']:
+             ['ইকামার <b>মেয়াদ শেষ দেখুন।</b>','<b>৯০ দিন আগে</b> নিয়োগকর্তাকে WhatsApp।','নবায়নের দায়িত্ব নিয়োগকর্তার।','দেরি হলে — <b>'+cd.labor+': '+cd.hotline+'</b>','জরিমানা: <b>'+cd.iqFine+'</b> — তার দোষ = <b>তিনি দেবেন।</b>'],
+      esc:p?['Employer WhatsApp','HR',''+cd.labor+': '+cd.hotline]:['নিয়োগকর্তা WhatsApp','HR',''+cd.labor+': '+cd.hotline],
+      logF:p?['Expiry date','Reminder date','HR jawab']:['মেয়াদ শেষ','রিমাইন্ড','HR উত্তর']
+    },
+    sick:{
+      steps:p?['<b>Rest karo pehle.</b>','Supervisor ko <b>foran batao.</b>','<b>Company clinic</b> jao — FREE. Medical card use karo.','Doctor se <b>certificate lo.</b>','Sick pay: <b>'+cd.sickPay+'</b>','Deny kare — <b>'+cd.labor+': '+cd.hotline+'</b>']:
+             ['<b>প্রথমে বিশ্রাম।</b>','সুপারভাইজারকে <b>জানান।</b>','<b>কোম্পানির ক্লিনিক</b> — বিনামূল্যে।','ডাক্তারের <b>সার্টিফিকেট নিন।</b>','অসুস্থ ছুটি: <b>'+cd.sickPay+'</b>','অস্বীকার করলে — <b>'+cd.labor+': '+cd.hotline+'</b>'],
+      esc:p?['Supervisor','Company clinic',''+cd.labor+': '+cd.hotline]:['সুপারভাইজার','ক্লিনিক',''+cd.labor+': '+cd.hotline],
+      logF:p?['Tarikh','Symptoms','Doctor naam']:['তারিখ','লক্ষণ','ডাক্তার']
+    },
+    gohome:{
+      steps:p?['<b>EOSD calculate karo</b> — Rule: '+cd.eosdRule,'<b>Final salary</b> — notice period employer dega.','<b>NOC letter</b> employer se lo.','Ticket — <b>Skyscanner</b> pe compare karo.','Documents: Passport, Iqama, NOC, EOSD letter.','<b>Ghar walon ko date bata do.</b>']:
+             ['<b>EOSD হিসাব করুন</b> — নিয়ম: '+cd.eosdRule,'<b>চূড়ান্ত বেতন</b> — নিয়োগকর্তা দেবেন।','<b>NOC চিঠি</b> নিন।','টিকিট — <b>Skyscanner</b>।','কাগজ: পাসপোর্ট, ইকামা, NOC, EOSD।','<b>পরিবারকে তারিখ জানান।</b>'],
+      esc:p?['HR: NOC + EOSD','Iqama valid check','PK Embassy: '+cd.embPK]:['HR: NOC+EOSD','ইকামা বৈধ','BD দূতাবাস: '+cd.embBD],
+      logF:p?['Target date','Expected EOSD','NOC status']:['লক্ষ্য তারিখ','EOSD পরিমাণ','NOC']
+    }
+  };
+}
+
+// NAV
+var PAGES=['home','aurMadad','split','tracker','help','dream','shield','tips','eosd','rem','checklist','ready','settings'];
+function showPg(pg){
+  PAGES.forEach(function(p){var e=G('pg'+p[0].toUpperCase()+p.slice(1));if(e)e.classList.toggle('hidden',p!==pg);});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ONBOARDING
+var selL_v=null,selC_v=null;
+function selL(lang){
+  selL_v=lang;L=lang;
+  document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('act');});
+  G(lang==='pk'?'btnPK':'btnBD').classList.add('act');
+  G('lNext').classList.remove('hidden');
+  G('lNextBtn').textContent=lang==='pk'?'Agla →':'পরের →';
+}
+function goCtry(){
+  if(!selL_v)return;
+  var p=pk(),st=s();
+  G('cT').textContent=st.cT;G('cS').textContent=st.cS;
+  G('cNextBtn').textContent=p?'Agla →':'পরের →';
+  var g=G('ctryGrid');g.innerHTML='';
+  Object.keys(CTRY).forEach(function(k){
+    var v=CTRY[k],el=document.createElement('div');el.className='cc';el.id='cc_'+k;
+    el.onclick=(function(key){return function(){selC_v=key;C=key;document.querySelectorAll('.cc').forEach(function(b){b.classList.remove('act');});el.classList.add('act');G('cNext').classList.remove('hidden');G('cNext').style.display='flex';};})(k);
+    el.innerHTML='<span class="cc-flag">'+v.flag+'</span><div class="cc-name">'+v.name+'</div>';
+    g.appendChild(el);
+  });
+  gS('scCtry');
+}
+function goReal(){
+  if(!selC_v)return;
+  var st=s(),p=pk();
+  G('rT').textContent=st.rT;G('rLS').textContent=st.rLS;G('rLY').textContent=st.rLY;G('rLSv').textContent=st.rLSv;
+  G('rSC').textContent=cur()+(p?' mein':' তে');G('rSvC').textContent=cur()+(p?' mein':' তে');
+  G('tEarned').textContent=st.tEarned;G('tSaved').textContent=st.tSaved;G('tMsg').textContent=st.tMsg;
+  G('rBtn').textContent=st.rBtn;
+  gS('scReal');
+}
+function calcR(show){
+  var sv=parseFloat(G('salI').value)||0,y=parseFloat(G('yrsI').value)||0,sv2=parseFloat(G('savI').value)||0;
+  if(sv>0&&y>0&&show){
+    var st=s(),p=pk();
+    var total=Math.round(sv*12*y);
+    var couldHave=Math.round(200*12*y);
+    G('trYears').textContent=(p?y+' saal Gulf mein…':y+' বছর Gulf-এ…');
+    G('tEarned').textContent=st.tEarned;
+    G('tBig').textContent=cur()+' '+total.toLocaleString();
+    G('tSaved').textContent=st.tSaved;
+    G('tSVal').textContent=cur()+' '+Math.round(sv2).toLocaleString();
+    G('tCouldLbl').textContent=p?'Agar sirf 200 '+cur()+'/maheena bachate:':'শুধু ২০০ '+cur()+'/মাস বাঁচালে হতো:';
+    G('tCould').textContent=cur()+' '+couldHave.toLocaleString();
+    G('tMsg').textContent=st.tMsg;
+    G('rBtn').textContent=st.rBtn;
+    G('tBox').classList.remove('hidden');
+    G('realInputs').classList.add('hidden');
+  }
+}
+function startApp(){
+  sal=parseFloat(G('salI').value)||1800;yrs=parseFloat(G('yrsI').value)||3;curSav=parseFloat(G('savI').value)||0;
+  sv(SK.lang,L);sv(SK.ctry,C);sv(SK.sal,sal);sv(SK.yrs,yrs);sv(SK.sav,curSav);sv(SK.started,true);
+  trData={months:ld(SK.tr,{}).months||{},chal:ld(SK.chal,[])||[]};
+  lowMode=ld(SK.low,sal<1500);
+  buildApp();gS('scMain');showPg('home');
+}
+
+// BUILD
+function buildApp(){
+  var st=s(),cd=CTRY[C];
+  // Home
+  G('hGrt').textContent=st.hGrt;
+  G('hCtry').textContent=cd.flag+' '+cd.name+' • '+cd.cur;
+  G('hRem').textContent=st.rems[new Date().getDay()%st.rems.length];
+  ['b1l','b1s','b2l','b2s','b3l','b3s','b4l','b4s','aurL','aurS'].forEach(function(id){if(st[id])G(id).textContent=st[id];});
+  // Back labels
+  // back buttons are just ← arrow
+  // Aur Madad
+  G('amT').textContent=st.amT;
+  var ag=G('amGrid');ag.innerHTML='';
+  var p2=pk();
+  var grpLbl={roz:(p2?'Roz Kaam Aane Wala':'রোজ কাজের'),zaroori:(p2?'Zaroori Tools':'গুরুত্বপূর্ণ')};
+  var grps={roz:[],zaroori:[]};
+  st.amCards.forEach(function(card){grps[card.grp||'zaroori'].push(card);});
+  ['roz','zaroori'].forEach(function(grp){
+    if(!grps[grp].length)return;
+    var lbl=document.createElement('div');
+    lbl.style='font-size:11px;letter-spacing:.1em;color:var(--tm);text-transform:uppercase;padding:10px 0 6px;grid-column:1/-1;';
+    lbl.textContent=grpLbl[grp];ag.appendChild(lbl);
+    grps[grp].forEach(function(card){
+      var el=document.createElement('div');el.className='amc';
+      el.onclick=(function(id){return function(){showPg(id);};})(card.id);
+      el.innerHTML='<div class="amc-ico">'+card.ico+'</div><div class="amc-title f7">'+card.t+'</div><div class="amc-sub">'+card.s+'</div>';
+      ag.appendChild(el);
+    });
+  });
+  updateStats();
+  buildSplit();buildTracker();buildHelp();buildDream();buildShield();buildTips();buildEosd();buildRem();buildChecklist();buildReady();buildSettings();
+}
+function updateStats(){
+  var tot=Math.round(Object.values(trData.months||{}).reduce(function(a,b){return a+(parseFloat(b)||0);},0));
+  var strk=0,mo=trData.months||{};for(var i=11;i>=0;i--){if(mo[i]&&parseFloat(mo[i])>0)strk++;else break;}
+  G('hSav').textContent=cur()+' '+tot.toLocaleString();G('hStrk').textContent='🔥 '+strk;
+  G('hSavL').textContent=s().hSavL;G('hStrkL').textContent=s().hStrkL;G('hDrmL').textContent=s().hDrmL;
+}
+
+// SPLIT
+function togLow(){lowMode=!lowMode;sv(SK.low,lowMode);G('lpill').classList.toggle('on',lowMode);buildSplit();}
+function buildSplit(){
+  var st=s(),jl=G('jarList');jl.innerHTML='';
+  G('spT').textContent=st.spT;G('ltL').textContent=st.ltL;G('ltS').textContent=st.ltS;G('lkT').textContent=st.lkT;
+  G('lpill').classList.toggle('on',lowMode);
+  st.jars.forEach(function(j,i){
+    var p=lowMode?j.pL:j.pct,a=Math.round(sal*(p/100));
+    var el=document.createElement('div');el.className='jar';el.id='j'+i;
+    el.innerHTML='<div class="jar-hd" onclick="G(\'j'+i+'\').classList.toggle(\'open\')"><div class="jar-ico">'+j.ico+'</div><div style="flex:1"><div class="jar-name f7">'+j.name+'</div><div class="jar-pct">'+p+'%</div></div><div class="jar-amt"><div class="jar-sar f8" style="color:'+j.col+'">'+cur()+' '+a.toLocaleString()+'</div><div class="jar-loc">'+fl(a)+'</div></div><span class="jchev">▼</span></div><div class="jbar"><div class="jbar-f" style="width:'+p+'%"></div></div><div class="jar-body"><div class="jsub">'+j.sub.map(function(s2){return '<div class="jsub-row"><span class="jsub-l">'+s2+'</span><span class="jsub-a">~'+cur()+' '+Math.round(a/j.sub.length)+'</span></div>';}).join('')+'</div></div>';
+    jl.appendChild(el);
+  });
+  var lr=G('leakRows');lr.innerHTML='';
+  st.leakCats.forEach(function(cat,i){
+    var el=document.createElement('div');el.className='leak-row';
+    el.innerHTML='<span class="lr-lbl">'+cat+'</span><input class="lr-inp" type="number" id="lk'+i+'" inputmode="numeric" placeholder="0" oninput="calcLeak()">';
+    lr.appendChild(el);
+  });
+}
+function calcLeak(){
+  var t=0;for(var i=0;i<6;i++){var e=G('lk'+i);if(e)t+=parseFloat(e.value)||0;}
+  var m=Math.round(t*4),y=m*12,r=G('lkRes');
+  if(m>0){r.style.display='block';r.innerHTML=s().leakRes(m,y);}else r.style.display='none';
+}
+
+// TRACKER
+function buildTracker(){
+  var st=s();
+  G('trT').textContent=st.trT;G('pbT').textContent=st.pbT;G('chalT').textContent=st.chalT;G('monT').textContent=st.monT;G('totL').textContent=st.totL;G('shrBtn').textContent=st.shrBtn;
+  // Chals
+  var cg=G('chalGrid');cg.innerHTML='';if(!trData.chal)trData.chal=[];
+  st.chals.forEach(function(c,i){
+    var done=trData.chal[i]===true,el=document.createElement('div');el.className='chal-item'+(done?' done':'');
+    el.onclick=(function(idx,elem){return function(){trData.chal[idx]=!trData.chal[idx];sv(SK.chal,trData.chal);elem.classList.toggle('done',trData.chal[idx]);elem.querySelector('.chal-chk').textContent=trData.chal[idx]?'✅':'⬜';elem.querySelector('.chal-lbl').style.color=trData.chal[idx]?'var(--g4)':'var(--ts)';};})(i,el);
+    el.innerHTML='<span class="chal-ico">'+c.ico+'</span><span class="chal-lbl">'+c.l+'</span><span class="chal-chk">'+(done?'✅':'⬜')+'</span>';
+    cg.appendChild(el);
+  });
+  buildMonths();
+}
+function buildMonths(){
+  var st=s(),mg=G('mGrid');mg.innerHTML='';if(!trData.months)trData.months={};
+  var tot=0,strk=0;
+  st.months.forEach(function(mn,i){
+    var val=trData.months[i]||'',done=val&&parseFloat(val)>0;
+    if(done){tot+=parseFloat(val);strk=i+1;}
+    var el=document.createElement('div');el.className='mrow'+(done?' done':'');
+    el.innerHTML='<span class="mrow-name">'+mn+'</span><input class="mrow-inp" type="number" value="'+(val||'')+'" placeholder="0" inputmode="numeric" onchange="saveMo('+i+',this.value)"><span class="mrow-chk" onclick="tickMo('+i+')">'+( done?'✅':'⬜')+'</span>';
+    mg.appendChild(el);
+  });
+  G('totV').textContent=cur()+' '+Math.round(tot).toLocaleString();
+  G('strkB').textContent='🔥 '+strk;
+  var tgt=sal*0.2*12,pct=Math.min(100,Math.round((tot/tgt)*100));
+  G('pbF').style.width=pct+'%';G('pbV').textContent=pct+'%';
+  G('pbG').textContent=cur()+' '+Math.round(tgt)+' target';
+  var cb=G('celBox');
+  if(tot>=sal*0.2){var msgs=st.celebrates;cb.textContent=msgs[Math.floor(tot/(sal*0.2)-1)%msgs.length];cb.style.display='block';}else cb.style.display='none';
+  updateStats();
+}
+function saveMo(i,v){if(!trData.months)trData.months={};trData.months[i]=v;sv(SK.tr,trData);buildMonths();}
+function tickMo(i){var inp=G('mGrid').querySelectorAll('.mrow-inp')[i];if(!inp.value||!parseFloat(inp.value))inp.value=Math.round(sal*0.2);saveMo(i,inp.value);}
+function doShare(){
+  var tot=Math.round(Object.values(trData.months||{}).reduce(function(a,b){return a+(parseFloat(b)||0);},0));
+  var strk=Object.values(trData.months||{}).filter(function(v){return v&&parseFloat(v)>0;}).length;
+  var msg=s().shareMsg(tot.toLocaleString(),strk);
+  if(navigator.share)navigator.share({text:msg});else navigator.clipboard.writeText(msg).then(function(){showToast(pk()?'✅ Copy Ho Gaya!':'✅ কপি হয়েছে!');});
+}
+
+// HELP
+function buildHelp(){
+  var st=s(),pl=G('probList');pl.innerHTML='';G('hlT').textContent=st.hlT;openFlowId=null;
+  st.helpProbs.forEach(function(p){
+    var btn=document.createElement('div');btn.className='prob-btn '+p.cl;btn.id='pb_'+p.id;
+    btn.onclick=(function(pid){return function(){togFlow(pid);};})(p.id);
+    btn.innerHTML='<span class="prob-ico">'+p.ico+'</span><div><div class="prob-title f7">'+p.t+'</div><div class="prob-sub">'+p.s+'</div></div><span class="prob-arr">▼</span>';
+    pl.appendChild(btn);
+    var panel=document.createElement('div');panel.className='flow-wrap';panel.id='fp_'+p.id;
+    pl.appendChild(panel);
+  });
+}
+function togFlow(id){
+  var btn=G('pb_'+id),panel=G('fp_'+id);
+  if(openFlowId&&openFlowId!==id){G('pb_'+openFlowId).classList.remove('open');G('fp_'+openFlowId).classList.remove('open');}
+  var isOpen=panel.classList.contains('open');
+  if(!isOpen&&!panel.innerHTML)panel.innerHTML=buildFlowHTML(id);
+  btn.classList.toggle('open',!isOpen);panel.classList.toggle('open',!isOpen);
+  openFlowId=isOpen?null:id;
+  if(!isOpen)setTimeout(function(){panel.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
+}
+function buildFlowHTML(id){
+  var fl=getFlows()[id],p=pk(),st=s();
+  var stepsH=fl.steps.map(function(step,i){return '<div class="step-row"><div class="step-num">'+(i+1)+'</div><div class="step-txt">'+step+'</div></div>';}).join('');
+  var escH=fl.esc.map(function(e,i){return '<div class="esc-row"><span class="esc-num">'+(i+1)+'.</span><span>'+e+'</span></div>';}).join('');
+  var logF=fl.logF.map(function(f){return '<input class="inp" placeholder="'+f+'" style="margin-bottom:7px">';}).join('');
+  var logs=ld(SK.logs,{})[id]||[];
+  var logsH=logs.length?logs.map(function(l,i){return '<div class="log-entry"><div class="log-dot"></div><div class="log-body"><div class="log-txt">'+l.note+'</div><div class="log-date">'+l.date+'</div></div><div class="log-del" onclick="delLog(\''+id+'\','+i+')">✕</div></div>';}).join(''):'<div style="font-size:12px;color:var(--tm);padding:6px 0">'+st.noLog+'</div>';
+  return '<div class="flow-body"><div class="step-list">'+stepsH+'</div>'
+    +'<div class="esc-box"><div class="esc-title">'+(p?'📋 Escalation':'📋 এস্কেলেশন')+'</div>'+escH+'</div>'
+    +'<div class="log-wrap"><div style="font-size:13px;font-weight:700;color:var(--g4);margin-bottom:8px">'+(p?'📝 Log':'📝 লগ')+'</div><div id="lfi_'+id+'">'+logF+'</div><input class="inp" id="lfn_'+id+'" placeholder="'+(p?'Notes...':'নোট...')+'" style="margin-bottom:8px"><button class="btn" style="margin-bottom:10px" onclick="savLog(\''+id+'\','+fl.logF.length+')">'+(p?'💾 Save':'💾 সেভ')+'</button><div id="lv_'+id+'">'+logsH+'</div></div></div>';
+}
+function savLog(id,cnt){
+  var fields=[],lfi=G('lfi_'+id);if(lfi){lfi.querySelectorAll('input').forEach(function(i){fields.push(i.value||'');});}
+  var note=G('lfn_'+id)?G('lfn_'+id).value:'';
+  var entry={date:new Date().toLocaleDateString(),note:fields.filter(Boolean).join(' | ')+(note?' | '+note:'')};
+  var logs=ld(SK.logs,{});if(!logs[id])logs[id]=[];logs[id].unshift(entry);sv(SK.logs,logs);
+  var st=s(),lv=G('lv_'+id);
+  lv.innerHTML=logs[id].map(function(l,i){return '<div class="log-entry"><div class="log-dot"></div><div class="log-body"><div class="log-txt">'+l.note+'</div><div class="log-date">'+l.date+'</div></div><div class="log-del" onclick="delLog(\''+id+'\','+i+')">✕</div></div>';}).join('');
+  showToast(pk()?'✅ Saved!':'✅ সেভ!');
+  if(lfi)lfi.querySelectorAll('input').forEach(function(i){i.value='';});
+  if(G('lfn_'+id))G('lfn_'+id).value='';
+}
+function delLog(id,idx){var logs=ld(SK.logs,{});if(!logs[id])return;logs[id].splice(idx,1);sv(SK.logs,logs);var lv=G('lv_'+id);lv.innerHTML=logs[id].length?logs[id].map(function(l,i){return '<div class="log-entry"><div class="log-dot"></div><div class="log-body"><div class="log-txt">'+l.note+'</div><div class="log-date">'+l.date+'</div></div><div class="log-del" onclick="delLog(\''+id+'\','+i+')">✕</div></div>';}).join(''):'<div style="font-size:12px;color:var(--tm);padding:6px 0">'+s().noLog+'</div>';}
+
+// DREAM
+function buildDream(){
+  var st=s(),dg=G('dGrid');dg.innerHTML='';
+  G('drT').textContent=st.drT;G('dGL').textContent=st.dGL;G('dSL').textContent=st.dSL;
+  st.dreams.forEach(function(d,i){
+    var a=pk()?d.pa:d.ba,el=document.createElement('div');el.className='dream-btn';el.id='dr'+i;
+    el.onclick=(function(amt){return function(){document.querySelectorAll('.dream-btn').forEach(function(b){b.classList.remove('act');});el.classList.add('act');G('dGoal').value=amt;calcD();};})(a);
+    el.innerHTML='<div class="dream-ico">'+d.ico+'</div><div class="dream-lbl f7">'+d.l+'</div><div class="dream-amt">'+lp()+' '+Math.round(a/100000)+'L</div>';
+    dg.appendChild(el);
+  });
+}
+function calcD(){
+  var goal=parseFloat(G('dGoal').value)||0,savSar=parseFloat(G('dSav').value)||0;
+  if(!goal||!savSar){G('dRes').style.display='none';return;}
+  var mo=Math.ceil(goal/(savSar*rate())),y=(mo/12).toFixed(1);
+  G('dRes').style.display='block';G('drBig').textContent=s().dMain(mo,y);G('drSub').textContent=s().dSub(goal,savSar,mo);
+  G('hDrm').textContent=mo+(pk()?' mo':' মাস');
+}
+
+// SHIELD
+function buildShield(){
+  var st=s(),pl=G('pList');pl.innerHTML='';G('shT').textContent=st.shT;
+  if(G('shBack'))G('shBack').textContent=st.back;
+  st.pressures.forEach(function(p,i){
+    var el=document.createElement('div');el.className='pitem';el.id='pi'+i;
+    el.innerHTML='<div class="pitem-hd" onclick="G(\'pi'+i+'\').classList.toggle(\'open\')"><span class="pitem-ico">'+p.ico+'</span><span class="pitem-q">'+p.q+'</span><span class="pitem-arr">▼</span></div><div class="pitem-body"><div class="pitem-ans">'+p.a+'<div class="pcopy-btn f7" id="cp'+i+'" onclick="copyP('+i+')">'+st.cpTxt+'</div></div></div>';
+    pl.appendChild(el);
+  });
+}
+function copyP(i){var txt=s().pressures[i].a;navigator.clipboard.writeText(txt).then(function(){G('cp'+i).textContent=s().cpDone;setTimeout(function(){G('cp'+i).textContent=s().cpTxt;},2000);}).catch(function(){showToast(s().cpDone);});}
+
+// TIPS
+function buildTips(){
+  var st=s(),tg=G('tipGrid');tg.innerHTML='';G('tpT').textContent=st.tpT;
+  st.tips.forEach(function(t){
+    var el=document.createElement('div');el.className='tip-item';
+    el.innerHTML='<span class="tip-ico">'+t.ico+'</span><div><div class="tip-txt">'+t.t+'</div>'+(t.s?'<span class="tipsav">'+t.s+'</span>':'')+'</div>';
+    tg.appendChild(el);
+  });
+}
+
+// EOSD
+function buildEosd(){
+  var st=s(),cd=CTRY[C];
+  G('eoT').textContent=st.eoT;G('eoBoxT').textContent=st.eoBoxT;G('eoInfo').textContent=st.eoInfo;
+  var a=Math.round(sal*(yrs<5?yrs*(1/3):yrs<10?yrs*(2/3):yrs));
+  G('eoBig').textContent=cur()+' '+a.toLocaleString();G('eoRule').textContent=cd.eosdRule;
+}
+
+// REMITTANCE
+function buildRem(){
+  var st=s(),rl=G('remList');rl.innerHTML='';G('rmT').textContent=st.rmT;
+  st.remSvcs.forEach(function(r){
+    var el=document.createElement('div');el.className='rem-row';
+    el.innerHTML='<div><span class="rem-name">'+r.n+'</span>'+(r.b?'<span class="rem-best">'+(pk()?'Best':'সেরা')+'</span>':'')+'</div><span class="rem-fee f7">'+r.f+'</span>';
+    rl.appendChild(el);
+  });
+}
+
+// CHECKLIST
+function buildChecklist(){
+  var st=s(),gl=G('ghList');gl.innerHTML='';G('ckT').textContent=st.ckT;
+  var checks=ld(SK.gh,{});
+  st.ghItems.forEach(function(item,i){
+    var done=checks[i]||false,el=document.createElement('div');el.className='gh-item'+(done?' done':'');
+    el.onclick=(function(idx){return function(){var c=ld(SK.gh,{});c[idx]=!c[idx];sv(SK.gh,c);buildChecklist();};})(i);
+    el.innerHTML='<span class="gh-chk">'+(done?'✅':'📌')+'</span><span class="gh-lbl">'+item+'</span>';
+    gl.appendChild(el);
+  });
+}
+
+// READINESS
+var SK_RD='sb_rd';
+function buildReady(){
+  var st=s(),rd=ld(SK_RD,{});
+  G('rdT').textContent=st.rdT;
+  var done=st.rdItems.filter(function(i){return rd[i.k];}).length;
+  var pct=Math.round((done/st.rdItems.length)*100);
+  var rl=G('rdList');rl.innerHTML='';
+  // meter
+  var meter=document.createElement('div');meter.className='rd-meter';
+  meter.innerHTML='<div class="rd-title f7">'+st.rdMeter+'</div>'
+    +'<div class="rd-pct f8">'+pct+'%</div>'
+    +'<div class="rd-bar"><div class="rd-fill" style="width:'+pct+'%"></div></div>'
+    +'<div class="rd-msg">'+st.rdMsg[Math.min(Math.floor(pct/26),3)]+'</div>';
+  rl.appendChild(meter);
+  // items
+  st.rdItems.forEach(function(item){
+    var isDone=rd[item.k]||false;
+    var el=document.createElement('div');el.className='rd-item'+(isDone?' done':'');
+    el.onclick=(function(k,elem){return function(){
+      var r=ld(SK_RD,{});r[k]=!r[k];sv(SK_RD,r);buildReady();
+    };})(item.k,el);
+    el.innerHTML='<span class="rd-ico">'+item.ico+'</span>'
+      +'<div class="rd-info"><div class="rd-name f7">'+item.n+'</div><div class="rd-status">'+item.s+'</div></div>'
+      +'<span class="rd-tick">'+(isDone?'✅':'⬜')+'</span>';
+    rl.appendChild(el);
+  });
+}
+
+// SETTINGS
+function buildSettings(){
+  var st=s(),cd=CTRY[C];
+  G('stT').textContent=st.stT;G('stLL').textContent=st.stLL;G('stCL').textContent=st.stCL;G('stRst').textContent=st.stRst;
+  G('stLC').textContent=(L==='pk'?'🇵🇰 Urdu':'🇧🇩 বাংলা');G('stCC').textContent=cd.flag+' '+cd.name;
+  G('soLPK').classList.toggle('on',L==='pk');G('soLBD').classList.toggle('on',L==='bd');
+  var co=G('soCtry');co.innerHTML='';
+  Object.keys(CTRY).forEach(function(k){
+    var v=CTRY[k],el=document.createElement('div');el.className='sett-opt'+(C===k?' on':'');
+    el.onclick=(function(key){return function(){chgCtry(key);};})(k);
+    el.innerHTML=v.flag+' '+v.name+(C===k?' ✅':'');
+    co.appendChild(el);
+  });
+}
+function togSett(t){var e=G('so'+t[0].toUpperCase()+t.slice(1));if(settOpen&&settOpen!==t){var p=G('so'+settOpen[0].toUpperCase()+settOpen.slice(1));if(p)p.style.display='none';}e.style.display=e.style.display==='block'?'none':'block';settOpen=e.style.display==='block'?t:null;}
+function chgLang(lang){L=lang;sv(SK.lang,L);buildApp();buildSettings();G('soLang').style.display='none';settOpen=null;showToast(lang==='pk'?'✅ Urdu!':'✅ বাংলা!');}
+function chgCtry(key){C=key;sv(SK.ctry,C);buildApp();buildSettings();G('soCtry').style.display='none';settOpen=null;showToast(CTRY[key].flag+' '+CTRY[key].name+'!');}
+function doReset(){if(confirm(s().resetConfirm)){Object.keys(SK).forEach(function(k){localStorage.removeItem(SK[k]);});localStorage.removeItem(SK_PHONE);location.reload();}}
+
+// PHONE GATE
+var SK_PHONE='sb_phone';
+function checkPhone(){
+  var n=G('phNum').value.trim();
+  // KSA mobile: 05XXXXXXXX or 5XXXXXXXX (9 digits starting with 5)
+  var valid=/^5[0-9]{8}$/.test(n)||/^05[0-9]{8}$/.test(n);
+  if(!valid){G('phErr').classList.remove('hidden');G('phNum').focus();return;}
+  G('phErr').classList.add('hidden');
+  sv(SK_PHONE,n);gS('scSplash');
+}
+function checkPhoneEnter(e){if(e.key==='Enter')checkPhone();}
+
+// INIT
+window.addEventListener('load',function(){
+  if(ld(SK.started,false)){
+    L=ld(SK.lang,'pk');C=ld(SK.ctry,'SA');sal=ld(SK.sal,1800);yrs=ld(SK.yrs,3);curSav=ld(SK.sav,0);
+    trData={months:ld(SK.tr,{}).months||{},chal:ld(SK.chal,[])||[]};
+    lowMode=ld(SK.low,sal<1500);
+    buildApp();gS('scMain');showPg('home');
+  } else if(ld(SK_PHONE,null)){
+    gS('scSplash');
+  } else {
+    gS('scPhone');
+    // add enter key listener
+    var inp=G('phNum');if(inp)inp.addEventListener('keydown',checkPhoneEnter);
+  }
+  setTimeout(function(){G('ldr').classList.add('gone');},400);
+});
+</script>
+</body>
+</html>
