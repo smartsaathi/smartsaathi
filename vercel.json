@@ -1,7 +1,7 @@
 {
-  "outputDirectory": "public",
   "cleanUrls": true,
   "trailingSlash": false,
+  "headers": [{"source": "/manifest.json", "headers": [{"key": "Content-Type", "value": "application/manifest+json"}]}],
   "rewrites": [
     { "source": "/login",    "destination": "/login.html"    },
     { "source": "/app",      "destination": "/app.html"      },
@@ -9,7 +9,12 @@
     { "source": "/success",  "destination": "/success.html"  },
     { "source": "/terms",    "destination": "/terms.html"    },
     { "source": "/privacy",  "destination": "/privacy.html"  },
-    { "source": "/refund",   "destination": "/refund.html"   },
-    { "source": "/smart-bachat-tool", "destination": "/smart-bachat-tool.html" }
-  ]
+    { "source": "/refund",   "destination": "/refund.html"   }
+  ],
+  "functions": {
+    "api/webhook.js": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  }
 }
