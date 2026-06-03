@@ -103,12 +103,11 @@ var PADDLE_TOKEN = 'live_0ab1f7f2cd2ce76fbe888ddef9c';
 var PRICE_ID = 'pri_01kt4n716h95dwq9d2rprwbqm5';
 
 // Initialize Paddle
-Paddle.Initialize({
-  token: PADDLE_TOKEN,
+Paddle.Setup({
+  vendor: PADDLE_TOKEN,
   eventCallback: function(data) {
-    if (data.name === 'checkout.completed') {
-      // Payment successful — redirect to success page
-      var email = data.data.customer.email;
+    if (data.event === 'Checkout.Complete') {
+      var email = data.eventData.user.email;
       window.location.href = '/success?email=' + encodeURIComponent(email);
     }
   }
@@ -127,15 +126,16 @@ function startCheckout() {
   btn.innerHTML = '<span class="spinner"></span>Loading...';
 
   Paddle.Checkout.open({
-    items: [{ priceId: PRICE_ID, quantity: 1 }],
-    customer: { email: email },
-    settings: {
-      displayMode: 'overlay',
-      theme: 'dark',
-      locale: 'en',
-      successUrl: 'https://smartsaathi.app/success?email=' + encodeURIComponent(email)
-    }
-  });
+  product: PRICE_ID,
+  email: email,
+  successCallback: function(data) {
+    window.location.href = '/success?email=' + encodeURIComponent(email);
+  },
+  closeCallback: function() {
+    btn.disabled = false;
+    btn.innerHTML = '💳 Pay $2.99 — Abhi Access Lo';
+  }
+});
 
   // Re-enable button after 3 seconds in case user closes checkout
   setTimeout(function() {
