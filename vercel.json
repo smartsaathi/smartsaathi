@@ -11,11 +11,5 @@
     { "source": "/privacy",  "destination": "/privacy.html"  },
     { "source": "/refund",   "destination": "/refund.html"   },
     { "source": "/smart-bachat-tool", "destination": "/smart-bachat-tool.html" }
-  ],
-  "functions": {
-    "api/webhook.js": {
-      "memory": 128,
-      "maxDuration": 10
-    }
-  }
+  ]
 }
