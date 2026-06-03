@@ -66,23 +66,58 @@ var SUPABASE_KEY = 'sb_publishable_TMS0XJWriaIoBLMG8svz-w_8-qSkQts';
 
 // ── CHECK IF ALREADY LOGGED IN ───────────────────────────────
 window.addEventListener('load', function() {
-  var session = localStorage.getItem('sb_session');
-  if (session) {
+  // Check for magic link token in URL hash
+  var hash = window.location.hash;
+  if (hash && hash.includes('access_token')) {
+    handleMagicLinkCallback();
+    return;
+  }
+
+  // Check URL params too (some Supabase versions use params)
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('access_token')) {
+    var session = {
+      access_token: params.get('access_token'),
+      refresh_token: params.get('refresh_token'),
+      expires_at: Date.now()/1000 + 3600
+    };
+    localStorage.setItem('sb_session', JSON.stringify(session));
+    window.location.href = '/app';
+    return;
+  }
+
+  // Check if already logged in
+  var saved = localStorage.getItem('sb_session');
+  if (saved) {
     try {
-      var s = JSON.parse(session);
+      var s = JSON.parse(saved);
       if (s.access_token && s.expires_at > Date.now()/1000) {
         window.location.href = '/app';
         return;
       }
     } catch(e) {}
   }
-  // Check for magic link token in URL
-  var hash = window.location.hash;
-  if (hash.includes('access_token')) {
-    handleMagicLinkCallback();
-  }
 });
 
+async function handleMagicLinkCallback() {
+  var hash = window.location.hash.substring(1);
+  var params = {};
+  hash.split('&').forEach(function(p) {
+    var parts = p.split('=');
+    params[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1] || '');
+  });
+
+  if (params.access_token) {
+    var session = {
+      access_token: params.access_token,
+      refresh_token: params.refresh_token || '',
+      expires_at: Date.now()/1000 + parseInt(params.expires_in || 3600)
+    };
+    localStorage.setItem('sb_session', JSON.stringify(session));
+    history.replaceState(null, '', '/login');
+    window.location.href = '/app';
+  }
+}
 // ── SEND MAGIC LINK ─────────────────────────────────────────
 async function sendMagicLink() {
   var email = document.getElementById('emailInp').value.trim();
