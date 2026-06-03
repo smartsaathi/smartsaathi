@@ -15,33 +15,28 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .logo{text-align:center;margin-bottom:28px;}
 .logo-ico{font-size:44px;display:block;margin-bottom:6px;}
 .logo-name{font-size:20px;font-weight:800;color:var(--g4);}
-/* PRODUCT CARD */
 .product-card{background:var(--bgc);border:1.5px solid rgba(116,198,157,.25);border-radius:18px;padding:22px;margin-bottom:16px;position:relative;overflow:hidden;}
 .product-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1.5px;background:linear-gradient(90deg,transparent,rgba(116,198,157,.4),transparent);}
 .product-badge{display:inline-block;padding:4px 12px;background:rgba(116,198,157,.1);border-radius:20px;font-size:11px;font-weight:700;color:var(--g4);margin-bottom:12px;letter-spacing:.05em;text-transform:uppercase;}
 .product-name{font-size:20px;font-weight:800;color:var(--tx);margin-bottom:8px;}
 .product-features{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
 .pf{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ts);}
-.pf-ico{font-size:14px;flex-shrink:0;}
 .price-row{display:flex;align-items:baseline;gap:8px;margin-bottom:4px;}
 .price-big{font-size:40px;font-weight:800;color:var(--g4);}
 .price-period{font-size:13px;color:var(--tm);}
 .price-note{font-size:12px;color:var(--tm);}
-/* EMAIL INPUT */
 .email-section{background:var(--bgc);border:1px solid var(--bd);border-radius:14px;padding:18px;margin-bottom:14px;}
 .lbl{font-size:11px;letter-spacing:.1em;color:var(--tm);text-transform:uppercase;margin-bottom:7px;}
 .inp{width:100%;background:var(--bgp);border:1.5px solid var(--bd);border-radius:12px;padding:14px 16px;color:var(--tx);font-size:17px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
 .inp:focus{border-color:var(--g4);}
 .inp::placeholder{color:var(--tm);}
 .inp-note{font-size:12px;color:var(--tm);margin-top:7px;line-height:1.5;}
-/* PAY BUTTON */
 .pay-btn{width:100%;padding:18px;background:linear-gradient(135deg,var(--g3),var(--g1));border:none;border-radius:14px;color:#fff;font-size:18px;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(45,106,79,.3);margin-bottom:12px;font-family:inherit;}
 .pay-btn:active{transform:scale(.98);}
 .pay-btn:disabled{opacity:.5;}
 .security-note{text-align:center;font-size:12px;color:var(--tm);line-height:1.7;}
 .security-note span{margin:0 6px;}
-.msg{margin-top:12px;padding:12px;border-radius:12px;font-size:13px;line-height:1.6;display:none;}
-.msg.err{background:rgba(224,122,122,.08);border:1px solid rgba(224,122,122,.25);color:var(--red);}
+.err-msg{margin-top:12px;padding:12px;border-radius:12px;font-size:13px;line-height:1.6;display:none;background:rgba(224,122,122,.08);border:1px solid rgba(224,122,122,.25);color:var(--red);}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:8px;}
 @keyframes spin{to{transform:rotate(360deg)}}
 </style>
@@ -53,19 +48,17 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <span class="logo-ico">💰</span>
     <div class="logo-name">SmartSaathi</div>
   </div>
-
-  <!-- PRODUCT -->
   <div class="product-card">
     <div class="product-badge">Lifetime Access</div>
     <div class="product-name">Smart Bachat</div>
     <div class="product-features">
-      <div class="pf"><span class="pf-ico">💰</span>Salary split calculator</div>
-      <div class="pf"><span class="pf-ico">📊</span>Maheena bachat tracker + streaks</div>
-      <div class="pf"><span class="pf-ico">🆘</span>Help Now — labor rights guide</div>
-      <div class="pf"><span class="pf-ico">🌟</span>Dream goal planner</div>
-      <div class="pf"><span class="pf-ico">🛡️</span>Family Shield messages</div>
-      <div class="pf"><span class="pf-ico">🏆</span>EOSD calculator</div>
-      <div class="pf"><span class="pf-ico">🌍</span>Urdu + Bengali — 6 Gulf countries</div>
+      <div class="pf">💰 Salary split calculator</div>
+      <div class="pf">📊 Maheena bachat tracker + streaks</div>
+      <div class="pf">🆘 Help Now — labor rights guide</div>
+      <div class="pf">🌟 Dream goal planner</div>
+      <div class="pf">🛡️ Family Shield messages</div>
+      <div class="pf">🏆 EOSD calculator</div>
+      <div class="pf">🌍 Urdu + Bengali — 6 Gulf countries</div>
     </div>
     <div class="price-row">
       <div class="price-big">$2.99</div>
@@ -73,15 +66,11 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
     <div class="price-note">Koi subscription nahi — hamesha ke liye aapka</div>
   </div>
-
-  <!-- EMAIL -->
   <div class="email-section">
     <div class="lbl">Aapka Email</div>
     <input class="inp" type="email" id="emailInp" placeholder="aapka@email.com" inputmode="email" autocomplete="email">
     <div class="inp-note">Payment ke baad is email par login link aayega.</div>
   </div>
-
-  <!-- PAY -->
   <button class="pay-btn" id="payBtn" onclick="startCheckout()">
     💳 Pay $2.99 — Abhi Access Lo
   </button>
@@ -92,30 +81,24 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <span>•</span>
     7-day refund
   </div>
-  <div class="msg err" id="errMsg"></div>
+  <div class="err-msg" id="errMsg"></div>
 </div>
 
-<!-- PADDLE JS -->
 <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 <script>
-// ── CONFIG ──────────────────────────────────────────────────
+// ── YOUR KEYS ───────────────────────────────────────────────
 var PADDLE_TOKEN = 'live_0ab1f7f2cd2ce76fbe888ddef9c';
 var PRICE_ID = 'pri_01kt4n716h95dwq9d2rprwbqm5';
 
-// Initialize Paddle
-Paddle.Setup({
-  vendor: PADDLE_TOKEN,
-  eventCallback: function(data) {
-    if (data.event === 'Checkout.Complete') {
-      var email = data.eventData.user.email;
-      window.location.href = '/success?email=' + encodeURIComponent(email);
-    }
-  }
+// ── INIT PADDLE v2 ──────────────────────────────────────────
+Paddle.Initialize({
+  token: PADDLE_TOKEN
 });
 
-// ── START CHECKOUT ───────────────────────────────────────────
+// ── CHECKOUT ────────────────────────────────────────────────
 function startCheckout() {
   var email = document.getElementById('emailInp').value.trim();
+
   if (!email || !email.includes('@')) {
     showErr('Sahi email dalein — login link is par aayega.');
     return;
@@ -124,31 +107,66 @@ function startCheckout() {
   var btn = document.getElementById('payBtn');
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>Loading...';
+  document.getElementById('errMsg').style.display = 'none';
 
-  Paddle.Checkout.open({
-  product: PRICE_ID,
-  email: email,
-  successCallback: function(data) {
-    window.location.href = '/success?email=' + encodeURIComponent(email);
-  },
-  closeCallback: function() {
+  try {
+    Paddle.Checkout.open({
+      items: [{
+        priceId: PRICE_ID,
+        quantity: 1
+      }],
+      customer: {
+        email: email
+      },
+      settings: {
+        displayMode: 'overlay',
+        theme: 'dark',
+        successUrl: window.location.origin + '/success?email=' + encodeURIComponent(email)
+      }
+    });
+  } catch(e) {
+    showErr('Paddle load nahi hua. Page refresh karein aur dobara try karein.');
     btn.disabled = false;
     btn.innerHTML = '💳 Pay $2.99 — Abhi Access Lo';
+    return;
   }
-});
 
-  // Re-enable button after 3 seconds in case user closes checkout
+  // Re-enable after 4 seconds in case user closes
   setTimeout(function() {
     btn.disabled = false;
     btn.innerHTML = '💳 Pay $2.99 — Abhi Access Lo';
-  }, 3000);
+  }, 4000);
 }
+
+// ── PADDLE EVENT LISTENER ───────────────────────────────────
+Paddle.Initialize({
+  token: PADDLE_TOKEN,
+  eventCallback: function(event) {
+    if (event.name === 'checkout.completed') {
+      var email = document.getElementById('emailInp').value.trim();
+      window.location.href = '/success?email=' + encodeURIComponent(email);
+    }
+    if (event.name === 'checkout.error') {
+      showErr('Payment mein masla aaya. Dobara try karein.');
+      var btn = document.getElementById('payBtn');
+      btn.disabled = false;
+      btn.innerHTML = '💳 Pay $2.99 — Abhi Access Lo';
+    }
+  }
+});
 
 function showErr(msg) {
   var el = document.getElementById('errMsg');
   el.textContent = msg;
   el.style.display = 'block';
 }
+
+// Enter key
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('emailInp').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') startCheckout();
+  });
+});
 </script>
 </body>
 </html>
