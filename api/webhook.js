@@ -1,4 +1,7 @@
+// api/webhook.js — Vercel Serverless Function
+
 module.exports = async function handler(req, res) {
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -9,57 +12,47 @@ module.exports = async function handler(req, res) {
     var data = body.data || {};
 
     console.log('Event:', eventType);
-    console.log('Full body keys:', JSON.stringify(Object.keys(body)));
-    console.log('Data keys:', JSON.stringify(Object.keys(data)));
-    console.log('Full payload:', JSON.stringify(body).substring(0, 2000));
 
     if (eventType !== 'transaction.completed') {
       return res.status(200).json({ received: true });
     }
 
-    // Try every possible location for email
-    var email = null;
-
-    // Check data.customer
-    if (data.customer && data.customer.email) {
-      email = data.customer.email;
-      console.log('Email from data.customer:', email);
-    }
-    // Check data.billing_details
-    else if (data.billing_details && data.billing_details.email) {
-      email = data.billing_details.email;
-      console.log('Email from billing_details:', email);
-    }
-    // Check top level customer
-    else if (body.customer && body.customer.email) {
-      email = body.customer.email;
-      console.log('Email from body.customer:', email);
-    }
-    // Check data directly
-    else if (data.email) {
-      email = data.email;
-      console.log('Email from data.email:', email);
-    }
-    // Check payments array
-    else if (data.payments && data.payments[0] && data.payments[0].customer) {
-      email = data.payments[0].customer.email;
-      console.log('Email from payments:', email);
-    }
-
-    console.log('Final email found:', email);
-
-    if (!email) {
-      // Log full data to find email location
-      console.error('NO EMAIL FOUND. Full data:', JSON.stringify(data));
-      return res.status(400).json({ error: 'No email found', keys: Object.keys(data) });
-    }
-
-    var internalProductId = 'smart-bachat';
     var supabaseUrl = process.env.SUPABASE_URL;
     var supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
     var resendKey = process.env.RESEND_API_KEY;
+    var paddleApiKey = process.env.PADDLE_API_KEY;
 
-    // Create user in Supabase
+    // Email is NOT in transaction data
+    // Must fetch customer separately using customer_id
+    var customerId = data.customer_id;
+    var email = null;
+
+    if (customerId) {
+      console.log('Fetching customer:', customerId);
+      var custRes = await fetch('https://api.paddle.com/customers/' + customerId, {
+        headers: {
+          'Authorization': 'Bearer ' + paddleApiKey,
+          'Content-Type': 'application/json'
+        }
+      });
+      var custData = await custRes.json();
+      console.log('Customer data:', JSON.stringify(custData).substring(0, 500));
+      if (custData.data && custData.data.email) {
+        email = custData.data.email;
+      }
+    }
+
+    console.log('Email found:', email);
+
+    if (!email) {
+      console.error('Could not get email for customer:', customerId);
+      return res.status(400).json({ error: 'No email found', customerId: customerId });
+    }
+
+    var paddleOrderId = data.id;
+    var internalProductId = 'smart-bachat';
+
+    // STEP 1: Create user in Supabase
     var userRes = await fetch(supabaseUrl + '/auth/v1/admin/users', {
       method: 'POST',
       headers: {
@@ -77,6 +70,7 @@ module.exports = async function handler(req, res) {
     var userData = await userRes.json();
     var userId = userData.id;
 
+    // If user already exists — find them
     if (!userId) {
       var listRes = await fetch(
         supabaseUrl + '/auth/v1/admin/users?page=1&per_page=1000',
@@ -90,11 +84,14 @@ module.exports = async function handler(req, res) {
     }
 
     if (!userId) {
+      console.error('Could not create or find user for:', email);
       return res.status(500).json({ error: 'User creation failed' });
     }
 
-    // Record purchase
-    await fetch(supabaseUrl + '/rest/v1/purchases', {
+    console.log('User ID:', userId);
+
+    // STEP 2: Record purchase
+    var purchaseRes = await fetch(supabaseUrl + '/rest/v1/purchases', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -106,14 +103,19 @@ module.exports = async function handler(req, res) {
         user_id: userId,
         product_id: internalProductId,
         email: email,
-        paddle_order_id: data.id,
+        paddle_order_id: paddleOrderId,
         amount_usd: 2.99,
         status: 'active'
       })
     });
 
-    // Send welcome email
-    await fetch('https://api.resend.com/emails', {
+    if (!purchaseRes.ok) {
+      var pErr = await purchaseRes.text();
+      console.log('Purchase note:', pErr);
+    }
+
+    // STEP 3: Send welcome email
+    var emailRes = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -125,22 +127,27 @@ module.exports = async function handler(req, res) {
         subject: 'Smart Bachat — Aapka Access Tayaar Hai',
         html: '<div style="font-family:sans-serif;max-width:500px;margin:0 auto;padding:32px;background:#080E0A;color:#EEF7F0;">'
             + '<div style="text-align:center;font-size:48px;margin-bottom:16px">💰</div>'
-            + '<h1 style="color:#74C69D;text-align:center">SmartSaathi</h1>'
-            + '<div style="background:#0F1A12;border-radius:14px;padding:24px;margin:20px 0;">'
+            + '<h1 style="color:#74C69D;text-align:center;margin-bottom:20px">SmartSaathi</h1>'
+            + '<div style="background:#0F1A12;border-radius:14px;padding:24px;margin-bottom:16px;">'
             + '<h2 style="color:#EEF7F0;margin:0 0 12px">Mubarak ho! 🎉</h2>'
-            + '<p style="color:#B8D4BE;margin:0 0 20px">Aapne Smart Bachat khareed liya.</p>'
-            + '<a href="https://smartsaathi.app/login" style="display:block;text-align:center;padding:16px;background:#40916C;border-radius:12px;color:#fff;font-weight:700;text-decoration:none;">Smart Bachat Kholen →</a>'
+            + '<p style="color:#B8D4BE;margin:0 0 8px">Aapne Smart Bachat khareed liya.</p>'
+            + '<p style="color:#B8D4BE;margin:0 0 20px">Neeche click karein — app khul jayega.</p>'
+            + '<a href="https://smartsaathi.app/login" style="display:block;text-align:center;padding:16px;background:#40916C;border-radius:12px;color:#fff;font-weight:700;text-decoration:none;font-size:16px;">Smart Bachat Kholen →</a>'
             + '</div>'
-            + '<p style="color:#5E8A68;font-size:12px;text-align:center">hello@smartsaathi.app</p>'
+            + '<p style="color:#5E8A68;font-size:12px;text-align:center">Koi masla? hello@smartsaathi.app</p>'
             + '</div>'
       })
     });
 
-    console.log('Success for:', email);
-    return res.status(200).json({ success: true });
+    if (!emailRes.ok) {
+      console.error('Email error:', await emailRes.text());
+    }
+
+    console.log('SUCCESS for:', email);
+    return res.status(200).json({ success: true, email: email });
 
   } catch (error) {
-    console.error('Error:', error.message);
+    console.error('Webhook error:', error.message);
     return res.status(500).json({ error: error.message });
   }
 };
