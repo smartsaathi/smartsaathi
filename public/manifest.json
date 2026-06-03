@@ -1,0 +1,19 @@
+{
+  "name": "Smart Bachat",
+  "short_name": "Smart Bachat",
+  "description": "Gulf worker financial tool — salary, savings, rights",
+  "start_url": "/app",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1B4332",
+  "theme_color": "#1B4332",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjI1NiIgZmlsbD0iIzFCNDMzMiIvPgogIDxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMjIwIiBmaWxsPSIjMkQ2QTRGIi8+CiAgPGNpcmNsZSBjeD0iMjU2IiBjeT0iMjIwIiByPSIxMjAiIGZpbGw9IiM0MDkxNkMiIG9wYWNpdHk9IjAuMyIvPgogIDx0ZXh0IHg9IjI1NiIgeT0iMTk1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMTAiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNGNEEyNjEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPvCfkrA8L3RleHQ+CiAgPHRleHQgeD0iMjU2IiB5PSIzMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjUyIiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjNzRDNjlEIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5CQUNIQVQ8L3RleHQ+CiAgPHRleHQgeD0iMjU2IiB5PSIzODUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjQjhENEJFIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5TbWFydFNhYXRoaTwvdGV4dD4KPC9zdmc+",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
