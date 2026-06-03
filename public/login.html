@@ -1,3 +1,31 @@
+// Handle Supabase auth callback
+var url = new URL(window.location.href);
+var code = url.searchParams.get('code');
+var token = url.searchParams.get('token');
+var type = url.searchParams.get('type');
+
+if (code || (token && type === 'magiclink')) {
+  // Exchange code for session using Supabase
+  fetch('https://lbvwolpvzgxebyfzlndt.supabase.co/auth/v1/token?grant_type=pkce', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_KEY
+    },
+    body: JSON.stringify({ auth_code: code })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    if (data.access_token) {
+      localStorage.setItem('sb_session', JSON.stringify({
+        access_token: data.access_token,
+        refresh_token: data.refresh_token,
+        expires_at: Date.now()/1000 + data.expires_in
+      }));
+      window.location.href = '/app';
+    }
+  });
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
