@@ -81,12 +81,41 @@ function getSession() {
     if (!raw) return null;
     var s = JSON.parse(raw);
     if (!s.access_token) return null;
-    if (s.expires_at && s.expires_at < Date.now()/1000) {
+    // Give 7 day buffer — refresh before actual expiry
+    if (s.expires_at && s.expires_at < (Date.now()/1000 + 604800)) {
+      // Try to refresh using refresh token
+      if (s.refresh_token) {
+        refreshSession(s.refresh_token);
+      }
+    }
+    // If expired more than 30 days ago — clear
+    if (s.expires_at && s.expires_at < (Date.now()/1000 - 2592000)) {
       localStorage.removeItem('sb_session');
       return null;
     }
     return s;
   } catch(e) { return null; }
+}
+
+async function refreshSession(refreshToken) {
+  try {
+    var r = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY
+      },
+      body: JSON.stringify({ refresh_token: refreshToken })
+    });
+    var data = await r.json();
+    if (data.access_token) {
+      localStorage.setItem('sb_session', JSON.stringify({
+        access_token: data.access_token,
+        refresh_token: data.refresh_token || refreshToken,
+        expires_at: Date.now()/1000 + (data.expires_in || 2592000)
+      }));
+    }
+  } catch(e) {}
 }
 
 function logout() {
