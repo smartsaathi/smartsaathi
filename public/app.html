@@ -81,15 +81,13 @@ function getSession() {
     if (!raw) return null;
     var s = JSON.parse(raw);
     if (!s.access_token) return null;
-    // Give 7 day buffer — refresh before actual expiry
-    if (s.expires_at && s.expires_at < (Date.now()/1000 + 604800)) {
-      // Try to refresh using refresh token
-      if (s.refresh_token) {
-        refreshSession(s.refresh_token);
-      }
+    // Auto refresh if expiring within 7 days
+    if (s.refresh_token && s.expires_at &&
+        s.expires_at < (Date.now()/1000 + 604800)) {
+      refreshSession(s.refresh_token);
     }
-    // If expired more than 30 days ago — clear
-    if (s.expires_at && s.expires_at < (Date.now()/1000 - 2592000)) {
+    // Only clear if actually expired
+    if (s.expires_at && s.expires_at < Date.now()/1000) {
       localStorage.removeItem('sb_session');
       return null;
     }
@@ -112,7 +110,7 @@ async function refreshSession(refreshToken) {
       localStorage.setItem('sb_session', JSON.stringify({
         access_token: data.access_token,
         refresh_token: data.refresh_token || refreshToken,
-        expires_at: Date.now()/1000 + (data.expires_in || 2592000)
+        expires_at: Date.now()/1000 + 2592000
       }));
     }
   } catch(e) {}
@@ -156,7 +154,7 @@ async function handleTokenInURL() {
       localStorage.setItem('sb_session', JSON.stringify({
         access_token: params.access_token,
         refresh_token: params.refresh_token || '',
-        expires_at: Date.now()/1000 + parseInt(params.expires_in||3600)
+        expires_at: Date.now()/1000 + parseInt(params.expires_in||2592000)
       }));
       history.replaceState(null,'','/app');
       return true;
@@ -185,7 +183,7 @@ async function handleTokenInURL() {
         localStorage.setItem('sb_session', JSON.stringify({
           access_token: data.access_token,
           refresh_token: data.refresh_token || '',
-          expires_at: Date.now()/1000 + (data.expires_in || 3600)
+          expires_at: Date.now()/1000 + (data.expires_in || 2592000)
         }));
         history.replaceState(null,'','/app');
         return true;
@@ -209,7 +207,7 @@ async function handleTokenInURL() {
         localStorage.setItem('sb_session', JSON.stringify({
           access_token: data2.access_token,
           refresh_token: data2.refresh_token || '',
-          expires_at: Date.now()/1000 + (data2.expires_in || 3600)
+          expires_at: Date.now()/1000 + (data2.expires_in || 2592000)
         }));
         history.replaceState(null,'','/app');
         return true;
