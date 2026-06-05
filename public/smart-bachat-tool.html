@@ -1265,7 +1265,9 @@ function buildApp(){
   } else {
     G('ramBanner').classList.add('hidden');
   }
-  ['b1l','b1s','b2l','b2s','b3l','b3s','b4l','b4s','aurL','aurS'].forEach(function(id){if(st[id])G(id).textContent=st[id];});
+  // Quick action labels set in updateStats
+  if(G('aurL'))G('aurL').textContent=st.aurL;
+  if(G('aurS'))G('aurS').textContent=st.aurS;
   G('amT').textContent=st.amT;
   // Aur Madad grouped
   var ag=G('amGrid');ag.innerHTML='';
