@@ -472,6 +472,18 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .sett-opt:last-child{border-bottom:none;}
 .sett-opt.on{color:var(--g4);}
 .reset-btn{width:100%;padding:14px;background:transparent;border:1.5px solid rgba(224,122,122,.4);border-radius:12px;color:var(--red);font-family:'Baloo 2',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;}
+/* GROW PAGE */
+.grow-intro{background:var(--bgc);border:1px solid rgba(116,198,157,.2);border-radius:14px;padding:14px;margin-bottom:12px;font-size:13px;color:var(--ts);line-height:1.8;}
+.grow-item{background:var(--bgc);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:9px;}
+.grow-item.warn{border-color:rgba(224,122,122,.25);}
+.grow-row{display:flex;align-items:flex-start;gap:10px;}
+.grow-ico{font-size:24px;flex-shrink:0;}
+.grow-body{flex:1;}
+.grow-title{font-size:14px;font-weight:700;color:var(--g4);margin-bottom:4px;}
+.grow-title.warn{color:var(--red);}
+.grow-desc{font-size:13px;color:var(--ts);line-height:1.7;margin-bottom:6px;}
+.grow-tag{display:inline-block;padding:3px 10px;background:rgba(116,198,157,.08);border-radius:20px;font-size:11px;color:var(--g4);}
+.grow-tag.warn{background:rgba(224,122,122,.1);color:var(--red);}
 </style>
 </head>
 <body>
@@ -744,6 +756,12 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
   <!-- SAVINGS GROWTH -->
   <div id="pgGrow" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="grT"></div></div>
+    <div class="pad" id="grList"></div>
+  </div>
+
+  <!-- SAVINGS GROWTH -->
+  <div id="pgGrow" class="hidden">
     <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="gwT"></div></div>
     <div class="pad" id="gwList"></div>
   </div>
@@ -844,11 +862,12 @@ pk:{
   aurL:'Aur Madad',aurS:'Shield, EOSD, Wapsi aur zyada',amT:'Aur Madad',
   amCards:[
     {id:'shield',ico:'🛡️',t:'Family Shield',s:'Ghar ka pressure',grp:'roz'},
+    {id:'tips',ico:'💡',t:'Bachat Tips',s:'10 asaan nuskhe',grp:'roz'},
+    {id:'grow',ico:'📈',t:'Bachat Badhao',s:'Paise ko mehfooz rakhein',grp:'roz'},
     {id:'eosd',ico:'🏆',t:'EOSD',s:'Aapka haq',grp:'zaroori'},
     {id:'checklist',ico:'✈️',t:'Wapsi Checklist',s:'Ghar jaane se pehle',grp:'zaroori'},
     {id:'rem',ico:'💸',t:'Paise Bhejna',s:'Saste options',grp:'zaroori'},
-    {id:'ready',ico:'🏡',t:'Wapsi Tayyari',s:'Kab jaane ke qabil hoon',grp:'zaroori'},
-    {id:'grow',ico:'📈',t:'Bachat Badhao',s:'Paise ko mehfooz rakhein',grp:'zaroori'}
+    {id:'ready',ico:'🏡',t:'Wapsi Tayyari',s:'Kab jaane ke qabil hoon',grp:'zaroori'}
   ],
   spT:'💰 Taqseem',ltL:'Low Salary Mode',ltS:'1500 SAR se kam?',lkT:'🔍 Paisa Kahan Ja Raha Hai?',
   leakCats:['☕ Chai/Juice','🚕 Taxi','🍔 Bahar Khana','📱 Extra Recharge','🎮 Entertainment','🛒 Fazool Shopping'],
@@ -950,6 +969,16 @@ pk:{
   remSvcs:[{n:'EasyPaisa (STC Pay)',f:'0-15 SAR',b:true},{n:'Al Ansari Exchange',f:'15-25 SAR'},{n:'STC Pay Direct',f:'10-20 SAR'},{n:'Bank Transfer',f:'30-50 SAR'}],
   ckT:'✈️ Wapsi Checklist',
   ghItems:['Iqama photocopy lo','HR se EOSD claim karo','Company se NOC letter lo','Sab bills band karo','Medical card wapas karo','Ghar walon ko date bata do','Cash rakh lo — wapsi ke liye','Ticket 48 ghante pehle confirm karo'],
+  grT:'📈 Bachat Badhao',
+  growOptions:[
+    {ico:'🏅',t:'Sona khareedein',s:'Har maheena thoda sona lo — price badhta hai, impulse mein kharch nahi hoga.',tag:'Behtar safeguard'},
+    {ico:'🏦',t:'Islamic Savings Account',s:'Meezan ya Bank Islami mein account — halal munafa, alag rakha rahega.',tag:'Halal option'},
+    {ico:'📬',t:'National Savings (Pakistan)',s:'Ghar walo ko "Defence Saving Certificate" mein daalo — government guarantee, achi return.',tag:'Government guarantee'},
+    {ico:'📱',t:'Easypaisa/JazzCash Savings',s:'Apne mobile account mein ek alag wallet — alag rakhna mushkil se nikalega.',tag:'Easy setup'},
+    {ico:'🤝',t:'Committee/Bachat Group',s:'5-10 saathi milke maheena committee — apni baari aaye toh ek baar mein bari raqam.',tag:'Community system'},
+    {ico:'🧱',t:'Zameen ya property',s:'Gaon mein plot — price badhta hai, becha bhi ja sakta hai, barbaad nahi hota.',tag:'Long term'},
+    {ico:'⚠️',t:'Kya NA karein',s:'Stock market, crypto, online schemes se bachein — Gulf workers ke saath ziada fraud hota hai.',tag:'Warning'}
+  ],
   stT:'⚙️ Settings',stLL:'ZABAN',stCL:'MULK',stRst:'🗑️ Sab Data Delete Karo',resetConfirm:'Sab data delete ho jayega. Confirm?',noLog:'Koi record nahi',
   rdT:'🏡 Wapsi Tayyari',rdMeter:'Aapki Wapsi Tayyari',
   rdMsg:['Abhi bahut kaam baaki hai — shuru karo.','Sahi raaste par ho — jari rakho!','Kaafi tayyar ho — thoda aur!','Masha Allah — bilkul tayyar!'],
@@ -1105,6 +1134,16 @@ bd:{
   remSvcs:[{n:'bKash (STC Pay)',f:'0-15 SAR',b:true},{n:'Al Ansari Exchange',f:'15-25 SAR'},{n:'STC Pay Direct',f:'10-20 SAR'},{n:'Bank Transfer',f:'30-50 SAR'}],
   ckT:'✈️ ফেরার চেকলিস্ট',
   ghItems:['ইকামার ফটোকপি নিন','HR থেকে EOSD দাবি করুন','NOC চিঠি নিন','সব বিল বন্ধ করুন','মেডিকেল কার্ড ফেরত দিন','পরিবারকে তারিখ জানান','নগদ রাখুন — ফেরার জন্য','৪৮ ঘণ্টা আগে টিকিট নিশ্চিত করুন'],
+  grT:'📈 বাচাত বাড়ান',
+  growOptions:[
+    {ico:'🏅',t:'সোনা কিনুন',s:'প্রতি মাস একটু সোনা কিনুন — দাম বাড়ে, আবেগে খরচ হয় না।',tag:'ভালো সুরক্ষা'},
+    {ico:'🏦',t:'ইসলামিক সেভিংস',s:'ইসলামী ব্যাংকে অ্যাকাউন্ট — হালাল মুনাফা, আলাদা থাকবে।',tag:'হালাল অপশন'},
+    {ico:'📬',t:'সঞ্চয়পত্র (Bangladesh)',s:'পরিবারকে সঞ্চয়পত্রে বিনিয়োগ করতে বলুন — সরকারি গ্যারান্টি।',tag:'সরকারি গ্যারান্টি'},
+    {ico:'📱',t:'bKash/Nagad সেভিংস',s:'আলাদা wallet-এ রাখুন — সহজে তুলতে পারবেন না।',tag:'সহজ শুরু'},
+    {ico:'🤝',t:'সমিতি/গ্রুপ সেভিংস',s:'৫-১০ জন মিলে মাসিক সমিতি — নিজের পালায় একসাথে বড় টাকা।',tag:'কমিউনিটি পদ্ধতি'},
+    {ico:'🧱',t:'জমি বা সম্পত্তি',s:'গ্রামে জমি — দাম বাড়ে, বিক্রিও হয়, নষ্ট হয় না।',tag:'দীর্ঘমেয়াদী'},
+    {ico:'⚠️',t:'কী করবেন না',s:'শেয়ার মার্কেট, ক্রিপ্টো, অনলাইন স্কিম থেকে দূরে থাকুন — প্রতারণার ঝুঁকি বেশি।',tag:'সতর্কতা'}
+  ],
   stT:'⚙️ Settings',stLL:'ভাষা',stCL:'দেশ',stRst:'🗑️ সব ডেটা মুছুন',resetConfirm:'সব ডেটা মুছে যাবে। নিশ্চিত?',noLog:'কোনো রেকর্ড নেই',
   rdT:'🏡 ফেরার প্রস্তুতি',rdMeter:'আপনার ফেরার প্রস্তুতি',
   rdMsg:['এখনও অনেক কাজ বাকি — শুরু করুন।','সঠিক পথে আছেন — চালিয়ে যান!','অনেকটা প্রস্তুত — একটু আরো!','মাশাআল্লাহ — সম্পূর্ণ প্রস্তুত!'],
@@ -1146,10 +1185,10 @@ function getFlows(){
       logF:p?['Expected','Received','Difference']:['প্রত্যাশিত','প্রাপ্ত','পার্থক্য']
     },
     kafeel:{
-      steps:p?['<b>Saari baat note karo</b> — tarikh, kya kaha gaya, gawah.','<b>Akele mat raho</b> — kisi trusted bhai ko saath rakho.','Kafeel passport rok raha hai — <b>ye ILLEGAL hai</b> (Saudi Labor Law Art.3).','Kafeel transfer nahi de raha — <b>'+cd.labor+' portal pe apply karo</b>.','Kafeel release nahi de raha — <b>Hotline: '+cd.hotline+'</b>','Embassy zaroor inform karo: PK: <b>'+cd.embPK+'</b>']:
-             ['<b>সব নোট করুন</b> — তারিখ, কী বলা হয়েছে, সাক্ষী।','<b>একা থাকবেন না</b> — বিশ্বস্ত কাউকে সাথে রাখুন।','কাফেল পাসপোর্ট আটকে রেখেছে — <b>এটা অবৈধ</b> (Labor Law Art.3)।','কাফেল ট্রান্সফার দিচ্ছে না — <b>'+cd.labor+' পোর্টালে আবেদন করুন</b>।','কাফেল রিলিজ দিচ্ছে না — <b>হটলাইন: '+cd.hotline+'</b>','দূতাবাসকে জানান: BD: <b>'+cd.embBD+'</b>'],
-      esc:p?[''+cd.labor+': '+cd.hotline,''+cd.app,'PK Embassy: '+cd.embPK]:[''+cd.labor+': '+cd.hotline,''+cd.app,'BD দূতাবাস: '+cd.embBD],
-      wa:p?'Assalamu Alaikum [Manager/HR],\n\nMujhe apne kafeel se kuch masail hain:\n1. [Masla likho]\n\nMain in masail ka hal chahta hoon.\nAgr 3 din mein jawab nahi aaya toh main\n'+cd.labor+' ('+cd.hotline+') mein report karuunga.\n\nShukriya,\n[Aapka Naam]':'আস্সালামুআলাইকুম [ম্যানেজার/HR],\n\nআমার কাফেলের সাথে কিছু সমস্যা আছে:\n১. [সমস্যা লিখুন]\n\nআমি এই সমস্যার সমাধান চাই।\n৩ দিনের মধ্যে সমাধান না হলে\n'+cd.labor+' ('+cd.hotline+')-এ অভিযোগ করব।\n\nধন্যবাদ,\n[আপনার নাম]',
+      steps:p?['<b>Saari baat note karo</b> — tarikh, kya kaha gaya, gawah.','<b>Akele mat raho</b> — kisi trusted bhai ko saath rakho.','Kafeel passport rok raha hai — <b>ye ILLEGAL hai</b> (Saudi Law Art.3). Wapas maango.','Kafeel transfer nahi de raha — <b>'+cd.labor+' portal pe apply karo</b> — employer ki zaroorat nahi.','Kafeel release nahi de raha — <b>Hotline: '+cd.hotline+'</b> — bata sab kuch.','Kafeel gum ho gaya/chala gaya — <b>Embassy foran inform karo</b>: PK: <b>'+cd.embPK+'</b>','Documents saath hain aur kafeel nahi milta — <b>"+cd.labor+"</b> mein shelter request karo.']:
+             ['<b>সব নোট করুন</b> — তারিখ, কী বলা হয়েছে, সাক্ষী।','<b>একা থাকবেন না</b> — বিশ্বস্ত কাউকে সাথে রাখুন।','কাফেল পাসপোর্ট আটকে রেখেছে — <b>এটা অবৈধ</b> (Labor Law Art.3)। ফেরত চান।','কাফেল ট্রান্সফার দিচ্ছে না — <b>'+cd.labor+' পোর্টালে আবেদন</b> — কাফেলের প্রয়োজন নেই।','কাফেল রিলিজ দিচ্ছে না — <b>হটলাইন: '+cd.hotline+'</b> — সব বলুন।','কাফেল পালিয়ে গেছে/নেই — <b>দূতাবাসকে জানান</b>: BD: <b>'+cd.embBD+'</b>','কাফেলের কাছে ডকুমেন্ট আটকে — <b>'+cd.labor+'</b>-এ আশ্রয় চান।'],
+      esc:p?[''+cd.labor+': '+cd.hotline,''+cd.app,'PK Embassy: '+cd.embPK,'Runaway Kafeel: Shelter — '+cd.labor,'Kafeel ne documents liye — FIR daro']:[''+cd.labor+': '+cd.hotline,''+cd.app,'BD দূতাবাস: '+cd.embBD],
+      wa:p?'Assalamu Alaikum [Manager/HR Sahab],\n\nMujhe kafeel ke baare mein yeh masail hain:\n1. [Masla #1]\n2. [Masla #2]\n\nMeri guzarish hai ke 3 din mein yeh hal karein.\nWarna main '+cd.labor+' ('+cd.hotline+') mein formal complaint karuunga.\nMain apni saari documents tayyar rakh raha hoon.\n\nShukriya,\n[Aapka Naam] | [Employee ID]':'আস্সালামুআলাইকুম [ম্যানেজার/HR],\n\nআমার কাফেলের সাথে কিছু সমস্যা আছে:\n১. [সমস্যা লিখুন]\n\nআমি এই সমস্যার সমাধান চাই।\n৩ দিনের মধ্যে সমাধান না হলে\n'+cd.labor+' ('+cd.hotline+')-এ অভিযোগ করব।\n\nধন্যবাদ,\n[আপনার নাম]',
       logF:p?['Tarikh','Kafeel ka masla','Gawah/Proof']:['তারিখ','কাফেলের সমস্যা','সাক্ষী/প্রমাণ']
     },
     iqama:{
@@ -1835,6 +1874,30 @@ function buildGrow(){
 }
 
 // ── SETTINGS ────────────────────────────────────────────────
+// SAVINGS GROWTH
+function buildGrow(){
+  var st=s(),gl=G('grList');if(!gl)return;
+  gl.innerHTML='';
+  G('grT').textContent=st.grT;
+  var intro=document.createElement('div');
+  intro.style='background:var(--bgc);border:1px solid rgba(116,198,157,.2);border-radius:14px;padding:14px;margin-bottom:12px;font-size:13px;color:var(--ts);line-height:1.8;';
+  intro.innerHTML=(pk()?'<b style="color:var(--g4)">Bachat sirf jodhna nahi — mehfooz rakhna bhi zaroori hai.</b><br>Neeche 6 tarike hain jo Gulf workers ke liye practical hain. Inse paise ki value bhi badhti hai aur impulse mein kharcha bhi nahi hota.':'<b style="color:var(--g4)">বাচাত শুধু জমানো নয় — নিরাপদ রাখাও জরুরি।</b><br>নিচে ৬টি উপায় আছে যা Gulf কর্মীদের জন্য ব্যবহারিক। এতে টাকার মূল্যও বাড়ে এবং আবেগে খরচও হয় না।');
+  gl.appendChild(intro);
+  (st.growOptions||[]).forEach(function(opt){
+    var isWarn=opt.ico==='⚠️';
+    var el=document.createElement('div');
+    el.style='background:var(--bgc);border:1px solid '+(isWarn?'rgba(224,122,122,.25)':'var(--bd)')+';border-radius:14px;padding:14px;margin-bottom:9px;';
+    el.innerHTML='<div style="display:flex;align-items:flex-start;gap:10px;">'
+      +'<span style="font-size:24px;flex-shrink:0">'+opt.ico+'</span>'
+      +'<div style="flex:1">'
+      +'<div style="font-size:14px;font-weight:700;color:'+(isWarn?'var(--red)':'var(--g4)')+';margin-bottom:4px">'+opt.t+'</div>'
+      +'<div style="font-size:13px;color:var(--ts);line-height:1.7;margin-bottom:6px">'+opt.s+'</div>'
+      +'<span style="display:inline-block;padding:3px 10px;background:'+(isWarn?'rgba(224,122,122,.1)':'rgba(116,198,157,.08)')+';border-radius:20px;font-size:11px;color:'+(isWarn?'var(--red)':'var(--g4)')+'">'+opt.tag+'</span>'
+      +'</div></div>';
+    gl.appendChild(el);
+  });
+}
+
 function buildSettings(){
   var st=s(),cd=CTRY[C];
   G('stT').textContent=st.stT;G('stLL').textContent=st.stLL;G('stCL').textContent=st.stCL;G('stRst').textContent=st.stRst;
