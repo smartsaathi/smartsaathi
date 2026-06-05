@@ -134,12 +134,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .reminder-card{margin:0 14px 10px;background:linear-gradient(135deg,rgba(240,192,64,.12),rgba(244,162,97,.06));border:1px solid rgba(240,192,64,.25);border-radius:14px;padding:13px 14px;display:flex;align-items:center;gap:10px;}
 .rm-ico{font-size:18px;flex-shrink:0;}
 .rm-txt{font-size:13px;color:var(--ts);line-height:1.5;font-style:italic;}
-/* QUICK ACTIONS */
-.quick-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 14px 10px;}
-.qa-btn{background:var(--bgc);border:1.5px solid var(--bd);border-radius:14px;padding:14px 4px 10px;text-align:center;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;}
-.qa-btn:active{border-color:var(--g4);transform:scale(.95);}
-.qa-ico{font-size:26px;line-height:1;}
-.qa-lbl{font-size:10px;font-weight:700;color:var(--ts);font-family:'Baloo 2',sans-serif;}
+
 /* AUR MADAD BTN */
 .aur-btn{margin:0 14px 8px;padding:14px 16px;background:var(--bgc);border:1px solid var(--bd);border-radius:14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;}
 
@@ -181,14 +176,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .qa-ico{font-size:28px;line-height:1;}
 .qa-lbl{font-size:11px;color:var(--tx);}
 /* ── BOTTOM NAV ── */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;max-width:460px;margin:0 auto;background:var(--bgc);border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-around;padding:10px 0 max(10px,env(safe-area-inset-bottom));z-index:500;backdrop-filter:blur(10px);}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;max-width:460px;margin:0 auto;background:rgba(15,26,18,.97);border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-around;padding:10px 0 max(12px,env(safe-area-inset-bottom));z-index:900;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
 .bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 12px;border-radius:12px;transition:background .15s;min-width:52px;}
 .bn-item.active{background:rgba(116,198,157,.12);}
 .bn-ico{font-size:22px;line-height:1;}
 .bn-lbl{font-size:10px;font-weight:700;color:var(--tm);font-family:'Baloo 2',sans-serif;}
 .bn-item.active .bn-lbl{color:var(--g4);}
 /* Spacer so content doesnt hide behind nav */
-.nav-spacer{height:72px;}
+.nav-spacer{height:80px;}
 /* SPLASH */
 .splash-logo{font-size:70px;margin-bottom:10px;animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
@@ -728,13 +723,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="rm-txt" id="rmTxt"></div>
     </div>
 
-    <!-- QUICK ACTIONS -->
-    <div class="quick-actions">
-      <div class="qa-btn" onclick="bnNav(0,'split')"><span class="qa-ico">💰</span><span class="qa-lbl" id="qa1">Taqseem</span></div>
-      <div class="qa-btn" onclick="bnNav(1,'tracker')"><span class="qa-ico">📊</span><span class="qa-lbl" id="qa2">Bachat</span></div>
-      <div class="qa-btn" onclick="bnNav(2,'help')"><span class="qa-ico">🆘</span><span class="qa-lbl" id="qa3">Help Now</span></div>
-      <div class="qa-btn" onclick="bnNav(3,'dream')"><span class="qa-ico">🌟</span><span class="qa-lbl" id="qa4">Sapna</span></div>
-    </div>
+
 
     <!-- AUR MADAD -->
     <div class="aur-btn" onclick="showPg('aurMadad')">
@@ -750,6 +739,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div id="pgAurMadad" class="hidden">
     <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="amT"></div></div>
     <div class="am-grid" id="amGrid"></div>
+    <div class="nav-spacer"></div>
   </div>
 
   <!-- SALARY SPLIT -->
@@ -798,6 +788,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div id="pgHelp" class="hidden">
     <div class="shdr"><div class="back-btn" onclick="bnNav(-1,'home')">←</div><div class="pg-title f8" id="hlT"></div></div>
     <div class="pad" id="probList"></div>
+    <div class="nav-spacer"></div>
   </div>
 
   <!-- DREAM -->
@@ -1263,48 +1254,133 @@ function s(){return D[L];}
 
 // ── FLOWS ────────────────────────────────────────────────────
 function getFlows(){
-  var cd=CTRY[C],p=!pk();
+  var cd=CTRY[C],p=pk();
+  var UR=p,BD=!p;
   return {
     sal:{
-      steps:p?['আজকের <b>তারিখ নোট করুন</b> — delay-এর পহেলা দিন।','Salary slip দেখো — <b>'+cd.wps+' দিনের মধ্যে</b> আসার কথা।','Supervisor/HR কে <b>seedha বলো</b>।','৩-৫ দিনেও না আসলে — <b>'+cd.labor+' complaint</b>। Hotline: <b>'+cd.hotline+'</b>','App: <b>'+cd.app+'</b> — online complaint করো।','PK Embassy: <b>'+cd.embPK+'</b>']:
-             ['আজকের <b>তারিখ নোট করুন</b>।','বেতন স্লিপ দেখুন — <b>'+cd.wps+' দিনে</b> আসার কথা।','সুপারভাইজার/HR কে বলুন।','৩-৫ দিনেও না এলে — <b>'+cd.labor+'</b>। হটলাইন: <b>'+cd.hotline+'</b>','App: <b>'+cd.app+'</b>','BD দূতাবাস: <b>'+cd.embBD+'</b>'],
-      esc:p?['Supervisor','HR',''+cd.labor+': '+cd.hotline,'PK Embassy: '+cd.embPK]:['সুপারভাইজার','HR',''+cd.labor+': '+cd.hotline,'BD দূতাবাস: '+cd.embBD],
-      wa:p?'Assalamu Alaikum [Manager Sahab],\n\nMeri [mahine] ki salary abhi tak nahi mili.\nExpected date: [tarikh]\n\nKripya jaldi check karein?\n\nShukriya,\n[Aapka Naam]\n[Employee ID]':'আস্সালামুআলাইকুম [ম্যানেজার],\n\nআমার [মাস]-এর বেতন এখনো পাইনি।\nপ্রত্যাশিত তারিখ: [তারিখ]\n\nদয়া করে দ্রুত দেখবেন?\n\nধন্যবাদ,\n[আপনার নাম]\n[Employee ID]',
+      steps:p?[
+        'Aaj ki <b>tarikh note karein</b> — delay ka pehla din.',
+        'Salary slip check karein — <b>'+cd.wps+' din mein</b> aane ki baat thi.',
+        'Supervisor/HR ko <b>seedha batayein</b>.',
+        '3-5 din mein bhi nahi aayi — <b>'+cd.labor+'</b>. Hotline: <b>'+cd.hotline+'</b>',
+        'App: <b>'+cd.app+'</b> — online complaint karein.',
+        'PK Embassy: <b>'+cd.embPK+'</b>'
+      ]:[
+        'আজকের <b>তারিখ নোট করুন</b> — বিলম্বের প্রথম দিন।',
+        'বেতন স্লিপ দেখুন — <b>'+cd.wps+' দিনে</b> আসার কথা।',
+        'সুপারভাইজার/HR কে <b>সরাসরি বলুন</b>।',
+        '৩-৫ দিনেও না এলে — <b>'+cd.labor+'</b>। হটলাইন: <b>'+cd.hotline+'</b>',
+        'App: <b>'+cd.app+'</b> — অনলাইন অভিযোগ করুন।',
+        'BD দূতাবাস: <b>'+cd.embBD+'</b>'
+      ],
+      esc:p?['Supervisor','HR',''+cd.labor+': '+cd.hotline,'PK Embassy: '+cd.embPK]:
+             ['সুপারভাইজার','HR',''+cd.labor+': '+cd.hotline,'BD দূতাবাস: '+cd.embBD],
+      wa:p?'Assalamu Alaikum [Manager Sahab],\n\nMeri [mahine] ki salary abhi tak nahi mili.\nExpected date: [tarikh]\n\nKripya jaldi check karein?\n\nShukriya,\n[Aapka Naam]\n[Employee ID]':
+           'আস্সালামুআলাইকুম [ম্যানেজার],\n\nআমার [মাস]-এর বেতন এখনো পাইনি।\nপ্রত্যাশিত তারিখ: [তারিখ]\n\nদয়া করে দ্রুত দেখবেন?\n\nধন্যবাদ,\n[আপনার নাম]\n[Employee ID]',
       logF:p?['Tarikh','Expected amount','Company naam']:['তারিখ','পরিমাণ','কোম্পানি']
     },
     short:{
-      steps:p?['Salary slip check karo — <b>kya issue hai?</b>','Contract vs received — <b>difference nikalo.</b>','HR se kehna: <b>"Meri salary mein issue hai."</b>','Jawab nahi — <b>'+cd.labor+': '+cd.hotline+'</b>','WPS ke under employer <b>poori salary dene ka paaband</b> hai.']:
-             ['বেতন স্লিপ — <b>কী সমস্যা?</b>','চুক্তি vs প্রাপ্ত — <b>পার্থক্য বের করুন।</b>','HR কে: <b>"বেতনে সমস্যা আছে।"</b>','উত্তর না পেলে — <b>'+cd.labor+': '+cd.hotline+'</b>','WPS-এ নিয়োগকর্তা <b>আইনত বাধ্য।</b>'],
+      steps:p?[
+        'Salary slip check karein — <b>kya issue hai?</b>',
+        'Contract vs received amount ka <b>farq nikaalein.</b>',
+        'HR se kehna: <b>"Meri salary mein issue hai."</b>',
+        'Jawab nahi mila — <b>'+cd.labor+': '+cd.hotline+'</b>',
+        'WPS ke under employer <b>poori salary dene ka paaband</b> hai.'
+      ]:[
+        'বেতন স্লিপ — <b>কী সমস্যা?</b>',
+        'চুক্তি vs প্রাপ্ত — <b>পার্থক্য বের করুন।</b>',
+        'HR কে: <b>"বেতনে সমস্যা আছে।"</b>',
+        'উত্তর না পেলে — <b>'+cd.labor+': '+cd.hotline+'</b>',
+        'WPS-এ নিয়োগকর্তা <b>আইনত বাধ্য।</b>'
+      ],
       esc:p?['HR likhit complaint',''+cd.labor+': '+cd.hotline]:['HR লিখিত',''+cd.labor+': '+cd.hotline],
-      wa:p?'Assalamu Alaikum [Manager Sahab],\n\nMeri [mahine] ki salary mein issue hai.\nContract mein: [amount]\nMila: [amount]\nFarq: [amount]\n\nKripya check karein?\n\nShukriya,\n[Aapka Naam]':'আস্সালামুআলাইকুম [ম্যানেজার],\n\nআমার [মাস]-এর বেতনে সমস্যা আছে।\nচুক্তিতে: [পরিমাণ]\nপেয়েছি: [পরিমাণ]\nপার্থক্য: [পরিমাণ]\n\nদয়া করে দেখবেন?\n\nধন্যবাদ,\n[আপনার নাম]',
+      wa:p?'Assalamu Alaikum [Manager Sahab],\n\nMeri [mahine] ki salary mein issue hai.\nContract mein: [amount]\nMila: [amount]\nFarq: [amount]\n\nKripya check karein?\n\nShukriya,\n[Aapka Naam]':
+           'আস্সালামুআলাইকুম [ম্যানেজার],\n\nআমার [মাস]-এর বেতনে সমস্যা।\nচুক্তিতে: [পরিমাণ]\nপেয়েছি: [পরিমাণ]\nপার্থক্য: [পরিমাণ]\n\nদয়া করে দেখবেন?\n\nধন্যবাদ,\n[আপনার নাম]',
       logF:p?['Expected','Received','Difference']:['প্রত্যাশিত','প্রাপ্ত','পার্থক্য']
     },
     kafeel:{
-      steps:p?['<b>Saari baat note karo</b> — tarikh, kya kaha gaya, gawah.','<b>Akele mat raho</b> — kisi trusted bhai ko saath rakho.','Kafeel passport rok raha hai — <b>ye ILLEGAL hai</b> (Saudi Law Art.3). Wapas maango.','Kafeel transfer nahi de raha — <b>'+cd.labor+' portal pe apply karo</b> — employer ki zaroorat nahi.','Kafeel release nahi de raha — <b>Hotline: '+cd.hotline+'</b> — bata sab kuch.','Kafeel gum ho gaya/chala gaya — <b>Embassy foran inform karo</b>: PK: <b>'+cd.embPK+'</b>','Documents saath hain aur kafeel nahi milta — <b>"+cd.labor+"</b> mein shelter request karo.']:
-             ['<b>সব নোট করুন</b> — তারিখ, কী বলা হয়েছে, সাক্ষী।','<b>একা থাকবেন না</b> — বিশ্বস্ত কাউকে সাথে রাখুন।','কাফেল পাসপোর্ট আটকে রেখেছে — <b>এটা অবৈধ</b> (Labor Law Art.3)। ফেরত চান।','কাফেল ট্রান্সফার দিচ্ছে না — <b>'+cd.labor+' পোর্টালে আবেদন</b> — কাফেলের প্রয়োজন নেই।','কাফেল রিলিজ দিচ্ছে না — <b>হটলাইন: '+cd.hotline+'</b> — সব বলুন।','কাফেল পালিয়ে গেছে/নেই — <b>দূতাবাসকে জানান</b>: BD: <b>'+cd.embBD+'</b>','কাফেলের কাছে ডকুমেন্ট আটকে — <b>'+cd.labor+'</b>-এ আশ্রয় চান।'],
-      esc:p?[''+cd.labor+': '+cd.hotline,''+cd.app,'PK Embassy: '+cd.embPK,'Runaway Kafeel: Shelter — '+cd.labor,'Kafeel ne documents liye — FIR daro']:[''+cd.labor+': '+cd.hotline,''+cd.app,'BD দূতাবাস: '+cd.embBD],
-      wa:p?'Assalamu Alaikum [Manager/HR Sahab],\n\nMujhe kafeel ke baare mein yeh masail hain:\n1. [Masla #1]\n2. [Masla #2]\n\nMeri guzarish hai ke 3 din mein yeh hal karein.\nWarna main '+cd.labor+' ('+cd.hotline+') mein formal complaint karuunga.\nMain apni saari documents tayyar rakh raha hoon.\n\nShukriya,\n[Aapka Naam] | [Employee ID]':'আস্সালামুআলাইকুম [ম্যানেজার/HR],\n\nআমার কাফেলের সাথে কিছু সমস্যা আছে:\n১. [সমস্যা লিখুন]\n\nআমি এই সমস্যার সমাধান চাই।\n৩ দিনের মধ্যে সমাধান না হলে\n'+cd.labor+' ('+cd.hotline+')-এ অভিযোগ করব।\n\nধন্যবাদ,\n[আপনার নাম]',
+      steps:p?[
+        '<b>Saari baat note karein</b> — tarikh, kya hua, gawah.',
+        '<b>Akele mat rahein</b> — kisi trusted bhai ko saath rakhein.',
+        'Kafeel passport rok raha hai — <b>ye ILLEGAL hai</b> (Labor Law Art.3). Wapas maangein.',
+        'Kafeel transfer nahi de raha — <b>'+cd.labor+' portal pe apply karein</b> — employer ki zaroorat nahi.',
+        'Kafeel release nahi de raha — <b>Hotline: '+cd.hotline+'</b> — sab kuch batayein.',
+        'Kafeel gum ho gaya — <b>Embassy foran inform karein</b>: PK: <b>'+cd.embPK+'</b>',
+        'Documents kafeel ke paas hain aur woh nahi milta — <b>'+cd.labor+'</b> se shelter request karein.'
+      ]:[
+        '<b>সব নোট করুন</b> — তারিখ, কী হয়েছে, সাক্ষী।',
+        '<b>একা থাকবেন না</b> — বিশ্বস্ত কাউকে সাথে রাখুন।',
+        'কাফেল পাসপোর্ট আটকেছে — <b>এটা অবৈধ</b> (Labor Law Art.3)। ফেরত চান।',
+        'কাফেল ট্রান্সফার দিচ্ছে না — <b>'+cd.labor+' পোর্টালে আবেদন</b> — কাফেলের প্রয়োজন নেই।',
+        'কাফেল রিলিজ দিচ্ছে না — <b>হটলাইন: '+cd.hotline+'</b> — সব বলুন।',
+        'কাফেল পালিয়ে গেছে — <b>দূতাবাসকে জানান</b>: BD: <b>'+cd.embBD+'</b>',
+        'ডকুমেন্ট আটকে — <b>'+cd.labor+'</b>-এ আশ্রয় চান।'
+      ],
+      esc:p?[''+cd.labor+': '+cd.hotline,''+cd.app,'PK Embassy: '+cd.embPK,'Runaway kafeel: Shelter — '+cd.labor]:
+             [''+cd.labor+': '+cd.hotline,''+cd.app,'BD দূতাবাস: '+cd.embBD,'কাফেল পালিয়েছে: আশ্রয় — '+cd.labor],
+      wa:p?'Assalamu Alaikum [Manager/HR Sahab],\n\nMujhe kafeel ke baare mein yeh masail hain:\n1. [Masla #1]\n2. [Masla #2]\n\n3 din mein hal na hua toh:\n'+cd.labor+' ('+cd.hotline+') mein complaint karuunga.\n\nShukriya,\n[Aapka Naam] | [Employee ID]':
+           'আস্সালামুআলাইকুম [ম্যানেজার/HR],\n\nকাফেলের সাথে সমস্যা:\n১. [সমস্যা #১]\n২. [সমস্যা #২]\n\n৩ দিনে সমাধান না হলে:\n'+cd.labor+' ('+cd.hotline+')-এ অভিযোগ করব।\n\nধন্যবাদ,\n[আপনার নাম] | [Employee ID]',
       logF:p?['Tarikh','Kafeel ka masla','Gawah/Proof']:['তারিখ','কাফেলের সমস্যা','সাক্ষী/প্রমাণ']
     },
     iqama:{
-      steps:p?['Iqama ki <b>exact expiry check karo.</b>','<b>90 din pehle</b> employer ko WhatsApp karo.','Employer renewal ka <b>zimmedaar hai.</b>','Delay ho — <b>'+cd.labor+': '+cd.hotline+'</b>','Fine: <b>'+cd.iqFine+'</b> — employer ki galti = <b>woh bharta hai.</b>']:
-             ['ইকামার <b>মেয়াদ শেষ দেখুন।</b>','<b>৯০ দিন আগে</b> নিয়োগকর্তাকে WhatsApp।','নবায়নের দায়িত্ব নিয়োগকর্তার।','দেরি হলে — <b>'+cd.labor+': '+cd.hotline+'</b>','জরিমানা: <b>'+cd.iqFine+'</b> — তার দোষ = <b>তিনি দেবেন।</b>'],
+      steps:p?[
+        'Iqama ki <b>exact expiry date check karein.</b>',
+        '<b>90 din pehle</b> employer ko WhatsApp karein.',
+        'Iqama renewal ka <b>zimmedaar employer hai.</b>',
+        'Delay ho raha hai — <b>'+cd.labor+': '+cd.hotline+'</b>',
+        'Fine: <b>'+cd.iqFine+'</b> — employer ki galti = <b>woh bharega.</b>'
+      ]:[
+        'ইকামার <b>মেয়াদ শেষ দেখুন।</b>',
+        '<b>৯০ দিন আগে</b> নিয়োগকর্তাকে WhatsApp।',
+        'নবায়নের দায়িত্ব <b>নিয়োগকর্তার।</b>',
+        'দেরি হলে — <b>'+cd.labor+': '+cd.hotline+'</b>',
+        'জরিমানা: <b>'+cd.iqFine+'</b> — তার দোষ = <b>তিনি দেবেন।</b>'
+      ],
       esc:p?['Employer WhatsApp','HR',''+cd.labor+': '+cd.hotline]:['নিয়োগকর্তা WhatsApp','HR',''+cd.labor+': '+cd.hotline],
-      wa:p?'Assalamu Alaikum [Manager Sahab],\n\nMeri Iqama [tarikh] ko expire ho rahi hai.\nRenewal process shuru karne ki darkhwast hai.\n\nIs ke liye mujhe kya karna hoga?\n\nShukriya,\n[Aapka Naam]\n[Iqama Number]':'আস্সালামুআলাইকুম [ম্যানেজার],\n\nআমার ইকামার মেয়াদ [তারিখ]-এ শেষ।\nনবায়ন প্রক্রিয়া শুরু করার অনুরোধ।\n\nআমার কী করতে হবে?\n\nধন্যবাদ,\n[আপনার নাম]\n[Iqama নম্বর]',
+      wa:p?'Assalamu Alaikum [Manager Sahab],\n\nMeri Iqama [tarikh] ko expire ho rahi hai.\nRenewal process shuru karne ki darkhwast hai.\n\nShukriya,\n[Aapka Naam]\n[Iqama Number]':
+           'আস্সালামুআলাইকুম [ম্যানেজার],\n\nআমার ইকামার মেয়াদ [তারিখ]-এ শেষ।\nনবায়ন প্রক্রিয়া শুরু করার অনুরোধ।\n\nধন্যবাদ,\n[আপনার নাম]\n[Iqama নম্বর]',
       logF:p?['Expiry date','Reminder date','HR jawab']:['মেয়াদ শেষ','রিমাইন্ড','HR উত্তর']
     },
     sick:{
-      steps:p?['<b>Rest karo pehle.</b>','Supervisor ko <b>foran batao.</b>','<b>Company clinic</b> jao — FREE. Medical card use karo.','Doctor se <b>certificate lo.</b>','Sick pay: <b>'+cd.sickPay+'</b>','Deny kare — <b>'+cd.labor+': '+cd.hotline+'</b>']:
-             ['<b>প্রথমে বিশ্রাম।</b>','সুপারভাইজারকে <b>জানান।</b>','<b>কোম্পানির ক্লিনিক</b> — বিনামূল্যে।','ডাক্তারের <b>সার্টিফিকেট নিন।</b>','অসুস্থ ছুটি: <b>'+cd.sickPay+'</b>','অস্বীকার করলে — <b>'+cd.labor+': '+cd.hotline+'</b>'],
+      steps:p?[
+        '<b>Pehle rest karein.</b>',
+        'Supervisor ko <b>foran batayein.</b>',
+        '<b>Company clinic</b> jayein — FREE. Medical card use karein.',
+        'Doctor se <b>certificate lein.</b>',
+        'Sick pay rule: <b>'+cd.sickPay+'</b>',
+        'Company deny kare — <b>'+cd.labor+': '+cd.hotline+'</b>'
+      ]:[
+        '<b>প্রথমে বিশ্রাম নিন।</b>',
+        'সুপারভাইজারকে <b>জানান।</b>',
+        '<b>কোম্পানির ক্লিনিক</b> — বিনামূল্যে।',
+        'ডাক্তারের <b>সার্টিফিকেট নিন।</b>',
+        'অসুস্থ ছুটির নিয়ম: <b>'+cd.sickPay+'</b>',
+        'অস্বীকার করলে — <b>'+cd.labor+': '+cd.hotline+'</b>'
+      ],
       esc:p?['Supervisor','Company clinic',''+cd.labor+': '+cd.hotline]:['সুপারভাইজার','ক্লিনিক',''+cd.labor+': '+cd.hotline],
-      wa:p?'Assalamu Alaikum [Supervisor Sahab],\n\nAaj meri tabiyat theek nahi hai —\n[symptoms: bukhar/khansi/dard etc.]\n\nMain company clinic ja raha hoon.\nDoctor ka certificate le kar aaunga.\n\nShukriya,\n[Aapka Naam]':'আস্সালামুআলাইকুম [সুপারভাইজার],\n\nআজ আমি অসুস্থ —\n[লক্ষণ: জ্বর/কাশি/ব্যথা ইত্যাদি]\n\nকোম্পানির ক্লিনিকে যাচ্ছি।\nডাক্তারের সার্টিফিকেট নিয়ে আসব।\n\nধন্যবাদ,\n[আপনার নাম]',
+      wa:p?'Assalamu Alaikum [Supervisor Sahab],\n\nAaj meri tabiyat theek nahi hai.\nSymptoms: [bukhar/khansi/dard]\n\nMain company clinic ja raha hoon.\nDoctor certificate laaunga.\n\nShukriya,\n[Aapka Naam]':
+           'আস্সালামুআলাইকুম [সুপারভাইজার],\n\nআজ আমি অসুস্থ।\nলক্ষণ: [জ্বর/কাশি/ব্যথা]\n\nকোম্পানির ক্লিনিকে যাচ্ছি।\nডাক্তারের সার্টিফিকেট আনব।\n\nধন্যবাদ,\n[আপনার নাম]',
       logF:p?['Tarikh','Symptoms','Doctor naam']:['তারিখ','লক্ষণ','ডাক্তার']
     },
     gohome:{
-      steps:p?['<b>EOSD calculate karo</b> — Rule: '+cd.eosdRule,'<b>Final salary</b> — notice period employer dega.','<b>NOC letter</b> employer se lo.','Ticket — <b>Skyscanner</b> pe compare karo.','Documents: Passport, Iqama, NOC, EOSD letter.','<b>Ghar walon ko date bata do.</b>']:
-             ['<b>EOSD হিসাব করুন</b> — নিয়ম: '+cd.eosdRule,'<b>চূড়ান্ত বেতন</b> — নিয়োগকর্তা দেবেন।','<b>NOC চিঠি</b> নিন।','টিকিট — <b>Skyscanner</b>।','কাগজ: পাসপোর্ট, ইকামা, NOC, EOSD।','<b>পরিবারকে তারিখ জানান।</b>'],
+      steps:p?[
+        '<b>EOSD calculate karein</b> — Rule: '+cd.eosdRule,
+        '<b>Final salary</b> — notice period employer dega.',
+        '<b>NOC letter</b> employer se lein.',
+        'Ticket — <b>Skyscanner</b> pe compare karein.',
+        'Documents: Passport, Iqama, NOC, EOSD letter.',
+        '<b>Ghar walon ko date bata dein.</b>'
+      ]:[
+        '<b>EOSD হিসাব করুন</b> — নিয়ম: '+cd.eosdRule,
+        '<b>চূড়ান্ত বেতন</b> — নিয়োগকর্তা দেবেন।',
+        '<b>NOC চিঠি</b> নিন।',
+        'টিকিট — <b>Skyscanner</b>।',
+        'কাগজ: পাসপোর্ট, ইকামা, NOC, EOSD।',
+        '<b>পরিবারকে তারিখ জানান।</b>'
+      ],
       esc:p?['HR: NOC + EOSD','Iqama valid check','PK Embassy: '+cd.embPK]:['HR: NOC+EOSD','ইকামা বৈধ','BD দূতাবাস: '+cd.embBD],
-      wa:p?'Assalamu Alaikum [Manager Sahab],\n\nMain apni service khatam karna chahta hoon.\nGhar wapas jaana chahta hoon.\n\nDarkhwast:\n1. Meri EOSD calculate karein\n2. NOC letter tayyar karein\n3. Final settlement ki date batayein\n\nShukriya,\n[Aapka Naam]\n[Employee ID]':'আস্সালামুআলাইকুম [ম্যানেজার],\n\nআমি আমার চাকরি শেষ করতে চাই।\nদেশে ফিরে যেতে চাই।\n\nঅনুরোধ:\n১. আমার EOSD হিসাব করুন\n২. NOC চিঠি তৈরি করুন\n৩. Final settlement-এর তারিখ দিন\n\nধন্যবাদ,\n[আপনার নাম]\n[Employee ID]',
+      wa:p?'Assalamu Alaikum [Manager Sahab],\n\nMain apni service khatam karna chahta hoon.\n\nDarkhwast:\n1. Meri EOSD calculate karein\n2. NOC letter tayyar karein\n3. Final settlement ki date batayein\n\nShukriya,\n[Aapka Naam]\n[Employee ID]':
+           'আস্সালামুআলাইকুম [ম্যানেজার],\n\nআমি চাকরি শেষ করতে চাই।\n\nঅনুরোধ:\n১. আমার EOSD হিসাব করুন\n২. NOC চিঠি তৈরি করুন\n৩. Final settlement তারিখ দিন\n\nধন্যবাদ,\n[আপনার নাম]\n[Employee ID]',
       logF:p?['Target date','Expected EOSD','NOC status']:['লক্ষ্য তারিখ','EOSD পরিমাণ','NOC']
     }
   };
@@ -1495,11 +1571,6 @@ function updateStats(){
   var dayIdx=new Date().getDay();
   if(G('rmTxt'))G('rmTxt').textContent=rems[dayIdx%rems.length];
 
-  // Quick labels
-  if(G('qa1'))G('qa1').textContent=p?'Taqseem':'বণ্টন';
-  if(G('qa2'))G('qa2').textContent=p?'Bachat':'বাচাত';
-  if(G('qa3'))G('qa3').textContent=p?'Help Now':'সাহায্য';
-  if(G('qa4'))G('qa4').textContent=p?'Sapna':'স্বপ্ন';
   if(G('aurL'))G('aurL').textContent=p?'Aur Madad':'আরো সাহায্য';
   if(G('aurS'))G('aurS').textContent=p?'Shield, EOSD aur zyada':'শিল্ড, EOSD আরো';
 }
@@ -1730,28 +1801,38 @@ function buildDream(){
   var dg=G('dGrid');dg.innerHTML='';
   var savedDream=ld(SK.dream,null);
   var cats=st.dreamCats||[];
+  if(!cats.length){
+    // Fallback if dreamCats missing
+    if(G('dGrid'))G('dGrid').innerHTML='<div style="text-align:center;padding:20px;color:var(--tm);font-size:14px">'+(p?'Dream categories load nahi hui — refresh karein.':'স্বপ্নের তালিকা লোড হয়নি — রিফ্রেশ করুন।')+'</div>';
+    return;
+  }
   cats.forEach(function(cat,ci){
     var card=document.createElement('div');card.className='dream-cat-card';
     var isKarz=cat.isKarz||false;
     var html='<span class="dream-cat-ico">'+cat.ico+'</span>'
       +'<div class="dream-cat-name">'+cat.cat+'</div>';
     if(isKarz){
-      html+='<div style="font-size:12px;color:var(--tm);text-align:center;margin-bottom:8px" id="karzNote_'+ci+'">'+( p?'Apna qarz amount dalein:':'আপনার ঋণের পরিমাণ দিন:')+'</div>'
+      html+='<div style="font-size:12px;color:var(--tm);text-align:center;margin-bottom:8px">'+( p?'Apna qarz amount dalein:':'আপনার ঋণের পরিমাণ দিন:')+'</div>'
         +'<div class="karz-inp-wrap"><div class="karz-cur">'+lp()+'</div><input class="karz-inp" type="number" id="karzAmt_'+ci+'" inputmode="numeric" placeholder="500000" oninput="selKarz('+ci+',this.value)"></div>';
     } else {
       html+='<div class="dream-radio-row" id="drow_'+ci+'"></div>';
+    }
+    card.innerHTML=html;
+    dg.appendChild(card); // Append to DOM FIRST so getElementById works
+    if(!isKarz){
       cat.sizes.forEach(function(sz,si){
         var isSel=savedDream&&savedDream.catIdx===ci&&savedDream.sizeIdx===si;
-        var amtLakh=p?Math.round(sz.amt/100000)+'L PKR':Math.round(sz.amt/100000)+'L BDT';
+        var amtLakh=p?Math.round(sz.amt/100000)+'L':Math.round(sz.amt/100000)+'L';
         var r=document.createElement('div');
         r.className='dream-radio'+(isSel?' sel':'');
         r.id='dr_'+ci+'_'+si;
         r.innerHTML='<span class="dr-size">'+sz.l+'</span><span class="dr-amt">'+amtLakh+'</span>';
         (function(a,b,d,nm,ic,ct){r.onclick=function(){selDream(a,b,d,nm,ic,ct);};})(ci,si,sz.amt,sz.l,cat.ico,cat.cat);
-        var rrow=document.getElementById('drow_'+ci);if(rrow)rrow.appendChild(r);
+        var rrow=document.getElementById('drow_'+ci);
+        if(rrow)rrow.appendChild(r);
       });
     }
-    dg.appendChild(card);  // If this was saved
+    // Restore saved
     if(savedDream&&savedDream.catIdx===ci&&!isKarz){
       showDreamSavWrap();
       if(G('dSav')&&savedDream.savPerMo)G('dSav').value=savedDream.savPerMo;
