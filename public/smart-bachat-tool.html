@@ -91,23 +91,58 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .qa-ico{font-size:26px;}
 .qa-lbl{font-size:11px;color:var(--ts);}
 
-/* ── DASHBOARD ── */
-.hero-card{margin:0 14px 12px;background:linear-gradient(135deg,#0F2318,#162B1C);border:1.5px solid rgba(116,198,157,.25);border-radius:20px;padding:18px 16px;position:relative;overflow:hidden;}
-.hero-card::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1.5px;background:linear-gradient(90deg,transparent,rgba(116,198,157,.5),transparent);}
-.hc-top{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-.hc-ico{font-size:28px;}
-.hc-dream-name{font-size:19px;color:var(--g4);flex:1;}
-.hc-dream-sub{font-size:11px;color:var(--tm);}
-.hc-bar-wrap{margin-bottom:8px;}
-.hc-bar{height:12px;background:rgba(116,198,157,.1);border-radius:6px;overflow:hidden;margin-bottom:5px;}
-.hc-bar-fill{height:100%;background:linear-gradient(90deg,var(--g3),var(--a3));border-radius:6px;transition:width 1s ease;}
-.hc-bar-pct{font-size:13px;font-weight:700;color:var(--a3);text-align:right;}
-.hc-stats{display:flex;align-items:center;gap:0;margin-bottom:14px;background:rgba(0,0,0,.2);border-radius:12px;padding:10px 0;}
+/* ── DASHBOARD REDESIGN ── */
+.hero-card{margin:0 14px 12px;background:linear-gradient(160deg,#0D2B1A,#163320);border:1.5px solid rgba(116,198,157,.3);border-radius:20px;padding:18px 16px 16px;position:relative;overflow:hidden;}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--g3),var(--a3),var(--g3));}
+.hc-label{font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:6px;}
+.hc-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.hc-ico{font-size:36px;background:rgba(255,255,255,.1);border-radius:12px;width:54px;height:54px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hc-right{flex:1;}
+.hc-dream-name{font-size:20px;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:800;margin-bottom:2px;}
+.hc-pct{font-size:36px;font-weight:800;color:var(--a3);line-height:1;font-family:'Baloo 2',sans-serif;}
+.hc-pct-lbl{font-size:11px;color:rgba(255,255,255,.6);}
+.hc-bar-wrap{margin-bottom:14px;}
+.hc-bar{height:10px;background:rgba(255,255,255,.1);border-radius:5px;overflow:hidden;margin-bottom:6px;}
+.hc-bar-fill{height:100%;background:linear-gradient(90deg,#40916C,var(--a3));border-radius:5px;transition:width 1.2s ease;}
+.hc-stats{display:flex;align-items:center;gap:0;margin-bottom:14px;}
 .hc-stat{flex:1;text-align:center;}
-.hc-stat-div{width:1px;height:28px;background:rgba(116,198,157,.15);}
-.hcs-lbl{font-size:10px;color:var(--tm);margin-bottom:3px;}
-.hcs-val{font-size:16px;color:var(--g4);}
-.hc-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--g3),var(--g1));border:none;border-radius:12px;color:#fff;font-size:14px;cursor:pointer;font-family:'Baloo 2',sans-serif;font-weight:700;}
+.hc-stat-div{width:1px;height:28px;background:rgba(255,255,255,.15);}
+.hcs-lbl{font-size:10px;color:rgba(255,255,255,.5);margin-bottom:3px;}
+.hcs-val{font-size:17px;font-weight:800;color:#fff;font-family:'Baloo 2',sans-serif;}
+.hc-btn{width:100%;padding:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;color:#fff;font-size:14px;cursor:pointer;font-family:'Baloo 2',sans-serif;font-weight:700;}
+/* TWO CARDS */
+.two-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 14px 10px;}
+.two-card{border-radius:16px;padding:14px 12px;}
+.two-card.green{background:linear-gradient(135deg,#2D6A4F,#1B4332);border:1px solid rgba(116,198,157,.3);}
+.two-card.orange{background:linear-gradient(135deg,#C2541A,#7C2D12);border:1px solid rgba(244,162,97,.3);}
+.tc-ico{font-size:24px;margin-bottom:6px;}
+.tc-lbl{font-size:10px;color:rgba(255,255,255,.6);margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em;}
+.tc-val{font-size:22px;font-weight:800;color:#fff;font-family:'Baloo 2',sans-serif;}
+.tc-sub{font-size:10px;color:rgba(255,255,255,.5);margin-top:3px;}
+/* SECOND TWO CARDS */
+.two-cards-b{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 14px 10px;}
+.tbc{border-radius:16px;padding:14px 12px;}
+.tbc.purple{background:linear-gradient(135deg,#5B21B6,#3B0764);border:1px solid rgba(139,92,246,.3);}
+.tbc.blue{background:linear-gradient(135deg,#1E3A5F,#0F2240);border:1px solid rgba(96,165,250,.3);}
+.tbc-ico{font-size:20px;margin-bottom:6px;}
+.tbc-lbl{font-size:10px;color:rgba(255,255,255,.6);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;}
+.tbc-val{font-size:20px;font-weight:800;color:#fff;font-family:'Baloo 2',sans-serif;}
+.tbc-sub{font-size:10px;color:rgba(255,255,255,.5);margin-top:2px;}
+.tbc-bar{height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;margin-top:8px;}
+.tbc-bar-fill{height:100%;background:rgba(255,255,255,.5);border-radius:2px;transition:width .8s;}
+/* REMINDER */
+.reminder-card{margin:0 14px 10px;background:linear-gradient(135deg,rgba(240,192,64,.12),rgba(244,162,97,.06));border:1px solid rgba(240,192,64,.25);border-radius:14px;padding:13px 14px;display:flex;align-items:center;gap:10px;}
+.rm-ico{font-size:18px;flex-shrink:0;}
+.rm-txt{font-size:13px;color:var(--ts);line-height:1.5;font-style:italic;}
+/* QUICK ACTIONS */
+.quick-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 14px 10px;}
+.qa-btn{background:var(--bgc);border:1.5px solid var(--bd);border-radius:14px;padding:14px 4px 10px;text-align:center;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;}
+.qa-btn:active{border-color:var(--g4);transform:scale(.95);}
+.qa-ico{font-size:26px;line-height:1;}
+.qa-lbl{font-size:10px;font-weight:700;color:var(--ts);font-family:'Baloo 2',sans-serif;}
+/* AUR MADAD BTN */
+.aur-btn{margin:0 14px 8px;padding:14px 16px;background:var(--bgc);border:1px solid var(--bd);border-radius:14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;}
+
 /* TWO CARDS */
 .two-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 14px 12px;}
 .two-card{background:var(--bgc);border:1px solid var(--bd);border-radius:16px;padding:16px 12px;text-align:center;}
@@ -145,6 +180,15 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .qa-btn:active{border-color:var(--g4);transform:scale(.95);}
 .qa-ico{font-size:28px;line-height:1;}
 .qa-lbl{font-size:11px;color:var(--tx);}
+/* ── BOTTOM NAV ── */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;max-width:460px;margin:0 auto;background:var(--bgc);border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-around;padding:10px 0 max(10px,env(safe-area-inset-bottom));z-index:500;backdrop-filter:blur(10px);}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 12px;border-radius:12px;transition:background .15s;min-width:52px;}
+.bn-item.active{background:rgba(116,198,157,.12);}
+.bn-ico{font-size:22px;line-height:1;}
+.bn-lbl{font-size:10px;font-weight:700;color:var(--tm);font-family:'Baloo 2',sans-serif;}
+.bn-item.active .bn-lbl{color:var(--g4);}
+/* Spacer so content doesnt hide behind nav */
+.nav-spacer{height:72px;}
 /* SPLASH */
 .splash-logo{font-size:70px;margin-bottom:10px;animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
@@ -484,6 +528,46 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .grow-desc{font-size:13px;color:var(--ts);line-height:1.7;margin-bottom:6px;}
 .grow-tag{display:inline-block;padding:3px 10px;background:rgba(116,198,157,.08);border-radius:20px;font-size:11px;color:var(--g4);}
 .grow-tag.warn{background:rgba(224,122,122,.1);color:var(--red);}
+/* ── DREAM REDESIGN ── */
+.dream-cat-card{background:var(--bgc);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:10px;}
+.dream-cat-ico{font-size:48px;display:block;text-align:center;margin-bottom:8px;}
+.dream-cat-name{font-size:16px;font-weight:800;text-align:center;color:var(--g4);margin-bottom:12px;font-family:'Baloo 2',sans-serif;}
+.dream-radio-row{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;}
+.dream-radio{flex:1;min-width:0;padding:8px 4px;background:var(--bgp);border:1.5px solid var(--bd);border-radius:10px;text-align:center;cursor:pointer;transition:all .2s;}
+.dream-radio.sel{border-color:var(--a2);background:rgba(244,162,97,.1);}
+.dr-size{font-size:11px;font-weight:700;color:var(--ts);display:block;margin-bottom:2px;}
+.dream-radio.sel .dr-size{color:var(--a2);}
+.dr-amt{font-size:10px;color:var(--tm);}
+.dream-radio.sel .dr-amt{color:var(--a2);}
+/* Karz custom */
+.karz-inp-wrap{display:flex;align-items:center;background:var(--bgp);border:1.5px solid var(--bd);border-radius:12px;overflow:hidden;margin-top:8px;}
+.karz-cur{padding:0 10px;font-size:13px;font-weight:700;color:var(--g4);flex-shrink:0;}
+.karz-inp{flex:1;background:transparent;border:none;padding:13px 10px 13px 0;color:var(--tx);font-size:18px;font-weight:700;outline:none;}
+/* Dream result */
+.dream-result{background:linear-gradient(135deg,rgba(244,162,97,.1),rgba(231,111,81,.04));border:1.5px solid rgba(244,162,97,.3);border-radius:16px;padding:16px;margin-top:12px;display:none;}
+.dr-result-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(116,198,157,.08);}
+.dr-result-row:last-child{border-bottom:none;}
+.dr-rl{font-size:12px;color:var(--tm);}
+.dr-rv{font-size:16px;font-weight:800;color:var(--g4);font-family:'Baloo 2',sans-serif;}
+.dream-sav-inp{margin-top:10px;}
+/* TRACKER TABS */
+.trk-tabs{display:flex;background:var(--bgp);border-radius:12px;padding:3px;margin:0 16px 12px;gap:3px;}
+.trk-tab{flex:1;padding:10px;text-align:center;font-family:'Baloo 2',sans-serif;font-size:13px;font-weight:700;color:var(--tm);cursor:pointer;border-radius:9px;transition:all .2s;}
+.trk-tab.on{background:var(--bgc);color:var(--g4);box-shadow:0 1px 4px rgba(0,0,0,.3);}
+/* ASSET PLANS */
+.asset-intro{background:linear-gradient(135deg,rgba(240,192,64,.08),rgba(244,162,97,.04));border:1px solid rgba(240,192,64,.2);border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:13px;color:var(--ts);line-height:1.7;}
+.asset-rule{font-weight:700;color:var(--gold);margin-bottom:6px;font-size:14px;}
+.asset-plan{background:var(--bgc);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:10px;}
+.ap-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.ap-ico{font-size:28px;}
+.ap-title{font-size:15px;font-weight:800;color:var(--g4);font-family:'Baloo 2',sans-serif;}
+.ap-amounts{background:var(--bgp);border-radius:10px;padding:10px 12px;margin-bottom:8px;}
+.ap-amt-row{display:flex;justify-content:space-between;padding:3px 0;font-size:13px;color:var(--ts);}
+.ap-amt-sar{font-weight:700;color:var(--a2);}
+.ap-rules{margin-bottom:8px;}
+.ap-rule{display:flex;align-items:flex-start;gap:6px;font-size:12px;color:var(--ts);margin-bottom:4px;line-height:1.5;}
+.ap-rule-ico{color:var(--g4);flex-shrink:0;}
+.ap-msg{font-size:13px;font-style:italic;color:var(--g4);border-left:3px solid var(--g4);padding-left:10px;line-height:1.6;}
 </style>
 </head>
 <body>
@@ -574,89 +658,93 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div><div class="home-greet f7" id="hGrt"></div><div class="home-ctry" id="hCtry"></div></div>
       <div class="settings-btn" onclick="showPg('settings')">⚙️</div>
     </div>
-
     <!-- Ramadan Banner -->
     <div class="ramadan-banner hidden" id="ramBanner">
       <span class="rb-ico">🌙</span>
       <div class="rb-txt" id="ramTxt"></div>
     </div>
 
-    <!-- SECTION 1: Dream Hero Card -->
-    <div class="hero-card" id="heroCard">
+    <!-- HERO DREAM CARD -->
+    <div class="hero-card">
+      <div class="hc-label" id="hcLabel">MERA SAPNA</div>
       <div class="hc-top">
         <div class="hc-ico" id="hcIco">🌟</div>
-        <div class="hc-dream-name f8" id="hcDreamName">Mera Sapna</div>
-        <div class="hc-dream-sub" id="hcDreamSub"></div>
+        <div class="hc-right">
+          <div class="hc-dream-name" id="hcDreamName">—</div>
+          <div class="hc-pct f8" id="hcBarPct">0%</div>
+          <div class="hc-pct-lbl" id="hcPctLbl">Complete</div>
+        </div>
       </div>
       <div class="hc-bar-wrap">
         <div class="hc-bar"><div class="hc-bar-fill" id="hcBarFill" style="width:0%"></div></div>
-        <div class="hc-bar-pct f7" id="hcBarPct">0%</div>
       </div>
       <div class="hc-stats">
-        <div class="hc-stat"><div class="hcs-lbl" id="hcSavL"></div><div class="hcs-val f8" id="hcSavV">—</div></div>
+        <div class="hc-stat"><div class="hcs-lbl" id="hcSavL">BACHAT</div><div class="hcs-val" id="hcSavV">—</div></div>
         <div class="hc-stat-div"></div>
-        <div class="hc-stat"><div class="hcs-lbl" id="hcTgtL"></div><div class="hcs-val f8" id="hcTgtV">—</div></div>
+        <div class="hc-stat"><div class="hcs-lbl" id="hcTgtL">TARGET</div><div class="hcs-val" id="hcTgtV">—</div></div>
         <div class="hc-stat-div"></div>
-        <div class="hc-stat"><div class="hcs-lbl" id="hcRemL"></div><div class="hcs-val f8" id="hcRemV">—</div></div>
+        <div class="hc-stat"><div class="hcs-lbl" id="hcRemL">BAQI</div><div class="hcs-val" id="hcRemV">—</div></div>
       </div>
-      <button class="hc-btn f7" onclick="showPg('dream')" id="hcBtn">👉 View Dream Plan</button>
+      <button class="hc-btn" onclick="showPg('dream')" id="hcBtn">👉 Dream Plan Dekhein</button>
     </div>
 
-    <!-- SECTION 2: Total Bachat + Streak -->
+    <!-- ROW 2: Total Bachat + Streak -->
     <div class="two-cards">
-      <div class="two-card">
+      <div class="two-card green">
         <div class="tc-ico">💰</div>
-        <div class="tc-lbl" id="tcSavL"></div>
-        <div class="tc-val f8" id="tcSavV">—</div>
-        <div class="tc-sub" id="tcSavS"></div>
+        <div class="tc-lbl" id="tcSavL">TOTAL BACHAT</div>
+        <div class="tc-val" id="tcSavV">—</div>
+        <div class="tc-sub" id="tcSavS">Ab tak bachaya</div>
       </div>
-      <div class="two-card">
+      <div class="two-card orange">
         <div class="tc-ico">🔥</div>
-        <div class="tc-lbl" id="tcStrkL"></div>
-        <div class="tc-val f8" id="tcStrkV">0</div>
-        <div class="tc-sub" id="tcStrkS"></div>
+        <div class="tc-lbl" id="tcStrkL">STREAK</div>
+        <div class="tc-val" id="tcStrkV">0</div>
+        <div class="tc-sub" id="tcStrkS">Lagataar bachat</div>
       </div>
     </div>
 
-    <!-- SECTION 3: This Month -->
-    <div class="month-card" id="monthCard">
-      <div class="mc-title f7" id="mcTitle"></div>
-      <div class="mc-row">
-        <div class="mc-item"><div class="mc-lbl" id="mcTgtL"></div><div class="mc-val f7" id="mcTgtV">—</div></div>
-        <div class="mc-item"><div class="mc-lbl" id="mcSavL"></div><div class="mc-val f7" id="mcSavV">—</div></div>
-        <div class="mc-item"><div class="mc-lbl" id="mcRemL"></div><div class="mc-val f7" id="mcRemV" style="color:var(--a2)">—</div></div>
+    <!-- ROW 3: This Month + Future Ready -->
+    <div class="two-cards-b">
+      <div class="tbc purple">
+        <div class="tbc-ico">📅</div>
+        <div class="tbc-lbl" id="tbcML">IS MAHINE</div>
+        <div class="tbc-val" id="tbcMV">—</div>
+        <div class="tbc-sub" id="tbcMS">—</div>
+        <div class="tbc-bar"><div class="tbc-bar-fill" id="tmBarFill" style="width:0%"></div></div>
       </div>
-      <div class="tm-bar"><div class="tm-bar-fill" id="tmBarFill" style="width:0%"></div></div>
+      <div class="tbc blue">
+        <div class="tbc-ico">🛡️</div>
+        <div class="tbc-lbl" id="tbcRL">FUTURE READY</div>
+        <div class="tbc-val" id="rcOverallPct">0%</div>
+        <div class="tbc-sub" id="rcOverallLbl">Tayyari achi hai</div>
+        <div class="tbc-bar"><div class="tbc-bar-fill" id="rcBarFill" style="width:0%"></div></div>
+      </div>
     </div>
 
-    <!-- SECTION 4: Future Readiness -->
-    <div class="ready-card" id="readyCard">
-      <div class="rc-title f7" id="rcTitle"></div>
-      <div class="rc-grid" id="rcGrid"></div>
-      <div class="rc-overall" id="rcOverall"></div>
-    </div>
-
-    <!-- SECTION 5: Today's Reminder -->
+    <!-- REMINDER -->
     <div class="reminder-card">
-      <div class="rm-ico">💡</div>
+      <div class="rm-ico">⭐</div>
       <div class="rm-txt" id="rmTxt"></div>
     </div>
 
-    <!-- SECTION 6: Quick Actions -->
+    <!-- QUICK ACTIONS -->
     <div class="quick-actions">
-      <div class="qa-btn" onclick="showPg('split')"><span class="qa-ico">💰</span><span class="qa-lbl f7" id="qa1"></span></div>
-      <div class="qa-btn" onclick="showPg('tracker')"><span class="qa-ico">📊</span><span class="qa-lbl f7" id="qa2"></span></div>
-      <div class="qa-btn" onclick="showPg('help')"><span class="qa-ico">🆘</span><span class="qa-lbl f7" id="qa3"></span></div>
-      <div class="qa-btn" onclick="showPg('dream')"><span class="qa-ico">🌟</span><span class="qa-lbl f7" id="qa4"></span></div>
+      <div class="qa-btn" onclick="bnNav(0,'split')"><span class="qa-ico">💰</span><span class="qa-lbl" id="qa1">Taqseem</span></div>
+      <div class="qa-btn" onclick="bnNav(1,'tracker')"><span class="qa-ico">📊</span><span class="qa-lbl" id="qa2">Bachat</span></div>
+      <div class="qa-btn" onclick="bnNav(2,'help')"><span class="qa-ico">🆘</span><span class="qa-lbl" id="qa3">Help Now</span></div>
+      <div class="qa-btn" onclick="bnNav(3,'dream')"><span class="qa-ico">🌟</span><span class="qa-lbl" id="qa4">Sapna</span></div>
     </div>
 
-    <!-- Aur Madad -->
+    <!-- AUR MADAD -->
     <div class="aur-btn" onclick="showPg('aurMadad')">
-      <div class="aur-left"><span class="aur-ico">📦</span><div><div class="aur-lbl f7" id="aurL"></div><div class="aur-sub" id="aurS"></div></div></div>
+      <div class="aur-left"><span class="aur-ico">📦</span><div><div class="aur-lbl f7" id="aurL">Aur Madad</div><div class="aur-sub" id="aurS">Shield, EOSD aur zyada</div></div></div>
       <span style="font-size:20px;color:var(--tm)">›</span>
     </div>
-    <div style="height:24px"></div>
+    <div class="nav-spacer"></div>
   </div>
+
+  <!-- AUR MADAD -->
 
   <!-- AUR MADAD -->
   <div id="pgAurMadad" class="hidden">
@@ -666,7 +754,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
   <!-- SALARY SPLIT -->
   <div id="pgSplit" class="hidden">
-    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="spT"></div></div>
+    <div class="shdr"><div class="back-btn" onclick="bnNav(-1,'home')">←</div><div class="pg-title f8" id="spT"></div></div>
     <div class="pad">
       <div class="low-toggle" onclick="togLow()"><div><div class="lt-lbl f7" id="ltL"></div><div class="lt-sub" id="ltS"></div></div><div class="pill" id="lpill"></div></div>
       <!-- Custom Sliders -->
@@ -678,7 +766,12 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
   <!-- TRACKER -->
   <div id="pgTracker" class="hidden">
-    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="trT"></div></div>
+    <div class="shdr"><div class="back-btn" onclick="bnNav(-1,'home')">←</div><div class="pg-title f8" id="trT"></div></div>
+    <div class="trk-tabs">
+      <div class="trk-tab on" id="trkTab0" onclick="switchTrkTab(0)" id2="trkTab0"><span id="trkTabL0">Bachat Tracker</span></div>
+      <div class="trk-tab" id="trkTab1" onclick="switchTrkTab(1)"><span id="trkTabL1">Bachat Se Asset</span></div>
+    </div>
+    <div id="trkPanel0">
     <div class="pad">
       <div class="streak-row"><div class="streak-badge f7" id="strkB">🔥 0</div><button class="btn" style="width:auto;padding:9px 18px;font-size:13px" onclick="doShare()" id="shrBtn"></button></div>
       <!-- Wapsi Countdown -->
@@ -689,42 +782,51 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="celebrate" id="celBox"></div>
       <!-- Salary Reminder -->
       <div class="sal-remind"><div class="sr-title f7" id="srTitle"></div><div class="sr-row"><span class="sr-lbl" id="srLbl"></span><input class="sr-inp" type="number" id="srDay" inputmode="numeric" placeholder="25" min="1" max="31" onchange="saveSalDay()"></div><div class="sr-note" id="srNote"></div></div>
-      <div style="font-size:14px;font-weight:700;color:var(--g4);margin-bottom:8px" id="chalT"></div>
-      <div id="chalGrid"></div>
+
       <div style="font-size:14px;font-weight:700;color:var(--g4);margin:10px 0 8px" id="monT"></div>
       <div id="mGrid"></div>
       <div class="total-bar"><span class="tb-lbl" id="totL"></span><span class="tb-val f8" id="totV"></span></div>
     </div>
+    </div><!-- /trkPanel0 -->
+    <div id="trkPanel1" class="hidden">
+      <div class="pad" id="assetPanel"></div>
+    </div>
+    <div class="nav-spacer"></div>
   </div>
 
   <!-- HELP NOW -->
   <div id="pgHelp" class="hidden">
-    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="hlT"></div></div>
+    <div class="shdr"><div class="back-btn" onclick="bnNav(-1,'home')">←</div><div class="pg-title f8" id="hlT"></div></div>
     <div class="pad" id="probList"></div>
   </div>
 
   <!-- DREAM -->
   <div id="pgDream" class="hidden">
-    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="drT"></div></div>
+    <div class="shdr"><div class="back-btn" onclick="bnNav(-1,'home')">←</div><div class="pg-title f8" id="drT"></div></div>
     <div class="pad">
-      <div class="dream-grid" id="dGrid" style="grid-template-columns:1fr 1fr;gap:8px;display:grid;margin-bottom:14px;"></div>
-      <div class="dream-inp"><div class="di-row"><div class="di-col"><div class="di-lbl" id="dGL"></div><input class="inp" type="number" id="dGoal" inputmode="numeric" oninput="calcD()"></div><div class="di-col"><div class="di-lbl" id="dSL"></div><input class="inp" type="number" id="dSav" inputmode="numeric" oninput="calcD()"></div></div></div>
-      <div class="dream-res" id="dRes"><div class="dr-big f8" id="drBig"></div><div class="dr-sub" id="drSub"></div></div>
-      <div id="dreamLadder" style="display:none;margin-top:12px;background:var(--bgc);border:1px solid var(--bd);border-radius:14px;padding:14px;"></div>
+      <div style="background:rgba(116,198,157,.06);border:1px solid rgba(116,198,157,.15);border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:13px;color:var(--ts);line-height:1.6;" id="drIntro"></div>
+      <div id="dGrid"></div>
+      <div style="margin-top:10px;" id="dreamSavWrap" class="hidden">
+        <div class="rlbl" id="dSL">BACHAT/MAHEENA (SAR)</div>
+        <div class="real-inp-row" style="margin-top:6px"><div class="real-cur">SAR</div><input class="real-inp-num" type="number" id="dSav" inputmode="numeric" placeholder="200" oninput="calcD()"></div>
+      </div>
+      <div class="dream-result" id="dRes">
+        <div class="dr-result-row"><span class="dr-rl" id="drRL1"></span><span class="dr-rv" id="drRV1"></span></div>
+        <div class="dr-result-row"><span class="dr-rl" id="drRL2"></span><span class="dr-rv" id="drRV2"></span></div>
+        <div class="dr-result-row"><span class="dr-rl" id="drRL3"></span><span class="dr-rv" id="drRV3"></span></div>
+        <div class="dr-result-row"><span class="dr-rl" id="drRL4"></span><span class="dr-rv" id="drRV4" style="color:var(--a2)"></span></div>
+      </div>
     </div>
+    <div class="nav-spacer"></div>
   </div>
 
-  <!-- SHIELD -->
+    <!-- SHIELD -->
   <div id="pgShield" class="hidden">
     <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="shT"></div></div>
     <div class="pad" id="pList"></div>
   </div>
 
-  <!-- TIPS -->
-  <div id="pgTips" class="hidden">
-    <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="tpT"></div></div>
-    <div class="pad" id="tipGrid"></div>
-  </div>
+
 
   <!-- EOSD -->
   <div id="pgEosd" class="hidden">
@@ -736,11 +838,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
   </div>
 
-  <!-- REMITTANCE -->
-  <div id="pgRem" class="hidden">
-    <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="rmT"></div></div>
-    <div class="pad" id="remList"></div>
-  </div>
+
 
   <!-- CHECKLIST -->
   <div id="pgChecklist" class="hidden">
@@ -748,23 +846,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="pad" id="ghList"></div>
   </div>
 
-  <!-- READINESS -->
-  <div id="pgReady" class="hidden">
-    <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="rdT"></div></div>
-    <div class="pad" id="rdList"></div>
-  </div>
-
-  <!-- SAVINGS GROWTH -->
-  <div id="pgGrow" class="hidden">
-    <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="grT"></div></div>
-    <div class="pad" id="grList"></div>
-  </div>
-
-  <!-- SAVINGS GROWTH -->
-  <div id="pgGrow" class="hidden">
-    <div class="shdr"><div class="back-btn" onclick="showPg('aurMadad')">←</div><div class="pg-title f8" id="gwT"></div></div>
-    <div class="pad" id="gwList"></div>
-  </div>
 
   <!-- SETTINGS -->
   <div id="pgSettings" class="hidden">
@@ -783,6 +864,29 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
   </div>
 
+<!-- BOTTOM NAV -->
+<div class="bottom-nav" id="bottomNav">
+  <div class="bn-item active" id="bn0" onclick="bnNav(0,'split')">
+    <span class="bn-ico">💰</span>
+    <span class="bn-lbl" id="bnL0">Taqseem</span>
+  </div>
+  <div class="bn-item" id="bn1" onclick="bnNav(1,'tracker')">
+    <span class="bn-ico">📊</span>
+    <span class="bn-lbl" id="bnL1">Bachat</span>
+  </div>
+  <div class="bn-item bn-home" id="bnHome" onclick="bnNav(-1,'home')">
+    <span class="bn-ico">🏠</span>
+    <span class="bn-lbl" id="bnLH">Home</span>
+  </div>
+  <div class="bn-item" id="bn2" onclick="bnNav(2,'help')">
+    <span class="bn-ico">🆘</span>
+    <span class="bn-lbl" id="bnL2">Help Now</span>
+  </div>
+  <div class="bn-item" id="bn3" onclick="bnNav(3,'dream')">
+    <span class="bn-ico">🌟</span>
+    <span class="bn-lbl" id="bnL3">Sapna</span>
+  </div>
+</div>
 </div><!-- /scMain -->
 <script>
 // ── COUNTRY DATA ─────────────────────────────────────────────
@@ -862,12 +966,8 @@ pk:{
   aurL:'Aur Madad',aurS:'Shield, EOSD, Wapsi aur zyada',amT:'Aur Madad',
   amCards:[
     {id:'shield',ico:'🛡️',t:'Family Shield',s:'Ghar ka pressure',grp:'roz'},
-    {id:'tips',ico:'💡',t:'Bachat Tips',s:'10 asaan nuskhe',grp:'roz'},
-    {id:'grow',ico:'📈',t:'Bachat Badhao',s:'Paise ko mehfooz rakhein',grp:'roz'},
     {id:'eosd',ico:'🏆',t:'EOSD',s:'Aapka haq',grp:'zaroori'},
-    {id:'checklist',ico:'✈️',t:'Wapsi Checklist',s:'Ghar jaane se pehle',grp:'zaroori'},
-    {id:'rem',ico:'💸',t:'Paise Bhejna',s:'Saste options',grp:'zaroori'},
-    {id:'ready',ico:'🏡',t:'Wapsi Tayyari',s:'Kab jaane ke qabil hoon',grp:'zaroori'}
+    {id:'checklist',ico:'✈️',t:'Wapsi Checklist',s:'Ghar jaane se pehle',grp:'zaroori'}
   ],
   spT:'💰 Taqseem',ltL:'Low Salary Mode',ltS:'1500 SAR se kam?',lkT:'🔍 Paisa Kahan Ja Raha Hai?',
   leakCats:['☕ Chai/Juice','🚕 Taxi','🍔 Bahar Khana','📱 Extra Recharge','🎮 Entertainment','🛒 Fazool Shopping'],
@@ -915,9 +1015,7 @@ pk:{
       {l:'Medium Plot',hint:'1-2 marla+',amt:3500000},
       {l:'Bara Plot',hint:'Zyada zameen',amt:7000000}
     ]},
-    {ico:'💳',cat:'Qarz Utaarna',sizes:[
-      {l:'Apni Raqam Dalein',hint:'Kitna qarz hai?',amt:0,custom:true}
-    ]},
+    {ico:'💳',cat:'Qarz Mukti',isKarz:true},
     {ico:'💍',cat:'Shadi',sizes:[
       {l:'Saadi Shadi',hint:'Simple nikah',amt:600000},
       {l:'Darmiyana',hint:'Normal shadi',amt:1500000},
@@ -1020,10 +1118,7 @@ bd:{
   amCards:[
     {id:'shield',ico:'🛡️',t:'পরিবার শিল্ড',s:'চাপের উত্তর',grp:'roz'},
     {id:'eosd',ico:'🏆',t:'EOSD',s:'আপনার হক',grp:'zaroori'},
-    {id:'checklist',ico:'✈️',t:'ফেরার চেকলিস্ট',s:'দেশে যাওয়ার আগে',grp:'zaroori'},
-    {id:'rem',ico:'💸',t:'টাকা পাঠানো',s:'সস্তা অপশন',grp:'zaroori'},
-    {id:'ready',ico:'🏡',t:'ফেরার প্রস্তুতি',s:'কখন ফিরতে পারব',grp:'zaroori'},
-    {id:'grow',ico:'📈',t:'বাচাত বাড়ান',s:'টাকা নিরাপদ রাখুন',grp:'zaroori'}
+    {id:'checklist',ico:'✈️',t:'ফেরার চেকলিস্ট',s:'দেশে যাওয়ার আগে',grp:'zaroori'}
   ],
   spT:'💰 বণ্টন',ltL:'Low Salary Mode',ltS:'১৫০০ SAR-এর কম?',lkT:'🔍 টাকা কোথায় যাচ্ছে?',
   leakCats:['☕ চা/জুস','🚕 ট্যাক্সি','🍔 বাইরে খাওয়া','📱 এক্সট্রা রিচার্জ','🎮 বিনোদন','🛒 অযথা কেনাকাটা'],
@@ -1216,7 +1311,7 @@ function getFlows(){
 }
 
 // ── NAVIGATION ───────────────────────────────────────────────
-var PAGES=['home','aurMadad','split','tracker','help','dream','shield','tips','eosd','rem','checklist','ready','grow','settings'];
+var PAGES=['home','aurMadad','split','tracker','help','dream','shield','eosd','checklist','settings'];
 function showPg(pg){
   PAGES.forEach(function(p){var e=G('pg'+p[0].toUpperCase()+p.slice(1));if(e)e.classList.toggle('hidden',p!==pg);});
   window.scrollTo({top:0,behavior:'smooth'});
@@ -1327,120 +1422,86 @@ function buildApp(){
     });
   });
   updateStats();
-  buildSplit();buildTracker();buildHelp();buildDream();buildShield();buildTips();buildEosd();buildRem();buildChecklist();buildReady();buildGrow();buildSettings();
+  buildSplit();buildTracker();buildHelp();buildDream();buildShield();buildEosd();buildChecklist();buildSettings();updateBnLabels();
 }
 
 function updateStats(){
   var months=trData.months||{};
   var tot=Math.round(Object.values(months).reduce(function(a,b){return a+(parseFloat(b)||0);},0));
   var strk=0;for(var i=11;i>=0;i--){if(months[i]&&parseFloat(months[i])>0)strk++;else break;}
-  var st=s(),p=pk(),cd=CTRY[C];
-  var dreamData=ld(SK.dream,null);
+  var st=s(),p=pk();
   var nowMonth=new Date().getMonth();
   var curMoSaved=parseFloat(months[nowMonth])||0;
   var moTarget=Math.round(sal*0.15);
+  var dreamData=ld(SK.dream,null);
 
-  // SECTION 1: Hero Dream Card
+  // HERO CARD
+  if(G('hcLabel'))G('hcLabel').textContent=p?'MERA SAPNA':'আমার স্বপ্ন';
+  if(G('hcPctLbl'))G('hcPctLbl').textContent=p?'Complete':'সম্পন্ন';
+  if(G('hcSavL'))G('hcSavL').textContent=p?'BACHAT':'বাচাত';
+  if(G('hcTgtL'))G('hcTgtL').textContent=p?'TARGET':'লক্ষ্য';
+  if(G('hcRemL'))G('hcRemL').textContent=p?'BAQI':'বাকি';
+  if(G('hcBtn'))G('hcBtn').textContent=p?'👉 Dream Plan Dekhein':'👉 স্বপ্ন পরিকল্পনা';
+
   if(dreamData&&dreamData.goal&&dreamData.savPerMo){
     var goal=dreamData.goal,savSar=dreamData.savPerMo;
     var totalMo=Math.ceil(goal/(savSar*rate()));
     var pct=Math.min(100,Math.round((strk/totalMo)*100));
     var moRem=Math.max(0,totalMo-strk);
-    var dreamName=ld('sb_dream_name',p?'Mera Sapna':'আমার স্বপ্ন');
-    if(G('hcDreamName'))G('hcDreamName').textContent=dreamName;
-    if(G('hcDreamSub'))G('hcDreamSub').textContent=pct+'% '+( p?'poora':'সম্পন্ন');
-    if(G('hcBarFill'))G('hcBarFill').style.width=pct+'%';
+    if(G('hcIco'))G('hcIco').textContent=dreamData.ico||'🌟';
+    if(G('hcDreamName'))G('hcDreamName').textContent=dreamData.name||(p?'Mera Sapna':'আমার স্বপ্ন');
     if(G('hcBarPct'))G('hcBarPct').textContent=pct+'%';
-    if(G('hcSavL'))G('hcSavL').textContent=p?'Ab Tak':'এখন পর্যন্ত';
+    if(G('hcBarFill'))G('hcBarFill').style.width=pct+'%';
     if(G('hcSavV'))G('hcSavV').textContent=cur()+' '+tot.toLocaleString();
-    if(G('hcTgtL'))G('hcTgtL').textContent=p?'Target':'লক্ষ্য';
     if(G('hcTgtV'))G('hcTgtV').textContent=lp()+' '+(goal/100000).toFixed(0)+'L';
-    if(G('hcRemL'))G('hcRemL').textContent=p?'Baqi':'বাকি';
     if(G('hcRemV'))G('hcRemV').textContent=moRem+(p?' mo':' মাস');
-    if(G('hcBtn'))G('hcBtn').textContent=p?'👉 Dream Plan Dekhein':'👉 স্বপ্ন পরিকল্পনা';
   } else {
-    if(G('hcDreamName'))G('hcDreamName').textContent=p?'Sapna Set Karo':'স্বপ্ন সেট করুন';
-    if(G('hcDreamSub'))G('hcDreamSub').textContent=p?'Wapsi ka goal banao':'ফেরার লক্ষ্য সেট করুন';
-    if(G('hcBarFill'))G('hcBarFill').style.width='0%';
+    if(G('hcDreamName'))G('hcDreamName').textContent=p?'Sapna chunein →':'স্বপ্ন বেছে নিন →';
     if(G('hcBarPct'))G('hcBarPct').textContent='0%';
-    if(G('hcSavV'))G('hcSavV').textContent='—';
+    if(G('hcSavV'))G('hcSavV').textContent=cur()+' '+tot.toLocaleString();
     if(G('hcTgtV'))G('hcTgtV').textContent='—';
     if(G('hcRemV'))G('hcRemV').textContent='—';
-    if(G('hcBtn'))G('hcBtn').textContent=p?'👉 Sapna Set Karo':'👉 স্বপ্ন সেট করুন';
   }
 
-  // SECTION 2: Total Bachat + Streak
-  if(G('tcSavL'))G('tcSavL').textContent=p?'Total Bachat':'মোট বাচাত';
+  // ROW 2: Bachat + Streak
+  if(G('tcSavL'))G('tcSavL').textContent=p?'TOTAL BACHAT':'মোট বাচাত';
   if(G('tcSavV'))G('tcSavV').textContent=cur()+' '+tot.toLocaleString();
   if(G('tcSavS'))G('tcSavS').textContent=p?'Ab tak bachaya':'এখন পর্যন্ত';
-  if(G('tcStrkL'))G('tcStrkL').textContent=p?'Streak':'স্ট্রিক';
-  if(G('tcStrkV'))G('tcStrkV').textContent=strk+(p?' Mah':' মাস');
+  if(G('tcStrkL'))G('tcStrkL').textContent=p?'STREAK':'স্ট্রিক';
+  if(G('tcStrkV'))G('tcStrkV').textContent=strk+(p?' MONTHS':' মাস');
   if(G('tcStrkS'))G('tcStrkS').textContent=p?'Lagataar bachat':'ধারাবাহিক বাচাত';
 
-  // SECTION 3: This Month
+  // ROW 3: This Month + Future Ready
   var remaining=Math.max(0,moTarget-curMoSaved);
   var moPct=Math.min(100,moTarget>0?Math.round((curMoSaved/moTarget)*100):0);
-  var moNames=st.months;var moName=moNames[nowMonth]||'';
-  if(G('mcTitle'))G('mcTitle').textContent='📅 '+(p?'Is Maheene — ':'এই মাস — ')+moName;
-  if(G('mcTgtL'))G('mcTgtL').textContent=p?'Target':'লক্ষ্য';
-  if(G('mcTgtV'))G('mcTgtV').textContent=cur()+' '+moTarget.toLocaleString();
-  if(G('mcSavL'))G('mcSavL').textContent=p?'Bachaya':'বাচাত';
-  if(G('mcSavV'))G('mcSavV').textContent=cur()+' '+Math.round(curMoSaved).toLocaleString();
-  if(G('mcRemL'))G('mcRemL').textContent=p?'Baqi':'বাকি';
-  if(G('mcRemV'))G('mcRemV').textContent=cur()+' '+Math.round(remaining).toLocaleString();
+  if(G('tbcML'))G('tbcML').textContent=p?'IS MAHINE':'এই মাসে';
+  if(G('tbcMV'))G('tbcMV').textContent=cur()+' '+Math.round(curMoSaved)+'/'+moTarget;
+  if(G('tbcMS'))G('tbcMS').textContent=(p?'Baqi: ':'বাকি: ')+cur()+' '+Math.round(remaining);
   if(G('tmBarFill'))G('tmBarFill').style.width=moPct+'%';
 
-  // SECTION 4: Future Readiness
   var rd=ld('sb_rd',{});
   var efSaved=ld(SK.ef,0);
-  var efReady=efSaved>=(sal*3);
-  var hasTicket=rd.tf||false;
-  var debtFree=rd.df||false;
-  var dreamFund=dreamData&&tot>0;
-  var readyItems=[
-    {n:p?'Emergency Fund':'জরুরি ফান্ড',done:efReady},
-    {n:p?'Return Ticket':'ফেরার টিকিট',done:hasTicket},
-    {n:p?'Qarz Mukt':'ঋণমুক্ত',done:debtFree},
-    {n:p?'Dream Fund':'স্বপ্ন ফান্ড',done:dreamFund}
-  ];
-  if(G('rcTitle'))G('rcTitle').textContent='🛡️ '+(p?'Future Readiness':'ভবিষ্যৎ প্রস্তুতি');
-  var rcGrid=G('rcGrid');if(rcGrid){
-    rcGrid.innerHTML=readyItems.map(function(item){
-      var dotCls=item.done?'green':'amber';
-      return '<div class="rc-item"><div class="rc-dot '+dotCls+'"></div><div class="rc-name">'+item.n+'</div></div>';
-    }).join('');
-  }
-  var doneCount=readyItems.filter(function(i){return i.done;}).length;
+  var readyItems=[efSaved>=(sal*3),rd.df||false,dreamData&&tot>0,rd.tf||false];
+  var doneCount=readyItems.filter(Boolean).length;
   var readyPct=Math.round((doneCount/readyItems.length)*100);
-  var readyEmoji=readyPct>=75?'🟢':readyPct>=50?'🟡':'🔴';
-  if(G('rcOverall'))G('rcOverall').textContent=readyEmoji+' '+(p?'Overall:':'সামগ্রিক:')+' '+readyPct+'% '+(p?'Tayyar':'প্রস্তুত');
+  var readyLbl=readyPct>=75?(p?'Tayyari achi hai':'প্রস্তুতি ভালো'):readyPct>=50?(p?'Theek ja raha hai':'ঠিক আছে'):(p?'Abhi kaam baaki':'এখনো অনেক বাকি');
+  if(G('tbcRL'))G('tbcRL').textContent=p?'FUTURE READY':'ভবিষ্যৎ';
+  if(G('rcOverallPct'))G('rcOverallPct').textContent=readyPct+'%';
+  if(G('rcOverallLbl'))G('rcOverallLbl').textContent=readyLbl;
+  if(G('rcBarFill'))G('rcBarFill').style.width=readyPct+'%';
 
-  // SECTION 5: Today Reminder
-  var rems=p?[
-    'Aaj 10 SAR bhi bachat hai.',
-    'Sapna qareeb aa raha hai.',
-    'Khud ke liye bhi bachana zaroori hai.',
-    'Aapki mehnat ki keemat hai.',
-    'Ghar waale intezaar mein hain.',
-    'Har maheena ek kadam aage.',
-    'Aaj ki bachat kal ki azadi hai.'
-  ]:[
-    'আজ ১০ SAR হলেও বাচান।',
-    'স্বপ্ন কাছে আসছে।',
-    'নিজের জন্যও বাচানো জরুরি।',
-    'আপনার পরিশ্রমের মূল্য আছে।',
-    'পরিবার অপেক্ষায় আছে।',
-    'প্রতি মাস এক ধাপ এগিয়ে।',
-    'আজকের বাচাত আগামীর স্বাধীনতা।'
-  ];
+  // REMINDER
+  var rems=p?['Aaj bhi thodi bachat karo.','Sapna qareeb aa raha hai.','Khud ke liye bhi bachana zaroori hai.','Mehnat ki keemat hoti hai.','Ghar wale intezaar mein hain.','Har maheena ek kadam aage.','Aaj ki bachat, kal ki azadi.']:['আজও একটু বাচান।','স্বপ্ন কাছে আসছে।','নিজের জন্যও বাচানো জরুরি।','পরিশ্রমের মূল্য আছে।','পরিবার অপেক্ষায় আছে।','প্রতি মাস এক ধাপ এগিয়ে।','আজকের বাচাত আগামীর স্বাধীনতা।'];
   var dayIdx=new Date().getDay();
   if(G('rmTxt'))G('rmTxt').textContent=rems[dayIdx%rems.length];
 
-  // SECTION 6: Quick Actions labels
+  // Quick labels
   if(G('qa1'))G('qa1').textContent=p?'Taqseem':'বণ্টন';
   if(G('qa2'))G('qa2').textContent=p?'Bachat':'বাচাত';
   if(G('qa3'))G('qa3').textContent=p?'Help Now':'সাহায্য';
   if(G('qa4'))G('qa4').textContent=p?'Sapna':'স্বপ্ন';
+  if(G('aurL'))G('aurL').textContent=p?'Aur Madad':'আরো সাহায্য';
+  if(G('aurS'))G('aurS').textContent=p?'Shield, EOSD aur zyada':'শিল্ড, EOSD আরো';
 }
 
 // ── SALARY SPLIT WITH SLIDERS ────────────────────────────────
@@ -1521,7 +1582,7 @@ function checkSalReminder(){
 
 function buildTracker(){
   var st=s();
-  G('trT').textContent=st.trT;G('pbT').textContent=st.pbT;G('chalT').textContent=st.chalT;G('monT').textContent=st.monT;G('totL').textContent=st.totL;G('shrBtn').textContent=st.shrBtn;
+  G('trT').textContent=st.trT;G('pbT').textContent=st.pbT;G('monT').textContent=st.monT;G('totL').textContent=st.totL;G('shrBtn').textContent=st.shrBtn;if(G('trkTabL0'))G('trkTabL0').textContent=pk()?'Bachat Tracker':'বাচাত ট্র্যাকার';if(G('trkTabL1'))G('trkTabL1').textContent=pk()?'Bachat Se Asset':'বাচাত থেকে সম্পদ';
   G('srTitle').textContent=st.srTitle;G('srLbl').textContent=st.srLbl;
   G('wcdTitle').textContent=st.wcdTitle;
   var salDay=ld(SK_SD,0);if(salDay&&G('srDay'))G('srDay').value=salDay;
@@ -1538,7 +1599,7 @@ function buildTracker(){
   } else {
     wcdEl.textContent=pk()?'Sapna set karo':'স্বপ্ন সেট করুন';
   }
-  buildChals();buildMonths();
+  buildMonths();
 }
 
 function buildChals(){
@@ -1662,96 +1723,99 @@ function delLog(id,idx){var logs=ld(SK.logs,{});if(!logs[id])return;logs[id].spl
 
 // ── DREAM ────────────────────────────────────────────────────
 function buildDream(){
-  var st=s(),dg=G('dGrid');dg.innerHTML='';
-  G('drT').textContent=st.drT;G('dSL').textContent=st.dSL;
+  var st=s(),p=pk();
+  G('drT').textContent=st.drT;
+  G('drIntro').textContent=p?'Apne future ka sapna choose karein. Chhota shuru karein, bada hasil karein.':'আপনার ভবিষ্যতের স্বপ্ন বেছে নিন। ছোট থেকে শুরু, বড় অর্জন করুন।';
+  G('dSL').textContent=p?'BACHAT/MAHEENA (SAR)':'বাচাত/মাস (SAR)';
+  var dg=G('dGrid');dg.innerHTML='';
   var savedDream=ld(SK.dream,null);
   var cats=st.dreamCats||[];
   cats.forEach(function(cat,ci){
-    // Category header
-    var hdr=document.createElement('div');
-    hdr.style='grid-column:1/-1;font-size:12px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.08em;padding:8px 0 4px;';
-    hdr.textContent=cat.ico+' '+cat.cat;
-    dg.appendChild(hdr);
-    cat.sizes.forEach(function(sz,si){
-      var amt=sz.amt;
-      var el=document.createElement('div');el.className='dream-btn';
-      var isActive=savedDream&&savedDream.name===sz.l&&savedDream.cat===cat.cat;
-      if(isActive)el.classList.add('act');
-      el.onclick=(function(size,category,amount){return function(){
-        document.querySelectorAll('.dream-btn').forEach(function(b){b.classList.remove('act');});
-        el.classList.add('act');
-        if(size.custom){
-          G('dGoal').value='';G('dGoal').focus();
-        } else {
-          G('dGoal').value=amount;
-        }
-        G('dGL').textContent=(pk()?'GOAL (PKR)':'লক্ষ্য (BDT)')+' — '+size.l;
-        sv(SK.dream,{name:size.l,cat:category.cat,goal:amount,savPerMo:parseFloat(G('dSav').value)||0});
-        calcD();
-        buildDreamLadder(category,size);
-      };})(sz,cat,amt);
-      var amtText=amt>0?(lp()+' '+Math.round(amt/100000)+'L'):(pk()?'Custom':'কাস্টম');
-      el.innerHTML='<div class="dream-ico" style="font-size:20px">'+cat.ico+'</div>'
-        +'<div class="dream-lbl f7" style="font-size:12px">'+sz.l+'</div>'
-        +'<div class="dream-amt" style="font-size:10px;color:var(--gold)">'+amtText+'</div>'
-        +'<div style="font-size:9px;color:var(--tm);margin-top:2px">'+sz.hint+'</div>';
-      dg.appendChild(el);
-    });
+    var card=document.createElement('div');card.className='dream-cat-card';
+    var isKarz=cat.isKarz||false;
+    var html='<span class="dream-cat-ico">'+cat.ico+'</span>'
+      +'<div class="dream-cat-name">'+cat.cat+'</div>';
+    if(isKarz){
+      html+='<div style="font-size:12px;color:var(--tm);text-align:center;margin-bottom:8px" id="karzNote_'+ci+'">'+( p?'Apna qarz amount dalein:':'আপনার ঋণের পরিমাণ দিন:')+'</div>'
+        +'<div class="karz-inp-wrap"><div class="karz-cur">'+lp()+'</div><input class="karz-inp" type="number" id="karzAmt_'+ci+'" inputmode="numeric" placeholder="500000" oninput="selKarz('+ci+',this.value)"></div>';
+    } else {
+      html+='<div class="dream-radio-row" id="drow_'+ci+'"></div>';
+      cat.sizes.forEach(function(sz,si){
+        var isSel=savedDream&&savedDream.catIdx===ci&&savedDream.sizeIdx===si;
+        var amtLakh=p?Math.round(sz.amt/100000)+'L PKR':Math.round(sz.amt/100000)+'L BDT';
+        var r=document.createElement('div');
+        r.className='dream-radio'+(isSel?' sel':'');
+        r.id='dr_'+ci+'_'+si;
+        r.innerHTML='<span class="dr-size">'+sz.l+'</span><span class="dr-amt">'+amtLakh+'</span>';
+        (function(a,b,d,nm,ic,ct){r.onclick=function(){selDream(a,b,d,nm,ic,ct);};})(ci,si,sz.amt,sz.l,cat.ico,cat.cat);
+        var rrow=document.getElementById('drow_'+ci);if(rrow)rrow.appendChild(r);
+      });
+    }
+    dg.appendChild(card);  // If this was saved
+    if(savedDream&&savedDream.catIdx===ci&&!isKarz){
+      showDreamSavWrap();
+      if(G('dSav')&&savedDream.savPerMo)G('dSav').value=savedDream.savPerMo;
+      calcD();
+    }
+    if(isKarz&&savedDream&&savedDream.catIdx===ci&&savedDream.goal){
+      var ki=G('karzAmt_'+ci);if(ki)ki.value=savedDream.goal;
+      showDreamSavWrap();
+      if(G('dSav')&&savedDream.savPerMo)G('dSav').value=savedDream.savPerMo;
+      calcD();
+    }
   });
-  if(savedDream){
-    if(G('dGoal'))G('dGoal').value=savedDream.goal||'';
-    if(G('dSav'))G('dSav').value=savedDream.savPerMo||'';
-    if(G('dGL'))G('dGL').textContent=(pk()?'GOAL (PKR)':'লক্ষ্য (BDT)')+(savedDream.name?' — '+savedDream.name:'');
-    calcD();
-  }
 }
 
-function buildDreamLadder(cat,currentSize){
-  var ld_el=G('dreamLadder');
-  if(!ld_el)return;
-  var savedData=ld(SK.dream,null);
-  var tot=Math.round(Object.values(trData.months||{}).reduce(function(a,b){return a+(parseFloat(b)||0);},0));
-  var totLocal=Math.round(tot*rate());
-  ld_el.innerHTML='';
-  if(!cat.sizes||cat.sizes.length<2){ld_el.style.display='none';return;}
-  ld_el.style.display='block';
-  var title=document.createElement('div');
-  title.style='font-size:13px;font-weight:700;color:var(--g4);margin-bottom:10px;';
-  title.textContent=pk()?'🪜 '+cat.cat+' ka Safar':'🪜 '+cat.cat+' যাত্রা';
-  ld_el.appendChild(title);
-  cat.sizes.forEach(function(sz){
-    if(sz.custom)return;
-    var pct=sz.amt>0?Math.min(100,Math.round((totLocal/sz.amt)*100)):0;
-    var done=pct>=100;
-    var isCurrent=sz.l===currentSize.l;
-    var row=document.createElement('div');
-    row.style='display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bgc);border:1.5px solid '
-      +(done?'var(--g4)':isCurrent?'var(--a2)':'var(--bd)')+';border-radius:11px;margin-bottom:7px;';
-    var bar=pct>0?'<div style="flex:1;height:6px;background:var(--bgp);border-radius:3px;overflow:hidden;margin-top:4px"><div style="width:'+pct+'%;height:100%;background:'+(done?'var(--g4)':'var(--a2)')+';border-radius:3px"></div></div>':'';
-    row.innerHTML='<span style="font-size:16px">'+(done?'✅':isCurrent?'🎯':'⬜')+'</span>'
-      +'<div style="flex:1"><div style="font-size:13px;font-weight:700;color:'+(done?'var(--g4)':isCurrent?'var(--a2)':'var(--ts)')+'">'+sz.l+'</div>'
-      +(bar?bar:'')
-      +'</div>'
-      +'<span style="font-size:11px;color:var(--gold)">'+lp()+' '+Math.round(sz.amt/100000)+'L</span>';
-    ld_el.appendChild(row);
-  });
+function selDream(ci,si,amt,name,ico,cat){
+  // Deselect all
+  document.querySelectorAll('.dream-radio').forEach(function(el){el.classList.remove('sel');});
+  var el=G('dr_'+ci+'_'+si);if(el)el.classList.add('sel');
+  // Save selection
+  var saved={catIdx:ci,sizeIdx:si,goal:amt,name:name,ico:ico,cat:cat,savPerMo:parseFloat(G('dSav')&&G('dSav').value)||0};
+  sv(SK.dream,saved);
+  showDreamSavWrap();
+  calcD();
+}
+
+function selKarz(ci,val){
+  var amt=parseFloat(val)||0;
+  var p=pk();
+  var saved={catIdx:ci,sizeIdx:-1,goal:amt,name:(p?'Qarz Utaarna':'ঋণমুক্তি'),ico:'💳',cat:(p?'Qarz':'ঋণ'),savPerMo:parseFloat(G('dSav')&&G('dSav').value)||0,isKarz:true};
+  sv(SK.dream,saved);
+  if(amt>0)showDreamSavWrap();
+  calcD();
+}
+
+function showDreamSavWrap(){
+  var w=G('dreamSavWrap');if(w)w.classList.remove('hidden');
 }
 
 function calcD(){
-  var goal=parseFloat(G('dGoal').value)||0,savSar=parseFloat(G('dSav').value)||0;
-  var savedDream=ld(SK.dream,null)||{};
-  if(savSar>0)savedDream.savPerMo=savSar;
-  if(goal>0)savedDream.goal=goal;
-  sv(SK.dream,savedDream);
-  if(!goal||!savSar){G('dRes').style.display='none';return;}
-  var mo=Math.ceil(goal/(savSar*rate())),y=(mo/12).toFixed(1);
+  var dreamData=ld(SK.dream,null);
+  var savSar=parseFloat(G('dSav')&&G('dSav').value)||0;
+  if(dreamData){sv(SK.dream,Object.assign(dreamData,{savPerMo:savSar}));}
+  if(!dreamData||!dreamData.goal||!savSar){G('dRes').style.display='none';return;}
+  var goal=dreamData.goal,p=pk();
+  var mo=Math.ceil(goal/(savSar*rate()));
+  var yr=(mo/12).toFixed(1);
+  // Completion date
+  var now=new Date();
+  now.setMonth(now.getMonth()+mo);
+  var months=p?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']:['জান','ফেব','মার','এপ্র','মে','জুন','জুল','আগ','সেপ','অক্ট','নভ','ডিস'];
+  var compDate=months[now.getMonth()]+' '+now.getFullYear();
   G('dRes').style.display='block';
-  G('drBig').textContent=s().dMain(mo,y);
-  G('drSub').textContent=s().dSub(goal,savSar,mo);
+  if(G('drRL1'))G('drRL1').textContent=p?'Sapna:':'স্বপ্ন:';
+  if(G('drRV1'))G('drRV1').textContent=(dreamData.ico||'🌟')+' '+(dreamData.name||'');
+  if(G('drRL2'))G('drRL2').textContent=p?'Target:':'লক্ষ্য:';
+  if(G('drRV2'))G('drRV2').textContent=lp()+' '+Math.round(goal).toLocaleString();
+  if(G('drRL3'))G('drRL3').textContent=p?'Saving:':'বাচাত:';
+  if(G('drRV3'))G('drRV3').textContent=cur()+' '+savSar+'/'+( p?'maheena':'মাস');
+  if(G('drRL4'))G('drRL4').textContent=p?'Estimated:':'অনুমানিত:';
+  if(G('drRV4'))G('drRV4').textContent=mo+(p?' Months':' মাস')+' ('+compDate+')';
   updateStats();
 }
 
-// ── SHIELD ───────────────────────────────────────────────────
+
 function buildShield(){
   var st=s(),pl=G('pList');pl.innerHTML='';G('shT').textContent=st.shT;
   st.pressures.forEach(function(p,i){
@@ -1915,6 +1979,83 @@ function togSett(t){var key=t[0].toUpperCase()+t.slice(1);var e=G('so'+key);if(s
 function chgLang(lang){L=lang;sv(SK.lang,L);buildApp();buildSettings();G('soLang').style.display='none';settOpen=null;showToast(lang==='pk'?'✅ Urdu!':'✅ বাংলা!');}
 function chgCtry(key){C=key;sv(SK.ctry,C);buildApp();buildSettings();G('soCtry').style.display='none';settOpen=null;showToast(CTRY[key].flag+' '+CTRY[key].name+'!');}
 function doReset(){if(confirm(s().resetConfirm)){Object.keys(SK).forEach(function(k){localStorage.removeItem(SK[k]);});localStorage.removeItem(SK_RD);localStorage.removeItem('sb_sd');localStorage.removeItem('sb_ef');location.reload();}}
+
+
+// ── BOTTOM NAV ───────────────────────────────────────────────
+var bnActive = -1;
+function bnNav(idx, pg) {
+  // Update active state
+  for(var i=0;i<4;i++){
+    var el=G('bn'+i);
+    if(el)el.classList.toggle('active',i===idx);
+  }
+  var hm=G('bnHome');if(hm)hm.classList.toggle('active',idx===-1);
+  bnActive=idx;
+  showPg(pg);
+}
+function updateBnLabels(){
+  var p=pk();
+  if(G('bnL0'))G('bnL0').textContent=p?'Taqseem':'বণ্টন';
+  if(G('bnL1'))G('bnL1').textContent=p?'Bachat':'বাচাত';
+  if(G('bnLH'))G('bnLH').textContent=p?'Home':'হোম';
+  if(G('bnL2'))G('bnL2').textContent=p?'Help Now':'সাহায্য';
+  if(G('bnL3'))G('bnL3').textContent=p?'Sapna':'স্বপ্ন';
+}
+
+
+// ── TRACKER TABS ─────────────────────────────────────────────
+function switchTrkTab(n){
+  [0,1].forEach(function(i){
+    var t=G('trkTab'+i),p=G('trkPanel'+i);
+    if(t)t.classList.toggle('on',i===n);
+    if(p)p.classList.toggle('hidden',i!==n);
+  });
+  if(n===1)buildAsset();
+}
+
+// ── BACHAT SE ASSET ──────────────────────────────────────────
+function buildAsset(){
+  var p=pk();
+  var ap=G('assetPanel');if(!ap)return;
+  ap.innerHTML='';
+
+  // Tab labels
+  if(G('trkTabL0'))G('trkTabL0').textContent=p?'Bachat Tracker':'বাচাত ট্র্যাকার';
+  if(G('trkTabL1'))G('trkTabL1').textContent=p?'Bachat Se Asset':'বাচাত থেকে সম্পদ';
+
+  // Golden rule
+  var intro=document.createElement('div');intro.className='asset-intro';
+  intro.innerHTML='<div class="asset-rule">⭐ '+(p?'Golden Rule':'গোল্ডেন রুল')+'</div>'
+    +(p?'"Har asset apne naam par rakhein, record aur receipts sambhal kar rakhein, aur har mahine thoda sa hissa apne mustaqbil ke liye zaroor alag karein."'
+        :'"প্রতিটি সম্পদ নিজের নামে রাখুন, রেকর্ড ও রসিদ সংরক্ষণ করুন এবং প্রতি মাস একটু অংশ নিজের ভবিষ্যতের জন্য আলাদা করুন।"');
+  ap.appendChild(intro);
+
+  var plans=p?[
+    {ico:'🥇',t:'Gold Plan',amts:['100 SAR = ~1,200 SAR/year','200 SAR = ~2,400 SAR/year','300 SAR = ~3,600 SAR/year'],idea:'Har maheena thoda sona khareedein — price badhta hai, impulse mein kharch nahi hoga.',rules:['Sona apne naam par khareedein','Receipts sambhal kar rakhein'],msg:'Cash kharch ho sakta hai, sona sambhal kar rakha ja sakta hai.'},
+    {ico:'🏠',t:'Plot Installment Plan',amts:['200 SAR/month','300 SAR/month','500 SAR/month'],idea:'Chota plot ya zameen ka qist — Pakistan mein apne naam par.',rules:['Registry apne naam par karwayein','Paise dene se pehle documents verify karein'],msg:'Qist se asset banta hai.'},
+    {ico:'🏪',t:'Future Shop Fund',amts:['100 SAR/month','200 SAR/month','300 SAR/month'],idea:'Grocery, chai, silai ya mobile accessories shop ke liye alag bachat. 200 SAR × 36 months = 7,200 SAR capital',rules:['Alag account ya wallet sirf is goal ke liye'],msg:'Aaj ki bachat, kal ki dukaan.'},
+    {ico:'🏡',t:'House Construction Fund',amts:['150 SAR/month','250 SAR/month','400 SAR/month'],idea:'Foundation, boundary wall ya kamra — ek ek kadam.',rules:['Sirf ghar ke kaam ke liye use karein','Records sambhal kar rakhein'],msg:'Ghar eent eent se banta hai.'},
+    {ico:'📜',t:'Safe Long-Term Savings',amts:['100 SAR/month','300 SAR/month','500 SAR/month'],idea:'Government-backed savings — National Savings, Defence Certificate.',rules:['Apne naam par karwayein','Saari documents sambhal rakhein'],msg:'Bachat ko sirf rakho nahi, mehfooz bhi rakho.'}
+  ]:[
+    {ico:'🥇',t:'স্বর্ণ পরিকল্পনা',amts:['১০০ SAR = ~১,২০০ SAR/বছর','২০০ SAR = ~২,৪০০ SAR/বছর','৩০০ SAR = ~৩,৬০০ SAR/বছর'],idea:'প্রতি মাস একটু সোনা কিনুন — দাম বাড়ে, আবেগে খরচ হয় না।',rules:['নিজের নামে সোনা কিনুন','রসিদ সংরক্ষণ করুন'],msg:'নগদ খরচ হয়, সোনা সংরক্ষিত থাকে।'},
+    {ico:'🏠',t:'প্লট কিস্তি পরিকল্পনা',amts:['২০০ SAR/মাস','৩০০ SAR/মাস','৫০০ SAR/মাস'],idea:'ছোট জমির কিস্তি — বাংলাদেশে নিজের নামে।',rules:['রেজিস্ট্রি নিজের নামে করুন','টাকা দেওয়ার আগে কাগজ যাচাই করুন'],msg:'কিস্তিতে সম্পদ হয়।'},
+    {ico:'🏪',t:'ভবিষ্যৎ দোকান ফান্ড',amts:['১০০ SAR/মাস','২০০ SAR/মাস','৩০০ SAR/মাস'],idea:'মুদি, চা, সেলাই বা মোবাইল দোকানের জন্য আলাদা বাচাত। ২০০ SAR × ৩৬ মাস = ৭,২০০ SAR মূলধন',rules:['শুধু এই লক্ষ্যের জন্য আলাদা account রাখুন'],msg:'আজকের বাচাত, আগামীর দোকান।'},
+    {ico:'🏡',t:'বাড়ি নির্মাণ ফান্ড',amts:['১৫০ SAR/মাস','২৫০ SAR/মাস','৪০০ SAR/মাস'],idea:'ভিত্তি, সীমানা প্রাচীর বা কামরা — একে একে।',rules:['শুধু বাড়ির কাজে ব্যবহার করুন','রেকর্ড সংরক্ষণ করুন'],msg:'বাড়ি ইট ইট করে তৈরি হয়।'},
+    {ico:'📜',t:'নিরাপদ দীর্ঘমেয়াদী সঞ্চয়',amts:['১০০ SAR/মাস','৩০০ SAR/মাস','৫০০ SAR/মাস'],idea:'সরকার-সমর্থিত সঞ্চয় — সঞ্চয়পত্র।',rules:['নিজের নামে করুন','সব কাগজ সংরক্ষণ করুন'],msg:'বাচাত শুধু রাখো না, নিরাপদও রাখো।'}
+  ];
+
+  plans.forEach(function(plan){
+    var el=document.createElement('div');el.className='asset-plan';
+    var amtsHtml=plan.amts.map(function(a){return '<div class="ap-amt-row"><span>'+a.split('=')[0]+'</span>'+(a.includes('=')?'<span class="ap-amt-sar">'+a.split('=')[1]+'</span>':'')+'</div>';}).join('');
+    var rulesHtml=plan.rules.map(function(r){return '<div class="ap-rule"><span class="ap-rule-ico">✅</span><span>'+r+'</span></div>';}).join('');
+    el.innerHTML='<div class="ap-header"><span class="ap-ico">'+plan.ico+'</span><span class="ap-title">'+plan.t+'</span></div>'
+      +'<div class="ap-amounts">'+amtsHtml+'</div>'
+      +'<div style="font-size:13px;color:var(--ts);margin-bottom:8px;line-height:1.6;">'+plan.idea.replace(/\n/g,'<br>')+'</div>'
+      +'<div class="ap-rules">'+rulesHtml+'</div>'
+      +'<div class="ap-msg">'+plan.msg+'</div>';
+    ap.appendChild(el);
+  });
+}
 
 // ── INIT ────────────────────────────────────────────────────
 window.addEventListener('load',function(){
