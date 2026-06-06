@@ -1,72 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0A1A10">
 <title>Refund Policy — SmartSaathi</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#080E0A;color:#EEF7F0;line-height:1.8;padding:40px 24px;}
-.wrap{max-width:720px;margin:0 auto;}
-.logo{font-size:18px;font-weight:800;color:#74C69D;margin-bottom:40px;display:block;}
-h1{font-size:32px;font-weight:800;margin-bottom:8px;}
-.date{font-size:13px;color:#5E8A68;margin-bottom:40px;}
-h2{font-size:18px;font-weight:700;color:#74C69D;margin:32px 0 12px;}
-p{font-size:15px;color:#B8D4BE;margin-bottom:14px;}
-ul{padding-left:20px;margin-bottom:14px;}
-li{font-size:15px;color:#B8D4BE;margin-bottom:6px;}
-a{color:#74C69D;}
-.highlight{background:rgba(116,198,157,.07);border:1px solid rgba(116,198,157,.2);border-radius:12px;padding:20px;margin:20px 0;}
-.highlight p{margin:0;color:#EEF7F0;}
-.footer-links{margin-top:48px;padding-top:24px;border-top:1px solid rgba(116,198,157,.1);display:flex;gap:20px;flex-wrap:wrap;}
-.footer-links a{font-size:13px;color:#5E8A68;}
+:root{--bg:#0A1A10;--bg2:#0F2318;--g3:#40916C;--g4:#74C69D;--gold:#F0C040;--tx:#EEF7F0;--ts:#B8D4BE;--tm:#5E8A68;--bd:rgba(116,198,157,.15);}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;padding:0;}
+.header{padding:16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd);background:rgba(10,26,16,.95);}
+.logo{font-size:17px;font-weight:800;color:var(--g4);}
+.back{font-size:13px;color:var(--tm);text-decoration:none;}
+.wrap{max-width:480px;margin:0 auto;padding:28px 16px 60px;}
+.hero-card{background:var(--bg2);border:1.5px solid rgba(240,192,64,.25);border-radius:20px;padding:24px;margin-bottom:24px;text-align:center;position:relative;overflow:hidden;}
+.hero-card::before{content:'';position:absolute;top:0;left:8%;right:8%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.hero-ico{font-size:48px;margin-bottom:10px;}
+.hero-title{font-size:22px;font-weight:800;color:var(--gold);margin-bottom:6px;}
+.hero-sub{font-size:14px;color:var(--ts);line-height:1.6;}
+.promise-box{background:rgba(116,198,157,.07);border:1px solid rgba(116,198,157,.25);border-radius:14px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.promise-ico{font-size:32px;flex-shrink:0;}
+.promise-txt{font-size:14px;color:var(--ts);line-height:1.6;}
+.promise-txt b{color:var(--g4);font-size:16px;display:block;margin-bottom:4px;}
+.steps-title{font-size:15px;font-weight:700;color:var(--g4);margin-bottom:12px;}
+.step{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
+.step-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--g3),#1B4332);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;margin-top:1px;}
+.step-txt{font-size:14px;color:var(--ts);line-height:1.7;}
+.step-txt b{color:var(--tx);}
+.step-txt a{color:var(--g4);}
+.note-box{background:rgba(244,162,97,.07);border:1px solid rgba(244,162,97,.2);border-radius:12px;padding:14px;margin:20px 0;font-size:13px;color:var(--ts);line-height:1.7;}
+.note-box b{color:#F4A261;}
+.fb-row{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1px solid rgba(24,119,242,.3);border-radius:14px;padding:14px;margin-top:20px;}
+.fb-ico{font-size:24px;flex-shrink:0;}
+.fb-txt{flex:1;font-size:13px;color:var(--ts);line-height:1.5;}
+.fb-txt b{color:var(--tx);display:block;margin-bottom:3px;}
+.fb-btn{padding:8px 14px;background:#1877F2;border:none;border-radius:9px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.footer{text-align:center;padding:20px 16px;border-top:1px solid var(--bd);font-size:12px;color:var(--tm);}
+.lang-toggle{display:flex;gap:8px;justify-content:center;margin-bottom:20px;}
+.lt-btn{padding:6px 16px;border-radius:20px;border:1.5px solid var(--bd);background:transparent;color:var(--tm);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+.lt-btn.on{background:var(--g3);border-color:var(--g3);color:#fff;}
 </style>
 </head>
 <body>
+<div class="header">
+  <a class="back" href="/">← Wapas</a>
+  <div class="logo">💰 SmartSaathi</div>
+</div>
+
 <div class="wrap">
-<a href="/" class="logo">💰 SmartSaathi</a>
-<h1>Refund Policy</h1>
-<div class="date">Last updated: January 2025</div>
+  <div class="lang-toggle">
+    <button class="lt-btn on" id="btnUR" onclick="setL('ur')">اردو</button>
+    <button class="lt-btn" id="btnBD" onclick="setL('bd')">বাংলা</button>
+  </div>
 
-<div class="highlight">
-  <p>💚 We want you to be completely satisfied. If Smart Bachat does not work for you, contact us within 7 days of purchase and we will refund you — no questions asked.</p>
+  <div class="hero-card">
+    <div class="hero-ico">💯</div>
+    <div class="hero-title" id="heroTitle">48 Ghante Refund</div>
+    <div class="hero-sub" id="heroSub">Pasand na aaye — poora paisa wapas. Koi sawaal nahi.</div>
+  </div>
+
+  <div class="promise-box">
+    <div class="promise-ico">🤝</div>
+    <div class="promise-txt">
+      <b id="promiseTitle">Hamara Wada</b>
+      <span id="promiseTxt">Purchase ke <b>48 ghante ke andar</b> agar pasand na aaye — poora SAR 11 wapas. Hum par bharosa karein.</span>
+    </div>
+  </div>
+
+  <div class="steps-title" id="stepsTitle">Refund Kaise Lein — 3 Aasaan Steps</div>
+
+  <div id="stepsList"></div>
+
+  <div class="note-box" id="noteBox"></div>
+
+  <div class="fb-row">
+    <div class="fb-ico">📘</div>
+    <div class="fb-txt">
+      <b id="fbTitle">Madad Chahiye?</b>
+      <span id="fbSub">Facebook par message karein — hum zaroor jawab denge.</span>
+    </div>
+    <button class="fb-btn" onclick="window.open('https://facebook.com/smartbachat','_blank')">Facebook</button>
+  </div>
 </div>
 
-<h2>1. Our Refund Commitment</h2>
-<p>We offer a <strong>7-day money-back guarantee</strong> on all SmartSaathi products. If you are not satisfied for any reason within 7 days of your purchase, contact us and we will issue a full refund.</p>
-<p>At $2.99, our goal is that you feel this was worth every cent. If you do not — we would rather refund you than have an unhappy customer.</p>
+<div class="footer" id="footerTxt">© 2026 SmartSaathi. All rights reserved.</div>
 
-<h2>2. How to Request a Refund</h2>
-<p>To request a refund:</p>
-<ul>
-  <li>Email us at <a href="mailto:hello@smartsaathi.app">hello@smartsaathi.app</a></li>
-  <li>Include your purchase email address</li>
-  <li>Include your Paddle order ID (found in your purchase confirmation email)</li>
-  <li>We will process your refund within 3-5 business days</li>
-</ul>
-<p>You do not need to provide a reason, but any feedback you share helps us improve the product.</p>
+<script>
+var L = {
+  ur:{
+    heroTitle:'48 Ghante Refund',
+    heroSub:'Pasand na aaye — poora paisa wapas. Koi sawaal nahi.',
+    promiseTitle:'Hamara Wada',
+    promiseTxt:'Purchase ke <b>48 ghante ke andar</b> agar pasand na aaye — poora SAR 11 wapas. Hum par bharosa karein.',
+    stepsTitle:'Refund Kaise Lein — 3 Aasaan Steps',
+    steps:[
+      {n:'1',t:'<b>paddle.net</b> par jayein — <a href="https://paddle.net" target="_blank">paddle.net</a>'},
+      {n:'2',t:'Apna <b>email address</b> dalein jo aapne purchase mein use kiya tha.'},
+      {n:'3',t:'Apna transaction find karein aur <b>Refund Request</b> click karein. 3-5 din mein paisa wapas aa jayega.'},
+    ],
+    noteBox:'<b>Yaad rakhein:</b> Refund request purchase ke 48 ghante ke andar karni hogi. Iske baad refund possible nahi hoga. Koi masla ho toh Facebook par humse rabta karein.',
+    fbTitle:'Madad Chahiye?',
+    fbSub:'Facebook par message karein — hum zaroor jawab denge.',
+    footer:'© 2026 SmartSaathi. All rights reserved.',
+  },
+  bd:{
+    heroTitle:'৪৮ ঘণ্টার রিফান্ড',
+    heroSub:'পছন্দ না হলে — পুরো টাকা ফেরত। কোনো প্রশ্ন নেই।',
+    promiseTitle:'আমাদের প্রতিশ্রুতি',
+    promiseTxt:'কেনার <b>৪৮ ঘণ্টার মধ্যে</b> পছন্দ না হলে — পুরো SAR 11 ফেরত। আমাদের উপর বিশ্বাস রাখুন।',
+    stepsTitle:'রিফান্ড কীভাবে পাবেন — ৩ সহজ ধাপ',
+    steps:[
+      {n:'১',t:'<b>paddle.net</b>-এ যান — <a href="https://paddle.net" target="_blank">paddle.net</a>'},
+      {n:'২',t:'কেনার সময় যে <b>email</b> ব্যবহার করেছিলেন সেটি দিন।'},
+      {n:'৩',t:'আপনার transaction খুঁজে <b>Refund Request</b> ক্লিক করুন। ৩-৫ দিনে টাকা ফেরত আসবে।'},
+    ],
+    noteBox:'<b>মনে রাখুন:</b> রিফান্ড অনুরোধ কেনার ৪৮ ঘণ্টার মধ্যে করতে হবে। এরপর রিফান্ড সম্ভব নয়। কোনো সমস্যায় Facebook-এ আমাদের সাথে যোগাযোগ করুন।',
+    fbTitle:'সাহায্য দরকার?',
+    fbSub:'Facebook-এ মেসেজ করুন — আমরা অবশ্যই উত্তর দেব।',
+    footer:'© 2026 SmartSaathi. সর্বস্বত্ব সংরক্ষিত।',
+  }
+};
 
-<h2>3. Refund Timeframe</h2>
-<p>Refund requests must be made within <strong>7 days</strong> of your original purchase date. Requests made after 7 days will be considered on a case-by-case basis.</p>
+var cur='ur';
+function setL(lang){
+  cur=lang;
+  document.getElementById('btnUR').classList.toggle('on',lang==='ur');
+  document.getElementById('btnBD').classList.toggle('on',lang==='bd');
+  render();
+}
+function G(id){return document.getElementById(id);}
+function setH(id,v){var e=G(id);if(e)e.innerHTML=v;}
+function setT(id,v){var e=G(id);if(e)e.textContent=v;}
 
-<h2>4. How Refunds Are Processed</h2>
-<p>Refunds are processed by Paddle, our payment processor. The refunded amount will be returned to your original payment method. Processing time depends on your bank or card provider — typically 3-10 business days after we approve the refund.</p>
-
-<h2>5. After a Refund</h2>
-<p>Once a refund is issued, your access to the purchased product will be deactivated. If you wish to use the product again in the future, a new purchase will be required.</p>
-
-<h2>6. Technical Issues</h2>
-<p>If you are experiencing technical problems accessing your purchased product, please contact us before requesting a refund. We are happy to help resolve any technical issues quickly. Most issues can be fixed within a few hours.</p>
-
-<h2>7. Contact</h2>
-<p>Refund requests and support: <a href="mailto:hello@smartsaathi.app">hello@smartsaathi.app</a></p>
-<p>We typically respond within 24 hours.</p>
-
-<div class="footer-links">
-  <a href="/">Home</a>
-  <a href="/terms">Terms of Service</a>
-  <a href="/privacy">Privacy Policy</a>
-</div>
-</div>
+function render(){
+  var d=L[cur];
+  setT('heroTitle',d.heroTitle);
+  setT('heroSub',d.heroSub);
+  setT('promiseTitle',d.promiseTitle);
+  setH('promiseTxt',d.promiseTxt);
+  setT('stepsTitle',d.stepsTitle);
+  var sl=G('stepsList');sl.innerHTML='';
+  d.steps.forEach(function(s){
+    var el=document.createElement('div');el.className='step';
+    el.innerHTML='<div class="step-num">'+s.n+'</div><div class="step-txt">'+s.t+'</div>';
+    sl.appendChild(el);
+  });
+  setH('noteBox',d.noteBox);
+  setT('fbTitle',d.fbTitle);
+  setT('fbSub',d.fbSub);
+  setT('footerTxt',d.footer);
+}
+render();
+</script>
 </body>
 </html>
