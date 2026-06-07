@@ -3,206 +3,257 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<mefta name="description" content="Smart Bachat — Gulf workers ke liye salary, bachat aur madad ka tool. SAR 11 mein hamesha ke liye.">
+<meta name="description" content="Smart Bachat — Gulf workers ke liye salary, bachat aur madad ka tool. SAR 11 mein hamesha ke liye.">
 <meta name="theme-color" content="#0A1A10">
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1488955313010937');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1488955313010937&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 <meta property="og:title" content="Smart Bachat — Gulf Mein Ho? Paise Sambhalo.">
 <meta property="og:description" content="Salary taqseem, bachat tracker, Help Now aur wapsi plan — sirf SAR 11.">
 <title>Smart Bachat — Gulf Mein Ho? Paise Sambhalo.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1488955313010937');fbq('track','PageView');
+</script>
 <style>
-/* ── RESET & BASE ── */
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 :root{
-  --bg:#0A1A10;--bg2:#0F2318;--bg3:#162B1C;
-  --g1:#1B4332;--g2:#2D6A4F;--g3:#40916C;--g4:#74C69D;
+  --bg:#081410;--bg2:#0D1F17;--bg3:#122319;
+  --g1:#1B4332;--g2:#2D6A4F;--g3:#40916C;--g4:#74C69D;--g5:#95D5B2;
   --gold:#F0C040;--amber:#F4A261;--red:#E07A7A;
   --tx:#EEF7F0;--ts:#B8D4BE;--tm:#5E8A68;
-  --bd:rgba(116,198,157,.15);
+  --bd:rgba(116,198,157,.12);
 }
 html{scroll-behavior:smooth;}
 body{
-  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Baloo 2',sans-serif;
+  font-family:'Hind',-apple-system,BlinkMacSystemFont,sans-serif;
   background:var(--bg);color:var(--tx);
   line-height:1.6;overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
 a{color:var(--g4);text-decoration:none;}
 
-/* ── LANGUAGE TOGGLE ── */
+/* ── LANG BAR ── */
 .lang-bar{
-  position:sticky;top:0;z-index:100;
+  position:sticky;top:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
   padding:10px 16px;
-  background:rgba(10,26,16,.95);
+  background:rgba(8,20,16,.97);
   border-bottom:1px solid var(--bd);
-  backdrop-filter:blur(12px);
+  backdrop-filter:blur(20px);
 }
-.lang-logo{font-size:17px;font-weight:800;color:var(--g4);}
+.lang-logo{font-size:16px;font-weight:800;color:var(--g4);font-family:'Baloo 2',sans-serif;}
 .lang-btns{display:flex;gap:6px;}
 .lang-btn{
-  padding:6px 14px;border-radius:20px;
-  font-size:13px;font-weight:700;cursor:pointer;
-  border:1.5px solid var(--bd);
-  background:transparent;color:var(--tm);
-  font-family:inherit;transition:all .2s;
+  padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;
+  cursor:pointer;border:1.5px solid var(--bd);
+  background:transparent;color:var(--tm);font-family:inherit;transition:all .2s;
 }
 .lang-btn.on{background:var(--g3);border-color:var(--g3);color:#fff;}
 
-/* ── STICKY BUY BTN ── */
+/* ── STICKY BUY ── */
 .sticky-cta{
-  position:fixed;bottom:0;left:0;right:0;z-index:99;
-  padding:12px 16px max(12px,env(safe-area-inset-bottom));
-  background:rgba(10,26,16,.97);
-  border-top:1px solid var(--bd);
-  backdrop-filter:blur(12px);
-  display:flex;align-items:center;justify-content:space-between;
-  gap:12px;
+  position:fixed;bottom:0;left:0;right:0;z-index:199;
+  padding:10px 16px max(10px,env(safe-area-inset-bottom));
+  background:rgba(8,20,16,.98);
+  border-top:1px solid rgba(240,192,64,.2);
+  backdrop-filter:blur(20px);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
 }
-.sticky-price{font-size:13px;color:var(--ts);line-height:1.4;}
-.sticky-price b{color:var(--gold);font-size:16px;display:block;}
+.sticky-price{font-size:12px;color:var(--ts);line-height:1.4;}
+.sticky-price b{color:var(--gold);font-size:18px;display:block;font-family:'Baloo 2',sans-serif;}
 .sticky-buy{
   flex:1;padding:14px;
-  background:linear-gradient(135deg,var(--g3),var(--g1));
+  background:linear-gradient(135deg,#F0C040,#F4A261);
   border:none;border-radius:14px;
-  color:#fff;font-size:16px;font-weight:800;
+  color:#0A1A10;font-size:16px;font-weight:800;
   cursor:pointer;font-family:'Baloo 2',sans-serif;
   white-space:nowrap;
-  box-shadow:0 4px 20px rgba(45,106,79,.4);
+  box-shadow:0 4px 24px rgba(240,192,64,.35);
+  transition:transform .15s;
 }
 .sticky-buy:active{transform:scale(.97);}
 
-/* ── SECTIONS ── */
-section{padding:0 16px;max-width:480px;margin:0 auto;}
-
 /* ── HERO ── */
 .hero{
-  min-height:92vh;display:flex;flex-direction:column;
+  position:relative;min-height:96vh;
+  display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  text-align:center;padding:40px 20px 100px;
-  position:relative;
+  text-align:center;padding:28px 20px 110px;
+  overflow:hidden;
 }
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(45,106,79,.18),transparent 70%);
+.hero::after{
+  content:'';position:absolute;
+  width:600px;height:400px;
+  background:radial-gradient(ellipse,rgba(45,106,79,.2) 0%,transparent 70%);
+  top:5%;left:50%;transform:translateX(-50%);
   pointer-events:none;
 }
-.hero-worker{
-  font-size:72px;margin-bottom:16px;
-  animation:float 3s ease-in-out infinite;
-  position:relative;z-index:1;
+
+/* ══ MEDAL STRIP — 3 genuine trust medals ══ */
+.medal-strip{
+  display:flex;gap:10px;justify-content:center;
+  margin-bottom:22px;position:relative;z-index:2;
+  flex-wrap:wrap;
 }
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.medal{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  background:linear-gradient(160deg,rgba(240,192,64,.1),rgba(240,192,64,.04));
+  border:1.5px solid rgba(240,192,64,.3);
+  border-radius:16px;padding:10px 12px;
+  min-width:82px;
+  position:relative;
+  box-shadow:0 2px 16px rgba(240,192,64,.08),inset 0 1px 0 rgba(240,192,64,.15);
+}
+/* Shimmer top line on each medal */
+.medal::before{
+  content:'';position:absolute;top:0;left:15%;right:15%;
+  height:1.5px;
+  background:linear-gradient(90deg,transparent,rgba(240,192,64,.6),transparent);
+  border-radius:2px;
+}
+.medal-icon{
+  font-size:26px;line-height:1;
+  filter:drop-shadow(0 2px 6px rgba(240,192,64,.4));
+}
+.medal-label{
+  font-size:10px;font-weight:700;color:var(--gold);
+  line-height:1.3;text-align:center;letter-spacing:.02em;
+}
+.medal-sub{
+  font-size:9px;color:var(--ts);text-align:center;line-height:1.3;
+}
+
+/* ── GUARANTEE RIBBON (below medals) ── */
+.guarantee-ribbon{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(116,198,157,.07);
+  border:1px solid rgba(116,198,157,.2);
+  border-radius:30px;padding:6px 16px;
+  font-size:12px;color:var(--g5);font-weight:600;
+  margin-bottom:18px;position:relative;z-index:2;
+}
+.guarantee-ribbon span{color:var(--tm);}
+
 .hero-badge{
   display:inline-flex;align-items:center;gap:6px;
   padding:5px 14px;border-radius:20px;
-  background:rgba(116,198,157,.1);
-  border:1px solid rgba(116,198,157,.25);
-  font-size:12px;color:var(--g4);
-  margin-bottom:20px;font-weight:700;
-  letter-spacing:.04em;position:relative;z-index:1;
+  background:rgba(116,198,157,.07);
+  border:1px solid rgba(116,198,157,.18);
+  font-size:12px;color:var(--g5);
+  margin-bottom:16px;font-weight:700;
+  letter-spacing:.04em;position:relative;z-index:2;
 }
 .hero-h1{
-  font-size:clamp(28px,7vw,40px);font-weight:800;
+  font-size:clamp(30px,8vw,44px);font-weight:800;
   font-family:'Baloo 2',sans-serif;
-  line-height:1.2;margin-bottom:16px;
-  position:relative;z-index:1;
+  line-height:1.15;margin-bottom:6px;
+  position:relative;z-index:2;
 }
-.hero-h1 .hi{color:var(--g4);}
-.hero-h1 .pain{color:var(--amber);}
+.hero-h1 .line1{color:var(--g5);}
+.hero-h1 .line2{color:var(--amber);display:block;margin-top:4px;font-size:clamp(26px,7vw,38px);}
+
+/* ── PHONE MOCKUP ── */
+.phone-mockup{
+  position:relative;z-index:2;
+  margin:18px auto 18px;
+  width:196px;
+  background:var(--bg2);
+  border-radius:22px;
+  border:2px solid rgba(116,198,157,.18);
+  padding:9px;
+  box-shadow:0 24px 60px rgba(0,0,0,.65),0 0 0 1px rgba(116,198,157,.06);
+  transform:perspective(900px) rotateX(3deg);
+}
+.phone-screen{background:var(--bg3);border-radius:14px;overflow:hidden;padding:10px;}
+.ps-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.ps-title{font-size:9px;font-weight:800;color:var(--g4);font-family:'Baloo 2',sans-serif;}
+.ps-badge{font-size:7px;background:rgba(116,198,157,.12);color:var(--g4);padding:2px 6px;border-radius:5px;}
+.ps-card{background:linear-gradient(135deg,var(--g1),#0d2b1d);border-radius:9px;padding:8px;margin-bottom:6px;}
+.ps-card-label{font-size:7px;color:var(--ts);margin-bottom:1px;}
+.ps-card-val{font-size:14px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;}
+.ps-stats{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:6px;}
+.ps-stat{background:rgba(116,198,157,.07);border-radius:6px;padding:5px 6px;border:1px solid var(--bd);}
+.ps-stat-label{font-size:6px;color:var(--tm);}
+.ps-stat-val{font-size:9px;font-weight:700;color:var(--g4);}
+.ps-prog-label{font-size:6px;color:var(--ts);margin-bottom:3px;}
+.ps-prog-track{height:5px;background:rgba(116,198,157,.1);border-radius:3px;overflow:hidden;}
+.ps-prog-fill{height:100%;background:linear-gradient(90deg,var(--g3),var(--g4));border-radius:3px;width:38%;}
+.ps-nav{display:flex;justify-content:center;gap:7px;margin-top:8px;}
+.ps-dot{width:6px;height:6px;border-radius:50%;background:rgba(116,198,157,.12);}
+.ps-dot.active{background:var(--g4);width:16px;border-radius:3px;}
+
 .hero-sub{
-  font-size:16px;color:var(--ts);line-height:1.8;
-  margin-bottom:32px;max-width:340px;
-  position:relative;z-index:1;
+  font-size:15px;color:var(--ts);line-height:1.9;
+  margin-bottom:22px;max-width:320px;
+  position:relative;z-index:2;
 }
 .hero-sub b{color:var(--tx);}
+
 .hero-cta{
-  width:100%;max-width:340px;
-  padding:18px;
-  background:linear-gradient(135deg,var(--g3),var(--g1));
+  width:100%;max-width:320px;padding:17px;
+  background:linear-gradient(135deg,#F0C040,#F4A261);
   border:none;border-radius:16px;
-  color:#fff;font-size:18px;font-weight:800;
+  color:#0A1A10;font-size:18px;font-weight:800;
   cursor:pointer;font-family:'Baloo 2',sans-serif;
-  box-shadow:0 8px 32px rgba(45,106,79,.45);
-  position:relative;z-index:1;margin-bottom:12px;
+  box-shadow:0 8px 32px rgba(240,192,64,.35);
+  position:relative;z-index:2;margin-bottom:10px;
 }
 .hero-cta:active{transform:scale(.97);}
-.hero-note{
-  font-size:12px;color:var(--tm);
-  position:relative;z-index:1;
+
+.hero-note{font-size:12px;color:var(--tm);position:relative;z-index:2;margin-bottom:14px;}
+
+/* Trust row */
+.trust-row{
+  display:flex;gap:6px;flex-wrap:wrap;justify-content:center;
+  position:relative;z-index:2;margin-bottom:12px;
 }
+.trust-badge{
+  font-size:11px;color:var(--ts);
+  background:rgba(116,198,157,.05);
+  border:1px solid var(--bd);border-radius:8px;padding:4px 10px;
+}
+
 .hero-countries{
-  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
-  margin-top:20px;position:relative;z-index:1;
+  display:flex;gap:6px;flex-wrap:wrap;justify-content:center;
+  position:relative;z-index:2;
 }
 .hc-flag{
-  font-size:22px;padding:6px 10px;
-  background:rgba(116,198,157,.07);
-  border:1px solid var(--bd);border-radius:10px;
+  font-size:20px;padding:5px 8px;
+  background:rgba(116,198,157,.05);
+  border:1px solid var(--bd);border-radius:8px;
 }
 
 /* ── DIVIDER ── */
-.divider{
-  height:1px;background:linear-gradient(90deg,transparent,var(--bd),transparent);
-  margin:0 16px 40px;
-}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--bd),transparent);margin:0 16px;}
 
-/* ── PAIN SECTION ── */
-.section-tag{
-  font-size:11px;letter-spacing:.15em;font-weight:700;
-  color:var(--tm);text-transform:uppercase;
-  margin-bottom:12px;
-}
-.section-title{
-  font-size:24px;font-weight:800;
-  font-family:'Baloo 2',sans-serif;
-  margin-bottom:8px;line-height:1.3;
-}
-.section-sub{
-  font-size:14px;color:var(--ts);
-  margin-bottom:24px;line-height:1.7;
-}
-.pain-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+/* ── SECTIONS ── */
+section{padding:36px 16px;max-width:480px;margin:0 auto;}
+.section-tag{font-size:11px;letter-spacing:.15em;font-weight:700;color:var(--tm);text-transform:uppercase;margin-bottom:10px;}
+.section-title{font-size:22px;font-weight:800;font-family:'Baloo 2',sans-serif;margin-bottom:8px;line-height:1.3;}
+.section-sub{font-size:14px;color:var(--ts);margin-bottom:20px;line-height:1.7;}
+
+/* ── PAIN ── */
+.pain-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
 .pain-item{
   display:flex;align-items:flex-start;gap:12px;
-  background:var(--bg2);border:1px solid var(--bd);
-  border-radius:14px;padding:14px;
+  background:rgba(224,122,122,.05);border:1px solid rgba(224,122,122,.13);
+  border-radius:12px;padding:12px 14px;
 }
-.pain-ico{font-size:22px;flex-shrink:0;margin-top:1px;}
+.pain-ico{font-size:20px;flex-shrink:0;margin-top:1px;}
 .pain-txt{font-size:14px;color:var(--ts);line-height:1.6;}
-.pain-txt b{color:var(--tx);}
 .pain-close{
-  margin-top:16px;padding:14px 16px;
-  background:rgba(116,198,157,.06);
-  border:1px solid rgba(116,198,157,.2);
-  border-radius:14px;
-  font-size:15px;color:var(--g4);font-weight:700;
+  margin-top:14px;padding:14px 16px;
+  background:rgba(116,198,157,.07);border:1.5px solid rgba(116,198,157,.22);
+  border-radius:14px;font-size:15px;color:var(--g4);font-weight:700;
   text-align:center;line-height:1.5;
 }
 
 /* ── FEATURES ── */
-.feat-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;}
+.feat-list{display:flex;flex-direction:column;gap:10px;}
 .feat{
   background:var(--bg2);border:1px solid var(--bd);
-  border-radius:16px;padding:16px;
-  display:flex;align-items:flex-start;gap:14px;
+  border-radius:14px;padding:14px 16px;
+  display:flex;align-items:flex-start;gap:12px;
   position:relative;overflow:hidden;
 }
 .feat::before{
@@ -210,141 +261,99 @@ section{padding:0 16px;max-width:480px;margin:0 auto;}
   width:3px;background:linear-gradient(180deg,var(--g3),var(--g4));
   border-radius:3px 0 0 3px;
 }
-.feat-ico{
-  font-size:28px;flex-shrink:0;
-  width:44px;height:44px;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(116,198,157,.08);border-radius:10px;
-}
+.feat-ico{font-size:24px;flex-shrink:0;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(116,198,157,.07);border-radius:10px;}
 .feat-body{flex:1;}
-.feat-title{font-size:15px;font-weight:800;color:var(--g4);margin-bottom:4px;font-family:'Baloo 2',sans-serif;}
-.feat-desc{font-size:13px;color:var(--ts);line-height:1.7;}
+.feat-title{font-size:15px;font-weight:800;color:var(--g4);margin-bottom:3px;font-family:'Baloo 2',sans-serif;}
+.feat-desc{font-size:13px;color:var(--ts);line-height:1.65;}
 .feat-desc b{color:var(--tx);}
 
 /* ── PRICE ── */
 .price-section{
   background:linear-gradient(135deg,var(--bg2),var(--bg3));
-  border:1.5px solid rgba(240,192,64,.2);
-  border-radius:20px;padding:24px 20px;
-  margin-bottom:40px;
+  border:1.5px solid rgba(240,192,64,.22);
+  border-radius:20px;padding:22px 18px;
   position:relative;overflow:hidden;
 }
 .price-section::before{
   content:'';position:absolute;top:0;left:8%;right:8%;
   height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
 }
-.price-title{
-  font-size:18px;font-weight:800;color:var(--gold);
-  font-family:'Baloo 2',sans-serif;
-  text-align:center;margin-bottom:20px;
-}
-.price-grid{
-  display:grid;grid-template-columns:1fr 1fr 1fr;
-  gap:8px;margin-bottom:20px;
-}
-.price-item{
-  background:rgba(0,0,0,.25);border-radius:12px;
-  padding:10px 6px;text-align:center;
-}
-.pi-flag{font-size:20px;margin-bottom:4px;}
-.pi-country{font-size:10px;color:var(--tm);margin-bottom:4px;}
-.pi-price{font-size:18px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;}
-.price-chai{
-  text-align:center;padding:14px;
-  background:rgba(240,192,64,.07);
-  border:1px solid rgba(240,192,64,.2);
-  border-radius:12px;margin-bottom:16px;
-  font-size:15px;color:var(--ts);line-height:1.6;
-  font-style:italic;
-}
+.price-title{font-size:18px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;text-align:center;margin-bottom:8px;}
+.price-hero{text-align:center;margin-bottom:14px;}
+.price-orig{font-size:13px;color:var(--tm);text-decoration:line-through;margin-bottom:2px;}
+.price-big{font-size:52px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;line-height:1;}
+.price-note{font-size:12px;color:var(--ts);}
+.price-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:14px;}
+.price-item{background:rgba(0,0,0,.2);border-radius:10px;padding:8px 4px;text-align:center;border:1px solid var(--bd);}
+.pi-flag{font-size:18px;margin-bottom:2px;}
+.pi-country{font-size:9px;color:var(--tm);margin-bottom:2px;}
+.pi-price{font-size:14px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;}
+.price-chai{text-align:center;padding:12px;background:rgba(240,192,64,.05);border:1px solid rgba(240,192,64,.13);border-radius:10px;margin-bottom:14px;font-size:14px;color:var(--ts);line-height:1.6;font-style:italic;}
 .price-chai b{color:var(--gold);}
-.price-perks{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
-.perk{font-size:12px;color:var(--tm);display:flex;align-items:center;gap:5px;}
-.perk-ico{color:var(--g4);}
+.price-perks{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;}
+.perk{font-size:12px;color:var(--ts);display:flex;align-items:center;gap:5px;background:rgba(116,198,157,.05);border-radius:8px;padding:6px 8px;}
 .price-buy{
-  width:100%;padding:16px;
-  background:linear-gradient(135deg,var(--g3),var(--g1));
+  width:100%;padding:17px;
+  background:linear-gradient(135deg,#F0C040,#F4A261);
   border:none;border-radius:14px;
-  color:#fff;font-size:17px;font-weight:800;
+  color:#0A1A10;font-size:18px;font-weight:800;
   cursor:pointer;font-family:'Baloo 2',sans-serif;
-  box-shadow:0 6px 24px rgba(45,106,79,.35);
+  box-shadow:0 6px 28px rgba(240,192,64,.35);
+  transition:transform .15s;
 }
 .price-buy:active{transform:scale(.97);}
-.price-secure{
-  text-align:center;font-size:11px;color:var(--tm);
-  margin-top:10px;
-}
+.price-guarantee{text-align:center;font-size:12px;color:var(--tm);margin-top:10px;line-height:1.7;}
+.price-guarantee b{color:var(--ts);}
 
 /* ── FAQ ── */
 .faq-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
-.faq-item{
-  background:var(--bg2);border:1px solid var(--bd);
-  border-radius:14px;overflow:hidden;cursor:pointer;
-}
-.faq-q{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 16px;font-size:14px;font-weight:700;color:var(--tx);
-  gap:12px;
-}
-.faq-arr{font-size:16px;color:var(--tm);transition:transform .25s;flex-shrink:0;}
+.faq-item{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;overflow:hidden;cursor:pointer;}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;font-size:14px;font-weight:600;color:var(--tx);gap:12px;}
+.faq-arr{font-size:14px;color:var(--tm);transition:transform .25s;flex-shrink:0;}
 .faq-item.open .faq-arr{transform:rotate(180deg);}
-.faq-a{
-  max-height:0;overflow:hidden;transition:max-height .35s ease;
-  font-size:13px;color:var(--ts);line-height:1.8;
-}
-.faq-item.open .faq-a{max-height:200px;}
-.faq-a-inner{padding:0 16px 14px;border-top:1px solid var(--bd);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;font-size:13px;color:var(--ts);line-height:1.8;}
+.faq-item.open .faq-a{max-height:220px;}
+.faq-a-inner{padding:0 15px 13px;border-top:1px solid var(--bd);}
 
 /* ── FEEDBACK ── */
-.feedback-card{
-  background:var(--bg2);border:1px solid rgba(24,119,242,.3);
-  border-radius:16px;padding:18px 16px;
-  margin-bottom:40px;
-  display:flex;align-items:center;gap:14px;
-}
-.fb-ico{
-  width:44px;height:44px;border-radius:12px;
-  background:#1877F2;display:flex;align-items:center;
-  justify-content:center;font-size:22px;flex-shrink:0;
-}
+.feedback-card{background:var(--bg2);border:1px solid rgba(24,119,242,.22);border-radius:16px;padding:16px;display:flex;align-items:center;gap:12px;}
+.fb-ico{width:40px;height:40px;border-radius:10px;background:#1877F2;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
 .fb-body{flex:1;}
-.fb-title{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:4px;}
+.fb-title{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:3px;}
 .fb-sub{font-size:12px;color:var(--tm);line-height:1.5;}
-.fb-btn{
-  padding:9px 16px;background:#1877F2;border:none;
-  border-radius:10px;color:#fff;font-size:13px;
-  font-weight:700;cursor:pointer;font-family:inherit;
-  white-space:nowrap;flex-shrink:0;
-}
+.fb-btn{padding:9px 14px;background:#1877F2;border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;}
 
 /* ── FOOTER ── */
-footer{
-  text-align:center;padding:24px 16px 120px;
-  border-top:1px solid var(--bd);
-}
+footer{text-align:center;padding:24px 16px 120px;border-top:1px solid var(--bd);}
 .footer-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:10px;}
 .footer-links a{font-size:12px;color:var(--tm);}
 .footer-copy{font-size:11px;color:var(--tm);}
-.login-btn{
-  display:inline-block;padding:8px 20px;
-  border:1.5px solid var(--bd);border-radius:8px;
-  font-size:13px;color:var(--g4);font-weight:600;
-  margin-bottom:16px;
-}
+.login-btn{display:inline-block;padding:8px 20px;border:1.5px solid var(--bd);border-radius:8px;font-size:13px;color:var(--g4);font-weight:600;margin-bottom:16px;}
 
-/* ── SPACING ── */
-.pt40{padding-top:40px;}
-.pb40{padding-bottom:40px;}
-.mb24{margin-bottom:24px;}
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.medal-strip{animation:fadeUp .45s .05s ease both;}
+.guarantee-ribbon{animation:fadeUp .45s .1s ease both;}
+.hero-badge{animation:fadeUp .45s .15s ease both;}
+.hero-h1{animation:fadeUp .45s .2s ease both;}
+.phone-mockup{animation:fadeUp .5s .25s ease both;}
+.hero-sub{animation:fadeUp .45s .3s ease both;}
+.hero-cta{animation:fadeUp .45s .35s ease both;}
+.hero-note{animation:fadeUp .45s .38s ease both;}
+.trust-row{animation:fadeUp .45s .4s ease both;}
+.hero-countries{animation:fadeUp .45s .43s ease both;}
 
-/* ── LANGUAGE TOGGLE ANIMATION ── */
-.lang-content{transition:opacity .2s;}
-.lang-content.switching{opacity:0;}
+@keyframes medalGlow{0%,100%{box-shadow:0 2px 16px rgba(240,192,64,.08),inset 0 1px 0 rgba(240,192,64,.15)}50%{box-shadow:0 4px 24px rgba(240,192,64,.2),inset 0 1px 0 rgba(240,192,64,.25)}}
+.medal{animation:medalGlow 3s ease-in-out infinite;}
+.medal:nth-child(2){animation-delay:.8s;}
+.medal:nth-child(3){animation-delay:1.6s;}
+
+@keyframes pulse{0%,100%{box-shadow:0 8px 32px rgba(240,192,64,.35)}50%{box-shadow:0 8px 44px rgba(240,192,64,.6)}}
+.hero-cta{animation:fadeUp .45s .35s ease both,pulse 2.5s 1s ease-in-out infinite;}
 </style>
 </head>
 <body>
 
-<!-- MAGIC LINK HANDLER -->
 <script>
 (function(){
   var h=window.location.hash||'',s=window.location.search||'';
@@ -354,7 +363,7 @@ footer{
 })();
 </script>
 
-<!-- LANGUAGE TOGGLE BAR -->
+<!-- LANG BAR -->
 <div class="lang-bar">
   <div class="lang-logo">💰 SmartSaathi</div>
   <div class="lang-btns">
@@ -363,32 +372,111 @@ footer{
   </div>
 </div>
 
-<!-- STICKY BUY BUTTON -->
+<!-- STICKY BUY -->
 <div class="sticky-cta">
   <div class="sticky-price">
     <b id="stickyPrice">SAR 11</b>
     <span id="stickyNote">Sirf ek baar — hamesha ke liye</span>
   </div>
-  <button class="sticky-buy" id="stickyBtn" onclick="window.location.href='/checkout'">Abhi Lo →</button>
+  <button class="sticky-buy" id="stickyBtn" onclick="goBuy()">Abhi Lo →</button>
 </div>
 
-<!-- HERO -->
+<!-- ══ HERO ══ -->
 <div class="hero">
-  <div class="hero-worker" id="heroWorker">🏗️</div>
-  <div class="hero-badge" id="heroBadge">🌍 Gulf Workers ke liye</div>
+
+  <!-- ══ 3 GENUINE TRUST MEDALS ══ -->
+  <div class="medal-strip">
+
+    <div class="medal">
+      <div class="medal-icon">🏅</div>
+      <div class="medal-label" id="medal1label">48 Ghante<br>Refund</div>
+      <div class="medal-sub" id="medal1sub">Koi sawaal nahi</div>
+    </div>
+
+    <div class="medal">
+      <div class="medal-icon">🔒</div>
+      <div class="medal-label" id="medal2label">100% Secure<br>Payment</div>
+      <div class="medal-sub" id="medal2sub">Paddle verified</div>
+    </div>
+
+    <div class="medal">
+      <div class="medal-icon">♾️</div>
+      <div class="medal-label" id="medal3label">Lifetime<br>Access</div>
+      <div class="medal-sub" id="medal3sub">Ek baar — hamesha</div>
+    </div>
+
+  </div>
+
+  <!-- Guarantee ribbon -->
+  <div class="guarantee-ribbon">
+    🛡️ <strong id="guaranteeText">100% Money-Back Guarantee — 48 Ghante</strong>
+  </div>
+
+  <div class="hero-badge" id="heroBadge">🌍 Gulf Workers ke liye — Pehli Baar</div>
+
   <h1 class="hero-h1">
-    <span class="hi" id="heroLine1">Gulf Mein Ho?</span><br>
-    <span class="pain" id="heroLine2">Paise Sambhal Nahi Paa Rahe?</span>
+    <span class="line1" id="heroLine1">Gulf Mein Ho?</span>
+    <span class="line2" id="heroLine2">Paise Sambhal Nahi Paa Rahe?</span>
   </h1>
+
+  <!-- App mockup -->
+  <div class="phone-mockup">
+    <div class="phone-screen">
+      <div class="ps-header">
+        <span class="ps-title" id="mockTitle">Smart Bachat</span>
+        <span class="ps-badge" id="mockBadge">Saudi 🇸🇦</span>
+      </div>
+      <div class="ps-card">
+        <div class="ps-card-label" id="mockSalLabel">Meri Salary</div>
+        <div class="ps-card-val">SAR 1,800</div>
+      </div>
+      <div class="ps-stats">
+        <div class="ps-stat">
+          <div class="ps-stat-label" id="mockHome">Ghar Bheja</div>
+          <div class="ps-stat-val">SAR 720</div>
+        </div>
+        <div class="ps-stat">
+          <div class="ps-stat-label" id="mockSave">Bachat</div>
+          <div class="ps-stat-val">SAR 360</div>
+        </div>
+        <div class="ps-stat">
+          <div class="ps-stat-label" id="mockEF">Emergency</div>
+          <div class="ps-stat-val">SAR 180</div>
+        </div>
+        <div class="ps-stat">
+          <div class="ps-stat-label" id="mockSadqa">Sadqa</div>
+          <div class="ps-stat-val">SAR 54</div>
+        </div>
+      </div>
+      <div class="ps-prog-label" id="mockDreamLabel">🌟 Sapna: Ghar — 38%</div>
+      <div class="ps-prog-track"><div class="ps-prog-fill"></div></div>
+      <div class="ps-nav">
+        <div class="ps-dot active"></div>
+        <div class="ps-dot"></div>
+        <div class="ps-dot"></div>
+        <div class="ps-dot"></div>
+        <div class="ps-dot"></div>
+      </div>
+    </div>
+  </div>
+
   <p class="hero-sub" id="heroSub">
     <b>Salary aati hai — chali jaati hai.</b><br>
     Ghar waale maangte hain — bachat hoti nahi.<br>
     Smart Bachat yahi sab sambhalti hai.
   </p>
-  <button class="hero-cta" id="heroBtn" onclick="window.location.href='/checkout'">
+
+  <button class="hero-cta" id="heroBtn" onclick="goBuy()">
     👉 Abhi Shuru Karein — SAR 11 Sirf
   </button>
   <div class="hero-note" id="heroNote">Koi subscription nahi • Hamesha ke liye aapka</div>
+
+  <div class="trust-row">
+    <span class="trust-badge">🔒 Secure Payment</span>
+    <span class="trust-badge" id="trustRefund">↩ 48hr Refund</span>
+    <span class="trust-badge" id="trustAccess">⚡ Instant Access</span>
+  </div>
+
   <div class="hero-countries">
     <div class="hc-flag">🇸🇦</div>
     <div class="hc-flag">🇦🇪</div>
@@ -397,24 +485,23 @@ footer{
     <div class="hc-flag">🇧🇭</div>
     <div class="hc-flag">🇴🇲</div>
   </div>
+
 </div>
 
 <div class="divider"></div>
 
-<!-- PAIN SECTION -->
-<section class="pt40 pb40">
+<!-- PAIN -->
+<section>
   <div class="section-tag" id="painTag">Kya Aap Bhi Aisa Feel Karte Hain?</div>
   <h2 class="section-title" id="painTitle">Aapki Kahani Hai Yeh</h2>
   <div class="pain-list" id="painList"></div>
-  <div class="pain-close" id="painClose">
-    Agar haan — to Smart Bachat aapke liye hi bani hai. ✅
-  </div>
+  <div class="pain-close" id="painClose">Agar haan — to Smart Bachat aapke liye hi bani hai. ✅</div>
 </section>
 
 <div class="divider"></div>
 
-<!-- FEATURES SECTION -->
-<section class="pt40 pb40">
+<!-- FEATURES -->
+<section>
   <div class="section-tag" id="featTag">Kya Karta Hai Smart Bachat?</div>
   <h2 class="section-title" id="featTitle">5 Masail — 5 Hal</h2>
   <p class="section-sub" id="featSub">Pehli baar Gulf workers ke liye — unki zaban mein, unki zaroorat ke mutabiq.</p>
@@ -423,29 +510,35 @@ footer{
 
 <div class="divider"></div>
 
-<!-- PRICE SECTION -->
-<section class="pt40 pb40">
+<!-- PRICE -->
+<section>
   <div class="price-section">
     <div class="price-title" id="priceTitle">💰 Kitna Lagta Hai?</div>
+    <div class="price-hero">
+      <div class="price-orig" id="priceOrig">Normally SAR 25</div>
+      <div class="price-big" id="priceBig">SAR 11</div>
+      <div class="price-note" id="priceNoteText">Ek baar — hamesha ke liye</div>
+    </div>
     <div class="price-grid" id="priceGrid"></div>
     <div class="price-chai" id="priceChaiLine"></div>
     <div class="price-perks" id="pricePerks"></div>
-    <button class="price-buy" onclick="window.location.href='/checkout'" id="priceBuyBtn">
-      👉 Abhi Khareedein
-    </button>
-    <div class="price-secure" id="priceSecure">🔒 Secure payment via Paddle • ✅ Instant access • 💯 48-ghante refund</div>
+    <button class="price-buy" onclick="goBuy()" id="priceBuyBtn">👉 Abhi Khareedein</button>
+    <div class="price-guarantee" id="priceGuarantee">
+      🔒 Secure Paddle payment &nbsp;•&nbsp; ⚡ Instant access<br>
+      <b>💯 48 ghante mein pasand na aaye — poora refund. Koi sawaal nahi.</b>
+    </div>
   </div>
 </section>
 
-<!-- FAQ SECTION -->
-<section class="pb40">
+<!-- FAQ -->
+<section>
   <div class="section-tag" id="faqTag">Sawaal Jawab</div>
-  <h2 class="section-title mb24" id="faqTitle">Kuch Sawaal?</h2>
+  <h2 class="section-title" style="margin-bottom:16px" id="faqTitle">Kuch Sawaal?</h2>
   <div class="faq-list" id="faqList"></div>
 </section>
 
 <!-- FEEDBACK -->
-<section class="pb40">
+<section style="padding-top:0">
   <div class="feedback-card">
     <div class="fb-ico">𝕗</div>
     <div class="fb-body">
@@ -468,20 +561,29 @@ footer{
 </footer>
 
 <script>
-// ── CONTENT ──────────────────────────────────────────────────
-var CONTENT = {
-  ur: {
+function goBuy(){
+  if(window.fbq) fbq('track','InitiateCheckout');
+  window.location.href='/checkout';
+}
+
+var CONTENT={
+  ur:{
+    medal1label:'48 Ghante\nRefund',medal1sub:'Koi sawaal nahi',
+    medal2label:'100% Secure\nPayment',medal2sub:'Paddle verified',
+    medal3label:'Lifetime\nAccess',medal3sub:'Ek baar — hamesha',
+    guaranteeText:'100% Money-Back Guarantee — 48 Ghante',
     heroBadge:'🌍 Gulf Workers ke liye — Pehli Baar',
     heroLine1:'Gulf Mein Ho?',
     heroLine2:'Paise Sambhal Nahi Paa Rahe?',
     heroSub:'<b>Salary aati hai — chali jaati hai.</b><br>Ghar waale maangte hain — bachat hoti nahi.<br>Smart Bachat yahi sab sambhalti hai.',
     heroBtn:'👉 Abhi Shuru Karein — SAR 11 Sirf',
     heroNote:'Koi subscription nahi • Hamesha ke liye aapka',
-    stickyPrice:'SAR 11',
-    stickyNote:'Sirf ek baar — hamesha ke liye',
-    stickyBtn:'Abhi Lo →',
-    painTag:'Kya Aap Bhi Aisa Feel Karte Hain?',
-    painTitle:'Aapki Kahani Hai Yeh',
+    trustRefund:'↩ 48hr Refund',trustAccess:'⚡ Instant Access',
+    mockTitle:'Smart Bachat',mockBadge:'Saudi 🇸🇦',
+    mockSalLabel:'Meri Salary',mockHome:'Ghar Bheja',mockSave:'Bachat',mockEF:'Emergency',mockSadqa:'Sadqa',
+    mockDreamLabel:'🌟 Sapna: Ghar — 38%',
+    stickyPrice:'SAR 11',stickyNote:'Sirf ek baar — hamesha ke liye',stickyBtn:'Abhi Lo →',
+    painTag:'Kya Aap Bhi Aisa Feel Karte Hain?',painTitle:'Aapki Kahani Hai Yeh',
     pains:[
       {ico:'😔',t:'Mahine ke aakhir mein haath khali hota hai — pata nahi paisa kahan gaya.'},
       {ico:'😔',t:'Ghar waale maangte hain — samajh nahi aata kitna bhejein, kitna apne liye rakhein.'},
@@ -490,8 +592,7 @@ var CONTENT = {
       {ico:'😔',t:'Wapsi ka sapna hai — lekin koi plan nahi, koi countdown nahi.'},
     ],
     painClose:'Agar haan — to Smart Bachat aapke liye hi bani hai. ✅',
-    featTag:'Kya Karta Hai Smart Bachat?',
-    featTitle:'5 Masail — 5 Hal',
+    featTag:'Kya Karta Hai Smart Bachat?',featTitle:'5 Masail — 5 Hal',
     featSub:'Pehli baar Gulf workers ke liye — unki zaban mein, unki zaroorat ke mutabiq.',
     feats:[
       {ico:'💰',t:'Salary Taqseem',d:'Salary aate hi — ghar, apna kharcha, emergency aur bachat mein baat jaaye. <b>Khud-ba-khud, bina soche.</b>'},
@@ -501,35 +602,39 @@ var CONTENT = {
       {ico:'🏆',t:'EOSD Calculator',d:'Naukri chorte waqt company kitna dene ki paaband hai? <b>Apna legal haq khud calculate karo.</b>'},
     ],
     priceTitle:'💰 Kitna Lagta Hai?',
+    priceOrig:'Normally SAR 25',priceBig:'SAR 11',priceNoteText:'Ek baar — hamesha ke liye',
     priceChaiLine:'<b>"Ek din ki chai ki qeemat mein —<br>poori zindagi ki bachat."</b>',
     perks:['✅ Koi subscription nahi','✅ Hamesha ke liye aapka','✅ 48-ghante refund','✅ Koi app download nahi'],
     priceBuyBtn:'👉 Abhi Khareedein',
-    priceSecure:'🔒 Secure payment via Paddle • ✅ Instant access • 💯 48-ghante refund',
-    faqTag:'Sawaal Jawab',
-    faqTitle:'Kuch Sawaal?',
+    priceGuarantee:'🔒 Secure Paddle payment &nbsp;•&nbsp; ⚡ Instant access<br><b>💯 48 ghante mein pasand na aaye — poora refund. Koi sawaal nahi.</b>',
+    faqTag:'Sawaal Jawab',faqTitle:'Kuch Sawaal?',
     faqs:[
       {q:'Kya yeh real app hai?',a:'Haan — yeh browser mein khulti hai aur home screen pe save hoti hai. Bilkul real app jaisi feel aati hai. Android aur iPhone dono par kaam karta hai.'},
       {q:'Kya mera data safe hai?',a:'Bilkul safe. Aapka data sirf aapke phone mein store hota hai. Hum koi personal financial data apne servers par save nahi karte.'},
       {q:'Agar pasand na aaye?',a:'Koi tension nahi. 48 ghante ke andar full refund milega — bina sawaal. Aapka paisa safe hai.'},
+      {q:'Payment kaise hogi?',a:'Paddle ke through — yeh ek international payment system hai. Visa, Mastercard sab accept hota hai. 100% secure.'},
     ],
-    fbTitle:'Koi Masla? Suggestion Hai?',
-    fbSub:'Humein Facebook par batayein — hum zaroor sunenge.',
-    fbBtn:'Facebook Par Likhein',
+    fbTitle:'Koi Masla? Suggestion Hai?',fbSub:'Humein Facebook par batayein — hum zaroor sunenge.',fbBtn:'Facebook Par Likhein',
     loginBtn:'Already khareed liya? Login karein →',
     footTerms:'Terms',footPrivacy:'Privacy',footRefund:'Refund',
   },
-  bd: {
+  bd:{
+    medal1label:'৪৮ ঘন্টা\nরিফান্ড',medal1sub:'কোনো প্রশ্ন নেই',
+    medal2label:'১০০% নিরাপদ\nপেমেন্ট',medal2sub:'Paddle verified',
+    medal3label:'সারাজীবন\nঅ্যাক্সেস',medal3sub:'একবার — সারাজীবন',
+    guaranteeText:'১০০% Money-Back Guarantee — ৪৮ ঘন্টা',
     heroBadge:'🌍 Gulf কর্মীদের জন্য — প্রথমবার',
     heroLine1:'Gulf-এ আছেন?',
     heroLine2:'টাকা সামলাতে পারছেন না?',
     heroSub:'<b>বেতন আসে — চলে যায়।</b><br>পরিবার চাপ দেয় — বাচাত হয় না।<br>Smart Bachat সব সামলায়।',
     heroBtn:'👉 এখনই শুরু করুন — SAR 11 মাত্র',
     heroNote:'কোনো সাবস্ক্রিপশন নেই • সারাজীবনের জন্য আপনার',
-    stickyPrice:'SAR 11',
-    stickyNote:'মাত্র একবার — সারাজীবনের জন্য',
-    stickyBtn:'এখনই নিন →',
-    painTag:'আপনিও কি এরকম অনুভব করেন?',
-    painTitle:'এটা আপনার গল্প',
+    trustRefund:'↩ ৪৮ঘন্টা রিফান্ড',trustAccess:'⚡ তাৎক্ষণিক অ্যাক্সেস',
+    mockTitle:'Smart Bachat',mockBadge:'Saudi 🇸🇦',
+    mockSalLabel:'আমার বেতন',mockHome:'বাড়ি পাঠানো',mockSave:'বাচাত',mockEF:'জরুরি ফান্ড',mockSadqa:'সদকা',
+    mockDreamLabel:'🌟 স্বপ্ন: বাড়ি — ৩৮%',
+    stickyPrice:'SAR 11',stickyNote:'মাত্র একবার — সারাজীবনের জন্য',stickyBtn:'এখনই নিন →',
+    painTag:'আপনিও কি এরকম অনুভব করেন?',painTitle:'এটা আপনার গল্প',
     pains:[
       {ico:'😔',t:'মাসের শেষে হাত খালি — টাকা কোথায় গেল বুঝতে পারি না।'},
       {ico:'😔',t:'পরিবার চাপ দেয় — কতটুকু পাঠাব, কতটুকু নিজের জন্য রাখব বুঝি না।'},
@@ -538,37 +643,35 @@ var CONTENT = {
       {ico:'😔',t:'দেশে ফেরার স্বপ্ন আছে — কিন্তু পরিকল্পনা নেই, কাউন্টডাউন নেই।'},
     ],
     painClose:'যদি হ্যাঁ হয় — Smart Bachat আপনার জন্যই তৈরি। ✅',
-    featTag:'Smart Bachat কী করে?',
-    featTitle:'৫ সমস্যা — ৫ সমাধান',
+    featTag:'Smart Bachat কী করে?',featTitle:'৫ সমস্যা — ৫ সমাধান',
     featSub:'প্রথমবার Gulf কর্মীদের জন্য — তাদের ভাষায়, তাদের প্রয়োজনে।',
     feats:[
-      {ico:'💰',t:'বেতন বণ্টন',d:'বেতন আসতেই — বাড়ি, নিজের খরচ, জরুরি ফান্ড ও বাচাতে ভাগ হয়ে যায়। <b>নিজে থেকেই, না ভেবেই।</b>'},
+      {ico:'💰',t:'বেতন বণ্টন',d:'বেতন আসতেই — বাড়ি, নিজের খরচ, জরুরি ফান্ড ও বাচাতে ভাগ হয়ে যায়। <b>নিজে থেকেই।</b>'},
       {ico:'🆘',t:'Help Now — বিপদে',d:'বেতন আসেনি? কাফেল পাসপোর্ট আটকেছে? ইকামা সমস্যা? <b>ধাপে ধাপে বাংলায় — এখনই কী করবেন।</b>'},
       {ico:'🌟',t:'ফেরার স্বপ্ন',d:'বাড়ি, দোকান বা ঋণমুক্তি — নিজের স্বপ্ন বেছে নিন। <b>App বলবে কত মাসে পূরণ হবে।</b>'},
       {ico:'🛡️',t:'পরিবার শিল্ড',d:'পরিবার বেশি চাইলে — কী জবাব দেবেন? <b>প্রস্তুত মেসেজ — কপি করুন, WhatsApp করুন।</b>'},
       {ico:'🏆',t:'EOSD Calculator',d:'চাকরি ছাড়লে কোম্পানি কতটুকু দিতে বাধ্য? <b>নিজের আইনি অধিকার নিজেই হিসাব করুন।</b>'},
     ],
     priceTitle:'💰 কত লাগবে?',
+    priceOrig:'সাধারণত SAR 25',priceBig:'SAR 11',priceNoteText:'একবার — সারাজীবনের জন্য',
     priceChaiLine:'<b>"এক দিনের চায়ের দামে —<br>সারাজীবনের বাচাত।"</b>',
-    perks:['✅ কোনো সাবস্ক্রিপশন নেই','✅ সারাজীবনের জন্য আপনার','✅ ৪৮ ঘণ্টার রিফান্ড','✅ কোনো App ডাউনলোড নেই'],
+    perks:['✅ কোনো সাবস্ক্রিপশন নেই','✅ সারাজীবনের জন্য','✅ ৪৮ ঘণ্টার রিফান্ড','✅ App ডাউনলোড নেই'],
     priceBuyBtn:'👉 এখনই কিনুন',
-    priceSecure:'🔒 Paddle-এ নিরাপদ পেমেন্ট • ✅ তাৎক্ষণিক অ্যাক্সেস • 💯 ৪৮ ঘণ্টার রিফান্ড',
-    faqTag:'প্রশ্ন-উত্তর',
-    faqTitle:'কিছু প্রশ্ন?',
+    priceGuarantee:'🔒 Paddle-এ নিরাপদ পেমেন্ট &nbsp;•&nbsp; ⚡ তাৎক্ষণিক অ্যাক্সেস<br><b>💯 ৪৮ ঘণ্টায় পছন্দ না হলে — পুরো টাকা ফেরত।</b>',
+    faqTag:'প্রশ্ন-উত্তর',faqTitle:'কিছু প্রশ্ন?',
     faqs:[
-      {q:'এটা কি আসল App?',a:'হ্যাঁ — এটা browser-এ খোলে এবং home screen-এ সেভ হয়। একদম real App-এর মতো অনুভূতি। Android ও iPhone দুটোতেই কাজ করে।'},
-      {q:'আমার ডেটা কি নিরাপদ?',a:'সম্পূর্ণ নিরাপদ। আপনার ডেটা শুধু আপনার ফোনে জমা থাকে। আমরা কোনো personal আর্থিক তথ্য আমাদের server-এ সেভ করি না।'},
-      {q:'পছন্দ না হলে?',a:'কোনো চিন্তা নেই। ৪৮ ঘণ্টার মধ্যে পুরো টাকা ফেরত — কোনো প্রশ্ন ছাড়া। আপনার টাকা নিরাপদ।'},
+      {q:'এটা কি আসল App?',a:'হ্যাঁ — এটা browser-এ খোলে এবং home screen-এ সেভ হয়। একদম real App-এর মতো। Android ও iPhone দুটোতেই কাজ করে।'},
+      {q:'আমার ডেটা কি নিরাপদ?',a:'সম্পূর্ণ নিরাপদ। আপনার ডেটা শুধু আপনার ফোনে জমা থাকে। কোনো personal তথ্য server-এ যায় না।'},
+      {q:'পছন্দ না হলে?',a:'কোনো চিন্তা নেই। ৪৮ ঘণ্টার মধ্যে পুরো টাকা ফেরত — কোনো প্রশ্ন ছাড়া।'},
+      {q:'পেমেন্ট কীভাবে হবে?',a:'Paddle-এর মাধ্যমে — আন্তর্জাতিক payment system। Visa, Mastercard সব গ্রহণযোগ্য। ১০০% নিরাপদ।'},
     ],
-    fbTitle:'কোনো সমস্যা? পরামর্শ আছে?',
-    fbSub:'আমাদের Facebook-এ জানান — আমরা অবশ্যই শুনব।',
-    fbBtn:'Facebook-এ লিখুন',
+    fbTitle:'কোনো সমস্যা? পরামর্শ আছে?',fbSub:'আমাদের Facebook-এ জানান — আমরা অবশ্যই শুনব।',fbBtn:'Facebook-এ লিখুন',
     loginBtn:'ইতিমধ্যে কিনেছেন? Login করুন →',
     footTerms:'শর্তাবলী',footPrivacy:'গোপনীয়তা',footRefund:'রিফান্ড',
   }
 };
 
-var PRICES = [
+var PRICES=[
   {flag:'🇸🇦',country:'Saudi',price:'SAR 11'},
   {flag:'🇦🇪',country:'UAE',price:'AED 11'},
   {flag:'🇶🇦',country:'Qatar',price:'QAR 11'},
@@ -577,120 +680,56 @@ var PRICES = [
   {flag:'🇴🇲',country:'Oman',price:'OMR 1.1'},
 ];
 
-// ── LANG STATE ──────────────────────────────────────────────
-var curLang = 'ur';
-
-function setLang(lang) {
-  curLang = lang;
-  document.getElementById('btnUR').classList.toggle('on', lang==='ur');
-  document.getElementById('btnBD').classList.toggle('on', lang==='bd');
-  document.documentElement.lang = lang==='ur'?'ur':'bn';
-  render();
-}
-
+var curLang='ur';
+function setLang(l){curLang=l;document.getElementById('btnUR').classList.toggle('on',l==='ur');document.getElementById('btnBD').classList.toggle('on',l==='bd');document.documentElement.lang=l==='ur'?'ur':'bn';render();}
 function G(id){return document.getElementById(id);}
 function setH(id,v){var e=G(id);if(e)e.innerHTML=v;}
 function setT(id,v){var e=G(id);if(e)e.textContent=v;}
 
-function render() {
-  var d = CONTENT[curLang];
-
-  // Hero
-  setH('heroBadge', d.heroBadge);
-  setT('heroLine1', d.heroLine1);
-  setT('heroLine2', d.heroLine2);
-  setH('heroSub', d.heroSub);
-  setT('heroBtn', d.heroBtn);
-  setT('heroNote', d.heroNote);
-
-  // Sticky
-  setT('stickyPrice', d.stickyPrice);
-  setT('stickyNote', d.stickyNote);
-  setT('stickyBtn', d.stickyBtn);
-
-  // Pain
-  setT('painTag', d.painTag);
-  setT('painTitle', d.painTitle);
-  setH('painClose', d.painClose);
-  var pl = G('painList'); pl.innerHTML='';
-  d.pains.forEach(function(p){
-    var el=document.createElement('div');el.className='pain-item';
-    el.innerHTML='<span class="pain-ico">'+p.ico+'</span><span class="pain-txt">'+p.t+'</span>';
-    pl.appendChild(el);
-  });
-
-  // Features
-  setT('featTag', d.featTag);
-  setT('featTitle', d.featTitle);
-  setT('featSub', d.featSub);
-  var fl = G('featList'); fl.innerHTML='';
-  d.feats.forEach(function(f){
-    var el=document.createElement('div');el.className='feat';
-    el.innerHTML='<div class="feat-ico">'+f.ico+'</div><div class="feat-body"><div class="feat-title">'+f.t+'</div><div class="feat-desc">'+f.d+'</div></div>';
-    fl.appendChild(el);
-  });
-
-  // Price
-  setT('priceTitle', d.priceTitle);
-  setH('priceChaiLine', d.priceChaiLine);
-  setT('priceBuyBtn', d.priceBuyBtn);
-  setT('priceSecure', d.priceSecure);
-  var pg = G('priceGrid'); pg.innerHTML='';
-  PRICES.forEach(function(p){
-    var el=document.createElement('div');el.className='price-item';
-    el.innerHTML='<div class="pi-flag">'+p.flag+'</div><div class="pi-country">'+p.country+'</div><div class="pi-price">'+p.price+'</div>';
-    pg.appendChild(el);
-  });
-  var pp = G('pricePerks'); pp.innerHTML='';
-  d.perks.forEach(function(perk){
-    var el=document.createElement('div');el.className='perk';
-    el.textContent=perk;
-    pp.appendChild(el);
-  });
-
-  // FAQ
-  setT('faqTag', d.faqTag);
-  setT('faqTitle', d.faqTitle);
-  var fq = G('faqList'); fq.innerHTML='';
-  d.faqs.forEach(function(f,i){
-    var el=document.createElement('div');el.className='faq-item';
-    el.id='faq'+i;
-    el.innerHTML='<div class="faq-q" onclick="togFaq('+i+')"><span>'+f.q+'</span><span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">'+f.a+'</div></div>';
-    fq.appendChild(el);
-  });
-
-  // Feedback
-  setT('fbTitle', d.fbTitle);
-  setT('fbSub', d.fbSub);
-  setT('fbBtn', d.fbBtn);
-
-  // Footer
-  setT('loginBtn', d.loginBtn);
-  setT('footTerms', d.footTerms);
-  setT('footPrivacy', d.footPrivacy);
-  setT('footRefund', d.footRefund);
+function render(){
+  var d=CONTENT[curLang];
+  setH('medal1label',d.medal1label.replace('\n','<br>'));
+  setT('medal1sub',d.medal1sub);
+  setH('medal2label',d.medal2label.replace('\n','<br>'));
+  setT('medal2sub',d.medal2sub);
+  setH('medal3label',d.medal3label.replace('\n','<br>'));
+  setT('medal3sub',d.medal3sub);
+  setT('guaranteeText',d.guaranteeText);
+  setH('heroBadge',d.heroBadge);
+  setT('heroLine1',d.heroLine1);setT('heroLine2',d.heroLine2);
+  setH('heroSub',d.heroSub);setT('heroBtn',d.heroBtn);setT('heroNote',d.heroNote);
+  setT('trustRefund',d.trustRefund);setT('trustAccess',d.trustAccess);
+  setT('mockTitle',d.mockTitle);setT('mockBadge',d.mockBadge);
+  setT('mockSalLabel',d.mockSalLabel);setT('mockHome',d.mockHome);
+  setT('mockSave',d.mockSave);setT('mockEF',d.mockEF);setT('mockSadqa',d.mockSadqa);
+  setT('mockDreamLabel',d.mockDreamLabel);
+  setT('stickyPrice',d.stickyPrice);setT('stickyNote',d.stickyNote);setT('stickyBtn',d.stickyBtn);
+  setT('painTag',d.painTag);setT('painTitle',d.painTitle);setH('painClose',d.painClose);
+  var pl=G('painList');pl.innerHTML='';
+  d.pains.forEach(function(p){var el=document.createElement('div');el.className='pain-item';el.innerHTML='<span class="pain-ico">'+p.ico+'</span><span class="pain-txt">'+p.t+'</span>';pl.appendChild(el);});
+  setT('featTag',d.featTag);setT('featTitle',d.featTitle);setT('featSub',d.featSub);
+  var fl=G('featList');fl.innerHTML='';
+  d.feats.forEach(function(f){var el=document.createElement('div');el.className='feat';el.innerHTML='<div class="feat-ico">'+f.ico+'</div><div class="feat-body"><div class="feat-title">'+f.t+'</div><div class="feat-desc">'+f.d+'</div></div>';fl.appendChild(el);});
+  setT('priceTitle',d.priceTitle);setT('priceOrig',d.priceOrig);setT('priceBig',d.priceBig);setT('priceNoteText',d.priceNoteText);
+  setH('priceChaiLine',d.priceChaiLine);setT('priceBuyBtn',d.priceBuyBtn);setH('priceGuarantee',d.priceGuarantee);
+  var pg=G('priceGrid');pg.innerHTML='';
+  PRICES.forEach(function(p){var el=document.createElement('div');el.className='price-item';el.innerHTML='<div class="pi-flag">'+p.flag+'</div><div class="pi-country">'+p.country+'</div><div class="pi-price">'+p.price+'</div>';pg.appendChild(el);});
+  var pp=G('pricePerks');pp.innerHTML='';
+  d.perks.forEach(function(perk){var el=document.createElement('div');el.className='perk';el.textContent=perk;pp.appendChild(el);});
+  setT('faqTag',d.faqTag);setT('faqTitle',d.faqTitle);
+  var fq=G('faqList');fq.innerHTML='';
+  d.faqs.forEach(function(f,i){var el=document.createElement('div');el.className='faq-item';el.id='faq'+i;el.innerHTML='<div class="faq-q" onclick="togFaq('+i+')"><span>'+f.q+'</span><span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">'+f.a+'</div></div>';fq.appendChild(el);});
+  setT('fbTitle',d.fbTitle);setT('fbSub',d.fbSub);setT('fbBtn',d.fbBtn);
+  setT('loginBtn',d.loginBtn);setT('footTerms',d.footTerms);setT('footPrivacy',d.footPrivacy);setT('footRefund',d.footRefund);
 }
 
-function togFaq(i) {
-  var el = G('faq'+i);
-  if(el) el.classList.toggle('open');
-}
+function togFaq(i){var el=G('faq'+i);if(el)el.classList.toggle('open');}
 
-// ── DETECT LANGUAGE FROM BROWSER ─────────────────────────────
-function detectLang() {
-  var nav = navigator.language || navigator.userLanguage || '';
-  if(nav.toLowerCase().startsWith('bn') || nav.toLowerCase().startsWith('bd')) {
-    return 'bd';
-  }
-  return 'ur'; // default Urdu
-}
-
-// ── INIT ─────────────────────────────────────────────────────
-window.addEventListener('DOMContentLoaded', function(){
-  var detected = detectLang();
-  curLang = detected;
-  document.getElementById('btnUR').classList.toggle('on', detected==='ur');
-  document.getElementById('btnBD').classList.toggle('on', detected==='bd');
+function detectLang(){var nav=navigator.language||navigator.userLanguage||'';if(nav.toLowerCase().startsWith('bn')||nav.toLowerCase().startsWith('bd'))return'bd';return'ur';}
+window.addEventListener('DOMContentLoaded',function(){
+  var detected=detectLang();curLang=detected;
+  document.getElementById('btnUR').classList.toggle('on',detected==='ur');
+  document.getElementById('btnBD').classList.toggle('on',detected==='bd');
   render();
 });
 </script>
