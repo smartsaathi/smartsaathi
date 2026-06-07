@@ -109,7 +109,36 @@ var PRICE_ID = 'pri_01kt4n716h95dwq9d2rprwbqm5';
 
 // ── INIT PADDLE v2 ──────────────────────────────────────────
 Paddle.Initialize({
-  token: PADDLE_TOKEN
+  token: PADDLE_TOKEN,
+  eventCallback: function(event) {
+    if (event.name === 'checkout.completed') {
+      // Fire Facebook Purchase event
+      if(typeof fbq !== 'undefined') {
+        fbq('track', 'Purchase', {
+          value: 2.99,
+          currency: 'USD',
+          content_name: 'Smart Bachat',
+          content_type: 'product'
+        });
+      }
+      var email = document.getElementById('emailInp').value.trim();
+      window.location.href = '/success?email=' + encodeURIComponent(email);
+    }Paddle.Initialize({
+  token: PADDLE_TOKEN,
+  eventCallback: function(event) {
+    if (event.name === 'checkout.completed') {
+      // Fire Facebook Purchase event
+      if(typeof fbq !== 'undefined') {
+        fbq('track', 'Purchase', {
+          value: 2.99,
+          currency: 'USD',
+          content_name: 'Smart Bachat',
+          content_type: 'product'
+        });
+      }
+      var email = document.getElementById('emailInp').value.trim();
+      window.location.href = '/success?email=' + encodeURIComponent(email);
+    }
 });
 
 // ── CHECKOUT ────────────────────────────────────────────────
