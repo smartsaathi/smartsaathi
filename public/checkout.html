@@ -101,7 +101,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div class="err-msg" id="errMsg"></div>
 </div>
 
-<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"> // Track page view as ViewContent
+if(typeof fbq !== 'undefined') {
+  fbq('track', 'ViewContent', {
+    content_name: 'Smart Bachat Checkout',
+    currency: 'USD',
+    value: 2.99
+  });
+} </script>
 <script>
 // ── YOUR KEYS ───────────────────────────────────────────────
 var PADDLE_TOKEN = 'live_0ab1f7f2cd2ce76fbe888ddef9c';
