@@ -363,15 +363,24 @@ body::before{
 var PADDLE_TOKEN = 'live_0ab1f7f2cd2ce76fbe888ddef9c';
 var PRICE_ID = 'pri_01kt4n716h95dwq9d2rprwbqm5';
 
-Paddle.Initialize({
-  token: PADDLE_TOKEN,
-  eventCallback: function(data) {
-    if (data.name === 'checkout.completed') {
-      var email = data.data.customer.email;
-      window.location.href = '/success?email=' + encodeURIComponent(email);
-    }
+var paddleReady = false;
+
+function initPaddle() {
+  try {
+    Paddle.Initialize({
+      token: PADDLE_TOKEN,
+      eventCallback: function(data) {
+        if (data.name === 'checkout.completed') {
+          var email = (data.data && data.data.customer) ? data.data.customer.email : '';
+          window.location.href = '/success?email=' + encodeURIComponent(email);
+        }
+      }
+    });
+    paddleReady = true;
+  } catch(e) {
+    console.log('Paddle init error:', e);
   }
-});
+}
 
 // ── CONTENT ──
 var C = {
@@ -478,25 +487,40 @@ function startCheckout() {
     showErr(d.errEmail); return;
   }
   hideErr();
+
+  if (!paddleReady) {
+    showErr('Payment system loading... please wait 2 seconds and try again.');
+    initPaddle();
+    return;
+  }
+
   var btn = G('payBtn');
   btn.disabled = true;
   G('payBtnText').innerHTML = '<span class="spinner"></span>Loading...';
 
-  Paddle.Checkout.open({
-    items: [{ priceId: PRICE_ID, quantity: 1 }],
-    customer: { email: email },
-    settings: {
-      displayMode: 'overlay',
-      theme: 'dark',
-      locale: lang === 'bd' ? 'bn' : 'ur',
-      successUrl: 'https://smartsaathi.app/success?email=' + encodeURIComponent(email)
-    }
-  });
+  try {
+    Paddle.Checkout.open({
+      items: [{ priceId: PRICE_ID, quantity: 1 }],
+      customer: { email: email },
+      settings: {
+        displayMode: 'overlay',
+        theme: 'dark',
+        locale: 'en',
+        successUrl: 'https://smartsaathi.app/success?email=' + encodeURIComponent(email)
+      }
+    });
+  } catch(e) {
+    console.log('Checkout error:', e);
+    showErr('Kuch masla hua. Please page refresh karein aur dobara try karein.');
+    btn.disabled = false;
+    G('payBtnText').innerHTML = d.payBtn;
+    return;
+  }
 
   setTimeout(function() {
     btn.disabled = false;
     G('payBtnText').innerHTML = d.payBtn;
-  }, 3000);
+  }, 5000);
 }
 
 function showErr(msg){var e=G('errMsg');e.textContent=msg;e.style.display='block';}
@@ -505,6 +529,9 @@ function hideErr(){var e=G('errMsg');e.style.display='none';}
 // ── STICKY PAY visibility ──
 var payBtnEl = null;
 window.addEventListener('DOMContentLoaded', function() {
+  // Init Paddle
+  initPaddle();
+
   payBtnEl = G('payBtn');
   var detected = (navigator.language||'').toLowerCase();
   if(detected.startsWith('bn')||detected.startsWith('bd')) lang='bd';
@@ -513,3 +540,11 @@ window.addEventListener('DOMContentLoaded', function() {
   render();
 
   // Show sticky when pay button scrolls out of view
+  var obs = new IntersectionObserver(function(entries){
+    G('stickyPay').classList.toggle('show', !entries[0].isIntersecting);
+  }, {threshold:0});
+  obs.observe(payBtnEl);
+});
+</script>
+</body>
+</html>
