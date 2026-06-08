@@ -1,224 +1,523 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1488955313010937');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1488955313010937&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#080E0A">
 <title>Smart Bachat Khareedein — SmartSaathi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-:root{--g1:#1B4332;--g3:#40916C;--g4:#74C69D;--a2:#F4A261;--bg:#080E0A;--bgc:#0F1A12;--bgp:#162019;--tx:#EEF7F0;--ts:#B8D4BE;--tm:#5E8A68;--bd:rgba(116,198,157,.13);--red:#E07A7A;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;padding:24px;-webkit-font-smoothing:antialiased;}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 5% 0%,rgba(45,106,79,.09),transparent 60%);pointer-events:none;}
-.wrap{max-width:400px;margin:0 auto;position:relative;z-index:1;}
-.back{display:inline-flex;align-items:center;gap:8px;color:var(--tm);font-size:14px;margin-bottom:24px;cursor:pointer;text-decoration:none;}
-.logo{text-align:center;margin-bottom:28px;}
-.logo-ico{font-size:44px;display:block;margin-bottom:6px;}
-.logo-name{font-size:20px;font-weight:800;color:var(--g4);}
-.product-card{background:var(--bgc);border:1.5px solid rgba(116,198,157,.25);border-radius:18px;padding:22px;margin-bottom:16px;position:relative;overflow:hidden;}
-.product-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1.5px;background:linear-gradient(90deg,transparent,rgba(116,198,157,.4),transparent);}
-.product-badge{display:inline-block;padding:4px 12px;background:rgba(116,198,157,.1);border-radius:20px;font-size:11px;font-weight:700;color:var(--g4);margin-bottom:12px;letter-spacing:.05em;text-transform:uppercase;}
-.product-name{font-size:20px;font-weight:800;color:var(--tx);margin-bottom:8px;}
-.product-features{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
-.pf{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ts);}
-.price-row{display:flex;align-items:baseline;gap:8px;margin-bottom:4px;}
-.price-big{font-size:40px;font-weight:800;color:var(--g4);}
-.price-period{font-size:13px;color:var(--tm);}
-.price-note{font-size:12px;color:var(--tm);}
-.email-section{background:var(--bgc);border:1px solid var(--bd);border-radius:14px;padding:18px;margin-bottom:14px;}
-.lbl{font-size:11px;letter-spacing:.1em;color:var(--tm);text-transform:uppercase;margin-bottom:7px;}
-.inp{width:100%;background:var(--bgp);border:1.5px solid var(--bd);border-radius:12px;padding:14px 16px;color:var(--tx);font-size:17px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+:root{
+  --bg:#080E0A;--bg2:#0D1A10;--bg3:#122318;
+  --g1:#1B4332;--g2:#2D6A4F;--g3:#40916C;--g4:#74C69D;--g5:#95D5B2;
+  --gold:#F0C040;--amber:#F4A261;--red:#E07A7A;
+  --tx:#EEF7F0;--ts:#B8D4BE;--tm:#5E8A68;
+  --bd:rgba(116,198,157,.13);
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Hind',-apple-system,sans-serif;
+  background:var(--bg);color:var(--tx);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* Background glow */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%,rgba(45,106,79,.12),transparent 60%),
+    radial-gradient(ellipse 40% 30% at 80% 80%,rgba(240,192,64,.04),transparent 50%);
+  pointer-events:none;z-index:0;
+}
+
+.wrap{max-width:420px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:1;}
+
+/* ── LANG BAR ── */
+.lang-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;
+}
+.lang-logo{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:17px;color:var(--g4);display:flex;align-items:center;gap:6px;}
+.lang-btns{display:flex;gap:6px;}
+.lang-btn{padding:5px 13px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--bd);background:transparent;color:var(--tm);font-family:inherit;transition:all .2s;}
+.lang-btn.on{background:var(--g3);border-color:var(--g3);color:#fff;}
+
+/* ── TRUST MEDALS ── */
+.medals{display:flex;gap:8px;justify-content:center;margin-bottom:18px;}
+.medal{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  background:linear-gradient(160deg,rgba(240,192,64,.08),rgba(240,192,64,.03));
+  border:1px solid rgba(240,192,64,.25);
+  border-radius:14px;padding:9px 6px;
+  position:relative;
+}
+.medal::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(240,192,64,.5),transparent);}
+.medal-ico{font-size:20px;line-height:1;}
+.medal-txt{font-size:9px;font-weight:700;color:var(--gold);text-align:center;line-height:1.3;}
+.medal-sub{font-size:8px;color:var(--ts);text-align:center;}
+
+/* ── PRODUCT CARD ── */
+.product-card{
+  background:var(--bg2);
+  border:1.5px solid rgba(116,198,157,.22);
+  border-radius:20px;padding:20px;margin-bottom:14px;
+  position:relative;overflow:hidden;
+}
+.product-card::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1.5px;background:linear-gradient(90deg,transparent,rgba(116,198,157,.4),transparent);}
+
+.product-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.product-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 12px;background:rgba(116,198,157,.1);
+  border-radius:20px;font-size:11px;font-weight:700;
+  color:var(--g4);letter-spacing:.05em;
+}
+.product-flag{font-size:22px;}
+
+.product-name{
+  font-size:22px;font-weight:800;color:var(--tx);
+  font-family:'Baloo 2',sans-serif;margin-bottom:14px;
+}
+.product-name span{color:var(--g4);}
+
+/* Features list */
+.features{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
+.feat{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ts);}
+.feat-ico{
+  font-size:14px;flex-shrink:0;
+  width:28px;height:28px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(116,198,157,.07);border-radius:7px;
+}
+.feat b{color:var(--tx);}
+
+/* Price block */
+.price-block{
+  background:var(--bg3);border-radius:14px;padding:14px;
+  border:1px solid rgba(240,192,64,.15);
+  position:relative;overflow:hidden;
+}
+.price-block::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.price-main{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;}
+.price-orig{font-size:13px;color:var(--tm);text-decoration:line-through;}
+.price-now{font-size:42px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;line-height:1;}
+.price-period{font-size:12px;color:var(--ts);align-self:flex-end;padding-bottom:4px;}
+.price-tagline{font-size:12px;color:var(--tm);margin-bottom:12px;}
+
+/* Currency grid */
+.currency-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.currency-item{
+  background:rgba(0,0,0,.2);border-radius:9px;
+  padding:7px 4px;text-align:center;
+  border:1px solid var(--bd);
+}
+.ci-flag{font-size:16px;margin-bottom:2px;}
+.ci-country{font-size:8px;color:var(--tm);margin-bottom:1px;}
+.ci-price{font-size:13px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;}
+.ci-usd{font-size:8px;color:var(--tm);}
+
+/* ── EMAIL SECTION ── */
+.email-section{
+  background:var(--bg2);border:1px solid var(--bd);
+  border-radius:16px;padding:16px;margin-bottom:14px;
+}
+.lbl{font-size:11px;letter-spacing:.1em;color:var(--tm);text-transform:uppercase;margin-bottom:8px;font-weight:700;}
+.inp{
+  width:100%;background:var(--bg3);
+  border:1.5px solid var(--bd);border-radius:12px;
+  padding:14px 16px;color:var(--tx);font-size:16px;
+  outline:none;transition:border-color .2s;
+  -webkit-appearance:none;font-family:inherit;
+}
 .inp:focus{border-color:var(--g4);}
 .inp::placeholder{color:var(--tm);}
-.inp-note{font-size:12px;color:var(--tm);margin-top:7px;line-height:1.5;}
-.pay-btn{width:100%;padding:18px;background:linear-gradient(135deg,var(--g3),var(--g1));border:none;border-radius:14px;color:#fff;font-size:18px;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(45,106,79,.3);margin-bottom:12px;font-family:inherit;}
-.pay-btn:active{transform:scale(.98);}
-.pay-btn:disabled{opacity:.5;}
-.security-note{text-align:center;font-size:12px;color:var(--tm);line-height:1.7;}
-.security-note span{margin:0 6px;}
-.err-msg{margin-top:12px;padding:12px;border-radius:12px;font-size:13px;line-height:1.6;display:none;background:rgba(224,122,122,.08);border:1px solid rgba(224,122,122,.25);color:var(--red);}
-.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:8px;}
+.inp-note{font-size:12px;color:var(--tm);margin-top:8px;line-height:1.6;display:flex;align-items:flex-start;gap:6px;}
+
+/* ── REFUND BANNER ── */
+.refund-banner{
+  background:rgba(116,198,157,.05);
+  border:1px solid rgba(116,198,157,.18);
+  border-radius:12px;padding:10px 14px;
+  margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.rb-ico{font-size:22px;flex-shrink:0;}
+.rb-text{font-size:12px;color:var(--ts);line-height:1.6;}
+.rb-text b{color:var(--g4);}
+
+/* ── PAY BUTTON ── */
+.pay-btn{
+  width:100%;padding:18px;
+  background:linear-gradient(135deg,#F0C040,#F4A261);
+  border:none;border-radius:16px;
+  color:#0A1A10;font-size:19px;font-weight:800;
+  cursor:pointer;font-family:'Baloo 2',sans-serif;
+  box-shadow:0 8px 32px rgba(240,192,64,.35);
+  margin-bottom:12px;
+  transition:transform .15s;
+  position:relative;overflow:hidden;
+}
+.pay-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+}
+.pay-btn:active{transform:scale(.97);}
+.pay-btn:disabled{opacity:.6;transform:none;}
+
+/* Pulse animation */
+@keyframes pulse{0%,100%{box-shadow:0 8px 32px rgba(240,192,64,.35)}50%{box-shadow:0 8px 44px rgba(240,192,64,.6)}}
+.pay-btn:not(:disabled){animation:pulse 2.5s ease-in-out infinite;}
+
+.security-row{
+  display:flex;align-items:center;justify-content:center;
+  gap:8px;flex-wrap:wrap;margin-bottom:16px;
+}
+.sec-badge{
+  font-size:11px;color:var(--tm);
+  display:flex;align-items:center;gap:4px;
+}
+.sec-dot{width:3px;height:3px;border-radius:50%;background:var(--tm);}
+
+/* ── STICKY CTA ── */
+.sticky-pay{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  padding:10px 16px max(10px,env(safe-area-inset-bottom));
+  background:rgba(8,14,10,.97);
+  border-top:1px solid rgba(240,192,64,.15);
+  backdrop-filter:blur(20px);
+  display:none;
+}
+.sticky-pay.show{display:block;}
+.sticky-pay-btn{
+  width:100%;max-width:420px;margin:0 auto;display:block;
+  padding:16px;
+  background:linear-gradient(135deg,#F0C040,#F4A261);
+  border:none;border-radius:14px;
+  color:#0A1A10;font-size:17px;font-weight:800;
+  cursor:pointer;font-family:'Baloo 2',sans-serif;
+  box-shadow:0 4px 20px rgba(240,192,64,.3);
+}
+
+/* ── ERROR / SPINNER ── */
+.msg{margin-top:10px;padding:12px;border-radius:12px;font-size:13px;line-height:1.6;display:none;}
+.msg.err{background:rgba(224,122,122,.08);border:1px solid rgba(224,122,122,.25);color:var(--red);}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(10,26,16,.3);border-top-color:#0A1A10;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:8px;}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── FADE IN ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.medals{animation:fadeUp .4s .05s ease both;}
+.product-card{animation:fadeUp .4s .1s ease both;}
+.email-section{animation:fadeUp .4s .15s ease both;}
+.refund-banner{animation:fadeUp .4s .18s ease both;}
+.pay-btn{animation:fadeUp .4s .2s ease both,pulse 2.5s 1s ease-in-out infinite;}
 </style>
 </head>
 <body>
+
 <div class="wrap">
-  <a class="back" href="/">← Wapas</a>
-  <div class="logo">
-    <span class="logo-ico">💰</span>
-    <div class="logo-name">SmartSaathi</div>
+
+  <!-- LANG BAR -->
+  <div class="lang-bar">
+    <div class="lang-logo">💰 SmartSaathi</div>
+    <div class="lang-btns">
+      <button class="lang-btn on" id="btnUR" onclick="setLang('ur')">اردو</button>
+      <button class="lang-btn" id="btnBD" onclick="setLang('bd')">বাংলা</button>
+    </div>
   </div>
+
+  <!-- TRUST MEDALS -->
+  <div class="medals">
+    <div class="medal">
+      <div class="medal-ico">🔒</div>
+      <div class="medal-txt" id="m1t">Secure<br>Payment</div>
+      <div class="medal-sub" id="m1s">Paddle verified</div>
+    </div>
+    <div class="medal">
+      <div class="medal-ico">🏅</div>
+      <div class="medal-txt" id="m2t">48 Ghante<br>Refund</div>
+      <div class="medal-sub" id="m2s">Koi sawaal nahi</div>
+    </div>
+    <div class="medal">
+      <div class="medal-ico">♾️</div>
+      <div class="medal-txt" id="m3t">Lifetime<br>Access</div>
+      <div class="medal-sub" id="m3s">Ek baar — hamesha</div>
+    </div>
+  </div>
+
+  <!-- PRODUCT CARD -->
   <div class="product-card">
-    <div class="product-badge">Lifetime Access</div>
-    <div class="product-name">Smart Bachat</div>
-    <div class="product-features">
-      <div class="pf">💰 Salary split calculator</div>
-      <div class="pf">📊 Maheena bachat tracker + streaks</div>
-      <div class="pf">🆘 Help Now — labor rights guide</div>
-      <div class="pf">🌟 Dream goal planner</div>
-      <div class="pf">🛡️ Family Shield messages</div>
-      <div class="pf">🏆 EOSD calculator</div>
-      <div class="pf">🌍 Urdu + Bengali — 6 Gulf countries</div>
+    <div class="product-top">
+      <div class="product-badge" id="prodBadge">✨ Lifetime Access</div>
+      <div class="product-flag">💰</div>
     </div>
-    <div class="price-row">
-      <div class="price-big">$2.99</div>
-      <div class="price-period">sirf ek baar</div>
+
+    <div class="product-name" id="prodName">Smart <span>Bachat</span></div>
+
+    <div class="features" id="featList"></div>
+
+    <!-- PRICE BLOCK -->
+    <div class="price-block">
+      <div class="price-main">
+        <div class="price-orig" id="priceOrig">SAR 25</div>
+        <div class="price-now" id="priceNow">SAR 11</div>
+        <div class="price-period" id="pricePeriod">sirf ek baar</div>
+      </div>
+      <div class="price-tagline" id="priceTagline">Koi subscription nahi — hamesha ke liye aapka</div>
+
+      <!-- CURRENCY GRID -->
+      <div class="currency-grid">
+        <div class="currency-item">
+          <div class="ci-flag">🇸🇦</div>
+          <div class="ci-country">Saudi</div>
+          <div class="ci-price">SAR 11</div>
+          <div class="ci-usd">= $2.99</div>
+        </div>
+        <div class="currency-item">
+          <div class="ci-flag">🇦🇪</div>
+          <div class="ci-country">UAE</div>
+          <div class="ci-price">AED 11</div>
+          <div class="ci-usd">= $2.99</div>
+        </div>
+        <div class="currency-item">
+          <div class="ci-flag">🇶🇦</div>
+          <div class="ci-country">Qatar</div>
+          <div class="ci-price">QAR 11</div>
+          <div class="ci-usd">= $2.99</div>
+        </div>
+        <div class="currency-item">
+          <div class="ci-flag">🇰🇼</div>
+          <div class="ci-country">Kuwait</div>
+          <div class="ci-price">KWD 0.9</div>
+          <div class="ci-usd">= $2.99</div>
+        </div>
+        <div class="currency-item">
+          <div class="ci-flag">🇧🇭</div>
+          <div class="ci-country">Bahrain</div>
+          <div class="ci-price">BHD 1.1</div>
+          <div class="ci-usd">= $2.99</div>
+        </div>
+        <div class="currency-item">
+          <div class="ci-flag">🇴🇲</div>
+          <div class="ci-country">Oman</div>
+          <div class="ci-price">OMR 1.1</div>
+          <div class="ci-usd">= $2.99</div>
+        </div>
+      </div>
     </div>
-    <div class="price-note">Koi subscription nahi — hamesha ke liye aapka</div>
   </div>
+
+  <!-- EMAIL -->
   <div class="email-section">
-    <div class="lbl">Aapka Email</div>
-    <input class="inp" type="email" id="emailInp" placeholder="aapka@email.com" inputmode="email" autocomplete="email">
-    <div class="inp-note">Payment ke baad is email par login link aayega.</div>
+    <div class="lbl" id="emailLbl">Aapka Email</div>
+    <input class="inp" type="email" id="emailInp"
+      placeholder="aapka@email.com"
+      inputmode="email" autocomplete="email">
+    <div class="inp-note" id="emailNote">
+      📧 Payment ke baad is email par login link aayega — app turant khul jaayega.
+    </div>
   </div>
+
+  <!-- REFUND BANNER -->
+  <div class="refund-banner">
+    <div class="rb-ico">🛡️</div>
+    <div class="rb-text" id="refundText">
+      <b>100% Money-Back Guarantee.</b> 48 ghante ke andar pasand na aaye — poora paisa wapas. Koi sawaal nahi, koi argument nahi.
+    </div>
+  </div>
+
+  <!-- PAY BUTTON -->
   <button class="pay-btn" id="payBtn" onclick="startCheckout()">
-    💳 Pay $2.99 — Abhi Access Lo
+    <span id="payBtnText">👉 SAR 11 — Abhi Access Lo</span>
   </button>
-  <div class="security-note">
-    🔒 Secure payment via Paddle
-    <span>•</span>
-    Instant access
-    <span>•</span>
-    7-day refund
+
+  <div class="security-row">
+    <span class="sec-badge">🔒 Paddle Secure</span>
+    <span class="sec-dot"></span>
+    <span class="sec-badge">⚡ Instant Access</span>
+    <span class="sec-dot"></span>
+    <span class="sec-badge">↩ 48hr Refund</span>
   </div>
-  <div class="err-msg" id="errMsg"></div>
+
+  <div class="msg err" id="errMsg"></div>
+
+  <div style="text-align:center;margin-top:8px;">
+    <a href="/" style="font-size:13px;color:var(--tm);" id="backLink">← Wapas Jayen</a>
+  </div>
+
 </div>
 
-<script src="https://cdn.paddle.com/paddle/v2/paddle.js"> // Track page view as ViewContent
-if(typeof fbq !== 'undefined') {
-  fbq('track', 'ViewContent', {
-    content_name: 'Smart Bachat Checkout',
-    currency: 'USD',
-    value: 2.99
-  });
-} </script>
+<!-- STICKY PAY (shows when main button scrolls out) -->
+<div class="sticky-pay" id="stickyPay">
+  <button class="sticky-pay-btn" onclick="startCheckout()" id="stickyPayBtn">
+    👉 SAR 11 — Abhi Access Lo
+  </button>
+</div>
+
+<!-- PADDLE -->
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 <script>
-// ── YOUR KEYS ───────────────────────────────────────────────
 var PADDLE_TOKEN = 'live_0ab1f7f2cd2ce76fbe888ddef9c';
 var PRICE_ID = 'pri_01kt4n716h95dwq9d2rprwbqm5';
 
-// ── INIT PADDLE v2 ──────────────────────────────────────────
 Paddle.Initialize({
   token: PADDLE_TOKEN,
-  eventCallback: function(event) {
-    if (event.name === 'checkout.completed') {
-      // Fire Facebook Purchase event
-      if(typeof fbq !== 'undefined') {
-        fbq('track', 'Purchase', {
-          value: 2.99,
-          currency: 'USD',
-          content_name: 'Smart Bachat',
-          content_type: 'product'
-        });
-      }
-      var email = document.getElementById('emailInp').value.trim();
-      window.location.href = '/success?email=' + encodeURIComponent(email);
-    }Paddle.Initialize({
-  token: PADDLE_TOKEN,
-  eventCallback: function(event) {
-    if (event.name === 'checkout.completed') {
-      // Fire Facebook Purchase event
-      if(typeof fbq !== 'undefined') {
-        fbq('track', 'Purchase', {
-          value: 2.99,
-          currency: 'USD',
-          content_name: 'Smart Bachat',
-          content_type: 'product'
-        });
-      }
-      var email = document.getElementById('emailInp').value.trim();
+  eventCallback: function(data) {
+    if (data.name === 'checkout.completed') {
+      var email = data.data.customer.email;
       window.location.href = '/success?email=' + encodeURIComponent(email);
     }
+  }
 });
 
-// ── CHECKOUT ────────────────────────────────────────────────
+// ── CONTENT ──
+var C = {
+  ur: {
+    m1t:'Secure\nPayment', m1s:'Paddle verified',
+    m2t:'48 Ghante\nRefund', m2s:'Koi sawaal nahi',
+    m3t:'Lifetime\nAccess', m3s:'Ek baar — hamesha',
+    prodBadge:'✨ Lifetime Access',
+    prodName:'Smart <span style="color:var(--g4)">Bachat</span>',
+    feats:[
+      {i:'💰',t:'<b>Salary Taqseem</b> — ghar, bachat, emergency, sadqa'},
+      {i:'🆘',t:'<b>Help Now</b> — kafeel, iqama, salary, beemar, wapsi'},
+      {i:'🌟',t:'<b>Wapsi Ka Sapna</b> — calculator ke saath'},
+      {i:'🛡️',t:'<b>Family Shield</b> — ghar walon ke liye messages'},
+      {i:'🏆',t:'<b>EOSD Calculator</b> — apna legal haq jaano'},
+      {i:'🌍',t:'<b>Urdu + Bengali</b> — 6 Gulf countries'},
+    ],
+    priceOrig:'SAR 25',priceNow:'SAR 11',
+    pricePeriod:'sirf ek baar',
+    priceTagline:'Koi subscription nahi — hamesha ke liye aapka',
+    emailLbl:'Aapka Email',
+    emailNote:'📧 Payment ke baad is email par login link aayega — app turant khul jaayega.',
+    refundText:'<b>100% Money-Back Guarantee.</b> 48 ghante ke andar pasand na aaye — poora paisa wapas. Koi sawaal nahi, koi argument nahi.',
+    payBtn:'👉 SAR 11 — Abhi Access Lo',
+    stickyBtn:'👉 SAR 11 — Abhi Access Lo',
+    errEmail:'Sahi email dalein — login link is par aayega.',
+    backLink:'← Wapas Jayen',
+  },
+  bd: {
+    m1t:'নিরাপদ\nপেমেন্ট', m1s:'Paddle verified',
+    m2t:'৪৮ ঘন্টা\nরিফান্ড', m2s:'কোনো প্রশ্ন নেই',
+    m3t:'সারাজীবন\nঅ্যাক্সেস', m3s:'একবার — সারাজীবন',
+    prodBadge:'✨ সারাজীবনের অ্যাক্সেস',
+    prodName:'Smart <span style="color:var(--g4)">Bachat</span>',
+    feats:[
+      {i:'💰',t:'<b>বেতন বণ্টন</b> — বাড়ি, বাচাত, জরুরি ফান্ড, সদকা'},
+      {i:'🆘',t:'<b>Help Now</b> — কাফেল, ইকামা, বেতন, অসুস্থ, ফেরা'},
+      {i:'🌟',t:'<b>ফেরার স্বপ্ন</b> — calculator সহ'},
+      {i:'🛡️',t:'<b>পরিবার শিল্ড</b> — পরিবারের জন্য মেসেজ'},
+      {i:'🏆',t:'<b>EOSD Calculator</b> — নিজের আইনি অধিকার'},
+      {i:'🌍',t:'<b>বাংলা + উর্দু</b> — ৬টি Gulf দেশ'},
+    ],
+    priceOrig:'SAR 25',priceNow:'SAR 11',
+    pricePeriod:'মাত্র একবার',
+    priceTagline:'কোনো সাবস্ক্রিপশন নেই — সারাজীবনের জন্য আপনার',
+    emailLbl:'আপনার ইমেইল',
+    emailNote:'📧 পেমেন্টের পর এই ইমেইলে লগিন লিংক আসবে — App সাথে সাথে খুলবে।',
+    refundText:'<b>১০০% Money-Back Guarantee।</b> ৪৮ ঘন্টার মধ্যে পছন্দ না হলে — পুরো টাকা ফেরত। কোনো প্রশ্ন নেই, কোনো তর্ক নেই।',
+    payBtn:'👉 SAR 11 — এখনই অ্যাক্সেস নিন',
+    stickyBtn:'👉 SAR 11 — এখনই অ্যাক্সেস নিন',
+    errEmail:'সঠিক ইমেইল দিন — লগিন লিংক এখানে আসবে।',
+    backLink:'← ফিরে যান',
+  }
+};
+
+var lang = 'ur';
+function setLang(l) {
+  lang = l;
+  document.getElementById('btnUR').classList.toggle('on', l==='ur');
+  document.getElementById('btnBD').classList.toggle('on', l==='bd');
+  document.documentElement.lang = l==='ur' ? 'ur' : 'bn';
+  render();
+}
+
+function G(id){return document.getElementById(id);}
+function setH(id,v){var e=G(id);if(e)e.innerHTML=v;}
+function setT(id,v){var e=G(id);if(e)e.textContent=v;}
+
+function render() {
+  var d = C[lang];
+  setH('m1t', d.m1t.replace('\n','<br>'));
+  setT('m1s', d.m1s);
+  setH('m2t', d.m2t.replace('\n','<br>'));
+  setT('m2s', d.m2s);
+  setH('m3t', d.m3t.replace('\n','<br>'));
+  setT('m3s', d.m3s);
+  setH('prodBadge', d.prodBadge);
+  setH('prodName', d.prodName);
+  // Features
+  var fl = G('featList'); fl.innerHTML = '';
+  d.feats.forEach(function(f) {
+    var el = document.createElement('div');
+    el.className = 'feat';
+    el.innerHTML = '<span class="feat-ico">'+f.i+'</span><span>'+f.t+'</span>';
+    fl.appendChild(el);
+  });
+  setT('priceOrig', d.priceOrig);
+  setT('priceNow', d.priceNow);
+  setT('pricePeriod', d.pricePeriod);
+  setT('priceTagline', d.priceTagline);
+  setT('emailLbl', d.emailLbl);
+  setT('emailNote', d.emailNote);
+  setH('refundText', d.refundText);
+  setH('payBtnText', d.payBtn);
+  setT('stickyPayBtn', d.stickyBtn);
+  setT('backLink', d.backLink);
+}
+
+// ── CHECKOUT ──
 function startCheckout() {
-  var email = document.getElementById('emailInp').value.trim();
-
-  if (!email || !email.includes('@')) {
-    showErr('Sahi email dalein — login link is par aayega.');
-    return;
+  var d = C[lang];
+  var email = G('emailInp').value.trim();
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    showErr(d.errEmail); return;
   }
-
-  var btn = document.getElementById('payBtn');
+  hideErr();
+  var btn = G('payBtn');
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>Loading...';
-  document.getElementById('errMsg').style.display = 'none';
+  G('payBtnText').innerHTML = '<span class="spinner"></span>Loading...';
 
-  try {
-    Paddle.Checkout.open({
-      items: [{
-        priceId: PRICE_ID,
-        quantity: 1
-      }],
-      customer: {
-        email: email
-      },
-      settings: {
-        displayMode: 'overlay',
-        theme: 'dark',
-        successUrl: window.location.origin + '/success?email=' + encodeURIComponent(email)
-      }
-    });
-  } catch(e) {
-    showErr('Paddle load nahi hua. Page refresh karein aur dobara try karein.');
-    btn.disabled = false;
-    btn.innerHTML = '💳 Pay $2.99 — Abhi Access Lo';
-    return;
-  }
+  Paddle.Checkout.open({
+    items: [{ priceId: PRICE_ID, quantity: 1 }],
+    customer: { email: email },
+    settings: {
+      displayMode: 'overlay',
+      theme: 'dark',
+      locale: lang === 'bd' ? 'bn' : 'ur',
+      successUrl: 'https://smartsaathi.app/success?email=' + encodeURIComponent(email)
+    }
+  });
 
-  // Re-enable after 4 seconds in case user closes
   setTimeout(function() {
     btn.disabled = false;
-    btn.innerHTML = '💳 Pay $2.99 — Abhi Access Lo';
-  }, 4000);
+    G('payBtnText').innerHTML = d.payBtn;
+  }, 3000);
 }
 
-// ── PADDLE EVENT LISTENER ───────────────────────────────────
-Paddle.Initialize({
-  token: PADDLE_TOKEN,
-  eventCallback: function(event) {
-    if (event.name === 'checkout.completed') {
-      var email = document.getElementById('emailInp').value.trim();
-      window.location.href = '/success?email=' + encodeURIComponent(email);
-    }
-    if (event.name === 'checkout.error') {
-      showErr('Payment mein masla aaya. Dobara try karein.');
-      var btn = document.getElementById('payBtn');
-      btn.disabled = false;
-      btn.innerHTML = '💳 Pay $2.99 — Abhi Access Lo';
-    }
-  }
-});
+function showErr(msg){var e=G('errMsg');e.textContent=msg;e.style.display='block';}
+function hideErr(){var e=G('errMsg');e.style.display='none';}
 
-function showErr(msg) {
-  var el = document.getElementById('errMsg');
-  el.textContent = msg;
-  el.style.display = 'block';
-}
+// ── STICKY PAY visibility ──
+var payBtnEl = null;
+window.addEventListener('DOMContentLoaded', function() {
+  payBtnEl = G('payBtn');
+  var detected = (navigator.language||'').toLowerCase();
+  if(detected.startsWith('bn')||detected.startsWith('bd')) lang='bd';
+  G('btnUR').classList.toggle('on', lang==='ur');
+  G('btnBD').classList.toggle('on', lang==='bd');
+  render();
 
-// Enter key
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('emailInp').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') startCheckout();
-  });
+  // Show sticky when pay button scrolls out of view
+  var obs = new IntersectionObserver(function(entries){
+    G('stickyPay').classList.toggle('show', !entries[0].isIntersecting);
+  }, {threshold:0});
+  obs.observe(payBtnEl);
 });
 </script>
 </body>
