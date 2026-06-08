@@ -325,15 +325,55 @@ body::before{
 
   <!-- REFUND BANNER -->
   <div class="refund-banner">
-    <div class="rb-ico">🛡️</div>
+    <div class="rb-ico">&#x1F6E1;&#xFE0F;</div>
     <div class="rb-text" id="refundText">
       <b>100% Money-Back Guarantee.</b> 48 ghante ke andar pasand na aaye — poora paisa wapas. Koi sawaal nahi, koi argument nahi.
     </div>
   </div>
 
+  <!-- CURRENCY CONVERSION NOTICE -->
+  <div style="background:rgba(240,192,64,.07);border:1.5px solid rgba(240,192,64,.25);border-radius:14px;padding:12px 14px;margin-bottom:14px;text-align:center;">
+    <div style="font-size:11px;color:#5E8A68;margin-bottom:8px;font-weight:700;letter-spacing:.05em;" id="convTitle">&#x1F4B1; AAPKI CURRENCY MEIN KITNA LAGTA HAI</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
+      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:6px 4px;text-align:center;">
+        <div style="font-size:15px">&#x1F1F8;&#x1F1E6;</div>
+        <div style="font-size:9px;color:#5E8A68">Saudi</div>
+        <div style="font-size:13px;font-weight:800;color:#F0C040;font-family:'Baloo 2',sans-serif">SAR 11</div>
+      </div>
+      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:6px 4px;text-align:center;">
+        <div style="font-size:15px">&#x1F1E6;&#x1F1EA;</div>
+        <div style="font-size:9px;color:#5E8A68">UAE</div>
+        <div style="font-size:13px;font-weight:800;color:#F0C040;font-family:'Baloo 2',sans-serif">AED 11</div>
+      </div>
+      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:6px 4px;text-align:center;">
+        <div style="font-size:15px">&#x1F1F6;&#x1F1E6;</div>
+        <div style="font-size:9px;color:#5E8A68">Qatar</div>
+        <div style="font-size:13px;font-weight:800;color:#F0C040;font-family:'Baloo 2',sans-serif">QAR 11</div>
+      </div>
+      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:6px 4px;text-align:center;">
+        <div style="font-size:15px">&#x1F1F0;&#x1F1FC;</div>
+        <div style="font-size:9px;color:#5E8A68">Kuwait</div>
+        <div style="font-size:13px;font-weight:800;color:#F0C040;font-family:'Baloo 2',sans-serif">KWD 0.9</div>
+      </div>
+      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:6px 4px;text-align:center;">
+        <div style="font-size:15px">&#x1F1E7;&#x1F1ED;</div>
+        <div style="font-size:9px;color:#5E8A68">Bahrain</div>
+        <div style="font-size:13px;font-weight:800;color:#F0C040;font-family:'Baloo 2',sans-serif">BHD 1.1</div>
+      </div>
+      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:6px 4px;text-align:center;">
+        <div style="font-size:15px">&#x1F1F4;&#x1F1F2;</div>
+        <div style="font-size:9px;color:#5E8A68">Oman</div>
+        <div style="font-size:13px;font-weight:800;color:#F0C040;font-family:'Baloo 2',sans-serif">OMR 1.1</div>
+      </div>
+    </div>
+    <div style="margin-top:8px;font-size:11px;color:#B8D4BE;" id="convNote">
+      &#x2139;&#xFE0F; Payment screen par $2.99 dikhega — yeh SAR 11 ke barabar hai &#x2705;
+    </div>
+  </div>
+
   <!-- PAY BUTTON -->
   <button class="pay-btn" id="payBtn" onclick="startCheckout()">
-    <span id="payBtnText">👉 SAR 11 — Abhi Access Lo</span>
+    <span id="payBtnText">&#x1F449; SAR 11 — Abhi Access Lo</span>
   </button>
 
   <div class="security-row">
@@ -408,6 +448,8 @@ var C = {
     stickyBtn:'👉 SAR 11 — Abhi Access Lo',
     errEmail:'Sahi email dalein — login link is par aayega.',
     backLink:'← Wapas Jayen',
+    convTitle:'💱 AAPKI CURRENCY MEIN KITNA LAGTA HAI',
+    convNote:'Payment screen par $2.99 dikhega — yeh SAR 11 ke barabar hai ✅',
   },
   bd: {
     m1t:'নিরাপদ\nপেমেন্ট', m1s:'Paddle verified',
@@ -433,6 +475,8 @@ var C = {
     stickyBtn:'👉 SAR 11 — এখনই অ্যাক্সেস নিন',
     errEmail:'সঠিক ইমেইল দিন — লগিন লিংক এখানে আসবে।',
     backLink:'← ফিরে যান',
+    convTitle:'💱 আপনার মুদ্রায় কত লাগবে',
+    convNote:'Payment screen-এ $2.99 দেখাবে — এটা SAR 11-এর সমান ✅',
   }
 };
 
@@ -477,6 +521,8 @@ function render() {
   setH('payBtnText', d.payBtn);
   setT('stickyPayBtn', d.stickyBtn);
   setT('backLink', d.backLink);
+  var ct=document.getElementById('convTitle'); if(ct && d.convTitle) ct.textContent=d.convTitle;
+  var cn=document.getElementById('convNote'); if(cn && d.convNote) cn.textContent=d.convNote;
 }
 
 // ── CHECKOUT ──
@@ -501,7 +547,7 @@ function startCheckout() {
   try {
     Paddle.Checkout.open({
       items: [{ priceId: PRICE_ID, quantity: 1 }],
-      customer: { email: email },
+      customer: { email: email, address: { countryCode: 'SA' } },
       settings: {
         displayMode: 'overlay',
         theme: 'dark',
