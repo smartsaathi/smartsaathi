@@ -12,12 +12,11 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 :root{
   --bg:#080E0A;--bg2:#0D1A10;--bg3:#122318;
-  --g1:#1B4332;--g2:#2D6A4F;--g3:#40916C;--g4:#74C69D;--g5:#95D5B2;
+  --g1:#1B4332;--g3:#40916C;--g4:#74C69D;
   --gold:#F0C040;--amber:#F4A261;--red:#E07A7A;
   --tx:#EEF7F0;--ts:#B8D4BE;--tm:#5E8A68;
   --bd:rgba(116,198,157,.13);
 }
-html{scroll-behavior:smooth;}
 body{
   font-family:'Hind',-apple-system,sans-serif;
   background:var(--bg);color:var(--tx);
@@ -25,128 +24,98 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-
-/* Background glow */
 body::before{
   content:'';position:fixed;inset:0;
-  background:
-    radial-gradient(ellipse 80% 40% at 50% 0%,rgba(45,106,79,.12),transparent 60%),
-    radial-gradient(ellipse 40% 30% at 80% 80%,rgba(240,192,64,.04),transparent 50%);
+  background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(45,106,79,.12),transparent 60%);
   pointer-events:none;z-index:0;
 }
-
 .wrap{max-width:420px;margin:0 auto;padding:16px 16px 120px;position:relative;z-index:1;}
 
 /* ── LANG BAR ── */
-.lang-bar{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:20px;
-}
-.lang-logo{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:17px;color:var(--g4);display:flex;align-items:center;gap:6px;}
+.lang-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.lang-logo{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:17px;color:var(--g4);}
 .lang-btns{display:flex;gap:6px;}
 .lang-btn{padding:5px 13px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--bd);background:transparent;color:var(--tm);font-family:inherit;transition:all .2s;}
 .lang-btn.on{background:var(--g3);border-color:var(--g3);color:#fff;}
 
-/* ── TRUST MEDALS ── */
-.medals{display:flex;gap:8px;justify-content:center;margin-bottom:18px;}
-.medal{
-  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
-  background:linear-gradient(160deg,rgba(240,192,64,.08),rgba(240,192,64,.03));
-  border:1px solid rgba(240,192,64,.25);
-  border-radius:14px;padding:9px 6px;
-  position:relative;
-}
-.medal::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(240,192,64,.5),transparent);}
-.medal-ico{font-size:20px;line-height:1;}
-.medal-txt{font-size:9px;font-weight:700;color:var(--gold);text-align:center;line-height:1.3;}
-.medal-sub{font-size:8px;color:var(--ts);text-align:center;}
-
-/* ── PRODUCT CARD ── */
-.product-card{
-  background:var(--bg2);
-  border:1.5px solid rgba(116,198,157,.22);
-  border-radius:20px;padding:20px;margin-bottom:14px;
+/* ── CARD ALERT — FIRST THING THEY SEE ── */
+.card-alert{
+  background:linear-gradient(135deg,rgba(240,192,64,.1),rgba(240,192,64,.05));
+  border:2px solid rgba(240,192,64,.35);
+  border-radius:18px;padding:16px;
+  margin-bottom:14px;
   position:relative;overflow:hidden;
 }
-.product-card::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1.5px;background:linear-gradient(90deg,transparent,rgba(116,198,157,.4),transparent);}
-
-.product-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-.product-badge{
-  display:inline-flex;align-items:center;gap:5px;
-  padding:4px 12px;background:rgba(116,198,157,.1);
-  border-radius:20px;font-size:11px;font-weight:700;
-  color:var(--g4);letter-spacing:.05em;
+.card-alert::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
 }
-.product-flag{font-size:22px;}
-
-.product-name{
-  font-size:22px;font-weight:800;color:var(--tx);
-  font-family:'Baloo 2',sans-serif;margin-bottom:14px;
+.ca-title{
+  font-size:14px;font-weight:800;color:var(--gold);
+  font-family:'Baloo 2',sans-serif;margin-bottom:12px;
+  display:flex;align-items:center;gap:7px;
 }
-.product-name span{color:var(--g4);}
-
-/* Features list */
-.features{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
-.feat{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ts);}
-.feat-ico{
-  font-size:14px;flex-shrink:0;
-  width:28px;height:28px;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(116,198,157,.07);border-radius:7px;
+.ca-cards{display:flex;flex-direction:column;gap:7px;}
+.ca-row{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(0,0,0,.2);border-radius:10px;
+  padding:8px 12px;
 }
-.feat b{color:var(--tx);}
+.ca-flag{font-size:18px;flex-shrink:0;}
+.ca-info{flex:1;}
+.ca-country{font-size:11px;font-weight:700;color:var(--tx);}
+.ca-detail{font-size:10px;color:var(--ts);line-height:1.5;margin-top:1px;}
+.ca-tick{font-size:14px;flex-shrink:0;}
 
-/* Price block */
+/* Family tip */
+.ca-family{
+  margin-top:10px;
+  background:rgba(116,198,157,.07);
+  border:1px solid rgba(116,198,157,.2);
+  border-radius:10px;padding:9px 12px;
+  font-size:11px;color:var(--ts);line-height:1.7;
+}
+.ca-family b{color:var(--g4);}
+
+/* ── PRICE BLOCK ── */
 .price-block{
-  background:var(--bg3);border-radius:14px;padding:14px;
-  border:1px solid rgba(240,192,64,.15);
-  position:relative;overflow:hidden;
+  background:var(--bg2);border:1.5px solid rgba(240,192,64,.22);
+  border-radius:18px;padding:16px;margin-bottom:14px;
+  position:relative;overflow:hidden;text-align:center;
 }
-.price-block::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
-.price-main{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;}
-.price-orig{font-size:13px;color:var(--tm);text-decoration:line-through;}
-.price-now{font-size:42px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;line-height:1;}
-.price-period{font-size:12px;color:var(--ts);align-self:flex-end;padding-bottom:4px;}
-.price-tagline{font-size:12px;color:var(--tm);margin-bottom:12px;}
-
-/* Currency grid */
-.currency-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
-.currency-item{
-  background:rgba(0,0,0,.2);border-radius:9px;
-  padding:7px 4px;text-align:center;
+.price-block::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1.5px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.pb-name{font-size:13px;color:var(--tm);margin-bottom:6px;font-weight:600;}
+.pb-price-row{display:flex;align-items:baseline;justify-content:center;gap:10px;margin-bottom:4px;}
+.pb-orig{font-size:13px;color:var(--tm);text-decoration:line-through;}
+.pb-now{font-size:48px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;line-height:1;}
+.pb-once{font-size:12px;color:var(--ts);padding-bottom:4px;}
+.pb-tagline{font-size:11px;color:var(--tm);margin-bottom:12px;}
+/* Mini currency row */
+.pb-currencies{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;}
+.pb-cur{
+  font-size:10px;color:var(--ts);
+  background:rgba(0,0,0,.2);
   border:1px solid var(--bd);
+  border-radius:6px;padding:3px 8px;
+  display:flex;align-items:center;gap:4px;
 }
-.ci-flag{font-size:16px;margin-bottom:2px;}
-.ci-country{font-size:8px;color:var(--tm);margin-bottom:1px;}
-.ci-price{font-size:13px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;}
-.ci-usd{font-size:8px;color:var(--tm);}
+.pb-cur span{color:var(--gold);font-weight:700;font-family:'Baloo 2',sans-serif;}
 
-/* ── EMAIL SECTION ── */
-.email-section{
-  background:var(--bg2);border:1px solid var(--bd);
-  border-radius:16px;padding:16px;margin-bottom:14px;
-}
+/* ── EMAIL ── */
+.email-section{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:12px;}
 .lbl{font-size:11px;letter-spacing:.1em;color:var(--tm);text-transform:uppercase;margin-bottom:8px;font-weight:700;}
-.inp{
-  width:100%;background:var(--bg3);
-  border:1.5px solid var(--bd);border-radius:12px;
-  padding:14px 16px;color:var(--tx);font-size:16px;
-  outline:none;transition:border-color .2s;
-  -webkit-appearance:none;font-family:inherit;
-}
+.inp{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:12px;padding:14px 16px;color:var(--tx);font-size:16px;outline:none;transition:border-color .2s;-webkit-appearance:none;font-family:inherit;}
 .inp:focus{border-color:var(--g4);}
 .inp::placeholder{color:var(--tm);}
-.inp-note{font-size:12px;color:var(--tm);margin-top:8px;line-height:1.6;display:flex;align-items:flex-start;gap:6px;}
+.inp-note{font-size:12px;color:var(--tm);margin-top:8px;line-height:1.6;}
 
-/* ── REFUND BANNER ── */
+/* ── REFUND ── */
 .refund-banner{
-  background:rgba(116,198,157,.05);
-  border:1px solid rgba(116,198,157,.18);
-  border-radius:12px;padding:10px 14px;
-  margin-bottom:14px;
+  background:rgba(116,198,157,.05);border:1px solid rgba(116,198,157,.18);
+  border-radius:12px;padding:10px 14px;margin-bottom:12px;
   display:flex;align-items:center;gap:10px;
 }
-.rb-ico{font-size:22px;flex-shrink:0;}
+.rb-ico{font-size:20px;flex-shrink:0;}
 .rb-text{font-size:12px;color:var(--ts);line-height:1.6;}
 .rb-text b{color:var(--g4);}
 
@@ -158,158 +127,137 @@ body::before{
   color:#0A1A10;font-size:19px;font-weight:800;
   cursor:pointer;font-family:'Baloo 2',sans-serif;
   box-shadow:0 8px 32px rgba(240,192,64,.35);
-  margin-bottom:12px;
-  transition:transform .15s;
-  position:relative;overflow:hidden;
-}
-.pay-btn::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+  margin-bottom:12px;transition:transform .15s;
 }
 .pay-btn:active{transform:scale(.97);}
 .pay-btn:disabled{opacity:.6;transform:none;}
 
-/* Pulse animation */
 @keyframes pulse{0%,100%{box-shadow:0 8px 32px rgba(240,192,64,.35)}50%{box-shadow:0 8px 44px rgba(240,192,64,.6)}}
 .pay-btn:not(:disabled){animation:pulse 2.5s ease-in-out infinite;}
 
-.security-row{
-  display:flex;align-items:center;justify-content:center;
-  gap:8px;flex-wrap:wrap;margin-bottom:16px;
-}
-.sec-badge{
-  font-size:11px;color:var(--tm);
-  display:flex;align-items:center;gap:4px;
-}
+.security-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+.sec-badge{font-size:11px;color:var(--tm);display:flex;align-items:center;gap:4px;}
 .sec-dot{width:3px;height:3px;border-radius:50%;background:var(--tm);}
 
-/* ── STICKY CTA ── */
+/* ── STICKY ── */
 .sticky-pay{
   position:fixed;bottom:0;left:0;right:0;z-index:100;
   padding:10px 16px max(10px,env(safe-area-inset-bottom));
-  background:rgba(8,14,10,.97);
-  border-top:1px solid rgba(240,192,64,.15);
-  backdrop-filter:blur(20px);
-  display:none;
+  background:rgba(8,14,10,.97);border-top:1px solid rgba(240,192,64,.15);
+  backdrop-filter:blur(20px);display:none;
 }
 .sticky-pay.show{display:block;}
 .sticky-pay-btn{
   width:100%;max-width:420px;margin:0 auto;display:block;
-  padding:16px;
-  background:linear-gradient(135deg,#F0C040,#F4A261);
+  padding:15px;background:linear-gradient(135deg,#F0C040,#F4A261);
   border:none;border-radius:14px;
   color:#0A1A10;font-size:17px;font-weight:800;
   cursor:pointer;font-family:'Baloo 2',sans-serif;
-  box-shadow:0 4px 20px rgba(240,192,64,.3);
 }
 
-/* ── ERROR / SPINNER ── */
+/* ── ERROR ── */
 .msg{margin-top:10px;padding:12px;border-radius:12px;font-size:13px;line-height:1.6;display:none;}
 .msg.err{background:rgba(224,122,122,.08);border:1px solid rgba(224,122,122,.25);color:var(--red);}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(10,26,16,.3);border-top-color:#0A1A10;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:8px;}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ── FADE IN ── */
+/* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.medals{animation:fadeUp .4s .05s ease both;}
-.product-card{animation:fadeUp .4s .1s ease both;}
+.card-alert{animation:fadeUp .4s .05s ease both;}
+.price-block{animation:fadeUp .4s .1s ease both;}
 .email-section{animation:fadeUp .4s .15s ease both;}
 .refund-banner{animation:fadeUp .4s .18s ease both;}
 .pay-btn{animation:fadeUp .4s .2s ease both,pulse 2.5s 1s ease-in-out infinite;}
 </style>
 </head>
 <body>
-
 <div class="wrap">
 
   <!-- LANG BAR -->
   <div class="lang-bar">
-    <div class="lang-logo">💰 SmartSaathi</div>
+    <div class="lang-logo">&#x1F4B0; SmartSaathi</div>
     <div class="lang-btns">
-      <button class="lang-btn on" id="btnUR" onclick="setLang('ur')">اردو</button>
-      <button class="lang-btn" id="btnBD" onclick="setLang('bd')">বাংলা</button>
+      <button class="lang-btn on" id="btnUR" onclick="setLang('ur')">&#x627;&#x631;&#x62F;&#x648;</button>
+      <button class="lang-btn" id="btnBD" onclick="setLang('bd')">&#x9AC;&#x9BE;&#x982;&#x9B2;&#x9BE;</button>
     </div>
   </div>
 
-  <!-- TRUST MEDALS -->
-  <div class="medals">
-    <div class="medal">
-      <div class="medal-ico">🔒</div>
-      <div class="medal-txt" id="m1t">Secure<br>Payment</div>
-      <div class="medal-sub" id="m1s">Paddle verified</div>
+  <!-- CARD ALERT — FIRST THING THEY SEE -->
+  <div class="card-alert">
+    <div class="ca-title" id="caTitle">&#x1F4B3; Kaunsa Card Kaam Karta Hai?</div>
+    <div class="ca-cards" id="caCards">
+
+      <div class="ca-row">
+        <div class="ca-flag">&#x1F1F8;&#x1F1E6;</div>
+        <div class="ca-info">
+          <div class="ca-country">Saudi Arabia — Mada Card</div>
+          <div class="ca-detail" id="ca1">Saudi bank account hai to Mada card directly kaam karti hai</div>
+        </div>
+        <div class="ca-tick">&#x2705;</div>
+      </div>
+
+      <div class="ca-row">
+        <div class="ca-flag">&#x1F1E6;&#x1F1EA;</div>
+        <div class="ca-info">
+          <div class="ca-country">UAE — Debit / Google Pay</div>
+          <div class="ca-detail" id="ca2">UAE bank debit card ya Google Pay / Apple Pay kaam karta hai</div>
+        </div>
+        <div class="ca-tick">&#x2705;</div>
+      </div>
+
+      <div class="ca-row">
+        <div class="ca-flag">&#x1F1F6;&#x1F1E6;</div>
+        <div class="ca-info">
+          <div class="ca-country">Qatar / Kuwait / Bahrain / Oman</div>
+          <div class="ca-detail" id="ca3">Local bank debit card kaam karta hai</div>
+        </div>
+        <div class="ca-tick">&#x2705;</div>
+      </div>
+
+      <div class="ca-row">
+        <div class="ca-flag">&#x1F1F5;&#x1F1F0;</div>
+        <div class="ca-info">
+          <div class="ca-country">Pakistan — HBL, Meezan, UBL, JazzCash</div>
+          <div class="ca-detail" id="ca4">Ghar se family pay kar sakti hai — aapka email daalein, access aapko milega</div>
+        </div>
+        <div class="ca-tick">&#x2705;</div>
+      </div>
+
+      <div class="ca-row">
+        <div class="ca-flag">&#x1F1E7;&#x1F1E9;</div>
+        <div class="ca-info">
+          <div class="ca-country">Bangladesh — Dutch Bangla, BRAC, bKash</div>
+          <div class="ca-detail" id="ca5">Ghar se family pay kar sakti hai — aapka email daalein, access aapko milega</div>
+        </div>
+        <div class="ca-tick">&#x2705;</div>
+      </div>
+
     </div>
-    <div class="medal">
-      <div class="medal-ico">🏅</div>
-      <div class="medal-txt" id="m2t">48 Ghante<br>Refund</div>
-      <div class="medal-sub" id="m2s">Koi sawaal nahi</div>
-    </div>
-    <div class="medal">
-      <div class="medal-ico">♾️</div>
-      <div class="medal-txt" id="m3t">Lifetime<br>Access</div>
-      <div class="medal-sub" id="m3s">Ek baar — hamesha</div>
+
+    <!-- Family tip -->
+    <div class="ca-family" id="caFamily">
+      &#x1F4F2; <b>Card nahi hai?</b> Ghar waalon ko yeh link bhejo: <b>smartsaathi.app/checkout</b> — woh apne card se pay karein, email mein <b>aapka email</b> daalein. Login link aapko milega.
     </div>
   </div>
 
-  <!-- PRODUCT CARD -->
-  <div class="product-card">
-    <div class="product-top">
-      <div class="product-badge" id="prodBadge">✨ Lifetime Access</div>
-      <div class="product-flag">💰</div>
+  <!-- PRICE BLOCK -->
+  <div class="price-block">
+    <div class="pb-name" id="pbName">Smart Bachat — Lifetime Access</div>
+    <div class="pb-price-row">
+      <div class="pb-orig" id="pbOrig">SAR 25</div>
+      <div class="pb-now">SAR 11</div>
+      <div class="pb-once" id="pbOnce">sirf ek baar</div>
     </div>
-
-    <div class="product-name" id="prodName">Smart <span>Bachat</span></div>
-
-    <div class="features" id="featList"></div>
-
-    <!-- PRICE BLOCK -->
-    <div class="price-block">
-      <div class="price-main">
-        <div class="price-orig" id="priceOrig">SAR 25</div>
-        <div class="price-now" id="priceNow">SAR 11</div>
-        <div class="price-period" id="pricePeriod">sirf ek baar</div>
-      </div>
-      <div class="price-tagline" id="priceTagline">Koi subscription nahi — hamesha ke liye aapka</div>
-
-      <!-- CURRENCY GRID -->
-      <div class="currency-grid">
-        <div class="currency-item">
-          <div class="ci-flag" style="font-size:20px">&#x1F1F8;&#x1F1E6;</div>
-          <div class="ci-country">Saudi</div>
-          <div class="ci-price">SAR 11</div>
-          <div class="ci-usd">= $2.99</div>
-        </div>
-        <div class="currency-item">
-          <div class="ci-flag" style="font-size:20px">&#x1F1E6;&#x1F1EA;</div>
-          <div class="ci-country">UAE</div>
-          <div class="ci-price">AED 11</div>
-          <div class="ci-usd">= $2.99</div>
-        </div>
-        <div class="currency-item">
-          <div class="ci-flag" style="font-size:20px">&#x1F1F6;&#x1F1E6;</div>
-          <div class="ci-country">Qatar</div>
-          <div class="ci-price">QAR 11</div>
-          <div class="ci-usd">= $2.99</div>
-        </div>
-        <div class="currency-item">
-          <div class="ci-flag" style="font-size:20px">&#x1F1F0;&#x1F1FC;</div>
-          <div class="ci-country">Kuwait</div>
-          <div class="ci-price">KWD 0.9</div>
-          <div class="ci-usd">= $2.99</div>
-        </div>
-        <div class="currency-item">
-          <div class="ci-flag" style="font-size:20px">&#x1F1E7;&#x1F1ED;</div>
-          <div class="ci-country">Bahrain</div>
-          <div class="ci-price">BHD 1.1</div>
-          <div class="ci-usd">= $2.99</div>
-        </div>
-        <div class="currency-item">
-          <div class="ci-flag" style="font-size:20px">&#x1F1F4;&#x1F1F2;</div>
-          <div class="ci-country">Oman</div>
-          <div class="ci-price">OMR 1.1</div>
-          <div class="ci-usd">= $2.99</div>
-        </div>
-      </div>
+    <div class="pb-tagline" id="pbTagline">Koi subscription nahi — hamesha ke liye aapka</div>
+    <div class="pb-currencies">
+      <div class="pb-cur">&#x1F1F8;&#x1F1E6; <span>SAR 11</span></div>
+      <div class="pb-cur">&#x1F1E6;&#x1F1EA; <span>AED 11</span></div>
+      <div class="pb-cur">&#x1F1F6;&#x1F1E6; <span>QAR 11</span></div>
+      <div class="pb-cur">&#x1F1F0;&#x1F1FC; <span>KWD 0.9</span></div>
+      <div class="pb-cur">&#x1F1E7;&#x1F1ED; <span>BHD 1.1</span></div>
+      <div class="pb-cur">&#x1F1F4;&#x1F1F2; <span>OMR 1.1</span></div>
     </div>
+    <div style="margin-top:8px;font-size:11px;color:var(--tm);" id="pbUSD">Payment screen par $2.99 dikhega — yeh SAR 11 ke barabar hai &#x2705;</div>
   </div>
 
   <!-- EMAIL -->
@@ -318,57 +266,13 @@ body::before{
     <input class="inp" type="email" id="emailInp"
       placeholder="aapka@email.com"
       inputmode="email" autocomplete="email">
-    <div class="inp-note" id="emailNote">
-      📧 Payment ke baad is email par login link aayega — app turant khul jaayega.
-    </div>
+    <div class="inp-note" id="emailNote">&#x1F4E7; Payment ke baad is email par login link aayega — app turant khul jaayega.</div>
   </div>
 
-  <!-- REFUND BANNER -->
+  <!-- REFUND -->
   <div class="refund-banner">
     <div class="rb-ico">&#x1F6E1;&#xFE0F;</div>
-    <div class="rb-text" id="refundText">
-      <b>100% Money-Back Guarantee.</b> 48 ghante ke andar pasand na aaye — poora paisa wapas. Koi sawaal nahi, koi argument nahi.
-    </div>
-  </div>
-
-  <!-- CURRENCY CONVERSION NOTICE -->
-  <div style="background:rgba(240,192,64,.07);border:1.5px solid rgba(240,192,64,.25);border-radius:14px;padding:12px 14px;margin-bottom:14px;text-align:center;">
-    <div style="font-size:11px;color:#5E8A68;margin-bottom:8px;font-weight:700;letter-spacing:.05em;" id="convTitle">&#x1F4B1; AAPKI CURRENCY MEIN KITNA LAGTA HAI</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
-      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:6px 4px;text-align:center;">
-        <div style="font-size:15px">&#x1F1F8;&#x1F1E6;</div>
-        <div style="font-size:9px;color:#5E8A68">Saudi</div>
-        <div style="font-size:13px;font-weight:800;color:#F0C040;font-family:'Baloo 2',sans-serif">SAR 11</div>
-      </div>
-      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:6px 4px;text-align:center;">
-        <div style="font-size:15px">&#x1F1E6;&#x1F1EA;</div>
-        <div style="font-size:9px;color:#5E8A68">UAE</div>
-        <div style="font-size:13px;font-weight:800;color:#F0C040;font-family:'Baloo 2',sans-serif">AED 11</div>
-      </div>
-      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:6px 4px;text-align:center;">
-        <div style="font-size:15px">&#x1F1F6;&#x1F1E6;</div>
-        <div style="font-size:9px;color:#5E8A68">Qatar</div>
-        <div style="font-size:13px;font-weight:800;color:#F0C040;font-family:'Baloo 2',sans-serif">QAR 11</div>
-      </div>
-      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:6px 4px;text-align:center;">
-        <div style="font-size:15px">&#x1F1F0;&#x1F1FC;</div>
-        <div style="font-size:9px;color:#5E8A68">Kuwait</div>
-        <div style="font-size:13px;font-weight:800;color:#F0C040;font-family:'Baloo 2',sans-serif">KWD 0.9</div>
-      </div>
-      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:6px 4px;text-align:center;">
-        <div style="font-size:15px">&#x1F1E7;&#x1F1ED;</div>
-        <div style="font-size:9px;color:#5E8A68">Bahrain</div>
-        <div style="font-size:13px;font-weight:800;color:#F0C040;font-family:'Baloo 2',sans-serif">BHD 1.1</div>
-      </div>
-      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:6px 4px;text-align:center;">
-        <div style="font-size:15px">&#x1F1F4;&#x1F1F2;</div>
-        <div style="font-size:9px;color:#5E8A68">Oman</div>
-        <div style="font-size:13px;font-weight:800;color:#F0C040;font-family:'Baloo 2',sans-serif">OMR 1.1</div>
-      </div>
-    </div>
-    <div style="margin-top:8px;font-size:11px;color:#B8D4BE;" id="convNote">
-      &#x2139;&#xFE0F; Payment screen par $2.99 dikhega — yeh SAR 11 ke barabar hai &#x2705;
-    </div>
+    <div class="rb-text" id="refundText"><b>100% Money-Back Guarantee.</b> 48 ghante ke andar pasand na aaye — poora paisa wapas. Koi sawaal nahi.</div>
   </div>
 
   <!-- PAY BUTTON -->
@@ -377,219 +281,170 @@ body::before{
   </button>
 
   <div class="security-row">
-    <span class="sec-badge">🔒 Paddle Secure</span>
+    <span class="sec-badge">&#x1F512; Paddle Secure</span>
     <span class="sec-dot"></span>
-    <span class="sec-badge">⚡ Instant Access</span>
+    <span class="sec-badge">&#x26A1; Instant Access</span>
     <span class="sec-dot"></span>
-    <span class="sec-badge">↩ 48hr Refund</span>
+    <span class="sec-badge">&#x21A9; 48hr Refund</span>
   </div>
 
   <div class="msg err" id="errMsg"></div>
 
-  <div style="text-align:center;margin-top:8px;">
-    <a href="/" style="font-size:13px;color:var(--tm);" id="backLink">← Wapas Jayen</a>
+  <div style="text-align:center;margin-top:10px;">
+    <a href="/" style="font-size:13px;color:var(--tm);" id="backLink">&#x2190; Wapas Jayen</a>
   </div>
 
 </div>
 
-<!-- STICKY PAY (shows when main button scrolls out) -->
+<!-- STICKY -->
 <div class="sticky-pay" id="stickyPay">
-  <button class="sticky-pay-btn" onclick="startCheckout()" id="stickyPayBtn">
-    👉 SAR 11 — Abhi Access Lo
-  </button>
+  <button class="sticky-pay-btn" onclick="startCheckout()" id="stickyBtn">&#x1F449; SAR 11 — Abhi Access Lo</button>
 </div>
 
 <script>
 var PADDLE_TOKEN = 'live_0ab1f7f2cd2ce76fbe888ddef9c';
 var PRICE_ID = 'pri_01kt4n716h95dwq9d2rprwbqm5';
-
 var paddleReady = false;
+var lang = 'ur';
 
-function initPaddle() {
-  try {
+function initPaddle(){
+  try{
     Paddle.Initialize({
-      token: PADDLE_TOKEN,
-      eventCallback: function(data) {
-        if (data.name === 'checkout.completed') {
-          var email = (data.data && data.data.customer) ? data.data.customer.email : '';
-          window.location.href = '/success?email=' + encodeURIComponent(email);
+      token:PADDLE_TOKEN,
+      eventCallback:function(data){
+        if(data.name==='checkout.completed'){
+          var email=(data.data&&data.data.customer)?data.data.customer.email:'';
+          window.location.href='/success?email='+encodeURIComponent(email);
         }
       }
     });
-    paddleReady = true;
-  } catch(e) {
-    console.log('Paddle init error:', e);
-  }
+    paddleReady=true;
+  }catch(e){console.log('Paddle init:',e);}
 }
 
-// ── CONTENT ──
-var C = {
-  ur: {
-    m1t:'Secure\nPayment', m1s:'Paddle verified',
-    m2t:'48 Ghante\nRefund', m2s:'Koi sawaal nahi',
-    m3t:'Lifetime\nAccess', m3s:'Ek baar — hamesha',
-    prodBadge:'✨ Lifetime Access',
-    prodName:'Smart <span style="color:var(--g4)">Bachat</span>',
-    feats:[
-      {i:'💰',t:'<b>Salary Taqseem</b> — ghar, bachat, emergency, sadqa'},
-      {i:'🆘',t:'<b>Help Now</b> — kafeel, iqama, salary, beemar, wapsi'},
-      {i:'🌟',t:'<b>Wapsi Ka Sapna</b> — calculator ke saath'},
-      {i:'🛡️',t:'<b>Family Shield</b> — ghar walon ke liye messages'},
-      {i:'🏆',t:'<b>EOSD Calculator</b> — apna legal haq jaano'},
-      {i:'🌍',t:'<b>Urdu + Bengali</b> — 6 Gulf countries'},
-    ],
-    priceOrig:'SAR 25',priceNow:'SAR 11',
-    pricePeriod:'sirf ek baar',
-    priceTagline:'Koi subscription nahi — hamesha ke liye aapka',
+var C={
+  ur:{
+    caTitle:'&#x1F4B3; Kaunsa Card Kaam Karta Hai?',
+    ca1:'Saudi bank account hai to Mada card directly kaam karti hai',
+    ca2:'UAE bank debit card ya Google Pay / Apple Pay kaam karta hai',
+    ca3:'Local bank debit card kaam karta hai',
+    ca4:'Ghar se family pay kar sakti hai — aapka email daalein, access aapko milega',
+    ca5:'Ghar se family pay kar sakti hai — aapka email daalein, access aapko milega',
+    caFamily:'&#x1F4F2; <b>Card nahi hai?</b> Ghar waalon ko yeh link bhejo: <b>smartsaathi.app/checkout</b> — woh apne card se pay karein, email mein <b>aapka email</b> daalein. Login link aapko milega.',
+    pbName:'Smart Bachat — Lifetime Access',
+    pbOrig:'SAR 25',pbOnce:'sirf ek baar',
+    pbTagline:'Koi subscription nahi — hamesha ke liye aapka',
+    pbUSD:'Payment screen par $2.99 dikhega — yeh SAR 11 ke barabar hai &#x2705;',
     emailLbl:'Aapka Email',
-    emailNote:'📧 Payment ke baad is email par login link aayega — app turant khul jaayega.',
-    refundText:'<b>100% Money-Back Guarantee.</b> 48 ghante ke andar pasand na aaye — poora paisa wapas. Koi sawaal nahi, koi argument nahi.',
-    payBtn:'👉 SAR 11 — Abhi Access Lo',
-    stickyBtn:'👉 SAR 11 — Abhi Access Lo',
+    emailNote:'&#x1F4E7; Payment ke baad is email par login link aayega — app turant khul jaayega.',
+    refundText:'<b>100% Money-Back Guarantee.</b> 48 ghante ke andar pasand na aaye — poora paisa wapas. Koi sawaal nahi.',
+    payBtn:'&#x1F449; SAR 11 — Abhi Access Lo',
+    stickyBtn:'&#x1F449; SAR 11 — Abhi Access Lo',
     errEmail:'Sahi email dalein — login link is par aayega.',
-    backLink:'← Wapas Jayen',
-    convTitle:'💱 AAPKI CURRENCY MEIN KITNA LAGTA HAI',
-    convNote:'Payment screen par $2.99 dikhega — yeh SAR 11 ke barabar hai ✅',
+    backLink:'&#x2190; Wapas Jayen',
   },
-  bd: {
-    m1t:'নিরাপদ\nপেমেন্ট', m1s:'Paddle verified',
-    m2t:'৪৮ ঘন্টা\nরিফান্ড', m2s:'কোনো প্রশ্ন নেই',
-    m3t:'সারাজীবন\nঅ্যাক্সেস', m3s:'একবার — সারাজীবন',
-    prodBadge:'✨ সারাজীবনের অ্যাক্সেস',
-    prodName:'Smart <span style="color:var(--g4)">Bachat</span>',
-    feats:[
-      {i:'💰',t:'<b>বেতন বণ্টন</b> — বাড়ি, বাচাত, জরুরি ফান্ড, সদকা'},
-      {i:'🆘',t:'<b>Help Now</b> — কাফেল, ইকামা, বেতন, অসুস্থ, ফেরা'},
-      {i:'🌟',t:'<b>ফেরার স্বপ্ন</b> — calculator সহ'},
-      {i:'🛡️',t:'<b>পরিবার শিল্ড</b> — পরিবারের জন্য মেসেজ'},
-      {i:'🏆',t:'<b>EOSD Calculator</b> — নিজের আইনি অধিকার'},
-      {i:'🌍',t:'<b>বাংলা + উর্দু</b> — ৬টি Gulf দেশ'},
-    ],
-    priceOrig:'SAR 25',priceNow:'SAR 11',
-    pricePeriod:'মাত্র একবার',
-    priceTagline:'কোনো সাবস্ক্রিপশন নেই — সারাজীবনের জন্য আপনার',
+  bd:{
+    caTitle:'&#x1F4B3; কোন কার্ড কাজ করে?',
+    ca1:'Saudi bank account থাকলে Mada card সরাসরি কাজ করে',
+    ca2:'UAE bank debit card বা Google Pay / Apple Pay কাজ করে',
+    ca3:'Local bank debit card কাজ করে',
+    ca4:'পরিবার বাড়ি থেকে pay করতে পারবে — আপনার email দিন, access আপনার কাছে আসবে',
+    ca5:'পরিবার বাড়ি থেকে pay করতে পারবে — আপনার email দিন, access আপনার কাছে আসবে',
+    caFamily:'&#x1F4F2; <b>কার্ড নেই?</b> পরিবারকে এই link পাঠান: <b>smartsaathi.app/checkout</b> — তারা নিজেদের card দিয়ে pay করবে, email-এ <b>আপনার email</b> দেবে। Login link আপনার কাছে আসবে।',
+    pbName:'Smart Bachat — সারাজীবনের অ্যাক্সেস',
+    pbOrig:'SAR 25',pbOnce:'মাত্র একবার',
+    pbTagline:'কোনো সাবস্ক্রিপশন নেই — সারাজীবনের জন্য আপনার',
+    pbUSD:'Payment screen-এ $2.99 দেখাবে — এটা SAR 11-এর সমান &#x2705;',
     emailLbl:'আপনার ইমেইল',
-    emailNote:'📧 পেমেন্টের পর এই ইমেইলে লগিন লিংক আসবে — App সাথে সাথে খুলবে।',
-    refundText:'<b>১০০% Money-Back Guarantee।</b> ৪৮ ঘন্টার মধ্যে পছন্দ না হলে — পুরো টাকা ফেরত। কোনো প্রশ্ন নেই, কোনো তর্ক নেই।',
-    payBtn:'👉 SAR 11 — এখনই অ্যাক্সেস নিন',
-    stickyBtn:'👉 SAR 11 — এখনই অ্যাক্সেস নিন',
-    errEmail:'সঠিক ইমেইল দিন — লগিন লিংক এখানে আসবে।',
-    backLink:'← ফিরে যান',
-    convTitle:'💱 আপনার মুদ্রায় কত লাগবে',
-    convNote:'Payment screen-এ $2.99 দেখাবে — এটা SAR 11-এর সমান ✅',
+    emailNote:'&#x1F4E7; পেমেন্টের পর এই email-এ login link আসবে — App সাথে সাথে খুলবে।',
+    refundText:'<b>১০০% Money-Back Guarantee।</b> ৪৮ ঘন্টার মধ্যে পছন্দ না হলে — পুরো টাকা ফেরত। কোনো প্রশ্ন নেই।',
+    payBtn:'&#x1F449; SAR 11 — এখনই অ্যাক্সেস নিন',
+    stickyBtn:'&#x1F449; SAR 11 — এখনই অ্যাক্সেস নিন',
+    errEmail:'সঠিক email দিন — login link এখানে আসবে।',
+    backLink:'&#x2190; ফিরে যান',
   }
 };
-
-var lang = 'ur';
-function setLang(l) {
-  lang = l;
-  document.getElementById('btnUR').classList.toggle('on', l==='ur');
-  document.getElementById('btnBD').classList.toggle('on', l==='bd');
-  document.documentElement.lang = l==='ur' ? 'ur' : 'bn';
-  render();
-}
 
 function G(id){return document.getElementById(id);}
 function setH(id,v){var e=G(id);if(e)e.innerHTML=v;}
 function setT(id,v){var e=G(id);if(e)e.textContent=v;}
 
-function render() {
-  var d = C[lang];
-  setH('m1t', d.m1t.replace('\n','<br>'));
-  setT('m1s', d.m1s);
-  setH('m2t', d.m2t.replace('\n','<br>'));
-  setT('m2s', d.m2s);
-  setH('m3t', d.m3t.replace('\n','<br>'));
-  setT('m3s', d.m3s);
-  setH('prodBadge', d.prodBadge);
-  setH('prodName', d.prodName);
-  // Features
-  var fl = G('featList'); fl.innerHTML = '';
-  d.feats.forEach(function(f) {
-    var el = document.createElement('div');
-    el.className = 'feat';
-    el.innerHTML = '<span class="feat-ico">'+f.i+'</span><span>'+f.t+'</span>';
-    fl.appendChild(el);
-  });
-  setT('priceOrig', d.priceOrig);
-  setT('priceNow', d.priceNow);
-  setT('pricePeriod', d.pricePeriod);
-  setT('priceTagline', d.priceTagline);
-  setT('emailLbl', d.emailLbl);
-  setT('emailNote', d.emailNote);
-  setH('refundText', d.refundText);
-  setH('payBtnText', d.payBtn);
-  setT('stickyPayBtn', d.stickyBtn);
-  setT('backLink', d.backLink);
-  var ct=document.getElementById('convTitle'); if(ct && d.convTitle) ct.textContent=d.convTitle;
-  var cn=document.getElementById('convNote'); if(cn && d.convNote) cn.textContent=d.convNote;
+function render(){
+  var d=C[lang];
+  setH('caTitle',d.caTitle);
+  setT('ca1',d.ca1);setT('ca2',d.ca2);setT('ca3',d.ca3);
+  setT('ca4',d.ca4);setT('ca5',d.ca5);
+  setH('caFamily',d.caFamily);
+  setT('pbName',d.pbName);setT('pbOrig',d.pbOrig);
+  setT('pbOnce',d.pbOnce);setT('pbTagline',d.pbTagline);
+  setH('pbUSD',d.pbUSD);
+  setT('emailLbl',d.emailLbl);setT('emailNote',d.emailNote);
+  setH('refundText',d.refundText);
+  setH('payBtnText',d.payBtn);
+  setT('stickyBtn',d.stickyBtn);
+  setT('backLink',d.backLink);
 }
 
-// ── CHECKOUT ──
-function startCheckout() {
-  var d = C[lang];
-  var email = G('emailInp').value.trim();
-  if (!email || !email.includes('@') || !email.includes('.')) {
-    showErr(d.errEmail); return;
+function setLang(l){
+  lang=l;
+  G('btnUR').classList.toggle('on',l==='ur');
+  G('btnBD').classList.toggle('on',l==='bd');
+  document.documentElement.lang=l==='ur'?'ur':'bn';
+  render();
+}
+
+function startCheckout(){
+  var d=C[lang];
+  var email=G('emailInp').value.trim();
+  if(!email||!email.includes('@')||!email.includes('.')){
+    showErr(d.errEmail);return;
   }
   hideErr();
-
-  if (!paddleReady) {
-    showErr('Payment system loading... please wait 2 seconds and try again.');
-    initPaddle();
-    return;
+  if(!paddleReady){
+    showErr('Payment system load ho raha hai... 2 second baad dobara try karein.');
+    initPaddle();return;
   }
-
-  var btn = G('payBtn');
-  btn.disabled = true;
-  G('payBtnText').innerHTML = '<span class="spinner"></span>Loading...';
-
-  try {
+  var btn=G('payBtn');
+  btn.disabled=true;
+  G('payBtnText').innerHTML='<span class="spinner"></span>Loading...';
+  try{
     Paddle.Checkout.open({
-      items: [{ priceId: PRICE_ID, quantity: 1 }],
-      customer: { email: email, address: { countryCode: 'SA' } },
-      settings: {
-        displayMode: 'overlay',
-        theme: 'dark',
-        locale: 'en',
-        successUrl: 'https://smartsaathi.app/success?email=' + encodeURIComponent(email)
+      items:[{priceId:PRICE_ID,quantity:1}],
+      customer:{email:email,address:{countryCode:'SA'}},
+      settings:{
+        displayMode:'overlay',
+        theme:'dark',
+        locale:'en',
+        successUrl:'https://smartsaathi.app/success?email='+encodeURIComponent(email)
       }
     });
-  } catch(e) {
-    console.log('Checkout error:', e);
-    showErr('Kuch masla hua. Please page refresh karein aur dobara try karein.');
-    btn.disabled = false;
-    G('payBtnText').innerHTML = d.payBtn;
+  }catch(e){
+    console.log('Checkout error:',e);
+    showErr('Kuch masla hua. Page refresh karein aur dobara try karein.');
+    btn.disabled=false;
+    G('payBtnText').innerHTML=d.payBtn;
     return;
   }
-
-  setTimeout(function() {
-    btn.disabled = false;
-    G('payBtnText').innerHTML = d.payBtn;
-  }, 5000);
+  setTimeout(function(){
+    btn.disabled=false;
+    G('payBtnText').innerHTML=d.payBtn;
+  },5000);
 }
 
-function showErr(msg){var e=G('errMsg');e.textContent=msg;e.style.display='block';}
-function hideErr(){var e=G('errMsg');e.style.display='none';}
+function showErr(m){var e=G('errMsg');e.textContent=m;e.style.display='block';}
+function hideErr(){G('errMsg').style.display='none';}
 
-// ── STICKY PAY visibility ──
-var payBtnEl = null;
-window.addEventListener('DOMContentLoaded', function() {
-  // Init Paddle
+window.addEventListener('DOMContentLoaded',function(){
   initPaddle();
-
-  payBtnEl = G('payBtn');
-  var detected = (navigator.language||'').toLowerCase();
-  if(detected.startsWith('bn')||detected.startsWith('bd')) lang='bd';
-  G('btnUR').classList.toggle('on', lang==='ur');
-  G('btnBD').classList.toggle('on', lang==='bd');
+  var detected=(navigator.language||'').toLowerCase();
+  if(detected.startsWith('bn')||detected.startsWith('bd'))lang='bd';
+  G('btnUR').classList.toggle('on',lang==='ur');
+  G('btnBD').classList.toggle('on',lang==='bd');
   render();
-
-  // Show sticky when pay button scrolls out of view
-  var obs = new IntersectionObserver(function(entries){
-    G('stickyPay').classList.toggle('show', !entries[0].isIntersecting);
-  }, {threshold:0});
-  obs.observe(payBtnEl);
+  var obs=new IntersectionObserver(function(entries){
+    G('stickyPay').classList.toggle('show',!entries[0].isIntersecting);
+  },{threshold:0});
+  obs.observe(G('payBtn'));
 });
 </script>
 </body>
