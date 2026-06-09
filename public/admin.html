@@ -20,75 +20,76 @@ body{font-family:'Hind',-apple-system,sans-serif;background:var(--bg);color:var(
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(45,106,79,.1),transparent 60%);pointer-events:none;}
 .wrap{max-width:420px;margin:0 auto;position:relative;z-index:1;}
 
-/* Login screen */
+/* Login */
 .login-card{background:var(--bg2);border:1.5px solid rgba(116,198,157,.2);border-radius:20px;padding:28px 24px;text-align:center;margin-top:60px;}
 .login-ico{font-size:40px;margin-bottom:12px;}
 .login-title{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:20px;color:var(--g4);margin-bottom:20px;}
-.inp{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:12px;padding:14px 16px;color:var(--tx);font-size:18px;outline:none;transition:border-color .2s;-webkit-appearance:none;font-family:inherit;text-align:center;letter-spacing:3px;}
+.inp{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:12px;padding:14px 16px;color:var(--tx);font-size:16px;outline:none;transition:border-color .2s;-webkit-appearance:none;font-family:inherit;}
 .inp:focus{border-color:var(--g4);}
-.inp::placeholder{color:var(--tm);letter-spacing:0;}
-.btn{width:100%;padding:15px;background:linear-gradient(135deg,#F0C040,#F4A261);border:none;border-radius:12px;color:#0A1A10;font-size:17px;font-weight:800;cursor:pointer;font-family:'Baloo 2',sans-serif;margin-top:12px;}
+.inp::placeholder{color:var(--tm);}
+.pwd-inp{text-align:center;letter-spacing:3px;font-size:18px;}
+.btn{width:100%;padding:15px;background:linear-gradient(135deg,#F0C040,#F4A261);border:none;border-radius:12px;color:#0A1A10;font-size:17px;font-weight:800;cursor:pointer;font-family:'Baloo 2',sans-serif;margin-top:12px;transition:transform .15s;}
 .btn:active{transform:scale(.97);}
 .btn-green{background:linear-gradient(135deg,var(--g3),var(--g1));color:#fff;}
-.btn-red{background:rgba(224,122,122,.15);border:1px solid rgba(224,122,122,.3);color:var(--red);}
-.err{color:var(--red);font-size:13px;margin-top:8px;}
+.err-txt{color:var(--red);font-size:13px;margin-top:8px;}
 
-/* Main admin */
+/* Main */
 .main{display:none;}
-.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding:12px 0;}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding:12px 0;}
 .header-title{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:18px;color:var(--g4);}
 .logout-btn{font-size:12px;color:var(--tm);cursor:pointer;padding:5px 10px;border:1px solid var(--bd);border-radius:8px;background:transparent;}
 
-/* Stats row */
-.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;}
+/* Stats */
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
 .stat{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:10px;text-align:center;}
 .stat-val{font-size:22px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;}
 .stat-label{font-size:9px;color:var(--tm);margin-top:2px;}
 
-/* Generate section */
+/* Section */
 .section{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:12px;}
-.section-title{font-size:13px;font-weight:700;color:var(--g4);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.section-title{font-size:13px;font-weight:700;color:var(--g4);margin-bottom:12px;}
 
-/* New code display */
-.new-code{
-  background:var(--bg3);border:2px solid rgba(240,192,64,.3);
-  border-radius:12px;padding:16px;text-align:center;
-  margin-bottom:12px;display:none;
-}
-.new-code-val{font-size:28px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;letter-spacing:4px;margin-bottom:8px;}
-.new-code-note{font-size:11px;color:var(--tm);}
-.copy-btn{width:100%;padding:12px;background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.3);border-radius:10px;color:var(--gold);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:8px;}
+/* Form fields */
+.field-label{font-size:10px;letter-spacing:.08em;color:var(--tm);text-transform:uppercase;margin-bottom:6px;font-weight:700;}
+.field-inp{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:10px;padding:12px 14px;color:var(--tx);font-size:15px;outline:none;font-family:inherit;margin-bottom:10px;-webkit-appearance:none;}
+.field-inp:focus{border-color:var(--g4);}
+.field-inp::placeholder{color:var(--tm);}
+
+/* Phone input row */
+.phone-row{display:flex;gap:8px;margin-bottom:10px;}
+.phone-pre{background:var(--bg3);border:1.5px solid var(--bd);border-radius:10px;padding:12px 10px;font-size:14px;color:var(--ts);white-space:nowrap;flex-shrink:0;display:flex;align-items:center;}
+.phone-field{flex:1;background:var(--bg3);border:1.5px solid var(--bd);border-radius:10px;padding:12px 14px;color:var(--tx);font-size:15px;outline:none;font-family:inherit;-webkit-appearance:none;}
+.phone-field:focus{border-color:var(--g4);}
+.phone-field::placeholder{color:var(--tm);}
+
+/* Generated code box */
+.new-code{background:var(--bg3);border:2px solid rgba(240,192,64,.3);border-radius:12px;padding:16px;text-align:center;margin-bottom:10px;display:none;position:relative;}
+.new-code::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.new-code-val{font-size:28px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;letter-spacing:4px;margin-bottom:6px;}
+.new-code-phone{font-size:12px;color:var(--ts);margin-bottom:10px;}
+.copy-btn{width:100%;padding:11px;background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.3);border-radius:9px;color:var(--gold);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:6px;}
 .copy-btn:active{background:rgba(240,192,64,.2);}
-.wa-btn{width:100%;padding:12px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);border-radius:10px;color:#25D366;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:6px;}
-
-/* Buyer name input */
-.buyer-inp{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:10px;padding:11px 14px;color:var(--tx);font-size:15px;outline:none;font-family:inherit;margin-bottom:10px;}
-.buyer-inp:focus{border-color:var(--g4);}
-.buyer-inp::placeholder{color:var(--tm);}
+.wa-btn{width:100%;padding:11px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);border-radius:9px;color:#25D366;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+.wa-btn:active{background:rgba(37,211,102,.2);}
 
 /* Code list */
+.filter-tabs{display:flex;gap:6px;margin-bottom:10px;}
+.ftab{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--bd);background:transparent;color:var(--tm);font-family:inherit;}
+.ftab.on{background:var(--g3);border-color:var(--g3);color:#fff;}
 .code-list{display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;}
-.code-item{
-  background:var(--bg3);border:1px solid var(--bd);
-  border-radius:12px;padding:12px 14px;
-  display:flex;align-items:center;gap:10px;
-}
-.code-item.used{opacity:.5;border-color:rgba(224,122,122,.2);}
-.ci-code{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:15px;color:var(--gold);flex:1;letter-spacing:2px;}
-.ci-buyer{font-size:11px;color:var(--tm);margin-top:2px;}
+.code-item{background:var(--bg3);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;}
+.code-item.used{opacity:.5;}
+.ci-body{flex:1;}
+.ci-code{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:15px;color:var(--gold);letter-spacing:2px;}
+.ci-info{font-size:10px;color:var(--tm);margin-top:3px;line-height:1.5;}
 .ci-status{font-size:10px;padding:3px 8px;border-radius:6px;font-weight:700;flex-shrink:0;}
 .ci-status.unused{background:rgba(116,198,157,.1);color:var(--g4);}
 .ci-status.used{background:rgba(224,122,122,.1);color:var(--red);}
-.ci-copy{font-size:16px;cursor:pointer;flex-shrink:0;}
-
-/* Filter tabs */
-.filter-tabs{display:flex;gap:6px;margin-bottom:12px;}
-.ftab{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--bd);background:transparent;color:var(--tm);font-family:inherit;}
-.ftab.on{background:var(--g3);border-color:var(--g3);color:#fff;}
+.ci-wa{font-size:18px;cursor:pointer;flex-shrink:0;}
+.empty{text-align:center;color:var(--tm);font-size:13px;padding:20px;}
 
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(10,26,16,.3);border-top-color:#0A1A10;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px;}
 @keyframes spin{to{transform:rotate(360deg)}}
-.empty{text-align:center;color:var(--tm);font-size:13px;padding:20px;}
 </style>
 </head>
 <body>
@@ -99,13 +100,13 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="login-card">
       <div class="login-ico">🔐</div>
       <div class="login-title">SmartSaathi Admin</div>
-      <input class="inp" type="password" id="pwdInp" placeholder="Password" onkeydown="if(event.key==='Enter')checkLogin()">
+      <input class="inp pwd-inp" type="password" id="pwdInp" placeholder="Password" onkeydown="if(event.key==='Enter')checkLogin()">
       <button class="btn" onclick="checkLogin()">Login</button>
-      <div class="err" id="loginErr"></div>
+      <div class="err-txt" id="loginErr"></div>
     </div>
   </div>
 
-  <!-- MAIN ADMIN -->
+  <!-- MAIN -->
   <div class="main" id="mainSection">
 
     <div class="header">
@@ -115,30 +116,30 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
     <!-- Stats -->
     <div class="stats">
-      <div class="stat">
-        <div class="stat-val" id="totalCodes">—</div>
-        <div class="stat-label">Total Codes</div>
-      </div>
-      <div class="stat">
-        <div class="stat-val" id="unusedCodes">—</div>
-        <div class="stat-label">Available</div>
-      </div>
-      <div class="stat">
-        <div class="stat-val" id="usedCodes">—</div>
-        <div class="stat-label">Used / Sold</div>
-      </div>
+      <div class="stat"><div class="stat-val" id="totalCodes">—</div><div class="stat-label">Total Codes</div></div>
+      <div class="stat"><div class="stat-val" id="unusedCodes">—</div><div class="stat-label">Available</div></div>
+      <div class="stat"><div class="stat-val" id="usedCodes">—</div><div class="stat-label">Used / Sold</div></div>
     </div>
 
-    <!-- Generate New Code -->
+    <!-- Generate -->
     <div class="section">
       <div class="section-title">➕ Naya Code Banao</div>
-      <input class="buyer-inp" type="text" id="buyerName" placeholder="Buyer ka naam (optional — jaise Ahmed Dubai)">
+
+      <div class="field-label">Buyer ka Naam (optional)</div>
+      <input class="field-inp" type="text" id="buyerName" placeholder="jaise Ahmed Riyadh">
+
+      <div class="field-label">Buyer ka WhatsApp Number ✱</div>
+      <div class="phone-row">
+        <div class="phone-pre">🌍 +</div>
+        <input class="phone-field" type="tel" id="buyerPhone" placeholder="966XXXXXXXXX" inputmode="numeric">
+      </div>
+
       <button class="btn" id="genBtn" onclick="generateCode()">🎲 Code Generate Karo</button>
 
-      <!-- New code display -->
+      <!-- Generated code -->
       <div class="new-code" id="newCodeBox">
         <div class="new-code-val" id="newCodeVal">—</div>
-        <div class="new-code-note" id="newCodeNote">Yeh code buyer ko bhejein</div>
+        <div class="new-code-phone" id="newCodePhone">—</div>
         <button class="copy-btn" onclick="copyCode()">📋 Code Copy Karo</button>
         <button class="wa-btn" onclick="shareWhatsApp()">📲 WhatsApp Par Bhejo</button>
       </div>
@@ -152,34 +153,32 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
         <button class="ftab" onclick="filterCodes('unused',this)">Available</button>
         <button class="ftab" onclick="filterCodes('used',this)">Used</button>
       </div>
-      <div class="code-list" id="codeList">
-        <div class="empty">Loading...</div>
-      </div>
+      <div class="code-list" id="codeList"><div class="empty">Loading...</div></div>
     </div>
 
   </div>
 </div>
 
 <script>
-// ── CONFIG ──
-var ADMIN_PWD = 'Zainaliaoun@1'; // Change this to your own password
+var ADMIN_PWD = 'smartsaathi2026'; // ← CHANGE THIS
 var SUPA_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
-var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidndvbHB2emd4ZWJ5ZnpsbmR0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MDM2MzE4NiwiZXhwIjoyMDk1OTM5MTg2fQ.w5rNK2MiONnKZ_0pAp3O2zyU9rGkHF4knJiM7TBZ_-c'; // Replace with your service key
+var SUPA_KEY = 'YOUR_SUPABASE_SERVICE_KEY'; // ← REPLACE WITH SERVICE_ROLE KEY
 
 var allCodes = [];
 var currentFilter = 'all';
 var latestCode = '';
+var latestPhone = '';
+var latestBuyer = '';
 
-// ── LOGIN ──
 function checkLogin(){
   var pwd = document.getElementById('pwdInp').value;
   if(pwd === ADMIN_PWD){
-    document.getElementById('loginSection').style.display = 'none';
-    document.getElementById('mainSection').style.display = 'block';
+    document.getElementById('loginSection').style.display='none';
+    document.getElementById('mainSection').style.display='block';
     sessionStorage.setItem('admin_auth','1');
     loadCodes();
   } else {
-    document.getElementById('loginErr').textContent = 'Wrong password';
+    document.getElementById('loginErr').textContent='Wrong password';
   }
 }
 
@@ -188,141 +187,148 @@ function logout(){
   location.reload();
 }
 
-// ── SUPABASE HELPERS ──
 async function supaFetch(path, method, body){
-  var res = await fetch(SUPA_URL + path, {
-    method: method || 'GET',
+  var res = await fetch(SUPA_URL+path,{
+    method:method||'GET',
     headers:{
-      'apikey': SUPA_KEY,
-      'Authorization': 'Bearer ' + SUPA_KEY,
-      'Content-Type': 'application/json',
-      'Prefer': method === 'POST' ? 'return=representation' : ''
+      'apikey':SUPA_KEY,
+      'Authorization':'Bearer '+SUPA_KEY,
+      'Content-Type':'application/json',
+      'Prefer':method==='POST'?'return=representation':''
     },
-    body: body ? JSON.stringify(body) : undefined
+    body:body?JSON.stringify(body):undefined
   });
   return res.json();
 }
 
-// ── GENERATE CODE ──
 function makeCode(){
-  var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  var code = 'SB-';
-  for(var i=0;i<4;i++) code += chars[Math.floor(Math.random()*chars.length)];
-  code += '-';
-  for(var i=0;i<4;i++) code += chars[Math.floor(Math.random()*chars.length)];
+  var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var code='SB-';
+  for(var i=0;i<4;i++) code+=chars[Math.floor(Math.random()*chars.length)];
+  code+='-';
+  for(var i=0;i<4;i++) code+=chars[Math.floor(Math.random()*chars.length)];
   return code;
 }
 
+function cleanPhone(p){ return p.replace(/[\s\-\+]/g,'').trim(); }
+
 async function generateCode(){
   var buyer = document.getElementById('buyerName').value.trim() || 'Unknown';
+  var phone = cleanPhone(document.getElementById('buyerPhone').value);
+
+  if(!phone || phone.length < 8){
+    alert('WhatsApp number zaroori hai!');
+    return;
+  }
+
   var btn = document.getElementById('genBtn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>Generating...';
+  btn.disabled=true;
+  btn.innerHTML='<span class="spinner"></span>Generating...';
 
   var code = makeCode();
 
-  try {
-    var data = await supaFetch('/rest/v1/access_codes', 'POST', {
-      code: code,
-      buyer_name: buyer,
-      used: false,
-      created_at: new Date().toISOString()
+  try{
+    await supaFetch('/rest/v1/access_codes','POST',{
+      code:code,
+      buyer_name:buyer,
+      buyer_phone:phone,
+      used:false,
+      created_at:new Date().toISOString()
     });
 
-    latestCode = code;
-    document.getElementById('newCodeVal').textContent = code;
-    document.getElementById('newCodeBox').style.display = 'block';
-    document.getElementById('buyerName').value = '';
+    latestCode=code;
+    latestPhone=phone;
+    latestBuyer=buyer;
+
+    document.getElementById('newCodeVal').textContent=code;
+    document.getElementById('newCodePhone').textContent='📱 +'+phone+' — '+buyer;
+    document.getElementById('newCodeBox').style.display='block';
+    document.getElementById('buyerName').value='';
+    document.getElementById('buyerPhone').value='';
     loadCodes();
-  } catch(e){
-    alert('Error generating code. Check Supabase connection.');
+  }catch(e){
+    alert('Error. Check Supabase connection.');
   }
 
-  btn.disabled = false;
-  btn.innerHTML = '🎲 Code Generate Karo';
+  btn.disabled=false;
+  btn.innerHTML='🎲 Code Generate Karo';
 }
 
 function copyCode(){
   navigator.clipboard.writeText(latestCode).then(function(){
-    var btn = document.querySelector('.copy-btn');
-    btn.textContent = '✅ Copied!';
-    setTimeout(function(){ btn.textContent = '📋 Code Copy Karo'; }, 2000);
+    var btn=document.querySelector('.copy-btn');
+    btn.textContent='✅ Copied!';
+    setTimeout(function(){btn.textContent='📋 Code Copy Karo';},2000);
   });
 }
 
-function shareWhatsApp(){
-  var msg = 'Assalamu Alaikum! 🌟\n\nAapka Smart Bachat access code:\n\n*' + latestCode + '*\n\nYeh steps follow karein:\n1️⃣ Is link par jayen: smartsaathi.app/redeem\n2️⃣ Apna email aur yeh code daalen\n3️⃣ App khul jaayega ✅\n\nKoi masla ho to message karein.\n_SmartSaathi Team_';
-  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+function shareWhatsApp(code, phone, buyer){
+  var c = code||latestCode;
+  var p = phone||latestPhone;
+  var b = buyer||latestBuyer;
+  var msg = 'Assalamu Alaikum '+b+'! 🌟\n\nAapka Smart Bachat access code:\n\n*'+c+'*\n\nAccess lene ke liye:\n1️⃣ Is link par jayen: smartsaathi.app/redeem\n2️⃣ Apna WhatsApp number daalen: *+'+p+'*\n3️⃣ Yeh code daalen: *'+c+'*\n4️⃣ App khul jaayega ✅\n\nKoi masla ho to message karein.\n_SmartSaathi Team_';
+  var url = p ? 'https://wa.me/'+p+'?text='+encodeURIComponent(msg) : 'https://wa.me/?text='+encodeURIComponent(msg);
+  window.open(url,'_blank');
 }
 
-// ── LOAD CODES ──
 async function loadCodes(){
-  try {
+  try{
     var data = await supaFetch('/rest/v1/access_codes?order=created_at.desc&limit=100');
-    allCodes = data || [];
+    allCodes = data||[];
     updateStats();
     renderCodes();
-  } catch(e){
-    document.getElementById('codeList').innerHTML = '<div class="empty">Error loading codes</div>';
+  }catch(e){
+    document.getElementById('codeList').innerHTML='<div class="empty">Error loading</div>';
   }
 }
 
 function updateStats(){
-  var total = allCodes.length;
-  var used = allCodes.filter(function(c){return c.used;}).length;
-  var unused = total - used;
-  document.getElementById('totalCodes').textContent = total;
-  document.getElementById('usedCodes').textContent = used;
-  document.getElementById('unusedCodes').textContent = unused;
+  var total=allCodes.length;
+  var used=allCodes.filter(function(c){return c.used;}).length;
+  document.getElementById('totalCodes').textContent=total;
+  document.getElementById('usedCodes').textContent=used;
+  document.getElementById('unusedCodes').textContent=total-used;
 }
 
-function filterCodes(f, el){
-  currentFilter = f;
+function filterCodes(f,el){
+  currentFilter=f;
   document.querySelectorAll('.ftab').forEach(function(t){t.classList.remove('on');});
   el.classList.add('on');
   renderCodes();
 }
 
 function renderCodes(){
-  var list = allCodes;
-  if(currentFilter === 'unused') list = allCodes.filter(function(c){return !c.used;});
-  if(currentFilter === 'used') list = allCodes.filter(function(c){return c.used;});
-
-  var el = document.getElementById('codeList');
-  if(!list.length){
-    el.innerHTML = '<div class="empty">Koi code nahi mila</div>';
-    return;
-  }
-
-  el.innerHTML = list.map(function(c){
-    var date = c.used_at ? new Date(c.used_at).toLocaleDateString('en-GB') : '';
-    return '<div class="code-item ' + (c.used?'used':'') + '">' +
-      '<div style="flex:1">' +
-        '<div class="ci-code">' + c.code + '</div>' +
-        '<div class="ci-buyer">' + (c.buyer_name||'—') + (c.used_by_email ? ' • ' + c.used_by_email : '') + (date ? ' • ' + date : '') + '</div>' +
-      '</div>' +
-      '<span class="ci-status ' + (c.used?'used':'unused') + '">' + (c.used?'Used':'Available') + '</span>' +
-      (!c.used ? '<span class="ci-copy" onclick="quickShare(\'' + c.code + '\')" title="Share">📲</span>' : '') +
+  var list=allCodes;
+  if(currentFilter==='unused') list=allCodes.filter(function(c){return !c.used;});
+  if(currentFilter==='used') list=allCodes.filter(function(c){return c.used;});
+  var el=document.getElementById('codeList');
+  if(!list.length){el.innerHTML='<div class="empty">Koi code nahi</div>';return;}
+  el.innerHTML=list.map(function(c){
+    var date=c.used_at?new Date(c.used_at).toLocaleDateString('en-GB'):'';
+    return '<div class="code-item '+(c.used?'used':'')+'">'+
+      '<div class="ci-body">'+
+        '<div class="ci-code">'+c.code+'</div>'+
+        '<div class="ci-info">'+
+          (c.buyer_name||'—')+
+          (c.buyer_phone?' • +'+c.buyer_phone:'')+
+          (c.used_at?' • Used: '+date:'')+
+        '</div>'+
+      '</div>'+
+      '<span class="ci-status '+(c.used?'used':'unused')+'">'+(c.used?'Used':'Available')+'</span>'+
+      (!c.used?'<span class="ci-wa" onclick="shareWhatsApp(\''+c.code+'\',\''+c.buyer_phone+'\',\''+c.buyer_name+'\')">📲</span>':'')+
     '</div>';
   }).join('');
 }
 
-function quickShare(code){
-  var msg = 'Assalamu Alaikum! 🌟\n\nAapka Smart Bachat access code:\n\n*' + code + '*\n\nYeh steps follow karein:\n1️⃣ Is link par jayen: smartsaathi.app/redeem\n2️⃣ Apna email aur yeh code daalen\n3️⃣ App khul jaayega ✅\n\nKoi masla ho to message karein.\n_SmartSaathi Team_';
-  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
-}
+setInterval(loadCodes,30000);
 
-// ── AUTO REFRESH every 30 sec ──
-setInterval(loadCodes, 30000);
-
-// ── INIT ──
-window.addEventListener('DOMContentLoaded', function(){
+window.addEventListener('DOMContentLoaded',function(){
   if(sessionStorage.getItem('admin_auth')==='1'){
     document.getElementById('loginSection').style.display='none';
     document.getElementById('mainSection').style.display='block';
     loadCodes();
   }
-  document.getElementById('pwdInp').addEventListener('keydown', function(e){
+  document.getElementById('pwdInp').addEventListener('keydown',function(e){
     if(e.key==='Enter') checkLogin();
   });
 });
