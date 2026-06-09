@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#1B4332">
+<meta name="theme-color" content="#080E0A">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -20,6 +20,7 @@ body{background:#080E0A;color:#EEF7F0;font-family:-apple-system,BlinkMacSystemFo
 .gate-sub{font-size:14px;color:#5E8A68;margin-bottom:28px;line-height:1.6;max-width:300px;}
 .gate-btn{width:100%;max-width:300px;padding:16px;background:linear-gradient(135deg,#40916C,#1B4332);border:none;border-radius:14px;color:#fff;font-size:16px;font-weight:700;cursor:pointer;margin-bottom:10px;font-family:inherit;}
 .gate-btn-out{background:transparent;border:1.5px solid rgba(116,198,157,.35);color:#74C69D;}
+.gate-btn-gold{background:linear-gradient(135deg,#F0C040,#F4A261);color:#0A1A10;}
 .spin-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;color:#5E8A68;font-size:14px;}
 .spinner{width:36px;height:36px;border:2px solid rgba(116,198,157,.15);border-top-color:#74C69D;border-radius:50%;animation:spin .7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -28,303 +29,244 @@ body{background:#080E0A;color:#EEF7F0;font-family:-apple-system,BlinkMacSystemFo
 </head>
 <body>
 
+<!-- Loading -->
 <div class="gate" id="gateLoading">
   <div class="spin-wrap">
     <div class="spinner"></div>
-    <span>Loading Smart Bachat...</span>
+    <span>Login ho raha hai...</span>
   </div>
 </div>
 
+<!-- Not logged in -->
 <div class="gate hidden" id="gateLogin">
   <div class="gate-ico">🔐</div>
-  <div class="gate-title">Login Required</div>
-  <div class="gate-sub">Smart Bachat use karne ke liye pehle login karein.</div>
-  <button class="gate-btn" onclick="window.location.href='/login'">Login Karein</button>
-  <button class="gate-btn gate-btn-out" onclick="window.location.href='/'">Smart Bachat Khareedein — $2.99</button>
+  <div class="gate-title">Login Karein</div>
+  <div class="gate-sub">Smart Bachat use karne ke liye apna email dalein — login link milega.</div>
+  <button class="gate-btn" onclick="window.location.href='/login'">Login Karein →</button>
+  <button class="gate-btn gate-btn-out" onclick="window.location.href='/'">Wapas Jayen</button>
 </div>
 
+<!-- No purchase -->
 <div class="gate hidden" id="gateNotPurchased">
   <div class="gate-ico">💰</div>
   <div class="gate-title">Access Nahi Hai</div>
-  <div class="gate-sub">Aap ne Smart Bachat abhi nahi khareeda. Sirf $2.99 — ek baar ka payment.</div>
-  <button class="gate-btn" onclick="window.location.href='/#pricing'">Khareedein — $2.99</button>
+  <div class="gate-sub">Smart Bachat abhi nahi khareeda. Sirf SAR 11 — ek baar ka payment. Hamesha ke liye.</div>
+  <button class="gate-btn gate-btn-gold" onclick="window.location.href='/checkout'">Abhi Khareedein — SAR 11</button>
   <button class="gate-btn gate-btn-out" onclick="logout()">Logout</button>
 </div>
 
-<iframe id="appFrame" src="/smart-bachat-tool" title="Smart Bachat"></iframe>
+<!-- App iframe -->
+<iframe id="appFrame" src="/smart-bachat-tool.html" title="Smart Bachat"></iframe>
 
 <script>
-var SUPABASE_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
-var SUPABASE_KEY = 'sb_publishable_TMS0XJWriaIoBLMG8svz-w_8-qSkQts';
-var PRODUCT_ID   = 'smart-bachat';
+var SUPA_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
+var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidndvbHB2emd4ZWJ5ZnpsbmR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzNjMxODYsImV4cCI6MjA5NTkzOTE4Nn0.IMRvd6lgnaF3oy3XdJRY_88XC3dXpAaoP8AQocW8dAs';
 
-// ── STORAGE KEYS ─────────────────────────────────────────────
-var KEY_SESSION   = 'sb_session';
-var KEY_PURCHASED = 'sb_purchased';     // cached purchase status
-var KEY_PURCHASE_TS = 'sb_purchase_ts'; // when we last verified
+// Session keys — must match smart-bachat-tool.html
+var KEY_TOKEN     = 'sb_access_token';
+var KEY_REFRESH   = 'sb_refresh_token';
+var KEY_PURCHASED = 'sb_purchased';
+var KEY_PURCH_TIME = 'sb_purchased_time';
 
-// ── HELPERS ──────────────────────────────────────────────────
 function showGate(id) {
   ['gateLoading','gateLogin','gateNotPurchased'].forEach(function(g){
-    document.getElementById(g).classList.add('hidden');
+    var el = document.getElementById(g);
+    if(el) el.classList.add('hidden');
   });
   document.getElementById('appFrame').style.display = 'none';
-  if (id === 'app') {
+  if(id === 'app'){
     document.getElementById('appFrame').style.display = 'block';
   } else {
-    document.getElementById(id).classList.remove('hidden');
+    var el = document.getElementById(id);
+    if(el) el.classList.remove('hidden');
   }
 }
 
-function logout() {
-  localStorage.removeItem(KEY_SESSION);
+function logout(){
+  localStorage.removeItem(KEY_TOKEN);
+  localStorage.removeItem(KEY_REFRESH);
   localStorage.removeItem(KEY_PURCHASED);
-  localStorage.removeItem(KEY_PURCHASE_TS);
+  localStorage.removeItem(KEY_PURCH_TIME);
   window.location.href = '/login';
 }
 
-function saveSession(data) {
-  // Always save with 30 day expiry regardless of what server says
-  localStorage.setItem(KEY_SESSION, JSON.stringify({
-    access_token: data.access_token,
-    refresh_token: data.refresh_token || '',
-    expires_at: Date.now()/1000 + 2592000 // 30 days
-  }));
+function saveSession(data){
+  if(data.access_token) localStorage.setItem(KEY_TOKEN, data.access_token);
+  if(data.refresh_token) localStorage.setItem(KEY_REFRESH, data.refresh_token);
 }
 
-function getSession() {
-  try {
-    var raw = localStorage.getItem(KEY_SESSION);
-    if (!raw) return null;
-    var s = JSON.parse(raw);
-    if (!s || !s.access_token) return null;
-    return s; // Return even if "expired" — we handle refresh separately
-  } catch(e) { return null; }
+function getToken(){ return localStorage.getItem(KEY_TOKEN); }
+function getRefresh(){ return localStorage.getItem(KEY_REFRESH); }
+
+function hasCachedPurchase(){
+  var p = localStorage.getItem(KEY_PURCHASED);
+  var t = parseInt(localStorage.getItem(KEY_PURCH_TIME)||'0');
+  return p==='1' && (Date.now() - t) < 7*24*60*60*1000;
 }
 
-function hasCachedPurchase() {
-  var purchased = localStorage.getItem(KEY_PURCHASED);
-  var ts = parseInt(localStorage.getItem(KEY_PURCHASE_TS) || '0');
-  var age = Date.now()/1000 - ts;
-  // Cache valid for 7 days
-  return purchased === 'true' && age < 604800;
+function cachePurchase(val){
+  localStorage.setItem(KEY_PURCHASED, val?'1':'0');
+  localStorage.setItem(KEY_PURCH_TIME, Date.now().toString());
 }
 
-function cachePurchase(value) {
-  localStorage.setItem(KEY_PURCHASED, value ? 'true' : 'false');
-  localStorage.setItem(KEY_PURCHASE_TS, String(Math.floor(Date.now()/1000)));
-}
-
-// ── TOKEN REFRESH ─────────────────────────────────────────────
-async function refreshToken(refreshToken) {
-  if (!refreshToken) return null;
-  try {
-    var r = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SUPABASE_KEY
-      },
-      body: JSON.stringify({ refresh_token: refreshToken })
+// Refresh token
+async function refreshSession(){
+  var rt = getRefresh();
+  if(!rt) return null;
+  try{
+    var r = await fetch(SUPA_URL+'/auth/v1/token?grant_type=refresh_token',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':SUPA_KEY},
+      body:JSON.stringify({refresh_token:rt})
     });
-    if (!r.ok) return null;
-    var data = await r.json();
-    if (data && data.access_token) {
-      saveSession(data);
-      return data.access_token;
-    }
+    var d = await r.json();
+    if(d && d.access_token){ saveSession(d); return d.access_token; }
     return null;
-  } catch(e) {
-    return null;
-  }
+  }catch(e){ return null; }
 }
 
-// ── PURCHASE CHECK ────────────────────────────────────────────
-async function checkPurchase(token) {
-  try {
-    var r = await fetch(SUPABASE_URL + '/rest/v1/rpc/has_purchased', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SUPABASE_KEY,
-        'Authorization': 'Bearer ' + token
-      },
-      body: JSON.stringify({ p_product_id: PRODUCT_ID })
-    });
-    if (!r.ok) return null; // null = network error, not "not purchased"
-    var data = await r.json();
-    return data === true;
-  } catch(e) {
-    return null; // null = cannot verify (no network)
-  }
-}
+// Verify magic link token from URL
+async function verifyMagicLink(params){
+  var tokenHash = params.get('token_hash');
+  var token = params.get('token');
+  var type = params.get('type') || 'magiclink';
+  var code = params.get('code');
 
-// ── HANDLE MAGIC LINK TOKEN IN URL ───────────────────────────
-async function handleTokenInURL() {
-  var url = new URL(window.location.href);
+  // Try token_hash first (newer Supabase)
+  if(tokenHash){
+    try{
+      var r = await fetch(SUPA_URL+'/auth/v1/verify',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','apikey':SUPA_KEY},
+        body:JSON.stringify({token_hash:tokenHash, type:type})
+      });
+      var d = await r.json();
+      if(d && d.access_token){ saveSession(d); return d.access_token; }
+    }catch(e){}
+  }
+
+  // Try token (older format)
+  if(token){
+    try{
+      var r2 = await fetch(SUPA_URL+'/auth/v1/verify',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','apikey':SUPA_KEY},
+        body:JSON.stringify({token:token, type:type})
+      });
+      var d2 = await r2.json();
+      if(d2 && d2.access_token){ saveSession(d2); return d2.access_token; }
+    }catch(e){}
+  }
+
+  // Try code (PKCE flow)
+  if(code){
+    try{
+      var r3 = await fetch(SUPA_URL+'/auth/v1/token?grant_type=pkce',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','apikey':SUPA_KEY},
+        body:JSON.stringify({auth_code:code})
+      });
+      var d3 = await r3.json();
+      if(d3 && d3.access_token){ saveSession(d3); return d3.access_token; }
+    }catch(e){}
+  }
+
+  // Try hash fragment
   var hash = window.location.hash;
-
-  // Hash fragment: #access_token=xxx
-  if (hash && hash.includes('access_token')) {
-    var params = {};
-    hash.substring(1).split('&').forEach(function(p) {
-      var kv = p.split('=');
-      params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1]||'');
+  if(hash && hash.includes('access_token')){
+    var hp = {};
+    hash.substring(1).split('&').forEach(function(p){
+      var kv=p.split('=');
+      hp[decodeURIComponent(kv[0])]=decodeURIComponent(kv[1]||'');
     });
-    if (params.access_token) {
-      saveSession(params);
-      history.replaceState(null, '', '/app');
-      return params.access_token;
-    }
-  }
-
-  // Query params: ?token=xxx&type=magiclink
-  var token = url.searchParams.get('token');
-  var tokenHash = url.searchParams.get('token_hash');
-  var type = url.searchParams.get('type') || 'magiclink';
-  var code = url.searchParams.get('code');
-
-  var body = null;
-  if (tokenHash) body = { token_hash: tokenHash, type: type };
-  else if (token)  body = { token: token, type: type };
-
-  if (body) {
-    try {
-      var r = await fetch(SUPABASE_URL + '/auth/v1/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY },
-        body: JSON.stringify(body)
-      });
-      var data = await r.json();
-      if (data && data.access_token) {
-        saveSession(data);
-        history.replaceState(null, '', '/app');
-        return data.access_token;
-      }
-    } catch(e) {}
-  }
-
-  if (code) {
-    try {
-      var r2 = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=pkce', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_KEY
-        },
-        body: JSON.stringify({ auth_code: code })
-      });
-      var data2 = await r2.json();
-      if (data2 && data2.access_token) {
-        saveSession(data2);
-        history.replaceState(null, '', '/app');
-        return data2.access_token;
-      }
-    } catch(e) {}
+    if(hp.access_token){ saveSession(hp); return hp.access_token; }
   }
 
   return null;
 }
 
-// ── MAIN INIT ─────────────────────────────────────────────────
-window.addEventListener('load', async function() {
+// Check purchase via Supabase RPC
+async function checkPurchase(token){
+  try{
+    var r = await fetch(SUPA_URL+'/rest/v1/rpc/has_purchased',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'apikey':SUPA_KEY,
+        'Authorization':'Bearer '+token
+      },
+      body:'{}'
+    });
+    if(!r.ok) return null;
+    var d = await r.json();
+    return d===true;
+  }catch(e){ return null; }
+}
 
-  // STEP 1: Check for magic link token in URL
-  var url = new URL(window.location.href);
-  var hasToken = window.location.hash.includes('access_token') ||
-                 url.searchParams.get('token') ||
-                 url.searchParams.get('token_hash') ||
-                 url.searchParams.get('code');
+// ── MAIN FLOW ──
+window.addEventListener('load', async function(){
+  var urlParams = new URLSearchParams(window.location.search);
+  var hasUrlToken = urlParams.get('token_hash') || urlParams.get('token') ||
+                    urlParams.get('code') || window.location.hash.includes('access_token');
 
-  var accessToken = null;
+  var token = null;
 
-  if (hasToken) {
-    accessToken = await handleTokenInURL();
+  // Step 1: Handle magic link in URL
+  if(hasUrlToken){
+    token = await verifyMagicLink(urlParams);
+    if(token){
+      history.replaceState(null,'','/app');
+    }
   }
 
-  // STEP 2: Get session from storage
-  var session = getSession();
+  // Step 2: Get token from storage
+  if(!token) token = getToken();
 
-  if (!session && !accessToken) {
-    // No session at all — must login
+  // Step 3: No token at all — show login
+  if(!token){
     showGate('gateLogin');
     return;
   }
 
-  // STEP 3: Get access token (from URL or session)
-  if (!accessToken) {
-    accessToken = session.access_token;
-  }
-
-  // STEP 4: If we have a cached purchase — open app immediately
-  // Then verify in background (no friction for returning users)
-  if (hasCachedPurchase()) {
+  // Step 4: Has cached purchase — open app immediately
+  if(hasCachedPurchase()){
     showGate('app');
-    // Silently refresh token and verify purchase in background
-    backgroundVerify(session, accessToken);
+    // Silently refresh in background
+    setTimeout(function(){ refreshSession(); }, 2000);
     return;
   }
 
-  // STEP 5: No cache — try to verify purchase
-  var purchased = await checkPurchase(accessToken);
+  // Step 5: Verify purchase
+  var purchased = await checkPurchase(token);
 
-  // STEP 5a: If token expired (null result) — try refresh
-  if (purchased === null && session && session.refresh_token) {
-    var newToken = await refreshToken(session.refresh_token);
-    if (newToken) {
-      accessToken = newToken;
-      purchased = await checkPurchase(accessToken);
+  // Step 5a: Token expired — try refresh
+  if(purchased === null){
+    var newToken = await refreshSession();
+    if(newToken){
+      token = newToken;
+      purchased = await checkPurchase(token);
     }
   }
 
-  if (purchased === true) {
+  if(purchased === true){
     cachePurchase(true);
     showGate('app');
     return;
   }
 
-  if (purchased === null) {
-    // Cannot verify — no network. If they have a session, let them in
-    // Better UX than blocking on network error
-    if (session && session.access_token) {
-      showGate('app');
-      return;
-    }
+  if(purchased === null){
+    // Network error — if token exists give benefit of doubt
+    if(token){ showGate('app'); return; }
   }
 
-  // purchased === false — definitely not purchased
+  // Not purchased
+  cachePurchase(false);
   showGate('gateNotPurchased');
 });
 
-// ── BACKGROUND VERIFY (non-blocking) ─────────────────────────
-async function backgroundVerify(session, accessToken) {
-  // Try to refresh token first
-  if (session && session.refresh_token) {
-    var newToken = await refreshToken(session.refresh_token);
-    if (newToken) accessToken = newToken;
-  }
-
-  // Verify purchase
-  var purchased = await checkPurchase(accessToken);
-  if (purchased === true) {
-    cachePurchase(true);
-  } else if (purchased === false) {
-    // Cache expired — they no longer have access (refund etc)
-    cachePurchase(false);
-    // Don't kick them out immediately — will check next open
-  }
-}
-
-// ── AUTO REFRESH on visibility change ────────────────────────
-// Refresh token every time user comes back to app
-document.addEventListener('visibilitychange', function() {
-  if (document.visibilityState === 'visible') {
-    var session = getSession();
-    if (session && session.refresh_token) {
-      refreshToken(session.refresh_token); // Silent background refresh
-    }
-  }
+// Auto refresh on tab focus
+document.addEventListener('visibilitychange', function(){
+  if(document.visibilityState==='visible') refreshSession();
 });
 </script>
 </body>
