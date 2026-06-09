@@ -1,7 +1,10 @@
-// ── SECURITY CHECK — Add at very top of smart-bachat-tool.html ──
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  // ── SECURITY CHECK — Add at very top of smart-bachat-tool.html ──
 (function(){
   var SUPA_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
-  var SUPA_ANON = 'YOUR_ANON_KEY_HERE';
+  var SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidndvbHB2emd4ZWJ5ZnpsbmR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzNjMxODYsImV4cCI6MjA5NTkzOTE4Nn0.IMRvd6lgnaF3oy3XdJRY_88XC3dXpAaoP8AQocW8dAs';
   
   // Check Supabase session
   var session = null;
@@ -56,15 +59,59 @@
     });
   }
 })();
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#080E0A">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Smart Bachat</title>
+  <script>
+(function(){
+  var SUPA_URL='https://lbvwolpvzgxebyfzlndt.supabase.co';
+  var SUPA_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidndvbHB2emd4ZWJ5ZnpsbmR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzNjMxODYsImV4cCI6MjA5NTkzOTE4Nn0.IMRvd6lgnaF3oy3XdJRY_88XC3dXpAaoP8AQocW8dAs';
+  var session=null;
+  try{
+    for(var i=0;i<localStorage.length;i++){
+      var k=localStorage.key(i);
+      if(k&&k.startsWith('sb-')&&k.endsWith('-auth-token')){
+        var v=JSON.parse(localStorage.getItem(k));
+        if(v&&v.access_token){session=v;break;}
+      }
+    }
+  }catch(e){}
+  if(!session||!session.access_token){
+    window.location.replace('/login');
+    return;
+  }
+  var purchased=localStorage.getItem('sb_purchased');
+  var purchasedTime=localStorage.getItem('sb_purchased_time');
+  var cacheValid=purchased==='1'&&purchasedTime&&
+    (Date.now()-parseInt(purchasedTime))<7*24*60*60*1000;
+  if(!cacheValid){
+    fetch(SUPA_URL+'/rest/v1/rpc/has_purchased',{
+      method:'POST',
+      headers:{
+        'apikey':SUPA_ANON,
+        'Authorization':'Bearer '+session.access_token,
+        'Content-Type':'application/json'
+      },
+      body:'{}'
+    })
+    .then(function(r){return r.json();})
+    .then(function(has){
+      if(!has){
+        localStorage.removeItem('sb_purchased');
+        localStorage.removeItem('sb_purchased_time');
+        window.location.replace('/login?reason=nopurchase');
+      } else {
+        localStorage.setItem('sb_purchased','1');
+        localStorage.setItem('sb_purchased_time',Date.now().toString());
+      }
+    })
+    .catch(function(){});
+  }
+})();
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Hind:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--g1:#1B4332;--g3:#40916C;--g4:#74C69D;--a2:#F4A261;--a3:#FFD166;--bg:#080E0A;--bgc:#0F1A12;--bgp:#162019;--tx:#EEF7F0;--ts:#B8D4BE;--tm:#5E8A68;--bd:rgba(116,198,157,.13);--bdb:rgba(116,198,157,.32);--red:#E07A7A;--blue:#74B3CE;--pur:#B08FD4;--gold:#F0C040;}
