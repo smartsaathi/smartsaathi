@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#080E0A">
+<title>SmartSaathi Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#080E0A;--bg2:#0D1A10;--bg3:#122318;
+  --g1:#1B4332;--g3:#40916C;--g4:#74C69D;
+  --gold:#F0C040;--amber:#F4A261;--red:#E07A7A;
+  --tx:#EEF7F0;--ts:#B8D4BE;--tm:#5E8A68;
+  --bd:rgba(116,198,157,.13);
+}
+body{font-family:'Hind',-apple-system,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;-webkit-font-smoothing:antialiased;padding:16px;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(45,106,79,.1),transparent 60%);pointer-events:none;}
+.wrap{max-width:420px;margin:0 auto;position:relative;z-index:1;}
+
+/* Login screen */
+.login-card{background:var(--bg2);border:1.5px solid rgba(116,198,157,.2);border-radius:20px;padding:28px 24px;text-align:center;margin-top:60px;}
+.login-ico{font-size:40px;margin-bottom:12px;}
+.login-title{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:20px;color:var(--g4);margin-bottom:20px;}
+.inp{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:12px;padding:14px 16px;color:var(--tx);font-size:18px;outline:none;transition:border-color .2s;-webkit-appearance:none;font-family:inherit;text-align:center;letter-spacing:3px;}
+.inp:focus{border-color:var(--g4);}
+.inp::placeholder{color:var(--tm);letter-spacing:0;}
+.btn{width:100%;padding:15px;background:linear-gradient(135deg,#F0C040,#F4A261);border:none;border-radius:12px;color:#0A1A10;font-size:17px;font-weight:800;cursor:pointer;font-family:'Baloo 2',sans-serif;margin-top:12px;}
+.btn:active{transform:scale(.97);}
+.btn-green{background:linear-gradient(135deg,var(--g3),var(--g1));color:#fff;}
+.btn-red{background:rgba(224,122,122,.15);border:1px solid rgba(224,122,122,.3);color:var(--red);}
+.err{color:var(--red);font-size:13px;margin-top:8px;}
+
+/* Main admin */
+.main{display:none;}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding:12px 0;}
+.header-title{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:18px;color:var(--g4);}
+.logout-btn{font-size:12px;color:var(--tm);cursor:pointer;padding:5px 10px;border:1px solid var(--bd);border-radius:8px;background:transparent;}
+
+/* Stats row */
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;}
+.stat{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:10px;text-align:center;}
+.stat-val{font-size:22px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;}
+.stat-label{font-size:9px;color:var(--tm);margin-top:2px;}
+
+/* Generate section */
+.section{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:12px;}
+.section-title{font-size:13px;font-weight:700;color:var(--g4);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+
+/* New code display */
+.new-code{
+  background:var(--bg3);border:2px solid rgba(240,192,64,.3);
+  border-radius:12px;padding:16px;text-align:center;
+  margin-bottom:12px;display:none;
+}
+.new-code-val{font-size:28px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;letter-spacing:4px;margin-bottom:8px;}
+.new-code-note{font-size:11px;color:var(--tm);}
+.copy-btn{width:100%;padding:12px;background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.3);border-radius:10px;color:var(--gold);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:8px;}
+.copy-btn:active{background:rgba(240,192,64,.2);}
+.wa-btn{width:100%;padding:12px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);border-radius:10px;color:#25D366;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:6px;}
+
+/* Buyer name input */
+.buyer-inp{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:10px;padding:11px 14px;color:var(--tx);font-size:15px;outline:none;font-family:inherit;margin-bottom:10px;}
+.buyer-inp:focus{border-color:var(--g4);}
+.buyer-inp::placeholder{color:var(--tm);}
+
+/* Code list */
+.code-list{display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;}
+.code-item{
+  background:var(--bg3);border:1px solid var(--bd);
+  border-radius:12px;padding:12px 14px;
+  display:flex;align-items:center;gap:10px;
+}
+.code-item.used{opacity:.5;border-color:rgba(224,122,122,.2);}
+.ci-code{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:15px;color:var(--gold);flex:1;letter-spacing:2px;}
+.ci-buyer{font-size:11px;color:var(--tm);margin-top:2px;}
+.ci-status{font-size:10px;padding:3px 8px;border-radius:6px;font-weight:700;flex-shrink:0;}
+.ci-status.unused{background:rgba(116,198,157,.1);color:var(--g4);}
+.ci-status.used{background:rgba(224,122,122,.1);color:var(--red);}
+.ci-copy{font-size:16px;cursor:pointer;flex-shrink:0;}
+
+/* Filter tabs */
+.filter-tabs{display:flex;gap:6px;margin-bottom:12px;}
+.ftab{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--bd);background:transparent;color:var(--tm);font-family:inherit;}
+.ftab.on{background:var(--g3);border-color:var(--g3);color:#fff;}
+
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(10,26,16,.3);border-top-color:#0A1A10;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{text-align:center;color:var(--tm);font-size:13px;padding:20px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- LOGIN -->
+  <div id="loginSection">
+    <div class="login-card">
+      <div class="login-ico">🔐</div>
+      <div class="login-title">SmartSaathi Admin</div>
+      <input class="inp" type="password" id="pwdInp" placeholder="Password" onkeydown="if(event.key==='Enter')checkLogin()">
+      <button class="btn" onclick="checkLogin()">Login</button>
+      <div class="err" id="loginErr"></div>
+    </div>
+  </div>
+
+  <!-- MAIN ADMIN -->
+  <div class="main" id="mainSection">
+
+    <div class="header">
+      <div class="header-title">💰 Admin Panel</div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-val" id="totalCodes">—</div>
+        <div class="stat-label">Total Codes</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val" id="unusedCodes">—</div>
+        <div class="stat-label">Available</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val" id="usedCodes">—</div>
+        <div class="stat-label">Used / Sold</div>
+      </div>
+    </div>
+
+    <!-- Generate New Code -->
+    <div class="section">
+      <div class="section-title">➕ Naya Code Banao</div>
+      <input class="buyer-inp" type="text" id="buyerName" placeholder="Buyer ka naam (optional — jaise Ahmed Dubai)">
+      <button class="btn" id="genBtn" onclick="generateCode()">🎲 Code Generate Karo</button>
+
+      <!-- New code display -->
+      <div class="new-code" id="newCodeBox">
+        <div class="new-code-val" id="newCodeVal">—</div>
+        <div class="new-code-note" id="newCodeNote">Yeh code buyer ko bhejein</div>
+        <button class="copy-btn" onclick="copyCode()">📋 Code Copy Karo</button>
+        <button class="wa-btn" onclick="shareWhatsApp()">📲 WhatsApp Par Bhejo</button>
+      </div>
+    </div>
+
+    <!-- Code List -->
+    <div class="section">
+      <div class="section-title">📋 Saare Codes</div>
+      <div class="filter-tabs">
+        <button class="ftab on" onclick="filterCodes('all',this)">Sab</button>
+        <button class="ftab" onclick="filterCodes('unused',this)">Available</button>
+        <button class="ftab" onclick="filterCodes('used',this)">Used</button>
+      </div>
+      <div class="code-list" id="codeList">
+        <div class="empty">Loading...</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── CONFIG ──
+var ADMIN_PWD = 'smartsaathi2026'; // Change this to your own password
+var SUPA_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
+var SUPA_KEY = 'YOUR_SUPABASE_SERVICE_KEY'; // Replace with your service key
+
+var allCodes = [];
+var currentFilter = 'all';
+var latestCode = '';
+
+// ── LOGIN ──
+function checkLogin(){
+  var pwd = document.getElementById('pwdInp').value;
+  if(pwd === ADMIN_PWD){
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('mainSection').style.display = 'block';
+    sessionStorage.setItem('admin_auth','1');
+    loadCodes();
+  } else {
+    document.getElementById('loginErr').textContent = 'Wrong password';
+  }
+}
+
+function logout(){
+  sessionStorage.removeItem('admin_auth');
+  location.reload();
+}
+
+// ── SUPABASE HELPERS ──
+async function supaFetch(path, method, body){
+  var res = await fetch(SUPA_URL + path, {
+    method: method || 'GET',
+    headers:{
+      'apikey': SUPA_KEY,
+      'Authorization': 'Bearer ' + SUPA_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': method === 'POST' ? 'return=representation' : ''
+    },
+    body: body ? JSON.stringify(body) : undefined
+  });
+  return res.json();
+}
+
+// ── GENERATE CODE ──
+function makeCode(){
+  var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var code = 'SB-';
+  for(var i=0;i<4;i++) code += chars[Math.floor(Math.random()*chars.length)];
+  code += '-';
+  for(var i=0;i<4;i++) code += chars[Math.floor(Math.random()*chars.length)];
+  return code;
+}
+
+async function generateCode(){
+  var buyer = document.getElementById('buyerName').value.trim() || 'Unknown';
+  var btn = document.getElementById('genBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Generating...';
+
+  var code = makeCode();
+
+  try {
+    var data = await supaFetch('/rest/v1/access_codes', 'POST', {
+      code: code,
+      buyer_name: buyer,
+      used: false,
+      created_at: new Date().toISOString()
+    });
+
+    latestCode = code;
+    document.getElementById('newCodeVal').textContent = code;
+    document.getElementById('newCodeBox').style.display = 'block';
+    document.getElementById('buyerName').value = '';
+    loadCodes();
+  } catch(e){
+    alert('Error generating code. Check Supabase connection.');
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '🎲 Code Generate Karo';
+}
+
+function copyCode(){
+  navigator.clipboard.writeText(latestCode).then(function(){
+    var btn = document.querySelector('.copy-btn');
+    btn.textContent = '✅ Copied!';
+    setTimeout(function(){ btn.textContent = '📋 Code Copy Karo'; }, 2000);
+  });
+}
+
+function shareWhatsApp(){
+  var msg = 'Assalamu Alaikum! 🌟\n\nAapka Smart Bachat access code:\n\n*' + latestCode + '*\n\nYeh steps follow karein:\n1️⃣ Is link par jayen: smartsaathi.app/redeem\n2️⃣ Apna email aur yeh code daalen\n3️⃣ App khul jaayega ✅\n\nKoi masla ho to message karein.\n_SmartSaathi Team_';
+  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ── LOAD CODES ──
+async function loadCodes(){
+  try {
+    var data = await supaFetch('/rest/v1/access_codes?order=created_at.desc&limit=100');
+    allCodes = data || [];
+    updateStats();
+    renderCodes();
+  } catch(e){
+    document.getElementById('codeList').innerHTML = '<div class="empty">Error loading codes</div>';
+  }
+}
+
+function updateStats(){
+  var total = allCodes.length;
+  var used = allCodes.filter(function(c){return c.used;}).length;
+  var unused = total - used;
+  document.getElementById('totalCodes').textContent = total;
+  document.getElementById('usedCodes').textContent = used;
+  document.getElementById('unusedCodes').textContent = unused;
+}
+
+function filterCodes(f, el){
+  currentFilter = f;
+  document.querySelectorAll('.ftab').forEach(function(t){t.classList.remove('on');});
+  el.classList.add('on');
+  renderCodes();
+}
+
+function renderCodes(){
+  var list = allCodes;
+  if(currentFilter === 'unused') list = allCodes.filter(function(c){return !c.used;});
+  if(currentFilter === 'used') list = allCodes.filter(function(c){return c.used;});
+
+  var el = document.getElementById('codeList');
+  if(!list.length){
+    el.innerHTML = '<div class="empty">Koi code nahi mila</div>';
+    return;
+  }
+
+  el.innerHTML = list.map(function(c){
+    var date = c.used_at ? new Date(c.used_at).toLocaleDateString('en-GB') : '';
+    return '<div class="code-item ' + (c.used?'used':'') + '">' +
+      '<div style="flex:1">' +
+        '<div class="ci-code">' + c.code + '</div>' +
+        '<div class="ci-buyer">' + (c.buyer_name||'—') + (c.used_by_email ? ' • ' + c.used_by_email : '') + (date ? ' • ' + date : '') + '</div>' +
+      '</div>' +
+      '<span class="ci-status ' + (c.used?'used':'unused') + '">' + (c.used?'Used':'Available') + '</span>' +
+      (!c.used ? '<span class="ci-copy" onclick="quickShare(\'' + c.code + '\')" title="Share">📲</span>' : '') +
+    '</div>';
+  }).join('');
+}
+
+function quickShare(code){
+  var msg = 'Assalamu Alaikum! 🌟\n\nAapka Smart Bachat access code:\n\n*' + code + '*\n\nYeh steps follow karein:\n1️⃣ Is link par jayen: smartsaathi.app/redeem\n2️⃣ Apna email aur yeh code daalen\n3️⃣ App khul jaayega ✅\n\nKoi masla ho to message karein.\n_SmartSaathi Team_';
+  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ── AUTO REFRESH every 30 sec ──
+setInterval(loadCodes, 30000);
+
+// ── INIT ──
+window.addEventListener('DOMContentLoaded', function(){
+  if(sessionStorage.getItem('admin_auth')==='1'){
+    document.getElementById('loginSection').style.display='none';
+    document.getElementById('mainSection').style.display='block';
+    loadCodes();
+  }
+  document.getElementById('pwdInp').addEventListener('keydown', function(e){
+    if(e.key==='Enter') checkLogin();
+  });
+});
+</script>
+</body>
+</html>
