@@ -1,3 +1,61 @@
+// ── SECURITY CHECK — Add at very top of smart-bachat-tool.html ──
+(function(){
+  var SUPA_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
+  var SUPA_ANON = 'YOUR_ANON_KEY_HERE';
+  
+  // Check Supabase session
+  var session = null;
+  try {
+    // Check localStorage for Supabase session
+    for(var i=0; i<localStorage.length; i++){
+      var key = localStorage.key(i);
+      if(key && key.startsWith('sb-') && key.endsWith('-auth-token')){
+        var val = JSON.parse(localStorage.getItem(key));
+        if(val && val.access_token) {
+          session = val;
+          break;
+        }
+      }
+    }
+  } catch(e){}
+
+  // No session — redirect to login
+  if(!session || !session.access_token){
+    window.location.replace('/login');
+    return;
+  }
+
+  // Check purchase cache
+  var purchased = localStorage.getItem('sb_purchased');
+  var purchasedTime = localStorage.getItem('sb_purchased_time');
+  var cacheValid = purchased === '1' && purchasedTime && 
+    (Date.now() - parseInt(purchasedTime)) < 7 * 24 * 60 * 60 * 1000;
+
+  if(!cacheValid){
+    // Verify purchase in Supabase
+    fetch(SUPA_URL + '/rest/v1/rpc/has_purchased', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPA_ANON,
+        'Authorization': 'Bearer ' + session.access_token,
+        'Content-Type': 'application/json'
+      },
+      body: '{}'
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(hasPurchased){
+      if(!hasPurchased){
+        window.location.replace('/login?reason=nopurchase');
+      } else {
+        localStorage.setItem('sb_purchased', '1');
+        localStorage.setItem('sb_purchased_time', Date.now().toString());
+      }
+    })
+    .catch(function(){
+      // Network error — allow if session exists (give benefit of doubt)
+    });
+  }
+})();
 <!DOCTYPE html>
 <html lang="en">
 <head>
