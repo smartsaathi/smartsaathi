@@ -16,10 +16,6 @@
     "api/webhook.js": {
       "memory": 128,
       "maxDuration": 10
-    },
-    "api/redeem.js": {
-      "memory": 128,
-      "maxDuration": 10
     }
   }
 }
