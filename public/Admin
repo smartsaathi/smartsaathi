@@ -162,7 +162,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 <script>
 // ── CONFIG ──
-var ADMIN_PWD = 'smartsaathi2026'; // Change this to your own password
+var ADMIN_PWD = 'Zainaliaoun@1'; // Change this to your own password
 var SUPA_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
 var SUPA_KEY = 'YOUR_SUPABASE_SERVICE_KEY'; // Replace with your service key
 
