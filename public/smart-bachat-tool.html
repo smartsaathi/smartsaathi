@@ -1,115 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  // ── SECURITY CHECK — Add at very top of smart-bachat-tool.html ──
-(function(){
-  var SUPA_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
-  var SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidndvbHB2emd4ZWJ5ZnpsbmR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzNjMxODYsImV4cCI6MjA5NTkzOTE4Nn0.IMRvd6lgnaF3oy3XdJRY_88XC3dXpAaoP8AQocW8dAs';
-  
-  // Check Supabase session
-  var session = null;
-  try {
-    // Check localStorage for Supabase session
-    for(var i=0; i<localStorage.length; i++){
-      var key = localStorage.key(i);
-      if(key && key.startsWith('sb-') && key.endsWith('-auth-token')){
-        var val = JSON.parse(localStorage.getItem(key));
-        if(val && val.access_token) {
-          session = val;
-          break;
-        }
-      }
-    }
-  } catch(e){}
-
-  // No session — redirect to login
-  if(!session || !session.access_token){
-    window.location.replace('/login');
-    return;
-  }
-
-  // Check purchase cache
-  var purchased = localStorage.getItem('sb_purchased');
-  var purchasedTime = localStorage.getItem('sb_purchased_time');
-  var cacheValid = purchased === '1' && purchasedTime && 
-    (Date.now() - parseInt(purchasedTime)) < 7 * 24 * 60 * 60 * 1000;
-
-  if(!cacheValid){
-    // Verify purchase in Supabase
-    fetch(SUPA_URL + '/rest/v1/rpc/has_purchased', {
-      method: 'POST',
-      headers: {
-        'apikey': SUPA_ANON,
-        'Authorization': 'Bearer ' + session.access_token,
-        'Content-Type': 'application/json'
-      },
-      body: '{}'
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(hasPurchased){
-      if(!hasPurchased){
-        window.location.replace('/login?reason=nopurchase');
-      } else {
-        localStorage.setItem('sb_purchased', '1');
-        localStorage.setItem('sb_purchased_time', Date.now().toString());
-      }
-    })
-    .catch(function(){
-      // Network error — allow if session exists (give benefit of doubt)
-    });
-  }
-})();
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#080E0A">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Smart Bachat</title>
-  <script>
+<script>
 (function(){
   var SUPA_URL='https://lbvwolpvzgxebyfzlndt.supabase.co';
-  var SUPA_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidndvbHB2emd4ZWJ5ZnpsbmR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzNjMxODYsImV4cCI6MjA5NTkzOTE4Nn0.IMRvd6lgnaF3oy3XdJRY_88XC3dXpAaoP8AQocW8dAs';
-  var session=null;
-  try{
-    for(var i=0;i<localStorage.length;i++){
-      var k=localStorage.key(i);
-      if(k&&k.startsWith('sb-')&&k.endsWith('-auth-token')){
-        var v=JSON.parse(localStorage.getItem(k));
-        if(v&&v.access_token){session=v;break;}
-      }
-    }
-  }catch(e){}
-  if(!session||!session.access_token){
+  var SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidndvbHB2emd4ZWJ5ZnpsbmR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzNjMxODYsImV4cCI6MjA5NTkzOTE4Nn0.IMRvd6lgnaF3oy3XdJRY_88XC3dXpAaoP8AQocW8dAs';
+
+  // Get token — must match app.html keys
+  var token = localStorage.getItem('sb_access_token');
+  if(!token){
     window.location.replace('/login');
     return;
   }
-  var purchased=localStorage.getItem('sb_purchased');
-  var purchasedTime=localStorage.getItem('sb_purchased_time');
-  var cacheValid=purchased==='1'&&purchasedTime&&
-    (Date.now()-parseInt(purchasedTime))<7*24*60*60*1000;
-  if(!cacheValid){
-    fetch(SUPA_URL+'/rest/v1/rpc/has_purchased',{
-      method:'POST',
-      headers:{
-        'apikey':SUPA_ANON,
-        'Authorization':'Bearer '+session.access_token,
-        'Content-Type':'application/json'
-      },
-      body:'{}'
-    })
-    .then(function(r){return r.json();})
-    .then(function(has){
-      if(!has){
-        localStorage.removeItem('sb_purchased');
-        localStorage.removeItem('sb_purchased_time');
-        window.location.replace('/login?reason=nopurchase');
-      } else {
-        localStorage.setItem('sb_purchased','1');
-        localStorage.setItem('sb_purchased_time',Date.now().toString());
-      }
-    })
-    .catch(function(){});
-  }
+
+  // Check purchase cache
+  var purchased = localStorage.getItem('sb_purchased');
+  var purchasedTime = parseInt(localStorage.getItem('sb_purchased_time')||'0');
+  var cacheValid = purchased==='1' && (Date.now()-purchasedTime) < 7*24*60*60*1000;
+
+  if(cacheValid) return; // All good — cached purchase valid
+
+  // Verify with Supabase
+  fetch(SUPA_URL+'/rest/v1/rpc/has_purchased',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'apikey':SUPA_KEY,
+      'Authorization':'Bearer '+token
+    },
+    body:'{}'
+  })
+  .then(function(r){return r.json();})
+  .then(function(has){
+    if(has===true){
+      localStorage.setItem('sb_purchased','1');
+      localStorage.setItem('sb_purchased_time',Date.now().toString());
+    } else if(has===false){
+      localStorage.removeItem('sb_purchased');
+      window.location.replace('/login?reason=nopurchase');
+    }
+  })
+  .catch(function(){}); // Network error — allow access
 })();
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Hind:wght@400;500&display=swap" rel="stylesheet">
