@@ -182,7 +182,7 @@ body::before{
 <script>
 // ── SUPABASE CONFIG ──
 var SUPA_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
-var SUPA_ANON = 'YOUR_SUPABASE_ANON_KEY'; // replace with your anon key
+var SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidndvbHB2emd4ZWJ5ZnpsbmR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzNjMxODYsImV4cCI6MjA5NTkzOTE4Nn0.IMRvd6lgnaF3oy3XdJRY_88XC3dXpAaoP8AQocW8dAs'; // replace with your anon key
 
 var lang = 'ur';
 var accessEmail = '';
