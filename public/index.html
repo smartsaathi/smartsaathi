@@ -11,6 +11,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
+(function(){
+  var h=window.location.hash||'';
+  var s=window.location.search||'';
+  if(h.includes('access_token')||s.includes('access_token')||s.includes('code=')||s.includes('token_hash=')||s.includes('token=')||s.includes('type=magiclink')||s.includes('type=recovery')){
+    window.location.replace('/app'+s+h);
+    return;
+  }
+})();
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1488955313010937');fbq('track','PageView');
 </script>
