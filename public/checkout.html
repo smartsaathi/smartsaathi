@@ -168,6 +168,90 @@ body::before{
 .email-section{animation:fadeUp .4s .15s ease both;}
 .refund-banner{animation:fadeUp .4s .18s ease both;}
 .pay-btn{animation:fadeUp .4s .2s ease both,pulse 2.5s 1s ease-in-out infinite;}
+
+/* ── PAYMENT METHOD SELECTOR ── */
+.pay-method-title{
+  font-size:13px;font-weight:800;color:var(--tx);
+  text-align:center;margin-bottom:10px;
+  letter-spacing:.03em;
+}
+.pay-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.pay-tab{
+  padding:12px 8px;border-radius:14px;
+  border:2px solid var(--bd);background:var(--bg2);
+  cursor:pointer;text-align:center;transition:all .2s;
+}
+.pay-tab.active{border-color:var(--gold);background:rgba(240,192,64,.08);}
+.pay-tab-ico{font-size:22px;margin-bottom:4px;}
+.pay-tab-title{font-size:12px;font-weight:800;color:var(--tx);margin-bottom:2px;}
+.pay-tab-sub{font-size:10px;color:var(--tm);line-height:1.4;}
+.pay-tab.active .pay-tab-title{color:var(--gold);}
+
+/* ── UPAISA SECTION ── */
+.upaisa-section{display:none;}
+.upaisa-section.show{display:block;}
+.card-section.hide{display:none;}
+
+.upaisa-card{
+  background:var(--bg2);border:1.5px solid rgba(116,198,157,.2);
+  border-radius:18px;padding:18px;margin-bottom:14px;
+  position:relative;overflow:hidden;
+}
+.upaisa-card::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1.5px;background:linear-gradient(90deg,transparent,#22C55E,transparent);}
+
+.upaisa-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.upaisa-logo{
+  width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(135deg,#22C55E,#16A34A);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}
+.upaisa-title{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:16px;color:var(--tx);}
+.upaisa-sub{font-size:11px;color:var(--tm);margin-top:2px;}
+
+/* Steps */
+.upaisa-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+.u-step{display:flex;align-items:flex-start;gap:10px;}
+.u-step-num{
+  width:24px;height:24px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,#22C55E,#16A34A);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:#fff;margin-top:1px;
+}
+.u-step-txt{font-size:13px;color:var(--ts);line-height:1.6;}
+.u-step-txt b{color:var(--tx);}
+.u-step-txt .highlight{
+  display:inline-block;
+  background:rgba(34,197,94,.1);
+  border:1px solid rgba(34,197,94,.25);
+  border-radius:6px;padding:2px 8px;
+  color:#22C55E;font-weight:800;
+  font-family:'Baloo 2',sans-serif;
+  font-size:14px;letter-spacing:.05em;
+}
+
+/* Time badge */
+.time-badge{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(244,162,97,.08);
+  border:1px solid rgba(244,162,97,.2);
+  border-radius:10px;padding:9px 12px;
+  margin-bottom:14px;
+}
+.time-badge-ico{font-size:18px;flex-shrink:0;}
+.time-badge-txt{font-size:12px;color:var(--amber);font-weight:600;line-height:1.5;}
+
+/* WhatsApp button */
+.wa-pay-btn{
+  width:100%;padding:15px;
+  background:linear-gradient(135deg,#22C55E,#16A34A);
+  border:none;border-radius:14px;
+  color:#fff;font-size:17px;font-weight:800;
+  cursor:pointer;font-family:'Baloo 2',sans-serif;
+  box-shadow:0 6px 24px rgba(34,197,94,.3);
+  transition:transform .15s;margin-bottom:8px;
+}
+.wa-pay-btn:active{transform:scale(.97);}
 </style>
 </head>
 <body>
@@ -182,6 +266,96 @@ body::before{
     </div>
   </div>
 
+
+  <!-- PAYMENT METHOD SELECTOR -->
+  <div class="pay-method-title" id="payMethodTitle">💳 Payment Ka Tarika Chunein</div>
+  <div class="pay-tabs">
+    <div class="pay-tab active" id="tabCard" onclick="setPayMethod('card')">
+      <div class="pay-tab-ico">💳</div>
+      <div class="pay-tab-title" id="tabCardTitle">Card / Online</div>
+      <div class="pay-tab-sub" id="tabCardSub">Visa, Mastercard, Mada — 10 Min Access</div>
+    </div>
+    <div class="pay-tab" id="tabUpaisa" onclick="setPayMethod('upaisa')">
+      <div class="pay-tab-ico">📱</div>
+      <div class="pay-tab-title" id="tabUpaisaTitle">Upaisa / Jazz</div>
+      <div class="pay-tab-sub" id="tabUpaisaSub">Pakistan se — 90 Minute mein Access</div>
+    </div>
+  </div>
+
+  <!-- UPAISA SECTION -->
+  <div class="upaisa-section" id="upaisaSection">
+    <div class="upaisa-card">
+      <div class="upaisa-header">
+        <div class="upaisa-logo">💚</div>
+        <div>
+          <div class="upaisa-title">Upaisa / JazzCash</div>
+          <div class="upaisa-sub" id="upaisaSub">Pakistan se payment — bilkul aasan</div>
+        </div>
+      </div>
+
+      <div class="upaisa-steps" id="upaisaSteps">
+        <div class="u-step">
+          <div class="u-step-num">1</div>
+          <div class="u-step-txt" id="uStep1">
+            Apne Upaisa ya JazzCash app se<br>
+            <span class="highlight">+923046318640</span><br>
+            par <b>PKR 825</b> send karein<br>
+            <b>Account Name: Sana</b>
+          </div>
+        </div>
+
+        <div class="u-step">
+          <div class="u-step-num">3</div>
+          <div class="u-step-txt" id="uStep3">
+            Apna <b>Naam, WhatsApp number aur payment ka screenshot</b> is number par bhejein:<br>
+            <span class="highlight">+923347341756</span>
+          </div>
+        </div>
+        <div class="u-step">
+          <div class="u-step-num">4</div>
+          <div class="u-step-txt" id="uStep4">
+            Confirmation ke baad <b>access code</b> aapke WhatsApp par aayega<br>
+            Phir <b>smartsaathi.app/redeem</b> par jaayein
+          </div>
+        </div>
+      </div>
+
+      <div class="time-badge">
+        <div class="time-badge-ico">⏰</div>
+        <div class="time-badge-txt" id="timeBadgeTxt">
+          <b>Maximum 90 minute</b> mein access code milega — payment confirm hote hi bhej diya jaayega
+        </div>
+      </div>
+
+      <!-- Collect name + number before WhatsApp -->
+      <div style="margin-bottom:10px;">
+        <div style="font-size:10px;letter-spacing:.08em;color:var(--tm);text-transform:uppercase;font-weight:700;margin-bottom:6px;" id="waNameLbl">Aapka Naam</div>
+        <input type="text" id="waName"
+          style="width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:10px;padding:12px 14px;color:var(--tx);font-size:15px;outline:none;font-family:inherit;margin-bottom:10px;-webkit-appearance:none;"
+          placeholder="Jaise: Ahmed Khan">
+
+        <div style="font-size:10px;letter-spacing:.08em;color:var(--tm);text-transform:uppercase;font-weight:700;margin-bottom:6px;" id="waNumLbl">Aapka WhatsApp Number</div>
+        <div style="display:flex;gap:8px;margin-bottom:10px;">
+          <div style="background:var(--bg3);border:1.5px solid var(--bd);border-radius:10px;padding:12px 10px;font-size:14px;color:var(--ts);white-space:nowrap;display:flex;align-items:center;">🌍 +</div>
+          <input type="tel" id="waNum"
+            style="flex:1;background:var(--bg3);border:1.5px solid var(--bd);border-radius:10px;padding:12px 14px;color:var(--tx);font-size:15px;outline:none;font-family:inherit;-webkit-appearance:none;"
+            placeholder="966XXXXXXXXX" inputmode="numeric">
+        </div>
+
+
+      </div>
+
+      <button class="wa-pay-btn" id="waSendBtn" onclick="openWhatsApp()">
+        📲 WhatsApp Par Bhejein — Screenshot Ke Saath
+      </button>
+      <div style="text-align:center;font-size:11px;color:var(--tm);margin-top:6px;" id="waNote">
+        WhatsApp khulega — message ready hoga — screenshot attach karein — send karein
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD SECTION wrapper -->
+  <div class="card-section" id="cardSection">
   <!-- CARD ALERT — FIRST THING THEY SEE -->
   <div class="card-alert">
     <div class="ca-title" id="caTitle">💳 Kaunsa Card Kaam Karta Hai?</div>
@@ -342,6 +516,23 @@ var C={
     stickyBtn:'👉 SAR 11 — Abhi Access Lo',
     errEmail:'Sahi email dalein — login link is par aayega.',
     backLink:'← Wapas Jayen',
+    payMethodTitle:'💳 Payment Ka Tarika Chunein',
+    tabCardTitle:'Card / Online',
+    tabCardSub:'Visa, Mastercard, Mada — 10 Minute mein Access',
+    tabUpaisaTitle:'Upaisa / Jazz',
+    tabUpaisaSub:'Pakistan se — 90 Minute mein Access',
+    upaisaSub:'Pakistan se payment — bilkul aasan',
+    uStep1:'Apne Upaisa ya JazzCash app se <br><span class="highlight">+923046318640</span><br>par <b>PKR 825</b> send karein<br><b>Account Name: Sana</b>',
+    uStep2:'',
+    uStep3:'Apna <b>Naam, WhatsApp number aur payment ka screenshot</b> is number par bhejein:<br><span class="highlight">+923347341756</span>',
+    uStep4:'Confirmation ke baad <b>access code</b> aapke WhatsApp par aayega — phir <b>smartsaathi.app/redeem</b> par jaayein',
+    timeBadgeTxt:'<b>Maximum 90 minute</b> mein access code milega — payment confirm hote hi bhej diya jaayega',
+    waSendBtn:'📲 Screenshot WhatsApp Par Bhejein',
+    waNameLbl:'Aapka Naam',
+    waNumLbl:'Aapka WhatsApp Number',
+    waScreenshotNote:'',
+    waSendBtn:'📲 WhatsApp Par Bhejein — Screenshot Ke Saath',
+    waNote:'WhatsApp khulega — message ready hoga — screenshot attach karein — send karein',
   },
   bd:{
     caTitle:'💳 কোন কার্ড কাজ করে?',
@@ -362,6 +553,23 @@ var C={
     stickyBtn:'👉 SAR 11 — এখনই অ্যাক্সেস নিন',
     errEmail:'সঠিক email দিন — login link এখানে আসবে।',
     backLink:'← ফিরে যান',
+    payMethodTitle:'💳 পেমেন্টের পদ্ধতি বেছে নিন',
+    tabCardTitle:'Card / Online',
+    tabCardSub:'Visa, Mastercard, Mada — ১০ মিনিটে Access',
+    tabUpaisaTitle:'Upaisa / Jazz',
+    tabUpaisaSub:'Pakistan থেকে — ৯০ মিনিটে Access',
+    upaisaSub:'Pakistan থেকে পেমেন্ট — একদম সহজ',
+    uStep1:'আপনার Upaisa বা JazzCash app থেকে<br><span class="highlight">+923046318640</span><br>-এ <b>PKR 825</b> পাঠান<br><b>Account Name: Sana</b>',
+    uStep2:'',
+    uStep3:'আপনার <b>নাম, WhatsApp নম্বর এবং পেমেন্টের screenshot</b> এই নম্বরে পাঠান:<br><span class="highlight">+923347341756</span>',
+    uStep4:'Confirmation-এর পর <b>access code</b> আপনার WhatsApp-এ আসবে — তারপর <b>smartsaathi.app/redeem</b>-এ যান',
+    timeBadgeTxt:'<b>সর্বোচ্চ ২ ঘন্টায়</b> access code পাবেন — পেমেন্ট confirm হলেই পাঠানো হবে',
+    waSendBtn:'📲 Screenshot WhatsApp-এ পাঠান',
+    waNameLbl:'আপনার নাম',
+    waNumLbl:'আপনার WhatsApp নম্বর',
+    waScreenshotNote:'',
+    waSendBtn:'📲 WhatsApp-এ পাঠান — Screenshot সহ',
+    waNote:'WhatsApp খুলবে — message ready থাকবে — screenshot attach করুন — send করুন',
   }
 };
 
@@ -433,6 +641,42 @@ function startCheckout(){
 
 function showErr(m){var e=G('errMsg');e.textContent=m;e.style.display='block';}
 function hideErr(){G('errMsg').style.display='none';}
+
+function openWhatsApp(){
+  var name = (document.getElementById('waName').value||'').trim();
+  var num = (document.getElementById('waNum').value||'').replace(/[\s\-\+]/g,'').trim();
+
+  if(!name){
+    alert('Apna naam dalein pehle.');
+    return;
+  }
+  if(!num || num.length < 8){
+    alert('Apna WhatsApp number dalein.');
+    return;
+  }
+
+  var msg = 'Assalamu Alaikum!\n\nMain Smart Bachat kharidna chahta hoon.\n\nMera Naam: ' + name + '\nMera WhatsApp: +' + num + '\n\nMainne PKR 825 Upaisa par bhej diye hain:\nAccount: +923046318640 (Sana)\n\nPayment screenshot attach kar raha hoon.\n\nPlease access code bhejein. Shukriya!';
+
+  window.open('https://wa.me/923347341756?text=' + encodeURIComponent(msg), '_blank');
+}
+
+function setPayMethod(method){
+  var cardTab=document.getElementById('tabCard');
+  var upaisaTab=document.getElementById('tabUpaisa');
+  var cardSection=document.getElementById('cardSection');
+  var upaisaSection=document.getElementById('upaisaSection');
+  if(method==='card'){
+    cardTab.classList.add('active');
+    upaisaTab.classList.remove('active');
+    cardSection.classList.remove('hide');
+    upaisaSection.classList.remove('show');
+  } else {
+    upaisaTab.classList.add('active');
+    cardTab.classList.remove('active');
+    cardSection.classList.add('hide');
+    upaisaSection.classList.add('show');
+  }
+}
 
 window.addEventListener('DOMContentLoaded',function(){
   initPaddle();
