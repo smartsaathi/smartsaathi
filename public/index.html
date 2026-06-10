@@ -358,6 +358,38 @@ footer{text-align:center;padding:24px 16px 120px;border-top:1px solid var(--bd);
 
 @keyframes pulse{0%,100%{box-shadow:0 8px 32px rgba(240,192,64,.35)}50%{box-shadow:0 8px 44px rgba(240,192,64,.6)}}
 .hero-cta{animation:fadeUp .45s .35s ease both,pulse 2.5s 1s ease-in-out infinite;}
+
+/* ── PAYMENT METHODS on landing ── */
+.pay-methods{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:8px;margin-bottom:14px;
+}
+.pm-card{
+  border-radius:12px;padding:12px 10px;
+  text-align:center;
+  border:1.5px solid;
+}
+.pm-card.card-pay{
+  background:rgba(240,192,64,.06);
+  border-color:rgba(240,192,64,.25);
+}
+.pm-card.upaisa-pay{
+  background:rgba(34,197,94,.06);
+  border-color:rgba(34,197,94,.25);
+}
+.pm-ico{font-size:22px;margin-bottom:4px;}
+.pm-title{font-size:12px;font-weight:800;margin-bottom:3px;}
+.pm-card.card-pay .pm-title{color:var(--gold);}
+.pm-card.upaisa-pay .pm-title{color:#22C55E;}
+.pm-detail{font-size:10px;color:var(--ts);line-height:1.5;}
+.pm-time{
+  display:inline-block;
+  font-size:10px;font-weight:700;
+  padding:2px 7px;border-radius:5px;
+  margin-top:4px;
+}
+.pm-card.card-pay .pm-time{background:rgba(240,192,64,.12);color:var(--gold);}
+.pm-card.upaisa-pay .pm-time{background:rgba(34,197,94,.12);color:#22C55E;}
 </style>
 </head>
 <body>
@@ -530,6 +562,24 @@ footer{text-align:center;padding:24px 16px 120px;border-top:1px solid var(--bd);
     <div class="price-grid" id="priceGrid"></div>
     <div class="price-chai" id="priceChaiLine"></div>
     <div class="price-perks" id="pricePerks"></div>
+    <!-- Payment Methods -->
+    <div id="payMethodsBlock" style="margin-bottom:14px;">
+      <div style="font-size:11px;font-weight:700;color:var(--tm);text-align:center;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;" id="pmTitle">2 Tarike Se Kharidein</div>
+      <div class="pay-methods">
+        <div class="pm-card card-pay">
+          <div class="pm-ico">💳</div>
+          <div class="pm-title" id="pmCardTitle">Card / Online</div>
+          <div class="pm-detail" id="pmCardDetail">Visa, Mastercard<br>Mada, Google Pay</div>
+          <div class="pm-time" id="pmCardTime">⚡ 10 Min mein Access</div>
+        </div>
+        <div class="pm-card upaisa-pay">
+          <div class="pm-ico">📱</div>
+          <div class="pm-title" id="pmUpaisaTitle">Upaisa / JazzCash</div>
+          <div class="pm-detail" id="pmUpaisaDetail">Pakistan se<br>PKR 825 sirf</div>
+          <div class="pm-time" id="pmUpaisaTime">⏰ 90 Min mein Access</div>
+        </div>
+      </div>
+    </div>
     <button class="price-buy" onclick="goBuy()" id="priceBuyBtn">👉 Abhi Khareedein</button>
     <div class="price-guarantee" id="priceGuarantee">
       🔒 Secure Paddle payment &nbsp;•&nbsp; ⚡ Instant access<br>
@@ -613,6 +663,13 @@ var CONTENT={
     priceOrig:'Normally SAR 25',priceBig:'SAR 11',priceNoteText:'Ek baar — hamesha ke liye',
     priceChaiLine:'<b>"Ek din ki chai ki qeemat mein —<br>poori zindagi ki bachat."</b>',
     perks:['✅ Koi subscription nahi','✅ Hamesha ke liye aapka','✅ 48-ghante refund','✅ Koi app download nahi'],
+    pmTitle:'2 Tarike Se Kharidein',
+    pmCardTitle:'Card / Online',
+    pmCardDetail:'Visa, Mastercard<br>Mada, Google Pay',
+    pmCardTime:'⚡ 10 Min mein Access',
+    pmUpaisaTitle:'Upaisa / JazzCash',
+    pmUpaisaDetail:'Pakistan se<br>PKR 825 sirf',
+    pmUpaisaTime:'⏰ 90 Min mein Access',
     priceBuyBtn:'👉 Abhi Khareedein',
     priceGuarantee:'🔒 Secure Paddle payment &nbsp;•&nbsp; ⚡ Instant access<br><b>💯 48 ghante mein pasand na aaye — poora refund. Koi sawaal nahi.</b>',
     faqTag:'Sawaal Jawab',faqTitle:'Kuch Sawaal?',
@@ -664,6 +721,13 @@ var CONTENT={
     priceOrig:'সাধারণত SAR 25',priceBig:'SAR 11',priceNoteText:'একবার — সারাজীবনের জন্য',
     priceChaiLine:'<b>"এক দিনের চায়ের দামে —<br>সারাজীবনের বাচাত।"</b>',
     perks:['✅ কোনো সাবস্ক্রিপশন নেই','✅ সারাজীবনের জন্য','✅ ৪৮ ঘণ্টার রিফান্ড','✅ App ডাউনলোড নেই'],
+    pmTitle:'২ উপায়ে কিনুন',
+    pmCardTitle:'Card / Online',
+    pmCardDetail:'Visa, Mastercard<br>Mada, Google Pay',
+    pmCardTime:'⚡ ১০ মিনিটে Access',
+    pmUpaisaTitle:'Upaisa / JazzCash',
+    pmUpaisaDetail:'Pakistan থেকে<br>মাত্র PKR 825',
+    pmUpaisaTime:'⏰ ৯০ মিনিটে Access',
     priceBuyBtn:'👉 এখনই কিনুন',
     priceGuarantee:'🔒 Paddle-এ নিরাপদ পেমেন্ট &nbsp;•&nbsp; ⚡ তাৎক্ষণিক অ্যাক্সেস<br><b>💯 ৪৮ ঘণ্টায় পছন্দ না হলে — পুরো টাকা ফেরত।</b>',
     faqTag:'প্রশ্ন-উত্তর',faqTitle:'কিছু প্রশ্ন?',
@@ -719,7 +783,14 @@ function render(){
   var fl=G('featList');fl.innerHTML='';
   d.feats.forEach(function(f){var el=document.createElement('div');el.className='feat';el.innerHTML='<div class="feat-ico">'+f.ico+'</div><div class="feat-body"><div class="feat-title">'+f.t+'</div><div class="feat-desc">'+f.d+'</div></div>';fl.appendChild(el);});
   setT('priceTitle',d.priceTitle);setT('priceOrig',d.priceOrig);setT('priceBig',d.priceBig);setT('priceNoteText',d.priceNoteText);
-  setH('priceChaiLine',d.priceChaiLine);setT('priceBuyBtn',d.priceBuyBtn);setH('priceGuarantee',d.priceGuarantee);
+  setH('priceChaiLine',d.priceChaiLine);setT('pmTitle',d.pmTitle||'');
+  setT('pmCardTitle',d.pmCardTitle||'');
+  setH('pmCardDetail',d.pmCardDetail||'');
+  setT('pmCardTime',d.pmCardTime||'');
+  setT('pmUpaisaTitle',d.pmUpaisaTitle||'');
+  setH('pmUpaisaDetail',d.pmUpaisaDetail||'');
+  setT('pmUpaisaTime',d.pmUpaisaTime||'');
+  setT('priceBuyBtn',d.priceBuyBtn);setH('priceGuarantee',d.priceGuarantee);
   var pg=G('priceGrid');pg.innerHTML='';
   PRICES.forEach(function(p){var el=document.createElement('div');el.className='price-item';el.innerHTML='<div class="pi-flag">'+p.flag+'</div><div class="pi-country">'+p.country+'</div><div class="pi-price">'+p.price+'</div>';pg.appendChild(el);});
   var pp=G('pricePerks');pp.innerHTML='';
