@@ -468,8 +468,8 @@ async function loadReferrals(){
           '<div class="ref-count">'+friends+'/7 dost</div>'+
         '</div>'+
         '<div style="display:flex;gap:6px;margin-top:8px;align-items:center;">'+
-          '<span class="ref-wa" onclick="sendDailyUpdate(''+r.referral_code+'',''+r.referrer_phone+'',''+r.referrer_name+'','+friends+','+(r.cashback_owed||0)+','+owed+')">📲 Daily Update</span>'+
-          (owed>0?'<button class="ref-paid-btn" onclick="markPaid(''+r.referral_code+'','+owed+')">✓ Mark Paid</button>':
+          '<span class="ref-wa" onclick="sendDailyUpdate(this)" data-code="'+r.referral_code+'" data-phone="'+r.referrer_phone+'" data-name="'+(r.referrer_name||'')+'" data-friends="'+friends+'" data-earned="'+(r.cashback_owed||0)+'" data-owed="'+owed+'">📲 Daily Update</span>'+
+          (owed>0?'<button class="ref-paid-btn" onclick="markPaidEl(this)" data-code="'+r.referral_code+'" data-amount="'+owed+'">✓ Mark Paid</button>':
           '<span class="ref-paid-btn done">✓ Paid</span>')+
         '</div>'+
       '</div>';
@@ -477,7 +477,17 @@ async function loadReferrals(){
   }catch(e){document.getElementById('refList').innerHTML='<div class="empty">Error loading</div>';}
 }
 
-function sendDailyUpdate(code,phone,name,friends,earned,pending){
+function sendDailyUpdate(el){
+  var code=el.getAttribute('data-code');
+  var phone=el.getAttribute('data-phone');
+  var name=el.getAttribute('data-name');
+  var friends=parseInt(el.getAttribute('data-friends')||0);
+  var earned=parseInt(el.getAttribute('data-earned')||0);
+  var pending=parseInt(el.getAttribute('data-owed')||0);
+  sendDailyUpdateFn(code,phone,name,friends,earned,pending);
+}
+
+function sendDailyUpdateFn(code,phone,name,friends,earned,pending){
   var remaining=7-friends;
   var isFree=friends>=7;
   var msg;
@@ -535,6 +545,12 @@ Aaj raat cashback aapke Upaisa par aa jaayega.
 _SmartSaathi Team_';
   }
   window.open('https://wa.me/'+phone+'?text='+encodeURIComponent(msg),'_blank');
+}
+
+function markPaidEl(el){
+  var code=el.getAttribute('data-code');
+  var amount=parseInt(el.getAttribute('data-amount'));
+  markPaid(code,amount);
 }
 
 async function markPaid(code,amount){
