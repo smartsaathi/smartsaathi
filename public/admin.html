@@ -146,8 +146,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="login-card">
       <div class="login-ico">🔐</div>
       <div class="login-title">SmartSaathi Admin</div>
-      <input class="inp pwd-inp" type="password" id="pwdInp" placeholder="Password" onkeydown="if(event.key==='Enter')checkLogin()">
-      <button class="btn" onclick="checkLogin()">Login</button>
+      <input class="inp pwd-inp" type="password" id="pwdInp" placeholder="Password" onkeydown="if(event.key==='Enter')window.checkLogin&&window.checkLogin()">
+      <button class="btn" onclick="window.checkLogin&&window.checkLogin()">Login</button>
       <div class="err-txt" id="loginErr"></div>
     </div>
   </div>
@@ -204,6 +204,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
   </div>
 </div>
+
 
 <script>
 var ADMIN_PWD = 'Zainaliaoun@1'; // <-- CHANGE THIS
