@@ -90,6 +90,52 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(10,26,16,.3);border-top-color:#0A1A10;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px;}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── REFERRAL SECTION ── */
+.ref-card{
+  background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(34,197,94,.03));
+  border:1.5px solid rgba(34,197,94,.25);
+  border-radius:16px;padding:16px;margin-bottom:12px;
+  position:relative;overflow:hidden;
+}
+.ref-card::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,#22C55E,transparent);}
+.ref-title{font-size:13px;font-weight:800;color:#22C55E;margin-bottom:12px;}
+.ref-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px;}
+.ref-stat{background:rgba(0,0,0,.2);border-radius:10px;padding:8px;text-align:center;}
+.ref-stat-val{font-size:18px;font-weight:800;color:#22C55E;font-family:'Baloo 2',sans-serif;}
+.ref-stat-lbl{font-size:9px;color:var(--tm);margin-top:2px;}
+.ref-item{
+  background:var(--bg3);border:1px solid var(--bd);
+  border-radius:12px;padding:12px;margin-bottom:8px;
+  position:relative;
+}
+.ref-item-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.ref-code{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:14px;color:#22C55E;letter-spacing:2px;}
+.ref-name{font-size:11px;color:var(--ts);}
+.ref-phone{font-size:10px;color:var(--tm);}
+.ref-progress{display:flex;align-items:center;gap:8px;margin-top:6px;}
+.ref-bar-wrap{flex:1;height:6px;background:rgba(34,197,94,.1);border-radius:3px;overflow:hidden;}
+.ref-bar-fill{height:100%;background:linear-gradient(90deg,#22C55E,#16A34A);border-radius:3px;transition:width .3s;}
+.ref-count{font-size:11px;color:#22C55E;font-weight:700;white-space:nowrap;}
+.ref-cashback{font-size:11px;color:var(--gold);font-weight:700;}
+.ref-wa{font-size:16px;cursor:pointer;}
+.ref-paid-btn{
+  font-size:10px;padding:3px 8px;
+  background:rgba(240,192,64,.1);
+  border:1px solid rgba(240,192,64,.25);
+  border-radius:6px;color:var(--gold);
+  cursor:pointer;font-family:inherit;
+  font-weight:700;
+}
+.ref-paid-btn.done{background:rgba(116,198,157,.1);border-color:rgba(116,198,157,.25);color:var(--g4);}
+.cashback-summary{
+  background:rgba(240,192,64,.07);
+  border:1px solid rgba(240,192,64,.2);
+  border-radius:10px;padding:10px 12px;
+  font-size:12px;color:var(--gold);
+  font-weight:600;text-align:center;
+  margin-bottom:10px;
+}
 </style>
 </head>
 <body>
@@ -160,13 +206,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </div>
 
 <script>
-var ADMIN_PWD = 'Zainaliaoun@1'; // ← CHANGE THIS
+var ADMIN_PWD = 'smartsaathi2026'; // ← CHANGE THIS
 var SUPA_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
-var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidndvbHB2emd4ZWJ5ZnpsbmR0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MDM2MzE4NiwiZXhwIjoyMDk1OTM5MTg2fQ.w5rNK2MiONnKZ_0pAp3O2zyU9rGkHF4knJiM7TBZ_-c'; // ← REPLACE WITH SERVICE_ROLE KEY
+var SUPA_KEY = 'YOUR_SUPABASE_SERVICE_KEY'; // ← REPLACE WITH SERVICE_ROLE KEY
 
 var allCodes = [];
 var currentFilter = 'all';
 var latestCode = '';
+var latestRefCode = '';
 var latestPhone = '';
 var latestBuyer = '';
 
@@ -240,12 +287,24 @@ async function generateCode(){
     latestPhone=phone;
     latestBuyer=buyer;
 
+    // Also create referral entry for this buyer
+    var refCode = makeRefCode(buyer);
+    await createReferral(phone, buyer, refCode);
+    latestRefCode = refCode;
+
+    // Create referral entry
+    var refCode=makeRefCode(buyer);
+    latestRefCode=refCode;
+    await createReferral(phone,buyer,refCode);
+
     document.getElementById('newCodeVal').textContent=code;
     document.getElementById('newCodePhone').textContent='📱 +'+phone+' — '+buyer;
     document.getElementById('newCodeBox').style.display='block';
     document.getElementById('buyerName').value='';
     document.getElementById('buyerPhone').value='';
     loadCodes();
+    loadReferrals();
+    loadReferrals();
   }catch(e){
     alert('Error. Check Supabase connection.');
   }
@@ -262,12 +321,43 @@ function copyCode(){
   });
 }
 
-function shareWhatsApp(code, phone, buyer){
-  var c = code||latestCode;
-  var p = phone||latestPhone;
-  var b = buyer||latestBuyer;
-  var msg = 'Assalamu Alaikum '+b+'! 🌟\n\nAapka Smart Bachat access code:\n\n*'+c+'*\n\nAccess lene ke liye:\n1️⃣ Is link par jayen: smartsaathi.app/redeem\n2️⃣ Apna WhatsApp number daalen: *+'+p+'*\n3️⃣ Yeh code daalen: *'+c+'*\n4️⃣ App khul jaayega ✅\n\nKoi masla ho to message karein.\n_SmartSaathi Team_';
-  var url = p ? 'https://wa.me/'+p+'?text='+encodeURIComponent(msg) : 'https://wa.me/?text='+encodeURIComponent(msg);
+function shareWhatsApp(code,phone,buyer){
+  var c=code||latestCode;
+  var p=phone||latestPhone;
+  var b=buyer||latestBuyer;
+  var rc=latestRefCode||'';
+  var msg='Assalamu Alaikum '+b+' Bhai! \u{1F31F}\n\n'+
+    'Smart Bachat mein khush aamdeed!\n'+
+    'Aapka access code:\n\n'+
+    '*'+c+'*\n\n'+
+    '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n'+
+    '\uD83D\uDCF1 App kholne ka tarika:\n'+
+    '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n'+
+    '1. smartsaathi.app/redeem par jayen\n'+
+    '2. WhatsApp number daalen: +'+p+'\n'+
+    '3. Access code daalen: '+c+'\n'+
+    '4. App turant khul jaayega\n\n'+
+    '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n'+
+    'AAPKA REFERRAL CODE: '+rc+'\n'+
+    '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n'+
+    'Yeh code apne Gulf ke doston ko bhejein:\n\n'+
+    '- Unhe milega sirf PKR 700 mein\n'+
+    '  (normally PKR 825)\n'+
+    '- Aapko milega PKR 100 cashback\n'+
+    '  har dost ke liye\n\n'+
+    '7 dost laao - app bilkul FREE!\n\n'+
+    'Doston ko yeh forward karein:\n'+
+    '"Bhai Smart Bachat le lo.\n'+
+    'Gulf workers ke liye banaya hai.\n'+
+    'PKR 700 mein milega.\n'+
+    'Mera referral code: '+rc+'\n'+
+    'Upaisa/JazzCash se pay karo.\n'+
+    'smartsaathi.app/checkout"\n\n'+
+    '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n'+
+    'Har roz update milega cashback ka.\n\n'+
+    'Allah aapke sapne poore kare!\n'+
+    'SmartSaathi Team';
+  var url=p?'https://wa.me/'+p+'?text='+encodeURIComponent(msg):'https://wa.me/?text='+encodeURIComponent(msg);
   window.open(url,'_blank');
 }
 
@@ -321,12 +411,145 @@ function renderCodes(){
 }
 
 setInterval(loadCodes,30000);
+setInterval(loadReferrals,30000);
+setInterval(loadReferrals,30000);
+
+
+// ── REFERRAL FUNCTIONS ──
+function makeRefCode(name){
+  var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var suffix='';
+  for(var i=0;i<4;i++) suffix+=chars[Math.floor(Math.random()*chars.length)];
+  var prefix=(name||'SB').toUpperCase().replace(/[^A-Z]/g,'').slice(0,4)||'SB';
+  return prefix+'-'+suffix;
+}
+
+async function createReferral(phone,name,code){
+  return supaFetch('/rest/v1/referrals','POST',{
+    referrer_phone:phone,referrer_name:name,
+    referral_code:code,friends_joined:0,cashback_owed:0,cashback_paid:0
+  });
+}
+
+async function loadReferrals(){
+  try{
+    var data=await supaFetch('/rest/v1/referrals?order=created_at.desc&limit=50');
+    var refs=data||[];
+    var totalFriends=refs.reduce(function(a,r){return a+(r.friends_joined||0);},0);
+    var totalOwed=refs.reduce(function(a,r){return a+(r.cashback_owed||0)-(r.cashback_paid||0);},0);
+    document.getElementById('totalReferrers').textContent=refs.length;
+    document.getElementById('totalFriends').textContent=totalFriends;
+    document.getElementById('totalCashback').textContent='PKR '+totalOwed;
+    var summary=document.getElementById('cashbackSummary');
+    if(totalOwed>0){summary.style.display='block';summary.textContent='⚠️ PKR '+totalOwed+' cashback pending — aaj raat bhejein!';}
+    else summary.style.display='none';
+    var el=document.getElementById('refList');
+    if(!refs.length){el.innerHTML='<div class="empty">Koi referral nahi abhi</div>';return;}
+    el.innerHTML=refs.map(function(r){
+      var friends=r.friends_joined||0;
+      var owed=(r.cashback_owed||0)-(r.cashback_paid||0);
+      var pct=Math.min(100,Math.round((friends/7)*100));
+      var isFree=friends>=7;
+      return '<div class="ref-item">'+
+        '<div class="ref-item-top">'+
+          '<div><div class="ref-code">'+r.referral_code+'</div>'+
+          '<div class="ref-name">'+(r.referrer_name||'—')+'</div>'+
+          '<div class="ref-phone">+'+(r.referrer_phone||'')+'</div></div>'+
+          '<div style="text-align:right">'+
+            '<div class="ref-cashback">PKR '+(r.cashback_owed||0)+' earned</div>'+
+            (owed>0?'<div class="ref-cashback" style="color:var(--red)">PKR '+owed+' pending</div>':
+            '<div style="font-size:10px;color:var(--g4)">✅ Paid</div>')+
+            (isFree?'<div style="font-size:10px;color:#22C55E;font-weight:800">🎉 FREE ACCESS!</div>':'')+
+          '</div>'+
+        '</div>'+
+        '<div class="ref-progress">'+
+          '<div class="ref-bar-wrap"><div class="ref-bar-fill" style="width:'+pct+'%"></div></div>'+
+          '<div class="ref-count">'+friends+'/7 dost</div>'+
+        '</div>'+
+        '<div style="display:flex;gap:6px;margin-top:8px;align-items:center;">'+
+          '<span class="ref-wa" onclick="sendDailyUpdate(''+r.referral_code+'',''+r.referrer_phone+'',''+r.referrer_name+'','+friends+','+(r.cashback_owed||0)+','+owed+')">📲 Daily Update</span>'+
+          (owed>0?'<button class="ref-paid-btn" onclick="markPaid(''+r.referral_code+'','+owed+')">✓ Mark Paid</button>':
+          '<span class="ref-paid-btn done">✓ Paid</span>')+
+        '</div>'+
+      '</div>';
+    }).join('');
+  }catch(e){document.getElementById('refList').innerHTML='<div class="empty">Error loading</div>';}
+}
+
+function sendDailyUpdate(code,phone,name,friends,earned,pending){
+  var remaining=7-friends;
+  var isFree=friends>=7;
+  var msg;
+  if(isFree){
+    msg='Assalamu Alaikum '+name+' Bhai! 🎉
+
+'+
+      'MUBARAK HO! Aapne 7 dost laaye!
+
+'+
+      'Aapka Smart Bachat ab HAMESHA KE LIYE FREE hai! 🎊
+
+'+
+      'Aapka total cashback: PKR '+earned+'
+'+
+      'Aaj raat aapke Upaisa/JazzCash par bhej diya jaayega.
+
+'+
+      'Allah aapko jazaak dey! 🤲
+_SmartSaathi Team_';
+  } else {
+    msg='Assalamu Alaikum '+name+' Bhai! 🌟
+
+'+
+      'Aapka Smart Bachat referral update:
+
+'+
+      '✅ Aaj tak aaye dost: *'+friends+' / 7*
+'+
+      '💰 Aapka total cashback: *PKR '+earned+'*
+'+
+      (pending>0?'⏳ Pending payment: *PKR '+pending+'*
+':'')+
+      '
+'+
+      (remaining>0?
+      '📢 Sirf *'+remaining+' aur dost* laao — app bilkul FREE!
+
+'+
+      'Apne doston ko yeh bhejein:
+'+
+      '"Bhai Smart Bachat le lo — PKR 700 mein milega.
+'+
+      'Mera code: *'+code+'*
+'+
+      'Payment: Upaisa/JazzCash
+'+
+      'smartsaathi.app/checkout"
+':'')+
+      '
+Aaj raat cashback aapke Upaisa par aa jaayega.
+
+'+
+      'Allah Hafiz! 🤲
+_SmartSaathi Team_';
+  }
+  window.open('https://wa.me/'+phone+'?text='+encodeURIComponent(msg),'_blank');
+}
+
+async function markPaid(code,amount){
+  if(!confirm('PKR '+amount+' paid mark karein?')) return;
+  try{
+    await supaFetch('/rest/v1/referrals?referral_code=eq.'+encodeURIComponent(code),'PATCH',{cashback_paid:amount});
+    loadReferrals();
+  }catch(e){alert('Error');}
+}
 
 window.addEventListener('DOMContentLoaded',function(){
   if(sessionStorage.getItem('admin_auth')==='1'){
     document.getElementById('loginSection').style.display='none';
     document.getElementById('mainSection').style.display='block';
     loadCodes();
+    loadReferrals();
   }
   document.getElementById('pwdInp').addEventListener('keydown',function(e){
     if(e.key==='Enter') checkLogin();
