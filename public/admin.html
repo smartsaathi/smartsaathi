@@ -206,9 +206,9 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </div>
 
 <script>
-var ADMIN_PWD = 'smartsaathi2026'; // ← CHANGE THIS
+var ADMIN_PWD = 'smartsaathi2026'; // <-- CHANGE THIS
 var SUPA_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
-var SUPA_KEY = 'YOUR_SUPABASE_SERVICE_KEY'; // ← REPLACE WITH SERVICE_ROLE KEY
+var SUPA_KEY = 'YOUR_SUPABASE_SERVICE_KEY'; // <-- REPLACE WITH SERVICE_ROLE KEY
 
 var allCodes = [];
 var currentFilter = 'all';
@@ -326,20 +326,20 @@ function shareWhatsApp(code,phone,buyer){
   var p=phone||latestPhone;
   var b=buyer||latestBuyer;
   var rc=latestRefCode||'';
-  var msg='Assalamu Alaikum '+b+' Bhai! \u{1F31F}\n\n'+
+  var msg='Assalamu Alaikum '+b+' Bhai! 🌟\n\n'+
     'Smart Bachat mein khush aamdeed!\n'+
     'Aapka access code:\n\n'+
     '*'+c+'*\n\n'+
-    '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n'+
-    '\uD83D\uDCF1 App kholne ka tarika:\n'+
-    '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n'+
+    '━━━━━━━━━\n'+
+    '📱 App kholne ka tarika:\n'+
+    '━━━━━━━━━\n'+
     '1. smartsaathi.app/redeem par jayen\n'+
     '2. WhatsApp number daalen: +'+p+'\n'+
     '3. Access code daalen: '+c+'\n'+
     '4. App turant khul jaayega\n\n'+
-    '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n'+
+    '━━━━━━━━━\n'+
     'AAPKA REFERRAL CODE: '+rc+'\n'+
-    '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n'+
+    '━━━━━━━━━\n\n'+
     'Yeh code apne Gulf ke doston ko bhejein:\n\n'+
     '- Unhe milega sirf PKR 700 mein\n'+
     '  (normally PKR 825)\n'+
@@ -353,7 +353,7 @@ function shareWhatsApp(code,phone,buyer){
     'Mera referral code: '+rc+'\n'+
     'Upaisa/JazzCash se pay karo.\n'+
     'smartsaathi.app/checkout"\n\n'+
-    '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n'+
+    '━━━━━━━━━\n'+
     'Har roz update milega cashback ka.\n\n'+
     'Allah aapke sapne poore kare!\n'+
     'SmartSaathi Team';
