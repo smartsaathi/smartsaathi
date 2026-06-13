@@ -9,18 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-:root{
-  --bg:#080E0A;--bg2:#0D1A10;--bg3:#122318;
-  --g1:#1B4332;--g3:#40916C;--g4:#74C69D;
-  --gold:#F0C040;--amber:#F4A261;--red:#E07A7A;
-  --tx:#EEF7F0;--ts:#B8D4BE;--tm:#5E8A68;
-  --bd:rgba(116,198,157,.13);
-}
+:root{--bg:#080E0A;--bg2:#0D1A10;--bg3:#122318;--g1:#1B4332;--g3:#40916C;--g4:#74C69D;--gold:#F0C040;--amber:#F4A261;--red:#E07A7A;--tx:#EEF7F0;--ts:#B8D4BE;--tm:#5E8A68;--bd:rgba(116,198,157,.13);}
 body{font-family:'Hind',-apple-system,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;-webkit-font-smoothing:antialiased;padding:16px;}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(45,106,79,.1),transparent 60%);pointer-events:none;}
 .wrap{max-width:420px;margin:0 auto;position:relative;z-index:1;}
-
-/* Login */
 .login-card{background:var(--bg2);border:1.5px solid rgba(116,198,157,.2);border-radius:20px;padding:28px 24px;text-align:center;margin-top:60px;}
 .login-ico{font-size:40px;margin-bottom:12px;}
 .login-title{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:20px;color:var(--g4);margin-bottom:20px;}
@@ -30,49 +22,33 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .pwd-inp{text-align:center;letter-spacing:3px;font-size:18px;}
 .btn{width:100%;padding:15px;background:linear-gradient(135deg,#F0C040,#F4A261);border:none;border-radius:12px;color:#0A1A10;font-size:17px;font-weight:800;cursor:pointer;font-family:'Baloo 2',sans-serif;margin-top:12px;transition:transform .15s;}
 .btn:active{transform:scale(.97);}
-.btn-green{background:linear-gradient(135deg,var(--g3),var(--g1));color:#fff;}
+.btn:disabled{opacity:.6;}
 .err-txt{color:var(--red);font-size:13px;margin-top:8px;}
-
-/* Main */
 .main{display:none;}
 .header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding:12px 0;}
 .header-title{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:18px;color:var(--g4);}
 .logout-btn{font-size:12px;color:var(--tm);cursor:pointer;padding:5px 10px;border:1px solid var(--bd);border-radius:8px;background:transparent;}
-
-/* Stats */
 .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
 .stat{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:10px;text-align:center;}
 .stat-val{font-size:22px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;}
 .stat-label{font-size:9px;color:var(--tm);margin-top:2px;}
-
-/* Section */
 .section{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:12px;}
 .section-title{font-size:13px;font-weight:700;color:var(--g4);margin-bottom:12px;}
-
-/* Form fields */
 .field-label{font-size:10px;letter-spacing:.08em;color:var(--tm);text-transform:uppercase;margin-bottom:6px;font-weight:700;}
 .field-inp{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:10px;padding:12px 14px;color:var(--tx);font-size:15px;outline:none;font-family:inherit;margin-bottom:10px;-webkit-appearance:none;}
 .field-inp:focus{border-color:var(--g4);}
 .field-inp::placeholder{color:var(--tm);}
-
-/* Phone input row */
 .phone-row{display:flex;gap:8px;margin-bottom:10px;}
 .phone-pre{background:var(--bg3);border:1.5px solid var(--bd);border-radius:10px;padding:12px 10px;font-size:14px;color:var(--ts);white-space:nowrap;flex-shrink:0;display:flex;align-items:center;}
 .phone-field{flex:1;background:var(--bg3);border:1.5px solid var(--bd);border-radius:10px;padding:12px 14px;color:var(--tx);font-size:15px;outline:none;font-family:inherit;-webkit-appearance:none;}
 .phone-field:focus{border-color:var(--g4);}
 .phone-field::placeholder{color:var(--tm);}
-
-/* Generated code box */
-.new-code{background:var(--bg3);border:2px solid rgba(240,192,64,.3);border-radius:12px;padding:16px;text-align:center;margin-bottom:10px;display:none;position:relative;}
+.new-code{background:var(--bg3);border:2px solid rgba(240,192,64,.3);border-radius:12px;padding:16px;text-align:center;margin-top:10px;display:none;position:relative;}
 .new-code::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
 .new-code-val{font-size:28px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;letter-spacing:4px;margin-bottom:6px;}
 .new-code-phone{font-size:12px;color:var(--ts);margin-bottom:10px;}
 .copy-btn{width:100%;padding:11px;background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.3);border-radius:9px;color:var(--gold);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:6px;}
-.copy-btn:active{background:rgba(240,192,64,.2);}
 .wa-btn{width:100%;padding:11px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);border-radius:9px;color:#25D366;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
-.wa-btn:active{background:rgba(37,211,102,.2);}
-
-/* Code list */
 .filter-tabs{display:flex;gap:6px;margin-bottom:10px;}
 .ftab{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--bd);background:transparent;color:var(--tm);font-family:inherit;}
 .ftab.on{background:var(--g3);border-color:var(--g3);color:#fff;}
@@ -87,55 +63,24 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .ci-status.used{background:rgba(224,122,122,.1);color:var(--red);}
 .ci-wa{font-size:18px;cursor:pointer;flex-shrink:0;}
 .empty{text-align:center;color:var(--tm);font-size:13px;padding:20px;}
-
-.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(10,26,16,.3);border-top-color:#0A1A10;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px;}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* ── REFERRAL SECTION ── */
-.ref-card{
-  background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(34,197,94,.03));
-  border:1.5px solid rgba(34,197,94,.25);
-  border-radius:16px;padding:16px;margin-bottom:12px;
-  position:relative;overflow:hidden;
-}
-.ref-card::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,#22C55E,transparent);}
-.ref-title{font-size:13px;font-weight:800;color:#22C55E;margin-bottom:12px;}
+/* Referral */
 .ref-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px;}
 .ref-stat{background:rgba(0,0,0,.2);border-radius:10px;padding:8px;text-align:center;}
 .ref-stat-val{font-size:18px;font-weight:800;color:#22C55E;font-family:'Baloo 2',sans-serif;}
 .ref-stat-lbl{font-size:9px;color:var(--tm);margin-top:2px;}
-.ref-item{
-  background:var(--bg3);border:1px solid var(--bd);
-  border-radius:12px;padding:12px;margin-bottom:8px;
-  position:relative;
-}
-.ref-item-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.ref-item{background:var(--bg3);border:1px solid var(--bd);border-radius:12px;padding:12px;margin-bottom:8px;}
 .ref-code{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:14px;color:#22C55E;letter-spacing:2px;}
 .ref-name{font-size:11px;color:var(--ts);}
-.ref-phone{font-size:10px;color:var(--tm);}
-.ref-progress{display:flex;align-items:center;gap:8px;margin-top:6px;}
+.ref-phone-txt{font-size:10px;color:var(--tm);}
 .ref-bar-wrap{flex:1;height:6px;background:rgba(34,197,94,.1);border-radius:3px;overflow:hidden;}
-.ref-bar-fill{height:100%;background:linear-gradient(90deg,#22C55E,#16A34A);border-radius:3px;transition:width .3s;}
-.ref-count{font-size:11px;color:#22C55E;font-weight:700;white-space:nowrap;}
+.ref-bar-fill{height:100%;background:linear-gradient(90deg,#22C55E,#16A34A);border-radius:3px;}
 .ref-cashback{font-size:11px;color:var(--gold);font-weight:700;}
-.ref-wa{font-size:16px;cursor:pointer;}
-.ref-paid-btn{
-  font-size:10px;padding:3px 8px;
-  background:rgba(240,192,64,.1);
-  border:1px solid rgba(240,192,64,.25);
-  border-radius:6px;color:var(--gold);
-  cursor:pointer;font-family:inherit;
-  font-weight:700;
-}
-.ref-paid-btn.done{background:rgba(116,198,157,.1);border-color:rgba(116,198,157,.25);color:var(--g4);}
-.cashback-summary{
-  background:rgba(240,192,64,.07);
-  border:1px solid rgba(240,192,64,.2);
-  border-radius:10px;padding:10px 12px;
-  font-size:12px;color:var(--gold);
-  font-weight:600;text-align:center;
-  margin-bottom:10px;
-}
+.ref-pending{font-size:11px;color:var(--red);font-weight:700;}
+.ref-paid-btn{font-size:10px;padding:3px 8px;background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.25);border-radius:6px;color:var(--gold);cursor:pointer;font-family:inherit;font-weight:700;}
+.ref-paid-done{font-size:10px;padding:3px 8px;background:rgba(116,198,157,.1);border:1px solid rgba(116,198,157,.25);border-radius:6px;color:var(--g4);}
+.cashback-alert{background:rgba(240,192,64,.07);border:1px solid rgba(240,192,64,.2);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--gold);font-weight:600;text-align:center;margin-bottom:10px;display:none;}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(10,26,16,.3);border-top-color:#0A1A10;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px;}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -146,15 +91,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="login-card">
       <div class="login-ico">🔐</div>
       <div class="login-title">SmartSaathi Admin</div>
-      <input class="inp pwd-inp" type="password" id="pwdInp" placeholder="Password" onkeydown="if(event.key==='Enter')window.checkLogin&&window.checkLogin()">
-      <button class="btn" onclick="window.checkLogin&&window.checkLogin()">Login</button>
+      <input class="inp pwd-inp" type="password" id="pwdInp" placeholder="Password">
+      <button class="btn" id="loginBtn">Login</button>
       <div class="err-txt" id="loginErr"></div>
     </div>
   </div>
 
   <!-- MAIN -->
   <div class="main" id="mainSection">
-
     <div class="header">
       <div class="header-title">💰 Admin Panel</div>
       <button class="logout-btn" onclick="logout()">Logout</button>
@@ -167,22 +111,17 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="stat"><div class="stat-val" id="usedCodes">—</div><div class="stat-label">Used / Sold</div></div>
     </div>
 
-    <!-- Generate -->
+    <!-- Generate Code -->
     <div class="section">
       <div class="section-title">➕ Naya Code Banao</div>
-
       <div class="field-label">Buyer ka Naam (optional)</div>
       <input class="field-inp" type="text" id="buyerName" placeholder="jaise Ahmed Riyadh">
-
-      <div class="field-label">Buyer ka WhatsApp Number ✱</div>
+      <div class="field-label">Buyer ka WhatsApp Number *</div>
       <div class="phone-row">
         <div class="phone-pre">🌍 +</div>
         <input class="phone-field" type="tel" id="buyerPhone" placeholder="966XXXXXXXXX" inputmode="numeric">
       </div>
-
       <button class="btn" id="genBtn" onclick="generateCode()">🎲 Code Generate Karo</button>
-
-      <!-- Generated code -->
       <div class="new-code" id="newCodeBox">
         <div class="new-code-val" id="newCodeVal">—</div>
         <div class="new-code-phone" id="newCodePhone">—</div>
@@ -202,31 +141,49 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="code-list" id="codeList"><div class="empty">Loading...</div></div>
     </div>
 
+    <!-- Referral Tracker -->
+    <div class="section">
+      <div class="section-title">🤝 Referral Tracker</div>
+      <div class="ref-stat-row">
+        <div class="ref-stat"><div class="ref-stat-val" id="totalReferrers">—</div><div class="ref-stat-lbl">Referrers</div></div>
+        <div class="ref-stat"><div class="ref-stat-val" id="totalFriends">—</div><div class="ref-stat-lbl">Friends</div></div>
+        <div class="ref-stat"><div class="ref-stat-val" id="totalOwed">—</div><div class="ref-stat-lbl">PKR Owed</div></div>
+      </div>
+      <div class="cashback-alert" id="cashbackAlert"></div>
+      <div id="refList"><div class="empty">Loading...</div></div>
+    </div>
+
   </div>
 </div>
 
-
 <script>
-var ADMIN_PWD = 'Zainaliaoun@1'; // <-- CHANGE THIS
+var ADMIN_PWD = 'Zainaliaoun@1';
 var SUPA_URL = 'https://lbvwolpvzgxebyfzlndt.supabase.co';
-var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidndvbHB2emd4ZWJ5ZnpsbmR0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MDM2MzE4NiwiZXhwIjoyMDk1OTM5MTg2fQ.w5rNK2MiONnKZ_0pAp3O2zyU9rGkHF4knJiM7TBZ_-c'; // <-- REPLACE WITH SERVICE_ROLE KEY
+var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxidndvbHB2emd4ZWJ5ZnpsbmR0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MDM2MzE4NiwiZXhwIjoyMDk1OTM5MTg2fQ.w5rNK2MiONnKZ_0pAp3O2zyU9rGkHF4knJiM7TBZ_-c';
 
 var allCodes = [];
 var currentFilter = 'all';
 var latestCode = '';
-var latestRefCode = '';
 var latestPhone = '';
 var latestBuyer = '';
+var latestRefCode = '';
+
+// ── LOGIN ──
+document.getElementById('loginBtn').addEventListener('click', checkLogin);
+document.getElementById('pwdInp').addEventListener('keydown', function(e){
+  if(e.key === 'Enter') checkLogin();
+});
 
 function checkLogin(){
   var pwd = document.getElementById('pwdInp').value;
   if(pwd === ADMIN_PWD){
-    document.getElementById('loginSection').style.display='none';
-    document.getElementById('mainSection').style.display='block';
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('mainSection').style.display = 'block';
     sessionStorage.setItem('admin_auth','1');
     loadCodes();
+    loadReferrals();
   } else {
-    document.getElementById('loginErr').textContent='Wrong password';
+    document.getElementById('loginErr').textContent = 'Wrong password';
   }
 }
 
@@ -235,27 +192,37 @@ function logout(){
   location.reload();
 }
 
+// ── SUPABASE ──
 async function supaFetch(path, method, body){
-  var res = await fetch(SUPA_URL+path,{
-    method:method||'GET',
-    headers:{
-      'apikey':SUPA_KEY,
-      'Authorization':'Bearer '+SUPA_KEY,
-      'Content-Type':'application/json',
-      'Prefer':method==='POST'?'return=representation':''
+  var res = await fetch(SUPA_URL + path, {
+    method: method || 'GET',
+    headers: {
+      'apikey': SUPA_KEY,
+      'Authorization': 'Bearer ' + SUPA_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': method === 'POST' ? 'return=representation' : ''
     },
-    body:body?JSON.stringify(body):undefined
+    body: body ? JSON.stringify(body) : undefined
   });
   return res.json();
 }
 
+// ── CODE GENERATION ──
 function makeCode(){
-  var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  var code='SB-';
-  for(var i=0;i<4;i++) code+=chars[Math.floor(Math.random()*chars.length)];
-  code+='-';
-  for(var i=0;i<4;i++) code+=chars[Math.floor(Math.random()*chars.length)];
+  var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var code = 'SB-';
+  for(var i=0;i<4;i++) code += chars[Math.floor(Math.random()*chars.length)];
+  code += '-';
+  for(var i=0;i<4;i++) code += chars[Math.floor(Math.random()*chars.length)];
   return code;
+}
+
+function makeRefCode(name){
+  var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var suffix = '';
+  for(var i=0;i<4;i++) suffix += chars[Math.floor(Math.random()*chars.length)];
+  var prefix = (name||'SB').toUpperCase().replace(/[^A-Z]/g,'').slice(0,4) || 'SB';
+  return prefix + '-' + suffix;
 }
 
 function cleanPhone(p){ return p.replace(/[\s\-\+]/g,'').trim(); }
@@ -263,315 +230,276 @@ function cleanPhone(p){ return p.replace(/[\s\-\+]/g,'').trim(); }
 async function generateCode(){
   var buyer = document.getElementById('buyerName').value.trim() || 'Unknown';
   var phone = cleanPhone(document.getElementById('buyerPhone').value);
-
-  if(!phone || phone.length < 8){
-    alert('WhatsApp number zaroori hai!');
-    return;
-  }
+  if(!phone || phone.length < 8){ alert('WhatsApp number zaroori hai!'); return; }
 
   var btn = document.getElementById('genBtn');
-  btn.disabled=true;
-  btn.innerHTML='<span class="spinner"></span>Generating...';
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Generating...';
 
   var code = makeCode();
+  var refCode = makeRefCode(buyer);
 
-  try{
-    await supaFetch('/rest/v1/access_codes','POST',{
-      code:code,
-      buyer_name:buyer,
-      buyer_phone:phone,
-      used:false,
-      created_at:new Date().toISOString()
+  try {
+    await supaFetch('/rest/v1/access_codes', 'POST', {
+      code: code, buyer_name: buyer, buyer_phone: phone,
+      used: false, created_at: new Date().toISOString()
+    });
+    await supaFetch('/rest/v1/referrals', 'POST', {
+      referrer_phone: phone, referrer_name: buyer,
+      referral_code: refCode, friends_joined: 0,
+      cashback_owed: 0, cashback_paid: 0
     });
 
-    latestCode=code;
-    latestPhone=phone;
-    latestBuyer=buyer;
-
-    // Also create referral entry for this buyer
-    var refCode = makeRefCode(buyer);
-    await createReferral(phone, buyer, refCode);
+    latestCode = code;
+    latestPhone = phone;
+    latestBuyer = buyer;
     latestRefCode = refCode;
 
-    // Create referral entry
-    var refCode=makeRefCode(buyer);
-    latestRefCode=refCode;
-    await createReferral(phone,buyer,refCode);
-
-    document.getElementById('newCodeVal').textContent=code;
-    document.getElementById('newCodePhone').textContent='📱 +'+phone+' — '+buyer;
-    document.getElementById('newCodeBox').style.display='block';
-    document.getElementById('buyerName').value='';
-    document.getElementById('buyerPhone').value='';
+    document.getElementById('newCodeVal').textContent = code;
+    document.getElementById('newCodePhone').textContent = 'Referral: ' + refCode;
+    document.getElementById('newCodeBox').style.display = 'block';
+    document.getElementById('buyerName').value = '';
+    document.getElementById('buyerPhone').value = '';
     loadCodes();
     loadReferrals();
-    loadReferrals();
-  }catch(e){
+  } catch(e) {
     alert('Error. Check Supabase connection.');
   }
-
-  btn.disabled=false;
-  btn.innerHTML='🎲 Code Generate Karo';
+  btn.disabled = false;
+  btn.innerHTML = '🎲 Code Generate Karo';
 }
 
 function copyCode(){
   navigator.clipboard.writeText(latestCode).then(function(){
-    var btn=document.querySelector('.copy-btn');
-    btn.textContent='✅ Copied!';
-    setTimeout(function(){btn.textContent='📋 Code Copy Karo';},2000);
+    var btn = document.querySelector('.copy-btn');
+    btn.textContent = '✅ Copied!';
+    setTimeout(function(){ btn.textContent = '📋 Code Copy Karo'; }, 2000);
   });
 }
 
-function shareWhatsApp(code,phone,buyer){
-  var c=code||latestCode;
-  var p=phone||latestPhone;
-  var b=buyer||latestBuyer;
-  var rc=latestRefCode||'';
-  var msg='Assalamu Alaikum '+b+' Bhai! 🌟\n\n'+
-    'Smart Bachat mein khush aamdeed!\n'+
-    'Aapka access code:\n\n'+
-    '*'+c+'*\n\n'+
-    '━━━━━━━━━\n'+
-    '📱 App kholne ka tarika:\n'+
-    '━━━━━━━━━\n'+
-    '1. smartsaathi.app/redeem par jayen\n'+
-    '2. WhatsApp number daalen: +'+p+'\n'+
-    '3. Access code daalen: '+c+'\n'+
-    '4. App turant khul jaayega\n\n'+
-    '━━━━━━━━━\n'+
-    'AAPKA REFERRAL CODE: '+rc+'\n'+
-    '━━━━━━━━━\n\n'+
-    'Yeh code apne Gulf ke doston ko bhejein:\n\n'+
-    '- Unhe milega sirf PKR 700 mein\n'+
-    '  (normally PKR 825)\n'+
-    '- Aapko milega PKR 100 cashback\n'+
-    '  har dost ke liye\n\n'+
-    '7 dost laao - app bilkul FREE!\n\n'+
-    'Doston ko yeh forward karein:\n'+
-    '"Bhai Smart Bachat le lo.\n'+
-    'Gulf workers ke liye banaya hai.\n'+
-    'PKR 700 mein milega.\n'+
-    'Mera referral code: '+rc+'\n'+
-    'Upaisa/JazzCash se pay karo.\n'+
-    'smartsaathi.app/checkout"\n\n'+
-    '━━━━━━━━━\n'+
-    'Har roz update milega cashback ka.\n\n'+
-    'Allah aapke sapne poore kare!\n'+
-    'SmartSaathi Team';
-  var url=p?'https://wa.me/'+p+'?text='+encodeURIComponent(msg):'https://wa.me/?text='+encodeURIComponent(msg);
-  window.open(url,'_blank');
+function shareWhatsApp(){
+  var c = latestCode;
+  var p = latestPhone;
+  var b = latestBuyer;
+  var rc = latestRefCode;
+
+  var lines = [
+    'Assalamu Alaikum ' + b + ' Bhai!',
+    '',
+    'Smart Bachat mein khush aamdeed!',
+    'Aapka access code:',
+    '',
+    c,
+    '',
+    'App kholne ka tarika:',
+    '1. smartsaathi.app/redeem par jayen',
+    '2. WhatsApp number daalen: +' + p,
+    '3. Access code daalen: ' + c,
+    '4. App turant khul jaayega',
+    '',
+    'AAPKA REFERRAL CODE: ' + rc,
+    '',
+    'Yeh code apne Gulf ke doston ko bhejein:',
+    '- Unhe milega sirf PKR 700 mein (normally PKR 825)',
+    '- Aapko milega PKR 100 cashback har dost ke liye',
+    '',
+    '7 dost laao - app bilkul FREE!',
+    '',
+    'Doston ko yeh forward karein:',
+    '"Bhai Smart Bachat le lo.',
+    'Gulf workers ke liye banaya hai.',
+    'PKR 700 mein milega.',
+    'Mera referral code: ' + rc,
+    'Upaisa/JazzCash se pay karo.',
+    'smartsaathi.app/checkout"',
+    '',
+    'Har roz update milega cashback ka.',
+    '',
+    'Allah aapke sapne poore kare!',
+    'SmartSaathi Team'
+  ];
+
+  var msg = lines.join('\n');
+  var url = 'https://wa.me/' + p + '?text=' + encodeURIComponent(msg);
+  window.open(url, '_blank');
 }
 
+// ── LOAD CODES ──
 async function loadCodes(){
-  try{
+  try {
     var data = await supaFetch('/rest/v1/access_codes?order=created_at.desc&limit=100');
-    allCodes = data||[];
-    updateStats();
+    allCodes = data || [];
+    var total = allCodes.length;
+    var used = allCodes.filter(function(c){ return c.used; }).length;
+    document.getElementById('totalCodes').textContent = total;
+    document.getElementById('usedCodes').textContent = used;
+    document.getElementById('unusedCodes').textContent = total - used;
     renderCodes();
-  }catch(e){
-    document.getElementById('codeList').innerHTML='<div class="empty">Error loading</div>';
+  } catch(e) {
+    document.getElementById('codeList').innerHTML = '<div class="empty">Error loading</div>';
   }
 }
 
-function updateStats(){
-  var total=allCodes.length;
-  var used=allCodes.filter(function(c){return c.used;}).length;
-  document.getElementById('totalCodes').textContent=total;
-  document.getElementById('usedCodes').textContent=used;
-  document.getElementById('unusedCodes').textContent=total-used;
-}
-
-function filterCodes(f,el){
-  currentFilter=f;
-  document.querySelectorAll('.ftab').forEach(function(t){t.classList.remove('on');});
+function filterCodes(f, el){
+  currentFilter = f;
+  document.querySelectorAll('.ftab').forEach(function(t){ t.classList.remove('on'); });
   el.classList.add('on');
   renderCodes();
 }
 
 function renderCodes(){
-  var list=allCodes;
-  if(currentFilter==='unused') list=allCodes.filter(function(c){return !c.used;});
-  if(currentFilter==='used') list=allCodes.filter(function(c){return c.used;});
-  var el=document.getElementById('codeList');
-  if(!list.length){el.innerHTML='<div class="empty">Koi code nahi</div>';return;}
-  el.innerHTML=list.map(function(c){
-    var date=c.used_at?new Date(c.used_at).toLocaleDateString('en-GB'):'';
-    return '<div class="code-item '+(c.used?'used':'')+'">'+
-      '<div class="ci-body">'+
-        '<div class="ci-code">'+c.code+'</div>'+
-        '<div class="ci-info">'+
-          (c.buyer_name||'—')+
-          (c.buyer_phone?' • +'+c.buyer_phone:'')+
-          (c.used_at?' • Used: '+date:'')+
-        '</div>'+
-      '</div>'+
-      '<span class="ci-status '+(c.used?'used':'unused')+'">'+(c.used?'Used':'Available')+'</span>'+
-      (!c.used?'<span class="ci-wa" onclick="shareWhatsApp(\''+c.code+'\',\''+c.buyer_phone+'\',\''+c.buyer_name+'\')">📲</span>':'')+
+  var list = allCodes;
+  if(currentFilter === 'unused') list = allCodes.filter(function(c){ return !c.used; });
+  if(currentFilter === 'used') list = allCodes.filter(function(c){ return c.used; });
+  var el = document.getElementById('codeList');
+  if(!list.length){ el.innerHTML = '<div class="empty">Koi code nahi</div>'; return; }
+  el.innerHTML = list.map(function(c){
+    var date = c.used_at ? new Date(c.used_at).toLocaleDateString('en-GB') : '';
+    return '<div class="code-item ' + (c.used?'used':'') + '">' +
+      '<div class="ci-body">' +
+        '<div class="ci-code">' + c.code + '</div>' +
+        '<div class="ci-info">' +
+          (c.buyer_name||'—') +
+          (c.buyer_phone ? ' | +' + c.buyer_phone : '') +
+          (date ? ' | ' + date : '') +
+        '</div>' +
+      '</div>' +
+      '<span class="ci-status ' + (c.used?'used':'unused') + '">' + (c.used?'Used':'Available') + '</span>' +
+      (!c.used ? '<span class="ci-wa" onclick="quickShare(' + "'" + c.code + "','" + c.buyer_phone + "','" + c.buyer_name + "'" + ')">📲</span>' : '') +
     '</div>';
   }).join('');
 }
 
-setInterval(loadCodes,30000);
-setInterval(loadReferrals,30000);
-setInterval(loadReferrals,30000);
-
-
-// ── REFERRAL FUNCTIONS ──
-function makeRefCode(name){
-  var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  var suffix='';
-  for(var i=0;i<4;i++) suffix+=chars[Math.floor(Math.random()*chars.length)];
-  var prefix=(name||'SB').toUpperCase().replace(/[^A-Z]/g,'').slice(0,4)||'SB';
-  return prefix+'-'+suffix;
+function quickShare(code, phone, buyer){
+  latestCode = code;
+  latestPhone = phone;
+  latestBuyer = buyer || 'Bhai';
+  latestRefCode = '';
+  shareWhatsApp();
 }
 
-async function createReferral(phone,name,code){
-  return supaFetch('/rest/v1/referrals','POST',{
-    referrer_phone:phone,referrer_name:name,
-    referral_code:code,friends_joined:0,cashback_owed:0,cashback_paid:0
-  });
-}
-
+// ── REFERRALS ──
 async function loadReferrals(){
-  try{
-    var data=await supaFetch('/rest/v1/referrals?order=created_at.desc&limit=50');
-    var refs=data||[];
-    var totalFriends=refs.reduce(function(a,r){return a+(r.friends_joined||0);},0);
-    var totalOwed=refs.reduce(function(a,r){return a+(r.cashback_owed||0)-(r.cashback_paid||0);},0);
-    document.getElementById('totalReferrers').textContent=refs.length;
-    document.getElementById('totalFriends').textContent=totalFriends;
-    document.getElementById('totalCashback').textContent='PKR '+totalOwed;
-    var summary=document.getElementById('cashbackSummary');
-    if(totalOwed>0){summary.style.display='block';summary.textContent='⚠️ PKR '+totalOwed+' cashback pending — aaj raat bhejein!';}
-    else summary.style.display='none';
-    var el=document.getElementById('refList');
-    if(!refs.length){el.innerHTML='<div class="empty">Koi referral nahi abhi</div>';return;}
-    el.innerHTML=refs.map(function(r){
-      var friends=r.friends_joined||0;
-      var owed=(r.cashback_owed||0)-(r.cashback_paid||0);
-      var pct=Math.min(100,Math.round((friends/7)*100));
-      var isFree=friends>=7;
-      return '<div class="ref-item">'+
-        '<div class="ref-item-top">'+
-          '<div><div class="ref-code">'+r.referral_code+'</div>'+
-          '<div class="ref-name">'+(r.referrer_name||'—')+'</div>'+
-          '<div class="ref-phone">+'+(r.referrer_phone||'')+'</div></div>'+
-          '<div style="text-align:right">'+
-            '<div class="ref-cashback">PKR '+(r.cashback_owed||0)+' earned</div>'+
-            (owed>0?'<div class="ref-cashback" style="color:var(--red)">PKR '+owed+' pending</div>':
-            '<div style="font-size:10px;color:var(--g4)">✅ Paid</div>')+
-            (isFree?'<div style="font-size:10px;color:#22C55E;font-weight:800">🎉 FREE ACCESS!</div>':'')+
-          '</div>'+
-        '</div>'+
-        '<div class="ref-progress">'+
-          '<div class="ref-bar-wrap"><div class="ref-bar-fill" style="width:'+pct+'%"></div></div>'+
-          '<div class="ref-count">'+friends+'/7 dost</div>'+
-        '</div>'+
-        '<div style="display:flex;gap:6px;margin-top:8px;align-items:center;">'+
-          '<span class="ref-wa" onclick="sendDailyUpdate(this)" data-code="'+r.referral_code+'" data-phone="'+r.referrer_phone+'" data-name="'+(r.referrer_name||'')+'" data-friends="'+friends+'" data-earned="'+(r.cashback_owed||0)+'" data-owed="'+owed+'">📲 Daily Update</span>'+
-          (owed>0?'<button class="ref-paid-btn" onclick="markPaidEl(this)" data-code="'+r.referral_code+'" data-amount="'+owed+'">✓ Mark Paid</button>':
-          '<span class="ref-paid-btn done">✓ Paid</span>')+
-        '</div>'+
+  try {
+    var data = await supaFetch('/rest/v1/referrals?order=created_at.desc&limit=50');
+    var refs = data || [];
+    var totalFriends = refs.reduce(function(a,r){ return a + (r.friends_joined||0); }, 0);
+    var totalOwed = refs.reduce(function(a,r){ return a + (r.cashback_owed||0) - (r.cashback_paid||0); }, 0);
+
+    document.getElementById('totalReferrers').textContent = refs.length;
+    document.getElementById('totalFriends').textContent = totalFriends;
+    document.getElementById('totalOwed').textContent = 'PKR ' + totalOwed;
+
+    var alert = document.getElementById('cashbackAlert');
+    if(totalOwed > 0){
+      alert.style.display = 'block';
+      alert.textContent = 'PKR ' + totalOwed + ' cashback pending — aaj raat bhejein!';
+    } else {
+      alert.style.display = 'none';
+    }
+
+    var el = document.getElementById('refList');
+    if(!refs.length){ el.innerHTML = '<div class="empty">Koi referral nahi abhi</div>'; return; }
+
+    el.innerHTML = refs.map(function(r, idx){
+      var friends = r.friends_joined || 0;
+      var earned = r.cashback_owed || 0;
+      var owed = earned - (r.cashback_paid || 0);
+      var pct = Math.min(100, Math.round((friends/7)*100));
+      var isFree = friends >= 7;
+
+      return '<div class="ref-item" id="ref-' + idx + '">' +
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">' +
+          '<div>' +
+            '<div class="ref-code">' + r.referral_code + '</div>' +
+            '<div class="ref-name">' + (r.referrer_name||'—') + '</div>' +
+            '<div class="ref-phone-txt">+' + (r.referrer_phone||'') + '</div>' +
+          '</div>' +
+          '<div style="text-align:right;">' +
+            '<div class="ref-cashback">PKR ' + earned + ' earned</div>' +
+            (owed > 0 ? '<div class="ref-pending">PKR ' + owed + ' pending</div>' : '<div style="font-size:10px;color:var(--g4)">Paid</div>') +
+            (isFree ? '<div style="font-size:10px;color:#22C55E;font-weight:800">FREE ACCESS!</div>' : '') +
+          '</div>' +
+        '</div>' +
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">' +
+          '<div class="ref-bar-wrap"><div class="ref-bar-fill" style="width:' + pct + '%;"></div></div>' +
+          '<span style="font-size:11px;color:#22C55E;font-weight:700;">' + friends + '/7</span>' +
+        '</div>' +
+        '<div style="display:flex;gap:6px;">' +
+          '<button style="flex:1;padding:7px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);border-radius:8px;color:#25D366;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;" ' +
+            'onclick="sendUpdate(' + "'" + r.referral_code + "','" + r.referrer_phone + "','" + (r.referrer_name||'Bhai') + "'," + friends + ',' + earned + ',' + owed + ')">📲 Daily Update</button>' +
+          (owed > 0 ?
+            '<button class="ref-paid-btn" onclick="markPaid(' + "'" + r.referral_code + "'," + owed + ')">Mark Paid</button>' :
+            '<span class="ref-paid-done">Paid</span>') +
+        '</div>' +
       '</div>';
     }).join('');
-  }catch(e){document.getElementById('refList').innerHTML='<div class="empty">Error loading</div>';}
+  } catch(e) {
+    document.getElementById('refList').innerHTML = '<div class="empty">Error loading</div>';
+  }
 }
 
-function sendDailyUpdate(el){
-  var code=el.getAttribute('data-code');
-  var phone=el.getAttribute('data-phone');
-  var name=el.getAttribute('data-name');
-  var friends=parseInt(el.getAttribute('data-friends')||0);
-  var earned=parseInt(el.getAttribute('data-earned')||0);
-  var pending=parseInt(el.getAttribute('data-owed')||0);
-  sendDailyUpdateFn(code,phone,name,friends,earned,pending);
-}
+function sendUpdate(code, phone, name, friends, earned, owed){
+  var remaining = 7 - friends;
+  var isFree = friends >= 7;
+  var lines;
 
-function sendDailyUpdateFn(code,phone,name,friends,earned,pending){
-  var remaining=7-friends;
-  var isFree=friends>=7;
-  var msg;
   if(isFree){
-    msg='Assalamu Alaikum '+name+' Bhai! 🎉
-
-'+
-      'MUBARAK HO! Aapne 7 dost laaye!
-
-'+
-      'Aapka Smart Bachat ab HAMESHA KE LIYE FREE hai! 🎊
-
-'+
-      'Aapka total cashback: PKR '+earned+'
-'+
-      'Aaj raat aapke Upaisa/JazzCash par bhej diya jaayega.
-
-'+
-      'Allah aapko jazaak dey! 🤲
-_SmartSaathi Team_';
+    lines = [
+      'Assalamu Alaikum ' + name + ' Bhai! MUBARAK HO!',
+      '',
+      'Aapne 7 dost laaye!',
+      'Aapka Smart Bachat ab HAMESHA KE LIYE FREE hai!',
+      '',
+      'Total cashback: PKR ' + earned,
+      'Aaj raat Upaisa/JazzCash par bhej diya jaayega.',
+      '',
+      'Allah aapko jazaak dey!',
+      'SmartSaathi Team'
+    ];
   } else {
-    msg='Assalamu Alaikum '+name+' Bhai! 🌟
-
-'+
-      'Aapka Smart Bachat referral update:
-
-'+
-      '✅ Aaj tak aaye dost: *'+friends+' / 7*
-'+
-      '💰 Aapka total cashback: *PKR '+earned+'*
-'+
-      (pending>0?'⏳ Pending payment: *PKR '+pending+'*
-':'')+
-      '
-'+
-      (remaining>0?
-      '📢 Sirf *'+remaining+' aur dost* laao — app bilkul FREE!
-
-'+
-      'Apne doston ko yeh bhejein:
-'+
-      '"Bhai Smart Bachat le lo — PKR 700 mein milega.
-'+
-      'Mera code: *'+code+'*
-'+
-      'Payment: Upaisa/JazzCash
-'+
-      'smartsaathi.app/checkout"
-':'')+
-      '
-Aaj raat cashback aapke Upaisa par aa jaayega.
-
-'+
-      'Allah Hafiz! 🤲
-_SmartSaathi Team_';
+    lines = [
+      'Assalamu Alaikum ' + name + ' Bhai!',
+      '',
+      'Aapka referral update:',
+      'Aaj tak aaye dost: ' + friends + ' / 7',
+      'Total cashback: PKR ' + earned,
+      (owed > 0 ? 'Pending payment: PKR ' + owed : ''),
+      '',
+      (remaining > 0 ? 'Sirf ' + remaining + ' aur dost laao - app FREE!' : ''),
+      '',
+      'Doston ko bhejein:',
+      '"Smart Bachat le lo. PKR 700 mein milega.',
+      'Code: ' + code,
+      'Upaisa/JazzCash. smartsaathi.app/checkout"',
+      '',
+      'Aaj raat cashback aapke Upaisa par aayega.',
+      'SmartSaathi Team'
+    ];
   }
-  window.open('https://wa.me/'+phone+'?text='+encodeURIComponent(msg),'_blank');
+
+  var msg = lines.filter(function(l){ return l !== undefined; }).join('\n');
+  window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(msg), '_blank');
 }
 
-function markPaidEl(el){
-  var code=el.getAttribute('data-code');
-  var amount=parseInt(el.getAttribute('data-amount'));
-  markPaid(code,amount);
-}
-
-async function markPaid(code,amount){
-  if(!confirm('PKR '+amount+' paid mark karein?')) return;
-  try{
-    await supaFetch('/rest/v1/referrals?referral_code=eq.'+encodeURIComponent(code),'PATCH',{cashback_paid:amount});
+async function markPaid(code, amount){
+  if(!confirm('PKR ' + amount + ' paid mark karein?')) return;
+  try {
+    await supaFetch('/rest/v1/referrals?referral_code=eq.' + encodeURIComponent(code), 'PATCH', { cashback_paid: amount });
     loadReferrals();
-  }catch(e){alert('Error');}
+  } catch(e) { alert('Error'); }
 }
 
-window.addEventListener('DOMContentLoaded',function(){
-  if(sessionStorage.getItem('admin_auth')==='1'){
-    document.getElementById('loginSection').style.display='none';
-    document.getElementById('mainSection').style.display='block';
-    loadCodes();
-    loadReferrals();
-  }
-  document.getElementById('pwdInp').addEventListener('keydown',function(e){
-    if(e.key==='Enter') checkLogin();
-  });
-});
+setInterval(loadCodes, 30000);
+setInterval(loadReferrals, 30000);
+
+// ── INIT ──
+if(sessionStorage.getItem('admin_auth') === '1'){
+  document.getElementById('loginSection').style.display = 'none';
+  document.getElementById('mainSection').style.display = 'block';
+  loadCodes();
+  loadReferrals();
+}
 </script>
 </body>
 </html>
