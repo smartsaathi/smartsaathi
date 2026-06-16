@@ -30,8 +30,30 @@ module.exports = async function handler(req, res) {
 
     var record = codes[0];
 
-    if(record.used)
+    if(record.used){
+      // Code used before — check if same phone is trying to re-login
+      var storedPhone2 = (record.buyer_phone||'').replace(/[\s\-\+]/g,'').trim();
+      if(storedPhone2 === phone){
+        // Same buyer — give them access again
+        var emailProxy2 = 'sb'+phone+'@smartsaathi.app';
+        var fixedPassword2 = 'SB!'+code+'!'+phone.slice(-4);
+        // Sign them in again
+        var reSignIn = await fetch(SUPA_URL+'/auth/v1/token?grant_type=password',{
+          method:'POST',
+          headers:{'apikey':SUPA_KEY,'Content-Type':'application/json'},
+          body:JSON.stringify({email:emailProxy2, password:fixedPassword2})
+        });
+        var reData = await reSignIn.json();
+        if(reData.access_token){
+          return res.status(200).json({
+            success:true,
+            access_token:reData.access_token,
+            refresh_token:reData.refresh_token||''
+          });
+        }
+      }
       return res.status(200).json({success:false, error:'used'});
+    }
 
     // ── STEP 2: Verify phone matches ──
     var storedPhone = (record.buyer_phone||'').replace(/[\s\-\+]/g,'').trim();
