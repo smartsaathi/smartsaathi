@@ -229,10 +229,23 @@ window.addEventListener('load', async function(){
   }
 
   // Step 4: Has cached purchase — open app immediately
+  // But verify silently in background to prevent fake cache
   if(hasCachedPurchase()){
     showGate('app');
-    // Silently refresh in background
-    setTimeout(function(){ refreshSession(); }, 2000);
+    setTimeout(async function(){
+      var bgToken = getToken();
+      if(!bgToken) bgToken = await refreshSession();
+      if(bgToken){
+        var verified = await checkPurchase(bgToken);
+        if(verified === false){
+          localStorage.removeItem(KEY_TOKEN);
+          localStorage.removeItem(KEY_REFRESH);
+          localStorage.removeItem(KEY_PURCHASED);
+          localStorage.removeItem(KEY_PURCH_TIME);
+          showGate('gateNotPurchased');
+        }
+      }
+    }, 3000);
     return;
   }
 
