@@ -101,7 +101,7 @@ function getRefresh(){ return localStorage.getItem(KEY_REFRESH); }
 function hasCachedPurchase(){
   var p = localStorage.getItem(KEY_PURCHASED);
   var t = parseInt(localStorage.getItem(KEY_PURCH_TIME)||'0');
-  return p==='1' && (Date.now() - t) < 7*24*60*60*1000;
+  return p==='1' && (Date.now() - t) < 30*24*60*60*1000;
 }
 
 function cachePurchase(val){
