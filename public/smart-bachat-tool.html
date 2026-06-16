@@ -22,7 +22,7 @@
   // Check purchase cache
   var purchased = localStorage.getItem('sb_purchased');
   var purchasedTime = parseInt(localStorage.getItem('sb_purchased_time')||'0');
-  var cacheValid = purchased==='1' && (Date.now()-purchasedTime) < 7*24*60*60*1000;
+  var cacheValid = purchased==='1' && (Date.now()-purchasedTime) < 30*24*60*60*1000;
 
   if(cacheValid) return; // All good — cached purchase valid
 
