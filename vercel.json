@@ -41,6 +41,10 @@
     {
       "source": "/smart-bachat-tool",
       "destination": "/smart-bachat-tool.html"
+    },
+    {
+      "source": "/guide/iqama-expired",
+      "destination": "/guide-iqama-expired.html"
     }
   ],
   "functions": {
