@@ -291,7 +291,9 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .btn-out{background:transparent;border:1.5px solid var(--bdb);color:var(--g4);}
 .pad{padding:0 16px 16px;}
 /* HOME */
-.home-top{padding:18px 16px 10px;display:flex;justify-content:space-between;align-items:flex-start;}
+.home-top{padding:18px 16px 10px;display:flex;justify-content:space-between;align-items:center;}
+.home-top-l{display:flex;align-items:center;gap:12px;}
+.home-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--a2));display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:17px;color:#1d1604;flex-shrink:0;}
 .home-greet{font-size:17px;font-weight:700;color:var(--tx);}
 .home-ctry{font-size:12px;color:var(--tm);margin-top:2px;}
 .settings-btn{width:40px;height:40px;background:var(--bgc);border:1px solid var(--bd);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;}
@@ -519,6 +521,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .eosd-cd{background:rgba(116,179,206,.07);border:1px solid rgba(116,179,206,.2);border-radius:11px;padding:12px;text-align:center;margin-top:8px;}
 .eosd-cd-lbl{font-size:11px;color:var(--tm);margin-bottom:4px;}
 .eosd-cd-val{font-size:22px;font-weight:800;color:var(--blue);}
+.trust-note{display:flex;align-items:flex-start;gap:11px;background:rgba(116,198,157,.06);border:1px solid rgba(116,198,157,.2);border-radius:13px;padding:13px 14px;margin:14px 0;}
+.trust-ico{font-size:18px;flex-shrink:0;margin-top:1px;}
+.trust-title{font-size:13px;color:var(--g4);margin-bottom:3px;}
+.trust-txt{font-size:12px;color:var(--ts);line-height:1.6;}
 /* REMITTANCE */
 .rem-row{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;background:var(--bgc);border:1px solid var(--bd);border-radius:12px;margin-bottom:8px;}
 .rem-name{font-size:14px;color:var(--ts);}
@@ -553,6 +559,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .sett-opt:last-child{border-bottom:none;}
 .sett-opt.on{color:var(--g4);}
 .reset-btn{width:100%;padding:14px;background:transparent;border:1.5px solid rgba(224,122,122,.4);border-radius:12px;color:var(--red);font-family:'Baloo 2',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;}
+.name-edit-row{display:flex;gap:8px;margin-bottom:8px;}
+.name-edit-inp{flex:1;padding:14px 15px;background:var(--bgc);border:1px solid var(--bd);border-radius:12px;color:var(--tx);font-family:'Hind',sans-serif;font-size:14px;outline:none;}
+.name-edit-inp:focus{border-color:var(--g4);}
+.name-edit-btn{width:48px;background:rgba(116,198,157,.15);border:1px solid rgba(116,198,157,.35);border-radius:12px;color:var(--g4);font-size:18px;font-weight:800;cursor:pointer;}
 /* GROW PAGE */
 .grow-intro{background:var(--bgc);border:1px solid rgba(116,198,157,.2);border-radius:14px;padding:14px;margin-bottom:12px;font-size:13px;color:var(--ts);line-height:1.8;}
 .grow-item{background:var(--bgc);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:9px;}
@@ -605,6 +615,16 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .ap-rule{display:flex;align-items:flex-start;gap:6px;font-size:12px;color:var(--ts);margin-bottom:4px;line-height:1.5;}
 .ap-rule-ico{color:var(--g4);flex-shrink:0;}
 .ap-msg{font-size:13px;font-style:italic;color:var(--g4);border-left:3px solid var(--g4);padding-left:10px;line-height:1.6;}
+.ap-growth{background:rgba(240,192,64,.05);border:1px solid rgba(240,192,64,.18);border-radius:12px;padding:11px 12px;margin-bottom:8px;}
+.ap-growth-title{font-size:12.5px;color:var(--gold);margin-bottom:8px;}
+.ap-growth-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;}
+.ap-growth-col{background:var(--bgp);border-radius:9px;padding:8px 6px;text-align:center;}
+.agc-yr{font-size:10.5px;color:var(--tm);margin-bottom:3px;}
+.agc-val{font-size:13px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;line-height:1.25;word-break:break-word;}
+.agc-inv{font-size:9.5px;color:var(--tm);margin-top:3px;}
+.ap-growth-note{font-size:10.5px;color:var(--tm);line-height:1.5;}
+.ap-caution{display:flex;align-items:flex-start;gap:6px;font-size:12px;color:var(--ts);margin-bottom:5px;line-height:1.5;}
+.ap-caution-ico{flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -660,6 +680,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="ob-dots" style="justify-content:center"><div class="od"></div><div class="od"></div><div class="od on"></div></div>
       <div class="real-head"><div class="real-icon">💡</div><div class="real-title f8" id="rT">Sach Ka Waqt</div></div>
       <div class="real-fields">
+        <div class="real-field"><div class="rlbl" id="rLN">AAPKA NAAM (OPTIONAL)</div><div class="real-inp-row"><div class="real-cur" style="color:var(--g4)">👤</div><input class="real-inp-num" type="text" id="nameI" placeholder="Tariq" maxlength="20"></div></div>
         <div class="real-field"><div class="rlbl" id="rLS">MAHEENA SALARY</div><div class="real-inp-row"><div class="real-cur" id="rSC">SAR</div><input class="real-inp-num" type="number" id="salI" inputmode="numeric" placeholder="1800" oninput="calcR()"></div></div>
         <div class="real-field"><div class="rlbl" id="rLY">SAAL GULF MEIN</div><div class="real-inp-row"><div class="real-cur" style="color:var(--a2)">🗓</div><input class="real-inp-num" type="number" id="yrsI" inputmode="numeric" placeholder="3" oninput="calcR()"></div></div>
         <div class="real-field"><div class="rlbl" id="rLSv">ABHI BACHAT</div><div class="real-inp-row"><div class="real-cur" id="rSvC">SAR</div><input class="real-inp-num" type="number" id="savI" inputmode="numeric" placeholder="0" oninput="calcR()"></div></div>
@@ -692,7 +713,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div id="pgHome">
     <!-- Header -->
     <div class="home-top">
-      <div><div class="home-greet f7" id="hGrt"></div><div class="home-ctry" id="hCtry"></div></div>
+      <div class="home-top-l">
+        <div class="home-avatar" id="hAvatar">👋</div>
+        <div><div class="home-greet f7" id="hGrt"></div><div class="home-ctry" id="hCtry"></div></div>
+      </div>
       <div class="settings-btn" onclick="showPg('settings')">⚙️</div>
     </div>
     <!-- Ramadan Banner -->
@@ -884,6 +908,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div id="pgSettings" class="hidden">
     <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="stT"></div></div>
     <div class="pad">
+      <div class="sett-sec" id="stNL"></div>
+      <div class="name-edit-row"><input class="name-edit-inp" type="text" id="nameEditI" maxlength="20" placeholder="Aapka naam"><button class="name-edit-btn" onclick="saveNameEdit()" id="nameEditBtn">✓</button></div>
       <div class="sett-sec" id="stLL"></div>
       <div class="sett-row" onclick="togSett('lang')"><span class="sett-lbl" id="stLC"></span><span>›</span></div>
       <div class="sett-opts" id="soLang">
@@ -893,6 +919,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="sett-sec" id="stCL"></div>
       <div class="sett-row" onclick="togSett('ctry')"><span class="sett-lbl" id="stCC"></span><span>›</span></div>
       <div class="sett-opts" id="soCtry"></div>
+      <div class="trust-note" id="trustNote">
+        <span class="trust-ico">🛡️</span>
+        <div><div class="trust-title f7" id="trustTitle"></div><div class="trust-txt" id="trustTxt"></div></div>
+      </div>
       <button class="reset-btn f7" id="stRst" onclick="doReset()"></button>
     </div>
   </div>
@@ -933,11 +963,11 @@ var CTRY={
 };
 
 // ── STATE ────────────────────────────────────────────────────
-var L='pk',C='SA',sal=1800,yrs=3,curSav=0,lowMode=false;
+var L='pk',C='SA',sal=1800,yrs=3,curSav=0,lowMode=false,uName='';
 var trData={months:{},chal:[]};
 var openFlowId=null,settOpen=null;
 var customSplit={home:55,own:20,ef:5,sav:15,sadqa:2}; // user adjustable
-var SK={lang:'sb_l',ctry:'sb_c',sal:'sb_s',yrs:'sb_y',sav:'sb_sv',started:'sb_st',tr:'sb_tr',chal:'sb_ch',gh:'sb_gh',logs:'sb_lg',low:'sb_lw',split:'sb_sp',ef:'sb_ef',salday:'sb_sd',dream:'sb_dr'};
+var SK={lang:'sb_l',ctry:'sb_c',sal:'sb_s',yrs:'sb_y',sav:'sb_sv',started:'sb_st',tr:'sb_tr',chal:'sb_ch',gh:'sb_gh',logs:'sb_lg',low:'sb_lw',split:'sb_sp',ef:'sb_ef',salday:'sb_sd',dream:'sb_dr',name:'sb_nm'};
 
 function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 function ld(k,d){try{var v=localStorage.getItem(k);return v!==null?JSON.parse(v):d;}catch(e){return d;}}
@@ -980,7 +1010,7 @@ var QUOTES_BD=['প্রতিটি রিয়াল যা বাঁচা�
 var D={
 pk:{
   lT:'Zaban Chunein',cT:'Mulk Chunein',cS:'Rates aur rules aapke mutabiq',rT:'Sach Ka Waqt',
-  rLS:'MAHEENA SALARY',rLY:'SAAL GULF MEIN',rLSv:'ABHI BACHAT',
+  rLN:'AAPKA NAAM (OPTIONAL)',rLS:'MAHEENA SALARY',rLY:'SAAL GULF MEIN',rLSv:'ABHI BACHAT',
   tEarned:'Aap ne total kamaya:',tSaved:'Aaj bachat hai sirf:',tMsg:'Abhi bhi waqt hai — aaj se shuru karo.',
   rBtn:'✅ Aaj hi Shuru Karein',
   hGrt:'Salaam, Bhai! 👋',hSavL:'Ab tak bachaya',hStrkL:'Lagataar bachat',hMoRemL:'Wapsi',
@@ -1110,7 +1140,9 @@ pk:{
     {ico:'🧱',t:'Zameen ya property',s:'Gaon mein plot — price badhta hai, becha bhi ja sakta hai, barbaad nahi hota.',tag:'Long term'},
     {ico:'⚠️',t:'Kya NA karein',s:'Stock market, crypto, online schemes se bachein — Gulf workers ke saath ziada fraud hota hai.',tag:'Warning'}
   ],
-  stT:'⚙️ Settings',stLL:'ZABAN',stCL:'MULK',stRst:'🗑️ Sab Data Delete Karo',resetConfirm:'Sab data delete ho jayega. Confirm?',noLog:'Koi record nahi',
+  stT:'⚙️ Settings',stNL:'AAPKA NAAM',stLL:'ZABAN',stCL:'MULK',stRst:'🗑️ Sab Data Delete Karo',resetConfirm:'Sab data delete ho jayega. Confirm?',noLog:'Koi record nahi',
+  trustTitle:'Ye ek planning tool hai',
+  trustTxt:'Smart Bachat Saathi paisa transfer ya bank service nahi hai — sirf aapki salary plan karne mein madad karta hai. Aapka data sirf aapke phone mein rehta hai, kisi sarkar ki manzoori ki zaroorat nahi.',
   rdT:'🏡 Wapsi Tayyari',rdMeter:'Aapki Wapsi Tayyari',
   rdMsg:['Abhi bahut kaam baaki hai — shuru karo.','Sahi raaste par ho — jari rakho!','Kaafi tayyar ho — thoda aur!','Masha Allah — bilkul tayyar!'],
   rdItems:[{ico:'🚨',n:'Emergency Fund',s:'3 mahine ki salary',k:'ef'},{ico:'✈️',n:'Wapsi Ticket Fund',s:'Return ticket amount',k:'tf'},{ico:'💳',n:'Qarz Mukt',s:'Koi qarz nahi bacha',k:'df'},{ico:'🏭',n:'Business/Dukaan Fund',s:'Ghar mein karobar shuru karna',k:'bf'},{ico:'🏠',n:'Rehne Ka Plan',s:'Ghar ya kiraye ka intezaam',k:'hp'}],
@@ -1131,7 +1163,7 @@ pk:{
 },
 bd:{
   lT:'ভাষা বেছে নিন',cT:'দেশ বেছে নিন',cS:'রেট ও নিয়ম আপনার দেশ অনুযায়ী',rT:'সত্যের সময়',
-  rLS:'মাসিক বেতন',rLY:'কত বছর Gulf-এ',rLSv:'এখন বাচাত',
+  rLN:'আপনার নাম (ঐচ্ছিক)',rLS:'মাসিক বেতন',rLY:'কত বছর Gulf-এ',rLSv:'এখন বাচাত',
   tEarned:'আপনি মোট উপার্জন করেছেন:',tSaved:'আজ বাচাত আছে মাত্র:',tMsg:'এখনও সময় আছে — আজ থেকে শুরু করুন।',
   rBtn:'✅ আজই শুরু করুন',
   hGrt:'সালাম, ভাই! 👋',hSavL:'এখন পর্যন্ত বাচাত',hStrkL:'ধারাবাহিক বাচাত',hMoRemL:'ফেরা',
@@ -1272,7 +1304,9 @@ bd:{
     {ico:'🧱',t:'জমি বা সম্পত্তি',s:'গ্রামে জমি — দাম বাড়ে, বিক্রিও হয়, নষ্ট হয় না।',tag:'দীর্ঘমেয়াদী'},
     {ico:'⚠️',t:'কী করবেন না',s:'শেয়ার মার্কেট, ক্রিপ্টো, অনলাইন স্কিম থেকে দূরে থাকুন — প্রতারণার ঝুঁকি বেশি।',tag:'সতর্কতা'}
   ],
-  stT:'⚙️ Settings',stLL:'ভাষা',stCL:'দেশ',stRst:'🗑️ সব ডেটা মুছুন',resetConfirm:'সব ডেটা মুছে যাবে। নিশ্চিত?',noLog:'কোনো রেকর্ড নেই',
+  stT:'⚙️ Settings',stNL:'আপনার নাম',stLL:'ভাষা',stCL:'দেশ',stRst:'🗑️ সব ডেটা মুছুন',resetConfirm:'সব ডেটা মুছে যাবে। নিশ্চিত?',noLog:'কোনো রেকর্ড নেই',
+  trustTitle:'এটি একটি পরিকল্পনা টুল',
+  trustTxt:'Smart Bachat Saathi টাকা পাঠানো বা ব্যাংক সেবা নয় — শুধু আপনার বেতন পরিকল্পনায় সাহায্য করে। আপনার তথ্য শুধু আপনার ফোনে থাকে, এর জন্য কোনো সরকারি অনুমোদনের প্রয়োজন নেই।',
   rdT:'🏡 ফেরার প্রস্তুতি',rdMeter:'আপনার ফেরার প্রস্তুতি',
   rdMsg:['এখনও অনেক কাজ বাকি — শুরু করুন।','সঠিক পথে আছেন — চালিয়ে যান!','অনেকটা প্রস্তুত — একটু আরো!','মাশাআল্লাহ — সম্পূর্ণ প্রস্তুত!'],
   rdItems:[{ico:'🚨',n:'Emergency Fund',s:'৩ মাসের বেতন',k:'ef'},{ico:'✈️',n:'ফেরার টিকিট ফান্ড',s:'রিটার্ন টিকিটের টাকা',k:'tf'},{ico:'💳',n:'ঋণমুক্ত',s:'কোনো ঋণ নেই',k:'df'},{ico:'🏭',n:'ব্যবসার ফান্ড',s:'দেশে ব্যবসা শুরু',k:'bf'},{ico:'🏠',n:'থাকার পরিকল্পনা',s:'বাড়ি বা ভাড়ার ব্যবস্থা',k:'hp'}],
@@ -1461,7 +1495,7 @@ function goCtry(){
 function goReal(){
   if(!selCv)return;
   var st=s(),p=pk();
-  G('rT').textContent=st.rT;G('rLS').textContent=st.rLS;G('rLY').textContent=st.rLY;G('rLSv').textContent=st.rLSv;
+  G('rT').textContent=st.rT;G('rLN').textContent=st.rLN;G('rLS').textContent=st.rLS;G('rLY').textContent=st.rLY;G('rLSv').textContent=st.rLSv;
   G('rSC').textContent=cur();G('rSvC').textContent=cur();
   G('tEarned').textContent=st.tEarned;G('tSaved').textContent=st.tSaved;G('tMsg').textContent=st.tMsg;
   G('rBtn').textContent=st.rBtn;G('rCalcBtn').textContent=p?'Hisaab Lagao →':'হিসাব করুন →';
@@ -1496,7 +1530,8 @@ function shareReality(){
 }
 function startApp(){
   sal=parseFloat(G('salI').value)||1800;yrs=parseFloat(G('yrsI').value)||3;curSav=parseFloat(G('savI').value)||0;
-  sv(SK.lang,L);sv(SK.ctry,C);sv(SK.sal,sal);sv(SK.yrs,yrs);sv(SK.sav,curSav);sv(SK.started,true);
+  uName=(G('nameI')&&G('nameI').value||'').trim().slice(0,20);
+  sv(SK.lang,L);sv(SK.ctry,C);sv(SK.sal,sal);sv(SK.yrs,yrs);sv(SK.sav,curSav);sv(SK.started,true);sv(SK.name,uName);
   trData={months:ld(SK.tr,{}).months||{},chal:ld(SK.chal,[])||[]};
   lowMode=ld(SK.low,sal<1500);
   customSplit=ld(SK.split,{home:55,own:20,ef:5,sav:15,sadqa:2});
@@ -1507,7 +1542,8 @@ function startApp(){
 // ── BUILD APP ────────────────────────────────────────────────
 function buildApp(){
   var st=s(),cd=CTRY[C];
-  G('hGrt').textContent=st.hGrt;
+  G('hGrt').textContent=uName?(pk()?'Salam, '+uName+'!':'সালাম, '+uName+'!'):st.hGrt;
+  G('hAvatar').textContent=uName?uName.charAt(0).toUpperCase():'👋';
   G('hCtry').textContent=cd.flag+' '+cd.name+' • '+cd.cur;
   // Ramadan/Eid
   var eidType=isEid();
@@ -1960,10 +1996,31 @@ function buildTips(){
 }
 
 // ── EOSD ────────────────────────────────────────────────────
+// Country-specific gratuity formulas, matching each country's eosdRule text above.
+// dailyWage uses the common 30-day approximation used across these calculations.
+function calcEosd(ctry,monthlySal,years){
+  var d=monthlySal/30;
+  switch(ctry){
+    case 'SA': // 1/3 salary/yr (1-5) | 2/3/yr (5-10) | full/yr (10+)
+      return Math.round(monthlySal*(years<5?years*(1/3):years<10?years*(2/3):years));
+    case 'AE': // 21 days/yr (1-5) | 30 days/yr (5+)
+      return Math.round(d*21*Math.min(years,5)+d*30*Math.max(years-5,0));
+    case 'QA': // 3 weeks salary/yr = 21 days/yr, flat
+      return Math.round(d*21*years);
+    case 'KW': // 15 days/yr (1-5) | 1 month/yr (5+)
+      return Math.round(d*15*Math.min(years,5)+monthlySal*Math.max(years-5,0));
+    case 'BH': // half month/yr (1-3) | 1 month/yr (3+)
+      return Math.round((monthlySal/2)*Math.min(years,3)+monthlySal*Math.max(years-3,0));
+    case 'OM': // 15 days/yr (1-3) | 1 month/yr (3+)
+      return Math.round(d*15*Math.min(years,3)+monthlySal*Math.max(years-3,0));
+    default:
+      return Math.round(monthlySal*(years<5?years*(1/3):years<10?years*(2/3):years));
+  }
+}
 function buildEosd(){
   var st=s(),cd=CTRY[C];
   G('eoT').textContent=st.eoT;G('eoBoxT').textContent=st.eoBoxT;
-  var a=Math.round(sal*(yrs<5?yrs*(1/3):yrs<10?yrs*(2/3):yrs));
+  var a=calcEosd(C,sal,yrs);
   G('eoBig').textContent=cur()+' '+a.toLocaleString();G('eoRule').textContent=cd.eosdRule;
   var expl=G('eoExplain');expl.innerHTML='<div class="eosd-exp-title f7">'+(pk()?'EOSD Samajhein':'EOSD বুঝুন')+'</div>';
   st.eoExplain.forEach(function(item){
@@ -1971,10 +2028,11 @@ function buildEosd(){
     row.innerHTML='<span class="eosd-exp-ico">'+item.ico+'</span><div><b style="color:var(--g4)">'+item.t+'</b><br>'+item.d+'</div>';
     expl.appendChild(row);
   });
-  var nextTier=yrs<5?5:yrs<10?10:yrs+5;
-  var moToNext=Math.round((nextTier-yrs)*12);
-  G('eoCdLbl').textContent=pk()?'EOSD aur badhega mein:':'EOSD আরো বাড়বে:';
-  G('eoCdVal').textContent=moToNext+(pk()?' mahine mein':' মাসে');
+  var nextYrs=Math.floor(yrs)+1;
+  var nextAmt=calcEosd(C,sal,nextYrs);
+  var increase=Math.max(0,nextAmt-a);
+  G('eoCdLbl').textContent=pk()?'Agle saal EOSD hoga:':'আগামী বছরে EOSD হবে:';
+  G('eoCdVal').textContent=cur()+' '+nextAmt.toLocaleString()+' (+'+cur()+' '+increase.toLocaleString()+')';
 }
 
 // ── REMITTANCE ───────────────────────────────────────────────
@@ -2087,7 +2145,9 @@ function buildGrow(){
 
 function buildSettings(){
   var st=s(),cd=CTRY[C];
-  G('stT').textContent=st.stT;G('stLL').textContent=st.stLL;G('stCL').textContent=st.stCL;G('stRst').textContent=st.stRst;
+  G('stT').textContent=st.stT;G('stNL').textContent=st.stNL;G('stLL').textContent=st.stLL;G('stCL').textContent=st.stCL;G('stRst').textContent=st.stRst;
+  G('trustTitle').textContent=st.trustTitle;G('trustTxt').textContent=st.trustTxt;
+  G('nameEditI').value=uName||'';
   G('stLC').textContent=(L==='pk'?'🇵🇰 Urdu':'🇧🇩 বাংলা');G('stCC').textContent=cd.flag+' '+cd.name;
   G('soLPK').classList.toggle('on',L==='pk');G('soLBD').classList.toggle('on',L==='bd');
   var co=G('soCtry');co.innerHTML='';
@@ -2101,6 +2161,12 @@ function buildSettings(){
 function togSett(t){var key=t[0].toUpperCase()+t.slice(1);var e=G('so'+key);if(settOpen&&settOpen!==t){var p=G('so'+settOpen[0].toUpperCase()+settOpen.slice(1));if(p)p.style.display='none';}e.style.display=e.style.display==='block'?'none':'block';settOpen=e.style.display==='block'?t:null;}
 function chgLang(lang){L=lang;sv(SK.lang,L);buildApp();buildSettings();G('soLang').style.display='none';settOpen=null;showToast(lang==='pk'?'✅ Urdu!':'✅ বাংলা!');}
 function chgCtry(key){C=key;sv(SK.ctry,C);buildApp();buildSettings();G('soCtry').style.display='none';settOpen=null;showToast(CTRY[key].flag+' '+CTRY[key].name+'!');}
+function saveNameEdit(){
+  uName=(G('nameEditI').value||'').trim().slice(0,20);
+  sv(SK.name,uName);
+  buildApp();
+  showToast(pk()?'✅ Naam save ho gaya!':'✅ নাম সংরক্ষিত হয়েছে!');
+}
 function doReset(){if(confirm(s().resetConfirm)){Object.keys(SK).forEach(function(k){localStorage.removeItem(SK[k]);});localStorage.removeItem(SK_RD);localStorage.removeItem('sb_sd');localStorage.removeItem('sb_ef');location.reload();}}
 
 
@@ -2136,6 +2202,19 @@ function switchTrkTab(n){
   if(n===1)buildAsset();
 }
 
+// ── GROWTH PROJECTION HELPER ──────────────────────────────────
+// Converts a Gulf-currency monthly contribution to home-currency future value,
+// compounding monthly at the given assumed annual rate. annualRatePct=0 returns simple total saved (no growth).
+function growthProjection(monthlySarAmt,annualRatePct,years){
+  var monthlyHome=monthlySarAmt*rate();
+  var n=years*12;
+  if(annualRatePct<=0) return Math.round(monthlyHome*n);
+  var r=annualRatePct/100/12;
+  var fv=monthlyHome*((Math.pow(1+r,n)-1)/r);
+  return Math.round(fv);
+}
+function fmtHome(v){return lp()+' '+Math.round(v).toLocaleString();}
+
 // ── BACHAT SE ASSET ──────────────────────────────────────────
 function buildAsset(){
   var p=pk();
@@ -2154,27 +2233,121 @@ function buildAsset(){
   ap.appendChild(intro);
 
   var plans=p?[
-    {ico:'🥇',t:'Gold Plan',amts:['100 SAR = ~1,200 SAR/year','200 SAR = ~2,400 SAR/year','300 SAR = ~3,600 SAR/year'],idea:'Har maheena thoda sona khareedein — price badhta hai, impulse mein kharch nahi hoga.',rules:['Sona apne naam par khareedein','Receipts sambhal kar rakhein'],msg:'Cash kharch ho sakta hai, sona sambhal kar rakha ja sakta hai.'},
-    {ico:'🏠',t:'Plot Installment Plan',amts:['200 SAR/month','300 SAR/month','500 SAR/month'],idea:'Chota plot ya zameen ka qist — Pakistan mein apne naam par.',rules:['Registry apne naam par karwayein','Paise dene se pehle documents verify karein'],msg:'Qist se asset banta hai.'},
-    {ico:'🏪',t:'Future Shop Fund',amts:['100 SAR/month','200 SAR/month','300 SAR/month'],idea:'Grocery, chai, silai ya mobile accessories shop ke liye alag bachat. 200 SAR × 36 months = 7,200 SAR capital',rules:['Alag account ya wallet sirf is goal ke liye'],msg:'Aaj ki bachat, kal ki dukaan.'},
-    {ico:'🏡',t:'House Construction Fund',amts:['150 SAR/month','250 SAR/month','400 SAR/month'],idea:'Foundation, boundary wall ya kamra — ek ek kadam.',rules:['Sirf ghar ke kaam ke liye use karein','Records sambhal kar rakhein'],msg:'Ghar eent eent se banta hai.'},
-    {ico:'📜',t:'Safe Long-Term Savings',amts:['100 SAR/month','300 SAR/month','500 SAR/month'],idea:'Government-backed savings — National Savings, Defence Certificate.',rules:['Apne naam par karwayein','Saari documents sambhal rakhein'],msg:'Bachat ko sirf rakho nahi, mehfooz bhi rakho.'}
+    {ico:'🥇',t:'Gold Plan',amtVals:[100,200,300],rate:9,
+      rateNote:'Andazan 9%/saal — sone ki qeemat purane 10 saal mein average isi range mein badhi hai (PKR mein), lekin yeh guarantee nahi, har saal upar-neeche ho sakta hai.',
+      idea:'Har maheena thoda sona khareedein — price badhta hai, impulse mein kharch nahi hoga.',
+      rules:['Sona apne naam par khareedein','Receipts sambhal kar rakhein'],
+      msg:'Cash kharch ho sakta hai, sona sambhal kar rakha ja sakta hai.'},
+    {ico:'🏠',t:'Plot Installment Plan',amtVals:[200,300,500],rate:0,
+      apprNote:'Plot poora apna ho jaane ke baad, zameen ki qeemat aam taur par har saal 8-12% tak badh sakti hai (location par bohot depend karta hai) — yeh bhi guarantee nahi hai.',
+      idea:'Chota plot ya zameen ka qist — Pakistan mein apne naam par.',
+      rules:['Registry apne naam par karwayein','Paise dene se pehle documents verify karein'],
+      msg:'Qist se asset banta hai.'},
+    {ico:'🏪',t:'Future Shop Fund',amtVals:[100,200,300],rate:0,
+      idea:'Grocery, chai, silai ya mobile accessories shop ke liye alag bachat. 200 SAR × 36 months = 7,200 SAR capital',
+      rules:['Alag account ya wallet sirf is goal ke liye'],
+      msg:'Aaj ki bachat, kal ki dukaan.'},
+    {ico:'🔑',t:'Dukaan Installment Plan',isInstallment:true,priceEx:1000000,advancePct:30,
+      idea:'Naya dukaan banane ke bajaye, ek chalti hui dukaan seedha installment par khareedein — advance dein, baaki mahine-mahine ada karein.',
+      cautions:[
+        'Hamesha likhit agreement banayein — stamp paper par, gawah ke saath',
+        'Dukaan ke kagzaat (malikiyat, bills, NOC) khud verify karein ya kisi vakeel se karwayein',
+        'Agar seller installment par extra paisa (markup) maange, hisaab lagayein — kya yeh chhupa hua sood se zyada hai?',
+        'Advance dene se pehle kam az kam ek hafta soch kar faisla karein — jaldi mein bada paisa na dein'],
+      msg:'Dukaan khareedna bada qadam hai — jald-baazi mehnga sabit ho sakti hai.'},
+    {ico:'🏡',t:'House Construction Fund',amtVals:[150,250,400],rate:0,
+      idea:'Foundation, boundary wall ya kamra — ek ek kadam.',
+      rules:['Sirf ghar ke kaam ke liye use karein','Records sambhal kar rakhein'],
+      msg:'Ghar eent eent se banta hai.'},
+    {ico:'📜',t:'Safe Long-Term Savings',amtVals:[100,300,500],rate:10,
+      rateNote:'Pakistan National Savings/Defence Certificate ki rate is waqt taqreeban 10-11%/saal hai — government time-time par badalti hai, khareedne se pehle nearest National Savings Centre ya bank se current rate confirm karein.',
+      idea:'Government-backed savings — National Savings, Defence Certificate.',
+      rules:['Apne naam par karwayein','Saari documents sambhal rakhein'],
+      msg:'Bachat ko sirf rakho nahi, mehfooz bhi rakho.'}
   ]:[
-    {ico:'🥇',t:'স্বর্ণ পরিকল্পনা',amts:['১০০ SAR = ~১,২০০ SAR/বছর','২০০ SAR = ~২,৪০০ SAR/বছর','৩০০ SAR = ~৩,৬০০ SAR/বছর'],idea:'প্রতি মাস একটু সোনা কিনুন — দাম বাড়ে, আবেগে খরচ হয় না।',rules:['নিজের নামে সোনা কিনুন','রসিদ সংরক্ষণ করুন'],msg:'নগদ খরচ হয়, সোনা সংরক্ষিত থাকে।'},
-    {ico:'🏠',t:'প্লট কিস্তি পরিকল্পনা',amts:['২০০ SAR/মাস','৩০০ SAR/মাস','৫০০ SAR/মাস'],idea:'ছোট জমির কিস্তি — বাংলাদেশে নিজের নামে।',rules:['রেজিস্ট্রি নিজের নামে করুন','টাকা দেওয়ার আগে কাগজ যাচাই করুন'],msg:'কিস্তিতে সম্পদ হয়।'},
-    {ico:'🏪',t:'ভবিষ্যৎ দোকান ফান্ড',amts:['১০০ SAR/মাস','২০০ SAR/মাস','৩০০ SAR/মাস'],idea:'মুদি, চা, সেলাই বা মোবাইল দোকানের জন্য আলাদা বাচাত। ২০০ SAR × ৩৬ মাস = ৭,২০০ SAR মূলধন',rules:['শুধু এই লক্ষ্যের জন্য আলাদা account রাখুন'],msg:'আজকের বাচাত, আগামীর দোকান।'},
-    {ico:'🏡',t:'বাড়ি নির্মাণ ফান্ড',amts:['১৫০ SAR/মাস','২৫০ SAR/মাস','৪০০ SAR/মাস'],idea:'ভিত্তি, সীমানা প্রাচীর বা কামরা — একে একে।',rules:['শুধু বাড়ির কাজে ব্যবহার করুন','রেকর্ড সংরক্ষণ করুন'],msg:'বাড়ি ইট ইট করে তৈরি হয়।'},
-    {ico:'📜',t:'নিরাপদ দীর্ঘমেয়াদী সঞ্চয়',amts:['১০০ SAR/মাস','৩০০ SAR/মাস','৫০০ SAR/মাস'],idea:'সরকার-সমর্থিত সঞ্চয় — সঞ্চয়পত্র।',rules:['নিজের নামে করুন','সব কাগজ সংরক্ষণ করুন'],msg:'বাচাত শুধু রাখো না, নিরাপদও রাখো।'}
+    {ico:'🥇',t:'স্বর্ণ পরিকল্পনা',amtVals:[100,200,300],rate:9,
+      rateNote:'আনুমানিক ৯%/বছর — গত ১০ বছরে সোনার দাম (টাকায়) মোটামুটি এই হারে বেড়েছে, কিন্তু এটা গ্যারান্টি নয়, প্রতি বছর উঠানামা করতে পারে।',
+      idea:'প্রতি মাস একটু সোনা কিনুন — দাম বাড়ে, আবেগে খরচ হয় না।',
+      rules:['নিজের নামে সোনা কিনুন','রসিদ সংরক্ষণ করুন'],
+      msg:'নগদ খরচ হয়, সোনা সংরক্ষিত থাকে।'},
+    {ico:'🏠',t:'প্লট কিস্তি পরিকল্পনা',amtVals:[200,300,500],rate:0,
+      apprNote:'প্লট সম্পূর্ণ নিজের হয়ে যাওয়ার পর, জমির দাম সাধারণত বছরে ৮-১২% বাড়তে পারে (এলাকার উপর অনেক নির্ভর করে) — এটাও গ্যারান্টি নয়।',
+      idea:'ছোট জমির কিস্তি — বাংলাদেশে নিজের নামে।',
+      rules:['রেজিস্ট্রি নিজের নামে করুন','টাকা দেওয়ার আগে কাগজ যাচাই করুন'],
+      msg:'কিস্তিতে সম্পদ হয়।'},
+    {ico:'🏪',t:'ভবিষ্যৎ দোকান ফান্ড',amtVals:[100,200,300],rate:0,
+      idea:'মুদি, চা, সেলাই বা মোবাইল দোকানের জন্য আলাদা বাচাত। ২০০ SAR × ৩৬ মাস = ৭,২০০ SAR মূলধন',
+      rules:['শুধু এই লক্ষ্যের জন্য আলাদা account রাখুন'],
+      msg:'আজকের বাচাত, আগামীর দোকান।'},
+    {ico:'🔑',t:'দোকান কিস্তি পরিকল্পনা',isInstallment:true,priceEx:1200000,advancePct:30,
+      idea:'নতুন দোকান বানানোর বদলে, একটি চলমান দোকান সরাসরি কিস্তিতে কিনুন — অগ্রিম দিন, বাকিটা মাসে মাসে দিন।',
+      cautions:[
+        'সব সময় লিখিত চুক্তি করুন — স্ট্যাম্প পেপারে, সাক্ষীর সামনে',
+        'দোকানের কাগজপত্র (মালিকানা, বিল, NOC) নিজে যাচাই করুন বা উকিলের সাহায্য নিন',
+        'বিক্রেতা যদি কিস্তিতে বাড়তি টাকা (মার্কআপ) চায়, হিসাব করুন — এটা কি গোপন সুদের চেয়ে বেশি?',
+        'অগ্রিম দেওয়ার আগে কমপক্ষে এক সপ্তাহ ভেবে সিদ্ধান্ত নিন — তাড়াহুড়ো করে বড় টাকা দেবেন না'],
+      msg:'দোকান কেনা বড় সিদ্ধান্ত — তাড়াহুড়ো ক্ষতির কারণ হতে পারে।'},
+    {ico:'🏡',t:'বাড়ি নির্মাণ ফান্ড',amtVals:[150,250,400],rate:0,
+      idea:'ভিত্তি, সীমানা প্রাচীর বা কামরা — একে একে।',
+      rules:['শুধু বাড়ির কাজে ব্যবহার করুন','রেকর্ড সংরক্ষণ করুন'],
+      msg:'বাড়ি ইট ইট করে তৈরি হয়।'},
+    {ico:'📜',t:'নিরাপদ দীর্ঘমেয়াদী সঞ্চয়',amtVals:[100,300,500],rate:10,
+      rateNote:'পাকিস্তান National Savings/Defence Certificate-এর হার এখন প্রায় ১০-১১%/বছর — সরকার সময়ে সময়ে পরিবর্তন করে, কেনার আগে নিকটস্থ National Savings Centre বা ব্যাংক থেকে বর্তমান হার যাচাই করুন।',
+      idea:'সরকার-সমর্থিত সঞ্চয় — সঞ্চয়পত্র।',
+      rules:['নিজের নামে করুন','সব কাগজ সংরক্ষণ করুন'],
+      msg:'বাচাত শুধু রাখো না, নিরাপদও রাখো।'}
   ];
 
   plans.forEach(function(plan){
     var el=document.createElement('div');el.className='asset-plan';
-    var amtsHtml=plan.amts.map(function(a){return '<div class="ap-amt-row"><span>'+a.split('=')[0]+'</span>'+(a.includes('=')?'<span class="ap-amt-sar">'+a.split('=')[1]+'</span>':'')+'</div>';}).join('');
-    var rulesHtml=plan.rules.map(function(r){return '<div class="ap-rule"><span class="ap-rule-ico">✅</span><span>'+r+'</span></div>';}).join('');
+
+    if(plan.isInstallment){
+      var advance=Math.round(plan.priceEx*plan.advancePct/100);
+      var remaining=plan.priceEx-advance;
+      var inst24=Math.round(remaining/24),inst36=Math.round(remaining/36);
+      var cautionsHtml=plan.cautions.map(function(c){return '<div class="ap-caution"><span class="ap-caution-ico">⚠️</span><span>'+c+'</span></div>';}).join('');
+      el.innerHTML='<div class="ap-header"><span class="ap-ico">'+plan.ico+'</span><span class="ap-title">'+plan.t+'</span></div>'
+        +'<div style="font-size:13px;color:var(--ts);margin-bottom:10px;line-height:1.6;">'+plan.idea+'</div>'
+        +'<div class="ap-amounts">'
+          +'<div class="ap-amt-row"><span>'+(p?'Misaal dukaan ki qeemat':'উদাহরণ দোকানের দাম')+'</span><span class="ap-amt-sar">~'+fmtHome(plan.priceEx)+'</span></div>'
+          +'<div class="ap-amt-row"><span>'+(p?'Advance ('+plan.advancePct+'%)':'অগ্রিম ('+plan.advancePct+'%)')+'</span><span class="ap-amt-sar">'+fmtHome(advance)+'</span></div>'
+          +'<div class="ap-amt-row"><span>'+(p?'Baqi raqam':'বাকি টাকা')+'</span><span class="ap-amt-sar">'+fmtHome(remaining)+'</span></div>'
+        +'</div>'
+        +'<div class="ap-growth-title f7" style="margin-top:10px">'+(p?'Maheena kitna dena hoga:':'মাসে কত দিতে হবে:')+'</div>'
+        +'<div class="ap-growth-grid" style="grid-template-columns:1fr 1fr">'
+          +'<div class="ap-growth-col"><div class="agc-yr">24 '+(p?'mahine':'মাস')+'</div><div class="agc-val">'+fmtHome(inst24)+'</div></div>'
+          +'<div class="ap-growth-col"><div class="agc-yr">36 '+(p?'mahine':'মাস')+'</div><div class="agc-val">'+fmtHome(inst36)+'</div></div>'
+        +'</div>'
+        +'<div class="ap-growth-note">'+(p?'Yeh sirf misaal hai — asli qeemat dukaan, shehar aur size ke hisaab se kaafi alag ho sakti hai.':'এটি শুধু উদাহরণ — আসল দাম দোকান, শহর ও আকারের উপর ভিন্ন হতে পারে।')+'</div>'
+        +'<div class="ap-rules" style="margin-top:8px">'+cautionsHtml+'</div>'
+        +'<div class="ap-msg">'+plan.msg+'</div>';
+      ap.appendChild(el);
+      return;
+    }
+
+    var amtsHtml=plan.amtVals.map(function(v){return '<div class="ap-amt-row"><span>'+v+' '+cur()+'/'+(p?'mahina':'মাস')+'</span></div>';}).join('');
+    var rulesHtml=(plan.rules||[]).map(function(r){return '<div class="ap-rule"><span class="ap-rule-ico">✅</span><span>'+r+'</span></div>';}).join('');
+
+    var growthHtml='';
+    if(plan.rate>0){
+      var mid=plan.amtVals[1];
+      var yrs3=[5,8,10];
+      var cols=yrs3.map(function(y){
+        var val=growthProjection(mid,plan.rate,y);
+        var invested=Math.round(mid*rate()*y*12);
+        return '<div class="ap-growth-col"><div class="agc-yr">'+y+' '+(p?'saal':'বছর')+'</div><div class="agc-val">'+fmtHome(val)+'</div><div class="agc-inv">'+(p?'Jama: ':'জমা: ')+fmtHome(invested)+'</div></div>';
+      }).join('');
+      growthHtml='<div class="ap-growth"><div class="ap-growth-title f7">📊 '+mid+' '+cur()+'/'+(p?'mahina se':'মাসে হলে')+', 5/8/10 '+(p?'saal mein:':'বছরে:')+'</div>'
+        +'<div class="ap-growth-grid">'+cols+'</div>'
+        +'<div class="ap-growth-note">'+plan.rateNote+'</div></div>';
+    }
+    var apprHtml=plan.apprNote?'<div class="ap-growth-note" style="margin-top:8px">'+plan.apprNote+'</div>':'';
+
     el.innerHTML='<div class="ap-header"><span class="ap-ico">'+plan.ico+'</span><span class="ap-title">'+plan.t+'</span></div>'
       +'<div class="ap-amounts">'+amtsHtml+'</div>'
       +'<div style="font-size:13px;color:var(--ts);margin-bottom:8px;line-height:1.6;">'+plan.idea.replace(/\n/g,'<br>')+'</div>'
-      +'<div class="ap-rules">'+rulesHtml+'</div>'
+      +growthHtml+apprHtml
+      +'<div class="ap-rules" style="margin-top:8px">'+rulesHtml+'</div>'
       +'<div class="ap-msg">'+plan.msg+'</div>';
     ap.appendChild(el);
   });
@@ -2183,7 +2356,7 @@ function buildAsset(){
 // ── INIT ────────────────────────────────────────────────────
 window.addEventListener('load',function(){
   if(ld(SK.started,false)){
-    L=ld(SK.lang,'pk');C=ld(SK.ctry,'SA');sal=ld(SK.sal,1800);yrs=ld(SK.yrs,3);curSav=ld(SK.sav,0);
+    L=ld(SK.lang,'pk');C=ld(SK.ctry,'SA');sal=ld(SK.sal,1800);yrs=ld(SK.yrs,3);curSav=ld(SK.sav,0);uName=ld(SK.name,'');
     trData={months:ld(SK.tr,{}).months||{},chal:ld(SK.chal,[])||[]};
     lowMode=ld(SK.low,sal<1500);
     customSplit=ld(SK.split,{home:55,own:20,ef:5,sav:15,sadqa:2});
