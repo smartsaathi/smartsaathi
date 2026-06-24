@@ -625,6 +625,167 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .ap-growth-note{font-size:10.5px;color:var(--tm);line-height:1.5;}
 .ap-caution{display:flex;align-items:flex-start;gap:6px;font-size:12px;color:var(--ts);margin-bottom:5px;line-height:1.5;}
 .ap-caution-ico{flex-shrink:0;}
+
+/* ── NEW DASHBOARD ──────────────────────────────────────── */
+.home-tagline{text-align:center;font-family:'Baloo 2',sans-serif;font-style:italic;font-size:14px;color:var(--gold);opacity:.85;margin:8px 14px 14px;}
+.alert-card{display:flex;align-items:center;justify-content:space-between;background:var(--bgc);border:1px solid rgba(116,198,157,.22);border-left:3px solid var(--g4);border-radius:14px;padding:13px 14px;margin:0 14px 10px;cursor:pointer;transition:transform .15s;}
+.alert-card:active{transform:scale(.985);}
+.alert-card.amber{border-left-color:var(--a2);border-color:rgba(244,162,97,.22);}
+.alert-card.amber .alert-ico{background:rgba(244,162,97,.16);color:var(--a2);}
+.alert-card.green{border-left-color:var(--g4);}
+.alert-card.warn{border-left-color:var(--red);border-color:rgba(224,122,122,.22);}
+.alert-card.warn .alert-ico{background:rgba(224,122,122,.16);color:var(--red);}
+.alert-card-l{display:flex;align-items:center;gap:11px;flex:1;min-width:0;}
+.alert-ico{width:38px;height:38px;border-radius:50%;background:rgba(116,198,157,.16);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.alert-label{font-size:10.5px;letter-spacing:.13em;color:var(--tm);text-transform:uppercase;margin-bottom:2px;}
+.alert-big{font-size:15px;color:var(--tx);line-height:1.25;}
+.alert-sub{font-size:11.5px;color:var(--tm);margin-top:1px;}
+.alert-arrow{font-size:22px;color:var(--tm);margin-left:8px;}
+
+.donut-card{margin:0 14px 12px;background:linear-gradient(160deg,#0D2318,#142A1C);border:1px solid rgba(240,192,64,.18);border-radius:20px;padding:16px 14px;}
+.dc-title{font-size:11px;letter-spacing:.15em;color:var(--tm);text-transform:uppercase;text-align:center;margin-bottom:10px;}
+.donut-wrap{display:flex;justify-content:center;margin-bottom:14px;}
+.donut{width:170px;height:170px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center;background:#16271C;}
+.donut-inner{width:118px;height:118px;border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:2;}
+.donut-pct{font-size:24px;color:var(--tx);font-family:'Baloo 2',sans-serif;}
+.donut-lbl{font-size:10.5px;color:var(--tm);margin-top:2px;}
+.cat-list{display:flex;flex-direction:column;gap:7px;}
+.cat-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);border-radius:11px;padding:9px 11px;}
+.cat-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
+.cat-info{flex:1;line-height:1.2;}
+.cat-name{font-size:13px;font-weight:600;color:var(--tx);}
+.cat-sub{font-size:10.5px;color:var(--tm);margin-top:1px;}
+.cat-pct{font-family:'Baloo 2',sans-serif;font-size:15px;font-weight:700;flex-shrink:0;}
+.dc-btn{width:100%;margin-top:12px;padding:12px;border-radius:12px;background:rgba(240,192,64,.12);border:1px solid rgba(240,192,64,.3);color:var(--gold);font-family:'Baloo 2',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;}
+
+/* ── SALARY LOG & SETUP SCREENS ────────────────────────── */
+.sl-intro{font-size:13px;color:var(--ts);line-height:1.65;background:rgba(116,198,157,.06);border:1px solid rgba(116,198,157,.18);border-radius:11px;padding:11px 13px;margin-bottom:14px;}
+.sl-form{display:flex;flex-direction:column;gap:11px;margin-bottom:18px;}
+.sl-form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.sl-fld{display:flex;flex-direction:column;}
+.sl-sel{padding:13px 13px;background:var(--bgc);border:1px solid var(--bd);border-radius:11px;color:var(--tx);font-family:'Hind',sans-serif;font-size:14px;outline:none;width:100%;}
+.sl-sel:focus{border-color:var(--g4);}
+.sl-check{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ts);padding:4px 2px;cursor:pointer;}
+.sl-check input{width:17px;height:17px;accent-color:var(--g4);}
+.sl-section-t{font-size:11px;letter-spacing:.13em;color:var(--tm);text-transform:uppercase;margin:6px 0 9px;}
+.sl-hist-row{display:flex;align-items:center;gap:11px;background:var(--bgc);border:1px solid var(--bd);border-radius:11px;padding:11px 13px;margin-bottom:7px;}
+.slh-mo{flex:1;font-size:13.5px;color:var(--tx);font-weight:600;}
+.slh-amt{font-family:'Baloo 2',sans-serif;font-size:14px;font-weight:700;color:var(--g4);}
+.slh-late{font-size:10px;color:var(--red);background:rgba(224,122,122,.15);padding:2px 7px;border-radius:6px;margin-left:6px;}
+/* ── COMPACT DASHBOARD ──────────────────────────────────── */
+.home-compact{padding-top:max(20px,env(safe-area-inset-top));padding-bottom:100px;}
+.home-compact .home-top{padding:6px 14px 10px;}
+.home-compact .home-avatar{width:40px;height:40px;font-size:16px;}
+.home-compact .home-greet{font-size:17px;font-weight:800;}
+.home-compact .home-ctry{font-size:11px;margin-top:3px;}
+.home-compact .settings-btn{width:36px;height:36px;font-size:16px;}
+
+.cd-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 14px 10px;}
+.cd-card{background:linear-gradient(135deg,#142E1F,#0F2618);border:1px solid rgba(116,198,157,.3);border-left:3px solid var(--g4);border-radius:14px;padding:11px 12px;cursor:pointer;transition:transform .15s;position:relative;overflow:hidden;}
+.cd-card::before{content:'';position:absolute;top:-12px;right:-12px;width:50px;height:50px;border-radius:50%;background:radial-gradient(circle,rgba(116,198,157,.18),transparent 70%);pointer-events:none;}
+.cd-card:active{transform:scale(.985);}
+.cd-card.amber{background:linear-gradient(135deg,#2A1E10,#211A0C);border-left-color:var(--a2);border-color:rgba(244,162,97,.3);}
+.cd-card.amber::before{background:radial-gradient(circle,rgba(244,162,97,.2),transparent 70%);}
+.cd-card.warn{background:linear-gradient(135deg,#2C1414,#231010);border-left-color:var(--red);border-color:rgba(224,122,122,.4);}
+.cd-card.warn::before{background:radial-gradient(circle,rgba(224,122,122,.25),transparent 70%);}
+.cd-ico{font-size:18px;margin-bottom:3px;position:relative;z-index:1;}
+.cd-lbl{font-size:9.5px;letter-spacing:.13em;color:var(--tm);text-transform:uppercase;margin-bottom:3px;position:relative;z-index:1;}
+.cd-big{font-size:18px;color:var(--tx);font-family:'Baloo 2',sans-serif;font-weight:800;line-height:1.15;position:relative;z-index:1;}
+.cd-card.warn .cd-big{color:var(--red);}
+.cd-card.amber .cd-big{color:var(--a2);}
+.cd-sub{font-size:10.5px;color:var(--tm);margin-top:2px;line-height:1.3;position:relative;z-index:1;}
+
+.pie-card{margin:0 14px 10px;background:linear-gradient(160deg,#0E2519,#152B1D 60%,#1A2E20);border:1px solid rgba(240,192,64,.22);border-radius:18px;padding:14px 14px 12px;cursor:pointer;position:relative;overflow:hidden;}
+.pie-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.6;}
+.pie-title-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:11px;}
+.pie-title{font-size:10.5px;letter-spacing:.18em;color:rgba(245,241,230,.6);text-transform:uppercase;font-weight:700;}
+.pie-amount{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:15px;color:var(--gold);}
+.pie-bar{height:14px;border-radius:8px;background:rgba(255,255,255,.05);display:flex;overflow:hidden;margin-bottom:14px;box-shadow:inset 0 1px 2px rgba(0,0,0,.3);}
+.pie-bar-seg{height:100%;transition:width .6s ease;position:relative;}
+.pie-bar-seg:first-child{border-top-left-radius:8px;border-bottom-left-radius:8px;}
+.pie-bar-seg:last-child{border-top-right-radius:8px;border-bottom-right-radius:8px;}
+.pie-chips{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.pie-chip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:11px;padding:8px 10px;}
+.pie-chip-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;box-shadow:0 0 8px currentColor;}
+.pie-chip-mid{flex:1;min-width:0;}
+.pie-chip-name{font-size:11.5px;font-weight:700;color:var(--tx);line-height:1.1;font-family:'Baloo 2',sans-serif;}
+.pie-chip-amt{font-size:10px;color:var(--tm);margin-top:1px;}
+.pie-chip-pct{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:14px;flex-shrink:0;}
+
+.home-compact .two-cards{margin:0 14px 8px;gap:8px;}
+.home-compact .two-card{padding:11px 12px;border-radius:14px;position:relative;overflow:hidden;}
+.home-compact .two-card::before{content:'';position:absolute;top:-15px;right:-15px;width:60px;height:60px;border-radius:50%;pointer-events:none;}
+.home-compact .two-card.green::before{background:radial-gradient(circle,rgba(116,198,157,.22),transparent 70%);}
+.home-compact .two-card.blue::before{background:radial-gradient(circle,rgba(110,168,232,.22),transparent 70%);}
+.home-compact .tc-ico{font-size:19px;margin-bottom:3px;position:relative;z-index:1;}
+.home-compact .tc-lbl{font-size:9.5px;letter-spacing:.12em;margin-bottom:3px;position:relative;z-index:1;}
+.home-compact .tc-val{font-size:19px;line-height:1.1;position:relative;z-index:1;font-weight:800;}
+.home-compact .tc-sub{font-size:10.5px;margin-top:2px;position:relative;z-index:1;}
+.two-card.blue{background:linear-gradient(135deg,#1B3145,#152639);border:1px solid rgba(110,168,232,.3);}
+.two-card.blue .tc-val{color:#9ECCF5;text-shadow:0 0 6px rgba(110,168,232,.3);}
+.two-card.blue .tc-lbl{color:rgba(245,241,230,.6);}
+.home-compact .two-card.green .tc-val{text-shadow:0 0 6px rgba(116,198,157,.3);}
+
+.dream-mini{display:flex;align-items:center;gap:11px;margin:2px 14px 8px;background:linear-gradient(135deg,#241B0E,#2A2010 60%,#1F1A0D);border:1px solid rgba(240,192,64,.32);border-radius:14px;padding:11px 13px;cursor:pointer;position:relative;overflow:hidden;}
+.dream-mini::before{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(240,192,64,.18),transparent 70%);pointer-events:none;}
+.dm-ico{font-size:26px;flex-shrink:0;position:relative;z-index:1;filter:drop-shadow(0 0 6px rgba(240,192,64,.4));}
+.dm-mid{flex:1;min-width:0;position:relative;z-index:1;}
+.dm-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;}
+.dm-name{font-size:13.5px;font-weight:800;color:var(--tx);font-family:'Baloo 2',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px;}
+.dm-pct{font-size:14px;font-weight:800;color:var(--gold);font-family:'Baloo 2',sans-serif;text-shadow:0 0 8px rgba(240,192,64,.4);}
+.dream-mini .hc-bar{height:6px;margin-bottom:4px;background:rgba(0,0,0,.3);}
+.dream-mini .hc-bar-fill{background:linear-gradient(90deg,var(--g4),var(--gold))!important;box-shadow:0 0 8px rgba(240,192,64,.5);}
+.dm-stats{font-size:10.5px;color:var(--tm);display:flex;gap:4px;}
+.dm-stat-div{opacity:.5;}
+.dm-arrow{font-size:18px;color:var(--gold);flex-shrink:0;position:relative;z-index:1;}
+
+/* ── DREAM REDESIGNED ──────────────────────────────────── */
+.dr-question{font-size:20px;color:var(--tx);font-family:'Baloo 2',sans-serif;font-weight:800;line-height:1.3;margin-bottom:6px;}
+.dr-sub{font-size:13px;color:var(--tm);margin-bottom:18px;line-height:1.5;}
+.dr-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.dr-cat-tile{background:var(--bgc);border:1px solid var(--bd);border-radius:14px;padding:18px 12px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all .15s;}
+.dr-cat-tile:active{transform:scale(.97);}
+.dr-cat-tile:hover{border-color:var(--g4);background:rgba(116,198,157,.05);}
+.dr-cat-tile-ico{font-size:34px;}
+.dr-cat-tile-name{font-size:13px;font-weight:700;color:var(--tx);text-align:center;font-family:'Baloo 2',sans-serif;line-height:1.2;}
+.dr-back-step{background:none;border:none;color:var(--g4);font-size:13px;cursor:pointer;padding:0 0 14px;font-family:'Hind',sans-serif;}
+.dr-chosen{display:flex;align-items:center;gap:12px;background:rgba(116,198,157,.08);border:1px solid rgba(116,198,157,.2);border-radius:12px;padding:11px 14px;margin-bottom:16px;}
+.dr-chosen-ico{font-size:28px;}
+.dr-chosen-name{font-size:16px;color:var(--tx);font-family:'Baloo 2',sans-serif;}
+.dr-chosen-tgt{font-size:12px;color:var(--gold);margin-top:2px;font-weight:600;}
+.dr-size-list{display:flex;flex-direction:column;gap:9px;}
+.dr-size-tile{background:var(--bgc);border:1px solid var(--bd);border-radius:12px;padding:13px 15px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .15s;}
+.dr-size-tile:active{transform:scale(.99);}
+.dr-size-tile:hover{border-color:var(--gold);}
+.dr-size-name{font-size:14px;color:var(--tx);font-weight:600;}
+.dr-size-amt{font-family:'Baloo 2',sans-serif;font-weight:800;color:var(--gold);font-size:14px;}
+.dr-sav-quick{display:flex;gap:6px;margin:9px 0 14px;}
+.dr-sav-quick button{flex:1;padding:7px 4px;background:var(--bgc);border:1px solid var(--bd);border-radius:9px;color:var(--ts);font-size:12px;cursor:pointer;font-family:'Hind',sans-serif;}
+.dr-sav-quick button:active{background:rgba(116,198,157,.1);border-color:var(--g4);color:var(--g4);}
+.dr-encourage{margin-top:14px;background:linear-gradient(135deg,rgba(240,192,64,.1),rgba(244,162,97,.08));border:1px solid rgba(240,192,64,.22);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--gold);line-height:1.6;font-style:italic;}
+
+/* ── TRANSFORMATION SUMMARY ──────────────────────────────── */
+.tf-pg{padding:34px 20px 30px;display:flex;flex-direction:column;align-items:center;text-align:center;min-height:100vh;justify-content:center;}
+.tf-headline{font-size:24px;color:var(--tx);font-family:'Baloo 2',sans-serif;font-weight:800;line-height:1.25;margin-bottom:6px;max-width:340px;}
+.tf-sub{font-size:13.5px;color:var(--tm);margin-bottom:22px;line-height:1.55;max-width:320px;}
+.tf-cards{width:100%;max-width:340px;display:flex;flex-direction:column;align-items:stretch;}
+.tf-card{background:var(--bgc);border:1px solid var(--bd);border-radius:14px;padding:14px 16px;text-align:left;}
+.tf-before{opacity:.75;}
+.tf-after{border-color:rgba(116,198,157,.4);background:linear-gradient(135deg,rgba(116,198,157,.06),rgba(116,198,157,.02));}
+.tf-card-lbl{font-size:10.5px;letter-spacing:.18em;color:var(--tm);text-transform:uppercase;margin-bottom:8px;font-weight:600;}
+.tf-after-lbl{color:var(--g4);}
+.tf-card-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:13.5px;}
+.tf-row-lbl{color:var(--ts);}
+.tf-row-v{color:var(--tx);font-weight:600;font-family:'Baloo 2',sans-serif;}
+.tf-row-fade .tf-row-v{color:var(--tm);}
+.tf-row-red .tf-row-v{color:var(--red);font-weight:800;}
+.tf-row-green .tf-row-v{color:var(--g4);font-weight:800;}
+.tf-arrow{font-size:22px;color:var(--g4);text-align:center;padding:8px 0;line-height:1;}
+.tf-quote{margin-top:18px;padding:0 8px;font-size:14px;color:var(--gold);font-style:italic;font-family:'Baloo 2',sans-serif;line-height:1.5;max-width:320px;}
+
+
+
+
 </style>
 </head>
 <body>
@@ -706,50 +867,96 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   </div>
 </div>
 
+<!-- TRANSFORMATION SUMMARY (shown once after onboarding) -->
+<div class="screen" id="scTransform">
+  <div class="tf-pg">
+    <div class="tf-headline f8" id="tfHeadline"></div>
+    <div class="tf-sub" id="tfSub"></div>
+
+    <div class="tf-cards">
+      <div class="tf-card tf-before">
+        <div class="tf-card-lbl" id="tfBeforeLbl">PEHLE</div>
+        <div class="tf-card-row tf-row-fade"><span class="tf-row-lbl" id="tfBefRow1L"></span><span class="tf-row-v" id="tfBefRow1V"></span></div>
+        <div class="tf-card-row tf-row-fade"><span class="tf-row-lbl" id="tfBefRow2L"></span><span class="tf-row-v" id="tfBefRow2V"></span></div>
+        <div class="tf-card-row tf-row-red"><span class="tf-row-lbl" id="tfBefRow3L"></span><span class="tf-row-v" id="tfBefRow3V"></span></div>
+      </div>
+
+      <div class="tf-arrow">↓</div>
+
+      <div class="tf-card tf-after">
+        <div class="tf-card-lbl tf-after-lbl" id="tfAfterLbl">AB</div>
+        <div class="tf-card-row"><span class="tf-row-lbl" id="tfAftRow1L"></span><span class="tf-row-v" id="tfAftRow1V"></span></div>
+        <div class="tf-card-row"><span class="tf-row-lbl" id="tfAftRow2L"></span><span class="tf-row-v" id="tfAftRow2V"></span></div>
+        <div class="tf-card-row tf-row-green"><span class="tf-row-lbl" id="tfAftRow3L"></span><span class="tf-row-v" id="tfAftRow3V"></span></div>
+      </div>
+    </div>
+
+    <div class="tf-quote" id="tfQuote"></div>
+    <button class="btn" id="tfStartBtn" onclick="finalizeStart()" style="width:100%;max-width:340px;margin-top:18px"></button>
+  </div>
+</div>
+
 <!-- MAIN APP -->
 <div class="screen" id="scMain">
 
   <!-- HOME -->
-  <div id="pgHome">
+  <div id="pgHome" class="home-compact">
     <!-- Header -->
     <div class="home-top">
       <div class="home-top-l">
         <div class="home-avatar" id="hAvatar">👋</div>
         <div><div class="home-greet f7" id="hGrt"></div><div class="home-ctry" id="hCtry"></div></div>
       </div>
-      <div class="settings-btn" onclick="showPg('settings')">⚙️</div>
+      <div style="display:flex;gap:8px">
+        <div class="settings-btn" onclick="showPg('aurMadad')" title="Aur Madad">📦</div>
+        <div class="settings-btn" onclick="showPg('settings')">⚙️</div>
+      </div>
     </div>
-    <!-- Ramadan Banner -->
+
+    <!-- Ramadan Banner (auto-hides when not Ramadan/Eid) -->
     <div class="ramadan-banner hidden" id="ramBanner">
       <span class="rb-ico">🌙</span>
       <div class="rb-txt" id="ramTxt"></div>
     </div>
 
-    <!-- HERO DREAM CARD -->
-    <div class="hero-card">
-      <div class="hc-label" id="hcLabel">MERA SAPNA</div>
-      <div class="hc-top">
-        <div class="hc-ico" id="hcIco">🌟</div>
-        <div class="hc-right">
-          <div class="hc-dream-name" id="hcDreamName">—</div>
-          <div class="hc-pct f8" id="hcBarPct">0%</div>
-          <div class="hc-pct-lbl" id="hcPctLbl">Complete</div>
-        </div>
+    <!-- Two countdown cards side-by-side -->
+    <div class="cd-row">
+      <div class="cd-card" id="iqamaCard" onclick="openIqamaSet()">
+        <div class="cd-ico">🪪</div>
+        <div class="cd-lbl" id="iqamaCardLbl">IQAMA</div>
+        <div class="cd-big f8" id="iqamaCardBig">—</div>
+        <div class="cd-sub" id="iqamaCardSub">Set karein</div>
       </div>
-      <div class="hc-bar-wrap">
-        <div class="hc-bar"><div class="hc-bar-fill" id="hcBarFill" style="width:0%"></div></div>
+      <div class="cd-card amber" id="gharCard" onclick="openGharSet()">
+        <div class="cd-ico">✈️</div>
+        <div class="cd-lbl" id="gharCardLbl">GHAR JANA</div>
+        <div class="cd-big f8" id="gharCardBig">—</div>
+        <div class="cd-sub" id="gharCardSub">Set karein</div>
       </div>
-      <div class="hc-stats">
-        <div class="hc-stat"><div class="hcs-lbl" id="hcSavL">BACHAT</div><div class="hcs-val" id="hcSavV">—</div></div>
-        <div class="hc-stat-div"></div>
-        <div class="hc-stat"><div class="hcs-lbl" id="hcTgtL">TARGET</div><div class="hcs-val" id="hcTgtV">—</div></div>
-        <div class="hc-stat-div"></div>
-        <div class="hc-stat"><div class="hcs-lbl" id="hcRemL">BAQI</div><div class="hcs-val" id="hcRemV">—</div></div>
-      </div>
-      <button class="hc-btn" onclick="showPg('dream')" id="hcBtn">👉 Dream Plan Dekhein</button>
     </div>
 
-    <!-- ROW 2: Total Bachat + Streak -->
+    <!-- Salary distribution: stacked bar + chips -->
+    <div class="pie-card" onclick="showPg('split')">
+      <div class="pie-title-row">
+        <div class="pie-title" id="pieTitle">SALARY KA TAQSEEM</div>
+        <div class="pie-amount" id="pieAmt">—</div>
+      </div>
+      <div class="pie-bar" id="pieBar"></div>
+      <div class="pie-chips" id="pieChips"></div>
+    </div>
+
+    <!-- Compact Mera Sapna progress bar -->
+    <div class="dream-mini" onclick="showPg('dream')">
+      <div class="dm-ico" id="hcIco">🌟</div>
+      <div class="dm-mid">
+        <div class="dm-row"><span class="dm-name" id="hcDreamName">—</span><span class="dm-pct" id="hcBarPct">0%</span></div>
+        <div class="hc-bar"><div class="hc-bar-fill" id="hcBarFill" style="width:0%"></div></div>
+        <div class="dm-stats"><span id="hcSavV">—</span><span class="dm-stat-div">/</span><span id="hcTgtV">—</span></div>
+      </div>
+      <div class="dm-arrow">›</div>
+    </div>
+
+    <!-- Bottom row: Total Bachat + Salary Tracker tab -->
     <div class="two-cards">
       <div class="two-card green">
         <div class="tc-ico">💰</div>
@@ -757,47 +964,88 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
         <div class="tc-val" id="tcSavV">—</div>
         <div class="tc-sub" id="tcSavS">Ab tak bachaya</div>
       </div>
-      <div class="two-card orange">
-        <div class="tc-ico">🔥</div>
-        <div class="tc-lbl" id="tcStrkL">STREAK</div>
-        <div class="tc-val" id="tcStrkV">0</div>
-        <div class="tc-sub" id="tcStrkS">Lagataar bachat</div>
+      <div class="two-card blue" onclick="showPg('salaryLog')" style="cursor:pointer">
+        <div class="tc-ico">📝</div>
+        <div class="tc-lbl" id="salRecLbl">SALARY TRACKER</div>
+        <div class="tc-val" id="salRecCount">0</div>
+        <div class="tc-sub" id="salRecSub">Months logged</div>
       </div>
     </div>
 
-    <!-- ROW 3: This Month + Future Ready -->
-    <div class="two-cards-b">
-      <div class="tbc purple">
-        <div class="tbc-ico">📅</div>
-        <div class="tbc-lbl" id="tbcML">IS MAHINE</div>
-        <div class="tbc-val" id="tbcMV">—</div>
-        <div class="tbc-sub" id="tbcMS">—</div>
-        <div class="tbc-bar"><div class="tbc-bar-fill" id="tmBarFill" style="width:0%"></div></div>
-      </div>
-      <div class="tbc blue">
-        <div class="tbc-ico">🛡️</div>
-        <div class="tbc-lbl" id="tbcRL">FUTURE READY</div>
-        <div class="tbc-val" id="rcOverallPct">0%</div>
-        <div class="tbc-sub" id="rcOverallLbl">Tayyari achi hai</div>
-        <div class="tbc-bar"><div class="tbc-bar-fill" id="rcBarFill" style="width:0%"></div></div>
-      </div>
+    <!-- Hidden but referenced by existing logic, so JS doesn't break -->
+    <div style="display:none">
+      <span id="hcLabel"></span><span id="hcPctLbl"></span>
+      <span id="hcSavL"></span><span id="hcTgtL"></span><span id="hcRemL"></span><span id="hcRemV"></span>
+      <span id="hcBtn"></span><span id="tcStrkL"></span><span id="tcStrkV"></span><span id="tcStrkS"></span>
+      <span id="tbcML"></span><span id="tbcMV"></span><span id="tbcMS"></span><span id="tmBarFill"></span>
+      <span id="tbcRL"></span><span id="rcOverallPct"></span><span id="rcOverallLbl"></span><span id="rcBarFill"></span>
+      <span id="rmTxt"></span><span id="aurL"></span><span id="aurS"></span>
+      <span id="homeTagline"></span><span id="dcTitle"></span><span id="donutLbl"></span><span id="dcBtn"></span>
+      <span id="donutChart"></span><span id="donutPct"></span><span id="catList"></span>
+      <span id="salRecBig"></span>
     </div>
+  </div>
 
-    <!-- REMINDER -->
-    <div class="reminder-card">
-      <div class="rm-ico">⭐</div>
-      <div class="rm-txt" id="rmTxt"></div>
-    </div>
-
-
-
-    <!-- AUR MADAD -->
-    <div class="aur-btn" onclick="showPg('aurMadad')">
-      <div class="aur-left"><span class="aur-ico">📦</span><div><div class="aur-lbl f7" id="aurL">Aur Madad</div><div class="aur-sub" id="aurS">Shield, EOSD aur zyada</div></div></div>
-      <span style="font-size:20px;color:var(--tm)">›</span>
+  <!-- SALARY LOG PAGE -->
+  <div id="pgSalaryLog" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="slT">Salary Receipt Tracker</div></div>
+    <div class="pad">
+      <div class="sl-intro" id="slIntro"></div>
+      <div class="sl-form">
+        <div class="sl-form-row">
+          <div class="sl-fld"><div class="rlbl" id="slMoLbl">MAHEENA</div>
+            <select class="sl-sel" id="slMonth"></select>
+          </div>
+          <div class="sl-fld"><div class="rlbl" id="slYrLbl">SAAL</div>
+            <select class="sl-sel" id="slYear"></select>
+          </div>
+        </div>
+        <div class="sl-fld"><div class="rlbl" id="slAmtLbl">RAQAM</div>
+          <div class="real-inp-row"><div class="real-cur" id="slCur">SAR</div><input class="real-inp-num" type="number" id="slAmt" inputmode="numeric" placeholder="1800"></div>
+        </div>
+        <label class="sl-check"><input type="checkbox" id="slLate"><span id="slLateLbl">Late mili thi</span></label>
+        <button class="btn" onclick="logSalary()" id="slSaveBtn">✓ Save Karein</button>
+      </div>
+      <div class="sl-section-t f7" id="slHistT">Pichli salaries</div>
+      <div id="slHistList"></div>
     </div>
     <div class="nav-spacer"></div>
   </div>
+
+  <!-- IQAMA SET MODAL -->
+  <div id="pgIqamaSet" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="iqT">Iqama Expiry Set Karein</div></div>
+    <div class="pad">
+      <div class="sl-intro" id="iqIntro"></div>
+      <div class="sl-fld"><div class="rlbl" id="iqDateLbl">EXPIRY DATE</div>
+        <input class="sl-sel" type="date" id="iqDate">
+      </div>
+      <button class="btn" onclick="saveIqama()" id="iqSaveBtn">✓ Save Karein</button>
+      <button class="btn btn-out" onclick="clearIqama()" id="iqClearBtn" style="margin-top:8px">Hatayein</button>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- GHAR SET MODAL -->
+  <div id="pgGharSet" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="ghT">Ghar Kab Jaunga</div></div>
+    <div class="pad">
+      <div class="sl-intro" id="ghIntro"></div>
+      <div class="sl-fld"><div class="rlbl" id="ghDateLbl">TRIP DATE</div>
+        <input class="sl-sel" type="date" id="ghDate">
+      </div>
+      <div class="sl-fld"><div class="rlbl" id="ghOccLbl">MAUKA (OPTIONAL)</div>
+        <input class="sl-sel" type="text" id="ghOcc" placeholder="Eid / Shadi / Chutti" maxlength="25">
+      </div>
+      <div class="sl-fld"><div class="rlbl" id="ghTgtLbl">TARGET BACHAT (OPTIONAL)</div>
+        <div class="real-inp-row"><div class="real-cur" id="ghCur">SAR</div><input class="real-inp-num" type="number" id="ghTgt" inputmode="numeric" placeholder="3000"></div>
+      </div>
+      <button class="btn" onclick="saveGhar()" id="ghSaveBtn">✓ Save Karein</button>
+      <button class="btn btn-out" onclick="clearGhar()" id="ghClearBtn" style="margin-top:8px">Hatayein</button>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
 
   <!-- AUR MADAD -->
 
@@ -857,21 +1105,53 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="nav-spacer"></div>
   </div>
 
-  <!-- DREAM -->
+  <!-- DREAM (redesigned: 3-step flow) -->
   <div id="pgDream" class="hidden">
     <div class="shdr"><div class="back-btn" onclick="bnNav(-1,'home')">←</div><div class="pg-title f8" id="drT"></div></div>
     <div class="pad">
-      <div style="background:rgba(116,198,157,.06);border:1px solid rgba(116,198,157,.15);border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:13px;color:var(--ts);line-height:1.6;" id="drIntro"></div>
-      <div id="dGrid"></div>
-      <div style="margin-top:10px;" id="dreamSavWrap" class="hidden">
-        <div class="rlbl" id="dSL">BACHAT/MAHEENA (SAR)</div>
-        <div class="real-inp-row" style="margin-top:6px"><div class="real-cur">SAR</div><input class="real-inp-num" type="number" id="dSav" inputmode="numeric" placeholder="200" oninput="calcD()"></div>
+      <!-- STEP 1: Single Question -->
+      <div id="drStep1">
+        <div class="dr-question f8" id="drQuestion"></div>
+        <div class="dr-sub" id="drSub"></div>
+        <div class="dr-cat-grid" id="drCatGrid"></div>
       </div>
-      <div class="dream-result" id="dRes">
-        <div class="dr-result-row"><span class="dr-rl" id="drRL1"></span><span class="dr-rv" id="drRV1"></span></div>
-        <div class="dr-result-row"><span class="dr-rl" id="drRL2"></span><span class="dr-rv" id="drRV2"></span></div>
-        <div class="dr-result-row"><span class="dr-rl" id="drRL3"></span><span class="dr-rv" id="drRV3"></span></div>
-        <div class="dr-result-row"><span class="dr-rl" id="drRL4"></span><span class="dr-rv" id="drRV4" style="color:var(--a2)"></span></div>
+
+      <!-- STEP 2: Pick size -->
+      <div id="drStep2" class="hidden">
+        <button class="dr-back-step" onclick="drGoStep(1)">← <span id="drBackTxt"></span></button>
+        <div class="dr-chosen"><span class="dr-chosen-ico" id="drChosenIco"></span><span class="dr-chosen-name f8" id="drChosenName"></span></div>
+        <div class="dr-sub" id="drSizeQ"></div>
+        <div class="dr-size-list" id="drSizeList"></div>
+        <!-- Karz custom amount -->
+        <div id="drKarzWrap" class="hidden">
+          <div class="rlbl" id="drKarzLbl">QARZ KI RAQAM</div>
+          <div class="real-inp-row" style="margin-top:6px"><div class="real-cur" id="drKarzCur">PKR</div><input class="real-inp-num" type="number" id="drKarzAmt" inputmode="numeric" placeholder="500000"></div>
+          <button class="btn" onclick="drConfirmKarz()" style="margin-top:10px;width:100%" id="drKarzBtn">Agla →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Savings input + timeline -->
+      <div id="drStep3" class="hidden">
+        <button class="dr-back-step" onclick="drGoStep(2)">← <span id="drBackTxt2"></span></button>
+        <div class="dr-chosen"><span class="dr-chosen-ico" id="drChosenIco2"></span><div><div class="dr-chosen-name f8" id="drChosenName2"></div><div class="dr-chosen-tgt" id="drChosenTgt"></div></div></div>
+        <div class="dr-sub" id="drSavQ"></div>
+        <div class="rlbl" id="dSL">BACHAT/MAHEENA (SAR)</div>
+        <div class="real-inp-row" style="margin-top:6px"><div class="real-cur" id="drSavCur">SAR</div><input class="real-inp-num" type="number" id="dSav" inputmode="numeric" placeholder="200" oninput="calcD()"></div>
+        <div class="dr-sav-quick" id="drSavQuick"></div>
+        <div class="dream-result" id="dRes" style="display:none">
+          <div class="dr-result-row"><span class="dr-rl" id="drRL1"></span><span class="dr-rv" id="drRV1"></span></div>
+          <div class="dr-result-row"><span class="dr-rl" id="drRL2"></span><span class="dr-rv" id="drRV2"></span></div>
+          <div class="dr-result-row"><span class="dr-rl" id="drRL3"></span><span class="dr-rv" id="drRV3"></span></div>
+          <div class="dr-result-row"><span class="dr-rl" id="drRL4"></span><span class="dr-rv" id="drRV4" style="color:var(--a2)"></span></div>
+          <div class="dr-encourage" id="drEncourage"></div>
+        </div>
+      </div>
+
+      <!-- Hidden legacy DOM nodes for buildDream backward-compat -->
+      <div style="display:none">
+        <div id="dGrid"></div>
+        <div id="dreamSavWrap"></div>
+        <span id="drIntro"></span>
       </div>
     </div>
     <div class="nav-spacer"></div>
@@ -967,7 +1247,7 @@ var L='pk',C='SA',sal=1800,yrs=3,curSav=0,lowMode=false,uName='';
 var trData={months:{},chal:[]};
 var openFlowId=null,settOpen=null;
 var customSplit={home:55,own:20,ef:5,sav:15,sadqa:2}; // user adjustable
-var SK={lang:'sb_l',ctry:'sb_c',sal:'sb_s',yrs:'sb_y',sav:'sb_sv',started:'sb_st',tr:'sb_tr',chal:'sb_ch',gh:'sb_gh',logs:'sb_lg',low:'sb_lw',split:'sb_sp',ef:'sb_ef',salday:'sb_sd',dream:'sb_dr',name:'sb_nm'};
+var SK={lang:'sb_l',ctry:'sb_c',sal:'sb_s',yrs:'sb_y',sav:'sb_sv',started:'sb_st',tr:'sb_tr',chal:'sb_ch',gh:'sb_gh',logs:'sb_lg',low:'sb_lw',split:'sb_sp',ef:'sb_ef',salday:'sb_sd',dream:'sb_dr',name:'sb_nm',salrec:'sb_sr',iqama:'sb_iq',ghar:'sb_gj'};
 
 function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 function ld(k,d){try{var v=localStorage.getItem(k);return v!==null?JSON.parse(v):d;}catch(e){return d;}}
@@ -1057,6 +1337,23 @@ pk:{
     {id:'gohome',ico:'✈️',t:'Ghar Jana Hai',s:'Final exit plan',cl:'pb-g'}
   ],
   drT:'🌟 Mera Sapna',dGL:'GOAL (PKR)',dSL:'BACHAT/MAHEENA (SAR)',
+  // Transformation summary (shown once after onboarding)
+  tfHeadline:'Aaj se sab badal jaayega',
+  tfSub:'Aapki mehnat wahi hai, lekin ab uska hisaab hai.',
+  tfBeforeLbl:'PEHLE',tfAfterLbl:'AB',
+  tfBefSal:'Aapki salary',tfBefKh:'Mahine ke end mein',tfBefBch:'Bachat',
+  tfAftSal:'Aapki salary',tfAftKh:'Plan ke saath',tfAftBch:'Confirm bachat',
+  tfQuote:'"Khali haath wapas mat jaiye — aaj se shuru karein."',
+  tfStartBtn:'Mera Plan Dekho →',
+  drQ:'Aapka sabse bada sapna kya hai?',drQSub:'Ek sapna chunein — uska poora roadmap dekhein.',
+  drBack:'Wapas',drSizeQ:'Iska size kya hoga?',drSavQ:'Har mahine kitna bacha sakte ho?',
+  drKarzLbl:'QARZ KI RAQAM',drKarzBtn:'Agla →',
+  drEncMo:function(mo){
+    if(mo<=12)return '🔥 Bohot kareeb! '+mo+' mahine mein aapka sapna haqeeqat ban sakta hai.';
+    if(mo<=24)return '💪 Possible hai. '+mo+' mahine mein, agar lagataar bachat karte raho.';
+    if(mo<=48)return '🌱 Sabar aur lagan se hi bara kaam hota hai. '+mo+' mahine ka safar hai.';
+    return '⏳ Bara sapna hai. '+mo+' mahine ka commitment chahiye — ya bachat thodi badhayein.';
+  },
   dreamCats:[
     {ico:'🏠',cat:'Ghar',sizes:[
       {l:'Chota Ghar',hint:'Gaon/chota sheher',amt:1200000},
@@ -1141,6 +1438,27 @@ pk:{
     {ico:'⚠️',t:'Kya NA karein',s:'Stock market, crypto, online schemes se bachein — Gulf workers ke saath ziada fraud hota hai.',tag:'Warning'}
   ],
   stT:'⚙️ Settings',stNL:'AAPKA NAAM',stLL:'ZABAN',stCL:'MULK',stRst:'🗑️ Sab Data Delete Karo',resetConfirm:'Sab data delete ho jayega. Confirm?',noLog:'Koi record nahi',
+  // Dashboard cards (new)
+  dcTitle:'SALARY DISTRIBUTION',donutLbl:'Total Salary',dcBtn:'Adjust Taqseem →',
+  iqamaCardLbl:'IQAMA EXPIRY',iqamaSet:'Set karein →',iqamaSetSub:'Tap kar ke expiry date dalein',
+  iqamaSafe:'Sab theek hai',iqamaWarn:'Jaldi renew karein!',iqamaUrgent:'Bohot urgent — abhi action lein!',iqamaExpired:'Expire ho gaya hai!',
+  gharCardLbl:'GHAR KAB JAUNGA',gharSet:'Set karein →',gharSetSub:'Apni wapsi ki tareekh likho',
+  gharDaysSuffix:' din baqi',gharTodaySuffix:'Aaj hi din hai!',
+  salRecLbl:'SALARY RECEIPT TRACKER',salRecBig:'Is mahine ki salary log karein',salRecSubPrefix:'Total months logged: ',
+  // Salary Log screen
+  slT:'📝 Salary Receipt Tracker',
+  slIntro:'Har mahine apni salary log karein — agar kabhi salary mein masla ho, ye record qanooni saboot ban sakta hai.',
+  slMoLbl:'MAHEENA',slYrLbl:'SAAL',slAmtLbl:'RAQAM',slLateLbl:'Late mili thi',slSaveBtn:'✓ Save Karein',
+  slHistT:'Pichli salaries',slEmpty:'Abhi tak koi record nahi.',slSaved:'✅ Salary record save ho gayi!',
+  months:['January','February','March','April','May','June','July','August','September','October','November','December'],
+  // Iqama Set screen
+  iqT:'🪪 Iqama Expiry Set Karein',iqIntro:'Apni iqama (ya equivalent residence permit) ki expiry date dalein. Hum aapko 90, 30 aur 7 din pehle alert denge.',
+  iqDateLbl:'EXPIRY DATE',iqSaveBtn:'✓ Save Karein',iqClearBtn:'Hatayein',iqSaved:'✅ Iqama date save ho gayi!',iqCleared:'Iqama date hata di gayi.',iqInvalid:'Pehle expiry date chunein.',
+  // Ghar Set screen
+  ghT:'✈️ Ghar Kab Jaunga',ghIntro:'Apne agle ghar trip ki planned date dalein. Dashboard par countdown chalega aur — agar chahein — bachat ka target bhi rakh sakte hain.',
+  ghDateLbl:'TRIP DATE',ghOccLbl:'MAUKA (OPTIONAL)',ghTgtLbl:'TARGET BACHAT (OPTIONAL)',
+  ghSaveBtn:'✓ Save Karein',ghClearBtn:'Hatayein',ghSaved:'✅ Trip date save ho gayi!',ghCleared:'Trip date hata di gayi.',ghInvalid:'Pehle trip date chunein.',
+  ghTargetPrefix:'Tab tak ',ghTargetSuffix:' bachao — khali haath nahi jaoge.',
   trustTitle:'Ye ek planning tool hai',
   trustTxt:'Smart Bachat Saathi paisa transfer ya bank service nahi hai — sirf aapki salary plan karne mein madad karta hai. Aapka data sirf aapke phone mein rehta hai, kisi sarkar ki manzoori ki zaroorat nahi.',
   rdT:'🏡 Wapsi Tayyari',rdMeter:'Aapki Wapsi Tayyari',
@@ -1247,6 +1565,23 @@ bd:{
     {id:'gohome',ico:'✈️',t:'দেশে যেতে চাই',s:'Final exit পরিকল্পনা',cl:'pb-g'}
   ],
   drT:'🌟 আমার স্বপ্ন',dGL:'লক্ষ্য (BDT)',dSL:'বাচাত/মাস (SAR)',
+  // Transformation summary (shown once after onboarding)
+  tfHeadline:'আজ থেকে সব বদলে যাবে',
+  tfSub:'আপনার পরিশ্রম একই, কিন্তু এখন তার হিসাব আছে।',
+  tfBeforeLbl:'আগে',tfAfterLbl:'এখন',
+  tfBefSal:'আপনার বেতন',tfBefKh:'মাস শেষে',tfBefBch:'সঞ্চয়',
+  tfAftSal:'আপনার বেতন',tfAftKh:'পরিকল্পনার সাথে',tfAftBch:'নিশ্চিত সঞ্চয়',
+  tfQuote:'"খালি হাতে ফিরে যাবেন না — আজ থেকে শুরু করুন।"',
+  tfStartBtn:'আমার প্ল্যান দেখুন →',
+  drQ:'আপনার সবচেয়ে বড় স্বপ্ন কী?',drQSub:'একটি স্বপ্ন বেছে নিন — পুরো পরিকল্পনা দেখুন।',
+  drBack:'ফিরে',drSizeQ:'এর আকার কী হবে?',drSavQ:'প্রতি মাসে কত বাঁচাতে পারবেন?',
+  drKarzLbl:'ঋণের পরিমাণ',drKarzBtn:'পরের →',
+  drEncMo:function(mo){
+    if(mo<=12)return '🔥 খুব কাছাকাছি! '+mo+' মাসে আপনার স্বপ্ন বাস্তব হতে পারে।';
+    if(mo<=24)return '💪 সম্ভব। '+mo+' মাসে, যদি ধারাবাহিক বাচাত করেন।';
+    if(mo<=48)return '🌱 ধৈর্য আর পরিশ্রমেই বড় কাজ হয়। '+mo+' মাসের যাত্রা।';
+    return '⏳ বড় স্বপ্ন। '+mo+' মাসের অঙ্গীকার দরকার — অথবা বাচাত একটু বাড়ান।';
+  },
   dreams:[
     {ico:'🏠',l:'বাড়ি',pa:8000000,ba:5000000},
     {ico:'🏭',l:'ব্যবসা/ছোট দোকান',pa:2500000,ba:1500000},
@@ -1305,6 +1640,27 @@ bd:{
     {ico:'⚠️',t:'কী করবেন না',s:'শেয়ার মার্কেট, ক্রিপ্টো, অনলাইন স্কিম থেকে দূরে থাকুন — প্রতারণার ঝুঁকি বেশি।',tag:'সতর্কতা'}
   ],
   stT:'⚙️ Settings',stNL:'আপনার নাম',stLL:'ভাষা',stCL:'দেশ',stRst:'🗑️ সব ডেটা মুছুন',resetConfirm:'সব ডেটা মুছে যাবে। নিশ্চিত?',noLog:'কোনো রেকর্ড নেই',
+  // Dashboard cards (new)
+  dcTitle:'বেতন বণ্টন',donutLbl:'মোট বেতন',dcBtn:'বণ্টন সমন্বয় →',
+  iqamaCardLbl:'ইকামা মেয়াদ',iqamaSet:'সেট করুন →',iqamaSetSub:'মেয়াদ শেষের তারিখ দিন',
+  iqamaSafe:'সব ঠিক আছে',iqamaWarn:'শীঘ্রই নবায়ন করুন!',iqamaUrgent:'খুব জরুরি — এখনই ব্যবস্থা নিন!',iqamaExpired:'মেয়াদ শেষ হয়ে গেছে!',
+  gharCardLbl:'কবে দেশে যাব',gharSet:'সেট করুন →',gharSetSub:'ফেরার তারিখ লিখুন',
+  gharDaysSuffix:' দিন বাকি',gharTodaySuffix:'আজই সেই দিন!',
+  salRecLbl:'বেতন রসিদ ট্র্যাকার',salRecBig:'এই মাসের বেতন লগ করুন',salRecSubPrefix:'মোট মাস লগ করা: ',
+  // Salary Log screen
+  slT:'📝 বেতন রসিদ ট্র্যাকার',
+  slIntro:'প্রতি মাস বেতন লগ করুন — কখনো বেতন সংক্রান্ত সমস্যা হলে এই রেকর্ড আইনি প্রমাণ হতে পারে।',
+  slMoLbl:'মাস',slYrLbl:'বছর',slAmtLbl:'টাকার পরিমাণ',slLateLbl:'দেরিতে পেয়েছিলাম',slSaveBtn:'✓ সংরক্ষণ করুন',
+  slHistT:'আগের বেতনসমূহ',slEmpty:'এখনো কোনো রেকর্ড নেই।',slSaved:'✅ বেতন রেকর্ড সংরক্ষিত হয়েছে!',
+  months:['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'],
+  // Iqama Set screen
+  iqT:'🪪 ইকামা মেয়াদ সেট করুন',iqIntro:'আপনার ইকামার (বা সমতুল্য পারমিটের) মেয়াদ শেষের তারিখ দিন। আমরা ৯০, ৩০ ও ৭ দিন আগে সতর্ক করব।',
+  iqDateLbl:'মেয়াদ শেষের তারিখ',iqSaveBtn:'✓ সংরক্ষণ করুন',iqClearBtn:'সরান',iqSaved:'✅ ইকামার তারিখ সংরক্ষিত!',iqCleared:'ইকামার তারিখ সরানো হয়েছে।',iqInvalid:'প্রথমে তারিখ বেছে নিন।',
+  // Ghar Set screen
+  ghT:'✈️ কবে দেশে যাব',ghIntro:'আপনার পরবর্তী দেশে ফেরার পরিকল্পিত তারিখ দিন। ড্যাশবোর্ডে কাউন্টডাউন চলবে এবং চাইলে বাচাতের লক্ষ্যও সেট করতে পারেন।',
+  ghDateLbl:'ভ্রমণের তারিখ',ghOccLbl:'উপলক্ষ্য (ঐচ্ছিক)',ghTgtLbl:'লক্ষ্য বাচাত (ঐচ্ছিক)',
+  ghSaveBtn:'✓ সংরক্ষণ করুন',ghClearBtn:'সরান',ghSaved:'✅ ভ্রমণের তারিখ সংরক্ষিত!',ghCleared:'ভ্রমণের তারিখ সরানো হয়েছে।',ghInvalid:'প্রথমে তারিখ বেছে নিন।',
+  ghTargetPrefix:'ততদিনে ',ghTargetSuffix:' সঞ্চয় করুন — খালি হাতে যাবেন না।',
   trustTitle:'এটি একটি পরিকল্পনা টুল',
   trustTxt:'Smart Bachat Saathi টাকা পাঠানো বা ব্যাংক সেবা নয় — শুধু আপনার বেতন পরিকল্পনায় সাহায্য করে। আপনার তথ্য শুধু আপনার ফোনে থাকে, এর জন্য কোনো সরকারি অনুমোদনের প্রয়োজন নেই।',
   rdT:'🏡 ফেরার প্রস্তুতি',rdMeter:'আপনার ফেরার প্রস্তুতি',
@@ -1463,9 +1819,13 @@ function getFlows(){
 }
 
 // ── NAVIGATION ───────────────────────────────────────────────
-var PAGES=['home','aurMadad','split','tracker','help','dream','shield','eosd','checklist','settings'];
+var PAGES=['home','aurMadad','split','tracker','help','dream','shield','eosd','checklist','settings','salaryLog','iqamaSet','gharSet'];
 function showPg(pg){
   PAGES.forEach(function(p){var e=G('pg'+p[0].toUpperCase()+p.slice(1));if(e)e.classList.toggle('hidden',p!==pg);});
+  if(pg==='salaryLog')buildSalaryLog();
+  else if(pg==='iqamaSet')buildIqamaSet();
+  else if(pg==='gharSet')buildGharSet();
+  else if(pg==='home'){renderDonut();renderIqamaCard();renderGharCard();renderSalaryReceiptCard();}
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1536,6 +1896,37 @@ function startApp(){
   lowMode=ld(SK.low,sal<1500);
   customSplit=ld(SK.split,{home:55,own:20,ef:5,sav:15,sadqa:2});
   if(sal<1500)lowMode=true;
+  showTransform();
+}
+function showTransform(){
+  var st=s();
+  G('tfHeadline').textContent=st.tfHeadline;
+  G('tfSub').textContent=st.tfSub;
+  G('tfBeforeLbl').textContent=st.tfBeforeLbl;
+  G('tfAfterLbl').textContent=st.tfAfterLbl;
+  G('tfQuote').textContent=st.tfQuote;
+  G('tfStartBtn').textContent=st.tfStartBtn;
+  // Compute Before vs After numbers using their actual salary + their custom Taqseem split
+  var sp=customSplit||{home:55,own:20,ef:5,sav:15,sadqa:2};
+  var savePct=(sp.sav||0)+(sp.ef||0); // savings + emergency = "real bachat"
+  var afterBachat=Math.round(sal*savePct/100);
+  // Before rows
+  G('tfBefRow1L').textContent=st.tfBefSal;
+  G('tfBefRow1V').textContent=cur()+' '+sal.toLocaleString();
+  G('tfBefRow2L').textContent=st.tfBefKh;
+  G('tfBefRow2V').textContent=pk()?'koi hisaab nahi':'কোনো হিসাব নেই';
+  G('tfBefRow3L').textContent=st.tfBefBch;
+  G('tfBefRow3V').textContent=cur()+' 0';
+  // After rows
+  G('tfAftRow1L').textContent=st.tfAftSal;
+  G('tfAftRow1V').textContent=cur()+' '+sal.toLocaleString();
+  G('tfAftRow2L').textContent=st.tfAftKh;
+  G('tfAftRow2V').textContent=pk()?'sab hisaab mein':'সব হিসাবের মধ্যে';
+  G('tfAftRow3L').textContent=st.tfAftBch;
+  G('tfAftRow3V').textContent=cur()+' '+afterBachat.toLocaleString();
+  gS('scTransform');
+}
+function finalizeStart(){
   buildApp();gS('scMain');showPg('home');
 }
 
@@ -1576,6 +1967,7 @@ function buildApp(){
     });
   });
   updateStats();
+  renderDonut();renderIqamaCard();renderGharCard();renderSalaryReceiptCard();
   buildSplit();buildTracker();buildHelp();buildDream();buildShield();buildEosd();buildChecklist();buildSettings();updateBnLabels();
 }
 
@@ -1870,94 +2262,120 @@ function savLog(id,cnt){
 function delLog(id,idx){var logs=ld(SK.logs,{});if(!logs[id])return;logs[id].splice(idx,1);sv(SK.logs,logs);var lv=G('lv_'+id);lv.innerHTML=logs[id].length?logs[id].map(function(l,i){return '<div class="log-entry"><div class="log-dot"></div><div class="log-body"><div class="log-txt">'+l.note+'</div><div class="log-date">'+l.date+'</div></div><div class="log-del" onclick="delLog(\''+id+'\','+i+')">✕</div></div>';}).join(''):'<div style="font-size:12px;color:var(--tm);padding:6px 0">'+s().noLog+'</div>';}
 
 
-// ── DREAM ────────────────────────────────────────────────────
+// ── DREAM (3-step flow) ─────────────────────────────────────
+var drChosenCat=null,drChosenSize=null;
 function buildDream(){
-  var st=s(),p=pk();
+  var st=s();
   G('drT').textContent=st.drT;
-  G('drIntro').textContent=p?'Apne future ka sapna choose karein. Chhota shuru karein, bada hasil karein.':'আপনার ভবিষ্যতের স্বপ্ন বেছে নিন। ছোট থেকে শুরু, বড় অর্জন করুন।';
-  G('dSL').textContent=p?'BACHAT/MAHEENA (SAR)':'বাচাত/মাস (SAR)';
-  var dg=G('dGrid');dg.innerHTML='';
-  var savedDream=ld(SK.dream,null);
+  // Step 1 labels
+  if(G('drQuestion'))G('drQuestion').textContent=st.drQ;
+  if(G('drSub'))G('drSub').textContent=st.drQSub;
+  if(G('drBackTxt'))G('drBackTxt').textContent=st.drBack;
+  if(G('drBackTxt2'))G('drBackTxt2').textContent=st.drBack;
+  if(G('drSizeQ'))G('drSizeQ').textContent=st.drSizeQ;
+  if(G('drSavQ'))G('drSavQ').textContent=st.drSavQ;
+  if(G('dSL'))G('dSL').textContent=st.dSL;
+  if(G('drSavCur'))G('drSavCur').textContent=cur();
+  if(G('drKarzLbl'))G('drKarzLbl').textContent=st.drKarzLbl;
+  if(G('drKarzCur'))G('drKarzCur').textContent=lp();
+  if(G('drKarzBtn'))G('drKarzBtn').textContent=st.drKarzBtn;
+  // Build step 1 category grid
+  var grid=G('drCatGrid');if(!grid)return;
+  grid.innerHTML='';
   var cats=st.dreamCats||[];
-  if(!cats.length){
-    // Fallback if dreamCats missing
-    if(G('dGrid'))G('dGrid').innerHTML='<div style="text-align:center;padding:20px;color:var(--tm);font-size:14px">'+(p?'Dream categories load nahi hui — refresh karein.':'স্বপ্নের তালিকা লোড হয়নি — রিফ্রেশ করুন।')+'</div>';
-    return;
-  }
   cats.forEach(function(cat,ci){
-    var card=document.createElement('div');card.className='dream-cat-card';
-    var isKarz=cat.isKarz||false;
-    var html='<span class="dream-cat-ico">'+cat.ico+'</span>'
-      +'<div class="dream-cat-name">'+cat.cat+'</div>';
-    if(isKarz){
-      html+='<div style="font-size:12px;color:var(--tm);text-align:center;margin-bottom:8px">'+( p?'Apna qarz amount dalein:':'আপনার ঋণের পরিমাণ দিন:')+'</div>'
-        +'<div class="karz-inp-wrap"><div class="karz-cur">'+lp()+'</div><input class="karz-inp" type="number" id="karzAmt_'+ci+'" inputmode="numeric" placeholder="500000" oninput="selKarz('+ci+',this.value)"></div>';
-    } else {
-      html+='<div class="dream-radio-row" id="drow_'+ci+'"></div>';
-    }
-    card.innerHTML=html;
-    dg.appendChild(card); // Append to DOM FIRST so getElementById works
-    if(!isKarz){
-      cat.sizes.forEach(function(sz,si){
-        var isSel=savedDream&&savedDream.catIdx===ci&&savedDream.sizeIdx===si;
-        var amtLakh=p?Math.round(sz.amt/100000)+'L':Math.round(sz.amt/100000)+'L';
-        var r=document.createElement('div');
-        r.className='dream-radio'+(isSel?' sel':'');
-        r.id='dr_'+ci+'_'+si;
-        r.innerHTML='<span class="dr-size">'+sz.l+'</span><span class="dr-amt">'+amtLakh+'</span>';
-        (function(a,b,d,nm,ic,ct){r.onclick=function(){selDream(a,b,d,nm,ic,ct);};})(ci,si,sz.amt,sz.l,cat.ico,cat.cat);
-        var rrow=document.getElementById('drow_'+ci);
-        if(rrow)rrow.appendChild(r);
-      });
-    }
-    // Restore saved
-    if(savedDream&&savedDream.catIdx===ci&&!isKarz){
-      showDreamSavWrap();
-      if(G('dSav')&&savedDream.savPerMo)G('dSav').value=savedDream.savPerMo;
-      calcD();
-    }
-    if(isKarz&&savedDream&&savedDream.catIdx===ci&&savedDream.goal){
-      var ki=G('karzAmt_'+ci);if(ki)ki.value=savedDream.goal;
-      showDreamSavWrap();
-      if(G('dSav')&&savedDream.savPerMo)G('dSav').value=savedDream.savPerMo;
-      calcD();
-    }
+    var tile=document.createElement('div');tile.className='dr-cat-tile';
+    tile.innerHTML='<div class="dr-cat-tile-ico">'+cat.ico+'</div><div class="dr-cat-tile-name">'+cat.cat+'</div>';
+    tile.onclick=(function(idx){return function(){drPickCat(idx);};})(ci);
+    grid.appendChild(tile);
+  });
+  // Restore saved state
+  var saved=ld(SK.dream,null);
+  if(saved){
+    drChosenCat=saved.catIdx;
+    drChosenSize=saved.sizeIdx;
+    if(saved.savPerMo&&G('dSav'))G('dSav').value=saved.savPerMo;
+    // Show step 3 directly if user already picked
+    drGoStep(3);
+    calcD();
+  } else {
+    drGoStep(1);
+  }
+}
+function drGoStep(n){
+  ['drStep1','drStep2','drStep3'].forEach(function(id,i){
+    var el=G(id);if(el)el.classList.toggle('hidden',i+1!==n);
   });
 }
-
-function selDream(ci,si,amt,name,ico,cat){
-  // Deselect all
-  document.querySelectorAll('.dream-radio').forEach(function(el){el.classList.remove('sel');});
-  var el=G('dr_'+ci+'_'+si);if(el)el.classList.add('sel');
-  // Save selection
-  var saved={catIdx:ci,sizeIdx:si,goal:amt,name:name,ico:ico,cat:cat,savPerMo:parseFloat(G('dSav')&&G('dSav').value)||0};
-  sv(SK.dream,saved);
-  showDreamSavWrap();
-  calcD();
+function drPickCat(ci){
+  drChosenCat=ci;
+  var st=s(),cat=st.dreamCats[ci];
+  G('drChosenIco').textContent=cat.ico;
+  G('drChosenName').textContent=cat.cat;
+  // Karz is custom amount
+  if(cat.isKarz){
+    G('drSizeList').innerHTML='';
+    G('drKarzWrap').classList.remove('hidden');
+    var saved=ld(SK.dream,null);
+    if(saved&&saved.isKarz&&saved.goal&&G('drKarzAmt'))G('drKarzAmt').value=saved.goal;
+  } else {
+    G('drKarzWrap').classList.add('hidden');
+    var list=G('drSizeList');list.innerHTML='';
+    cat.sizes.forEach(function(sz,si){
+      var tile=document.createElement('div');tile.className='dr-size-tile';
+      var amtTxt=lp()+' '+sz.amt.toLocaleString();
+      tile.innerHTML='<span class="dr-size-name">'+sz.l+'</span><span class="dr-size-amt">'+amtTxt+'</span>';
+      tile.onclick=(function(idx,sizeObj){return function(){drPickSize(idx,sizeObj);};})(si,sz);
+      list.appendChild(tile);
+    });
+  }
+  drGoStep(2);
 }
-
-function selKarz(ci,val){
-  var amt=parseFloat(val)||0;
+function drPickSize(si,sz){
+  var st=s(),cat=st.dreamCats[drChosenCat];
+  drChosenSize=si;
+  var saved={catIdx:drChosenCat,sizeIdx:si,goal:sz.amt,name:sz.l,ico:cat.ico,cat:cat.cat,savPerMo:0};
+  sv(SK.dream,saved);
+  drShowStep3();
+}
+function drConfirmKarz(){
+  var amt=parseFloat(G('drKarzAmt').value)||0;
   var p=pk();
-  var saved={catIdx:ci,sizeIdx:-1,goal:amt,name:(p?'Qarz Utaarna':'ঋণমুক্তি'),ico:'💳',cat:(p?'Qarz':'ঋণ'),savPerMo:parseFloat(G('dSav')&&G('dSav').value)||0,isKarz:true};
+  if(amt<=0){showToast(p?'Raqam dalein':'পরিমাণ দিন');return;}
+  var saved={catIdx:drChosenCat,sizeIdx:-1,goal:amt,name:p?'Qarz Utaarna':'ঋণমুক্তি',ico:'💳',cat:p?'Qarz':'ঋণ',savPerMo:0,isKarz:true};
   sv(SK.dream,saved);
-  if(amt>0)showDreamSavWrap();
+  drShowStep3();
+}
+function drShowStep3(){
+  var saved=ld(SK.dream,null);if(!saved)return;
+  G('drChosenIco2').textContent=saved.ico;
+  G('drChosenName2').textContent=saved.name;
+  G('drChosenTgt').textContent=lp()+' '+saved.goal.toLocaleString();
+  if(G('dSav'))G('dSav').value=saved.savPerMo||'';
+  // Build quick-pick chips
+  var quick=G('drSavQuick');quick.innerHTML='';
+  var suggSar=Math.round(sal*0.15);
+  [Math.round(sal*0.10),suggSar,Math.round(sal*0.20),Math.round(sal*0.30)].forEach(function(v){
+    if(v<=0)return;
+    var b=document.createElement('button');b.textContent=cur()+' '+v;
+    b.onclick=(function(amt){return function(){G('dSav').value=amt;calcD();};})(v);
+    quick.appendChild(b);
+  });
+  drGoStep(3);
   calcD();
 }
-
-function showDreamSavWrap(){
-  var w=G('dreamSavWrap');if(w)w.classList.remove('hidden');
-}
+// Backward-compat shims for any old code paths that still call these
+function selDream(ci,si,amt,name,ico,cat){drChosenCat=ci;drPickSize(si,{l:name,amt:amt});}
+function selKarz(ci,val){drChosenCat=ci;G('drKarzAmt').value=val;drConfirmKarz();}
+function showDreamSavWrap(){}
 
 function calcD(){
   var dreamData=ld(SK.dream,null);
   var savSar=parseFloat(G('dSav')&&G('dSav').value)||0;
   if(dreamData){sv(SK.dream,Object.assign(dreamData,{savPerMo:savSar}));}
   if(!dreamData||!dreamData.goal||!savSar){G('dRes').style.display='none';return;}
-  var goal=dreamData.goal,p=pk();
+  var goal=dreamData.goal,p=pk(),st=s();
   var mo=Math.ceil(goal/(savSar*rate()));
-  var yr=(mo/12).toFixed(1);
-  // Completion date
   var now=new Date();
   now.setMonth(now.getMonth()+mo);
   var months=p?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']:['জান','ফেব','মার','এপ্র','মে','জুন','জুল','আগ','সেপ','অক্ট','নভ','ডিস'];
@@ -1968,9 +2386,10 @@ function calcD(){
   if(G('drRL2'))G('drRL2').textContent=p?'Target:':'লক্ষ্য:';
   if(G('drRV2'))G('drRV2').textContent=lp()+' '+Math.round(goal).toLocaleString();
   if(G('drRL3'))G('drRL3').textContent=p?'Saving:':'বাচাত:';
-  if(G('drRV3'))G('drRV3').textContent=cur()+' '+savSar+'/'+( p?'maheena':'মাস');
-  if(G('drRL4'))G('drRL4').textContent=p?'Estimated:':'অনুমানিত:';
+  if(G('drRV3'))G('drRV3').textContent=cur()+' '+savSar+'/'+(p?'maheena':'মাস');
+  if(G('drRL4'))G('drRL4').textContent=p?'Tayyari:':'প্রস্তুতি:';
   if(G('drRV4'))G('drRV4').textContent=mo+(p?' Months':' মাস')+' ('+compDate+')';
+  if(G('drEncourage')&&st.drEncMo)G('drEncourage').textContent=st.drEncMo(mo);
   updateStats();
 }
 
@@ -2353,7 +2772,240 @@ function buildAsset(){
   });
 }
 
-// ── INIT ────────────────────────────────────────────────────
+// ── SALARY DISTRIBUTION (stacked bar + chips) ──────────────
+function renderDonut(){
+  var p=pk();
+  var sp=customSplit||{home:55,own:20,ef:5,sav:15,sadqa:2};
+  var colors=['#74C69D','#F0C040','#F4A261','#A8DDBB','#F5F1E6'];
+  var keys=['home','own','ef','sav','sadqa'];
+  var names=p?['Ghar','Apna Kharcha','Emergency','Savings','Sadqa']
+                :['ঘর','নিজের খরচ','জরুরি','সঞ্চয়','সদকা'];
+  if(G('pieTitle'))G('pieTitle').textContent=p?'SALARY KA TAQSEEM':'বেতন বণ্টন';
+  if(G('pieAmt'))G('pieAmt').textContent=cur()+' '+sal.toLocaleString();
+  // Stacked bar
+  var bar=G('pieBar');
+  if(bar){
+    bar.innerHTML='';
+    keys.forEach(function(k,i){
+      var pct=sp[k]||0; if(pct<=0)return;
+      var seg=document.createElement('div');
+      seg.className='pie-bar-seg';
+      seg.style.width=pct+'%';
+      seg.style.background='linear-gradient(180deg,'+colors[i]+', '+colors[i]+'cc)';
+      bar.appendChild(seg);
+    });
+  }
+  // Chips
+  var chips=G('pieChips');if(!chips)return;
+  chips.innerHTML='';
+  keys.forEach(function(k,i){
+    var pct=sp[k]||0;
+    var amt=Math.round(sal*pct/100);
+    var chip=document.createElement('div');
+    chip.className='pie-chip';
+    chip.innerHTML='<div class="pie-chip-dot" style="background:'+colors[i]+';color:'+colors[i]+'"></div>'
+      +'<div class="pie-chip-mid"><div class="pie-chip-name">'+names[i]+'</div><div class="pie-chip-amt">'+cur()+' '+amt+'</div></div>'
+      +'<div class="pie-chip-pct" style="color:'+colors[i]+'">'+pct+'%</div>';
+    chips.appendChild(chip);
+  });
+}
+
+// ── IQAMA EXPIRY ─────────────────────────────────────────────
+function daysBetween(dateStr){
+  if(!dateStr)return null;
+  var d=new Date(dateStr+'T00:00:00');
+  if(isNaN(d.getTime()))return null;
+  var now=new Date();now.setHours(0,0,0,0);
+  return Math.round((d-now)/(1000*60*60*24));
+}
+function renderIqamaCard(){
+  var p=pk(),st=s();
+  G('iqamaCardLbl').textContent=st.iqamaCardLbl;
+  var iq=ld(SK.iqama,'');
+  var card=G('iqamaCard');
+  card.classList.remove('warn');
+  if(!iq){
+    G('iqamaCardBig').textContent=p?'Set':'সেট';
+    G('iqamaCardSub').textContent=p?'Date dalein':'তারিখ দিন';
+    return;
+  }
+  var days=daysBetween(iq);
+  if(days===null){
+    G('iqamaCardBig').textContent=p?'Set':'সেট';
+    G('iqamaCardSub').textContent=p?'Date dalein':'তারিখ দিন';
+    return;
+  }
+  if(days<0){
+    G('iqamaCardBig').textContent=(p?'Expired':'মেয়াদ শেষ');
+    G('iqamaCardSub').textContent=Math.abs(days)+(p?' din pehle':' দিন আগে');
+    card.classList.add('warn');
+  } else if(days<=30){
+    G('iqamaCardBig').textContent=days+(p?' din':' দিন');
+    G('iqamaCardSub').textContent=days<=7?st.iqamaUrgent:st.iqamaWarn;
+    card.classList.add('warn');
+  } else {
+    G('iqamaCardBig').textContent=days+(p?' din':' দিন');
+    G('iqamaCardSub').textContent=days<=90?st.iqamaWarn:st.iqamaSafe;
+  }
+}
+function openIqamaSet(){showPg('iqamaSet');buildIqamaSet();}
+function buildIqamaSet(){
+  var st=s();
+  G('iqT').textContent=st.iqT;
+  G('iqIntro').textContent=st.iqIntro;
+  G('iqDateLbl').textContent=st.iqDateLbl;
+  G('iqSaveBtn').textContent=st.iqSaveBtn;
+  G('iqClearBtn').textContent=st.iqClearBtn;
+  G('iqDate').value=ld(SK.iqama,'');
+}
+function saveIqama(){
+  var st=s(),v=G('iqDate').value;
+  if(!v){showToast(st.iqInvalid);return;}
+  sv(SK.iqama,v);
+  showToast(st.iqSaved);
+  renderIqamaCard();
+  showPg('home');
+}
+function clearIqama(){
+  var st=s();
+  localStorage.removeItem(SK.iqama);
+  showToast(st.iqCleared);
+  renderIqamaCard();
+  showPg('home');
+}
+
+// ── GHAR KAB JAUNGA ──────────────────────────────────────────
+function renderGharCard(){
+  var p=pk(),st=s();
+  G('gharCardLbl').textContent=st.gharCardLbl;
+  var gh=ld(SK.ghar,null);
+  if(!gh||!gh.date){
+    G('gharCardBig').textContent=p?'Set':'সেট';
+    G('gharCardSub').textContent=p?'Tareekh dalein':'তারিখ দিন';
+    return;
+  }
+  var days=daysBetween(gh.date);
+  if(days===null){G('gharCardBig').textContent=p?'Set':'সেট';return;}
+  if(days<0){
+    G('gharCardBig').textContent=p?'Done':'হয়ে গেছে';
+    G('gharCardSub').textContent=p?'Nayi date set karein':'নতুন তারিখ';
+  } else if(days===0){
+    G('gharCardBig').textContent=p?'Aaj!':'আজ!';
+    G('gharCardSub').textContent=gh.occ||(p?'Aaj hi din hai':'আজই দিন');
+  } else {
+    G('gharCardBig').textContent=days+(p?' din':' দিন');
+    G('gharCardSub').textContent=gh.occ||(p?'baqi':'বাকি');
+  }
+}
+function openGharSet(){showPg('gharSet');buildGharSet();}
+function buildGharSet(){
+  var st=s();
+  G('ghT').textContent=st.ghT;
+  G('ghIntro').textContent=st.ghIntro;
+  G('ghDateLbl').textContent=st.ghDateLbl;
+  G('ghOccLbl').textContent=st.ghOccLbl;
+  G('ghTgtLbl').textContent=st.ghTgtLbl;
+  G('ghSaveBtn').textContent=st.ghSaveBtn;
+  G('ghClearBtn').textContent=st.ghClearBtn;
+  G('ghCur').textContent=cur();
+  var gh=ld(SK.ghar,null)||{};
+  G('ghDate').value=gh.date||'';
+  G('ghOcc').value=gh.occ||'';
+  G('ghTgt').value=gh.target||'';
+}
+function saveGhar(){
+  var st=s(),date=G('ghDate').value;
+  if(!date){showToast(st.ghInvalid);return;}
+  var gh={date:date,occ:(G('ghOcc').value||'').trim().slice(0,25),target:parseFloat(G('ghTgt').value)||0};
+  sv(SK.ghar,gh);
+  showToast(st.ghSaved);
+  renderGharCard();
+  showPg('home');
+}
+function clearGhar(){
+  var st=s();
+  localStorage.removeItem(SK.ghar);
+  showToast(st.ghCleared);
+  renderGharCard();
+  showPg('home');
+}
+
+// ── SALARY RECEIPT TRACKER ───────────────────────────────────
+function renderSalaryReceiptCard(){
+  var p=pk(),st=s();
+  if(G('salRecLbl'))G('salRecLbl').textContent=p?'SALARY TRACKER':'বেতন ট্র্যাকার';
+  var logs=ld(SK.salrec,[])||[];
+  if(G('salRecCount'))G('salRecCount').textContent=logs.length;
+  if(G('salRecSub'))G('salRecSub').textContent=p?'Months logged':'মাস লগ করা';
+}
+function buildSalaryLog(){
+  var st=s(),p=pk();
+  G('slT').textContent=st.slT;
+  G('slIntro').textContent=st.slIntro;
+  G('slMoLbl').textContent=st.slMoLbl;
+  G('slYrLbl').textContent=st.slYrLbl;
+  G('slAmtLbl').textContent=st.slAmtLbl;
+  G('slLateLbl').textContent=st.slLateLbl;
+  G('slSaveBtn').textContent=st.slSaveBtn;
+  G('slHistT').textContent=st.slHistT;
+  G('slCur').textContent=cur();
+  // Populate month/year selects
+  var moSel=G('slMonth'),yrSel=G('slYear');
+  moSel.innerHTML='';yrSel.innerHTML='';
+  st.months.forEach(function(m,i){var o=document.createElement('option');o.value=i;o.textContent=m;moSel.appendChild(o);});
+  var nowYr=new Date().getFullYear();
+  for(var y=nowYr;y>=nowYr-5;y--){var o=document.createElement('option');o.value=y;o.textContent=y;yrSel.appendChild(o);}
+  // Default to current month/year
+  moSel.value=new Date().getMonth();
+  yrSel.value=nowYr;
+  G('slAmt').value='';
+  G('slLate').checked=false;
+  renderSalaryHistory();
+}
+function logSalary(){
+  var st=s(),p=pk();
+  var amt=parseFloat(G('slAmt').value)||0;
+  if(amt<=0){showToast(p?'Raqam dalein':'টাকার পরিমাণ দিন');return;}
+  var entry={mo:parseInt(G('slMonth').value),yr:parseInt(G('slYear').value),amt:amt,late:G('slLate').checked,ctry:C,cur:cur(),ts:Date.now()};
+  var logs=ld(SK.salrec,[])||[];
+  // Replace if same month/year exists
+  logs=logs.filter(function(l){return !(l.mo===entry.mo&&l.yr===entry.yr);});
+  logs.push(entry);
+  logs.sort(function(a,b){return (b.yr*12+b.mo)-(a.yr*12+a.mo);});
+  sv(SK.salrec,logs);
+  showToast(st.slSaved);
+  G('slAmt').value='';
+  G('slLate').checked=false;
+  renderSalaryHistory();
+  renderSalaryReceiptCard();
+}
+function delSalaryLog(idx){
+  var logs=ld(SK.salrec,[])||[];
+  logs.splice(idx,1);
+  sv(SK.salrec,logs);
+  renderSalaryHistory();
+  renderSalaryReceiptCard();
+}
+function renderSalaryHistory(){
+  var st=s(),p=pk();
+  var logs=ld(SK.salrec,[])||[];
+  var box=G('slHistList');box.innerHTML='';
+  if(!logs.length){
+    var e=document.createElement('div');e.className='cat-sub';e.style.padding='14px 0';e.style.textAlign='center';e.textContent=st.slEmpty;
+    box.appendChild(e);return;
+  }
+  logs.forEach(function(l,i){
+    var row=document.createElement('div');row.className='sl-hist-row';
+    var lateBadge=l.late?'<span class="slh-late">'+(p?'Late':'দেরিতে')+'</span>':'';
+    row.innerHTML='<div class="slh-mo">'+st.months[l.mo]+' '+l.yr+lateBadge+'</div>'
+      +'<div class="slh-amt">'+(l.cur||cur())+' '+l.amt.toLocaleString()+'</div>'
+      +'<button class="slh-del" aria-label="delete">✕</button>';
+    row.querySelector('.slh-del').onclick=(function(idx){return function(e){e.stopPropagation();delSalaryLog(idx);};})(i);
+    box.appendChild(row);
+  });
+}
+
+
 window.addEventListener('load',function(){
   if(ld(SK.started,false)){
     L=ld(SK.lang,'pk');C=ld(SK.ctry,'SA');sal=ld(SK.sal,1800);yrs=ld(SK.yrs,3);curSav=ld(SK.sav,0);uName=ld(SK.name,'');
