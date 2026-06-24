@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ur">
 <head>
-  <meta name="google-site-verification" content="weoYsAH4jg5QuMiYg0mhhJHMsQNOE_UiZ3TZKsmYCuY" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <meta name="description" content="Smart Bachat — Gulf workers ke liye salary, bachat aur madad ka tool. SAR 11 mein hamesha ke liye.">
@@ -391,6 +390,28 @@ footer{text-align:center;padding:24px 16px 120px;border-top:1px solid var(--bd);
 }
 .pm-card.card-pay .pm-time{background:rgba(240,192,64,.12);color:var(--gold);}
 .pm-card.upaisa-pay .pm-time{background:rgba(34,197,94,.12);color:#22C55E;}
+
+.testi-card{
+  background:var(--bg2);border:1.5px solid var(--bd);
+  border-radius:18px;padding:18px 18px 16px;
+  margin:18px 20px 0;position:relative;overflow:hidden;
+}
+.testi-card::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,var(--g4),transparent);}
+.testi-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.testi-avatar{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--g4),var(--g2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Baloo 2',sans-serif;font-weight:800;font-size:16px;color:#fff;
+}
+.testi-name{font-size:13px;font-weight:700;color:var(--tx);}
+.testi-loc{font-size:11px;color:var(--tm);}
+.testi-stars{margin-left:auto;font-size:12px;color:var(--gold);white-space:nowrap;}
+.testi-text{font-size:13px;color:var(--ts);line-height:1.7;}
+.testi-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:10px;font-size:10px;color:var(--g4);font-weight:700;
+}
 </style>
 </head>
 <body>
@@ -527,6 +548,19 @@ footer{text-align:center;padding:24px 16px 120px;border-top:1px solid var(--bd);
     <div class="hc-flag">🇴🇲</div>
   </div>
 
+  <div class="testi-card">
+    <div class="testi-top">
+      <div class="testi-avatar">AW</div>
+      <div>
+        <div class="testi-name" id="testiName">Abdul Wahid</div>
+        <div class="testi-loc" id="testiLoc">Saudi Arabia</div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+    </div>
+    <div class="testi-text" id="testiText"></div>
+    <div class="testi-badge" id="testiBadge">✅ Real Buyer</div>
+  </div>
+
 </div>
 
 <div class="divider"></div>
@@ -638,6 +672,9 @@ var CONTENT={
     heroBtn:'👉 Abhi Shuru Karein — SAR 11 Sirf',
     heroNote:'Koi subscription nahi • Hamesha ke liye aapka',
     trustRefund:'↩ 48hr Refund',trustAccess:'⚡ Instant Access',
+    testiLoc:'Saudi Arabia',
+    testiText:'Mai Saudi Arab mai kaam karta hu. Shuru mai app samjny mai thora time laga tha mujhe. Lekin jab maine feature dekhy aur use karna sikha to bhai kaafi acha laga. Budget planning, Mera Sapna aur Help Now feature mere liye bahut kaam ke rahy. Gulf workers ke liye ye acha try hai, aur agy aur feature ayenge to aur zyada faida hoga inshallah.',
+    testiBadge:'✅ Real Buyer',
     mockTitle:'Smart Bachat',mockBadge:'Saudi 🇸🇦',
     mockSalLabel:'Meri Salary',mockHome:'Ghar Bheja',mockSave:'Bachat',mockEF:'Emergency',mockSadqa:'Sadqa',
     mockDreamLabel:'🌟 Sapna: Ghar — 38%',
@@ -696,6 +733,9 @@ var CONTENT={
     heroBtn:'👉 এখনই শুরু করুন — SAR 11 মাত্র',
     heroNote:'কোনো সাবস্ক্রিপশন নেই • সারাজীবনের জন্য আপনার',
     trustRefund:'↩ ৪৮ঘন্টা রিফান্ড',trustAccess:'⚡ তাৎক্ষণিক অ্যাক্সেস',
+    testiLoc:'Saudi Arabia',
+    testiText:'Mai Saudi Arab mai kaam karta hu. Shuru mai app samjny mai thora time laga tha mujhe. Lekin jab maine feature dekhy aur use karna sikha to bhai kaafi acha laga. Budget planning, Mera Sapna aur Help Now feature mere liye bahut kaam ke rahy. Gulf workers ke liye ye acha try hai, aur agy aur feature ayenge to aur zyada faida hoga inshallah.',
+    testiBadge:'✅ Real Buyer',
     mockTitle:'Smart Bachat',mockBadge:'Saudi 🇸🇦',
     mockSalLabel:'আমার বেতন',mockHome:'বাড়ি পাঠানো',mockSave:'বাচাত',mockEF:'জরুরি ফান্ড',mockSadqa:'সদকা',
     mockDreamLabel:'🌟 স্বপ্ন: বাড়ি — ৩৮%',
@@ -772,6 +812,7 @@ function render(){
   setT('heroLine1',d.heroLine1);setT('heroLine2',d.heroLine2);
   setH('heroSub',d.heroSub);setT('heroBtn',d.heroBtn);setT('heroNote',d.heroNote);
   setT('trustRefund',d.trustRefund);setT('trustAccess',d.trustAccess);
+  setT('testiLoc',d.testiLoc);setT('testiText',d.testiText);setT('testiBadge',d.testiBadge);
   setT('mockTitle',d.mockTitle);setT('mockBadge',d.mockBadge);
   setT('mockSalLabel',d.mockSalLabel);setT('mockHome',d.mockHome);
   setT('mockSave',d.mockSave);setT('mockEF',d.mockEF);setT('mockSadqa',d.mockSadqa);
