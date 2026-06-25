@@ -739,6 +739,86 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .dm-stat-div{opacity:.5;}
 .dm-arrow{font-size:18px;color:var(--gold);flex-shrink:0;position:relative;z-index:1;}
 
+/* ── DAILY CHALLENGE CARD ON DASHBOARD ────────────────────── */
+.chal-card{display:flex;align-items:center;justify-content:space-between;margin:0 14px 10px;background:linear-gradient(135deg,#1B2944,#0F1D33 60%,#172538);border:1px solid rgba(110,168,232,.35);border-radius:14px;padding:11px 13px;cursor:pointer;position:relative;overflow:hidden;transition:transform .15s;}
+.chal-card::before{content:'';position:absolute;top:-25px;right:-25px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(110,168,232,.22),transparent 70%);pointer-events:none;}
+.chal-card:active{transform:scale(.985);}
+.chal-card.locked{background:linear-gradient(135deg,#1F1A0D,#27220F);border-color:rgba(240,192,64,.3);}
+.chal-card.locked::before{background:radial-gradient(circle,rgba(240,192,64,.15),transparent 70%);}
+.chal-card.done{background:linear-gradient(135deg,#142E1F,#0F2618);border-color:rgba(116,198,157,.35);}
+.chal-card.done::before{background:radial-gradient(circle,rgba(116,198,157,.18),transparent 70%);}
+.chal-card-l{display:flex;align-items:center;gap:11px;flex:1;min-width:0;position:relative;z-index:1;}
+.chal-ico-wrap{width:42px;height:42px;border-radius:50%;background:rgba(110,168,232,.16);border:1px solid rgba(110,168,232,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.chal-card.locked .chal-ico-wrap{background:rgba(240,192,64,.15);border-color:rgba(240,192,64,.3);}
+.chal-card.done .chal-ico-wrap{background:rgba(116,198,157,.16);border-color:rgba(116,198,157,.3);}
+.chal-ico{font-size:20px;}
+.chal-mid{flex:1;min-width:0;}
+.chal-lbl{font-size:9.5px;letter-spacing:.13em;color:var(--tm);text-transform:uppercase;margin-bottom:2px;}
+.chal-title{font-size:15px;color:#9ECCF5;font-family:'Baloo 2',sans-serif;font-weight:800;line-height:1.15;}
+.chal-card.locked .chal-title{color:var(--gold);}
+.chal-card.done .chal-title{color:var(--g4);}
+.chal-sub{font-size:11px;color:var(--tm);margin-top:2px;line-height:1.3;}
+.chal-arrow{font-size:22px;color:#9ECCF5;flex-shrink:0;position:relative;z-index:1;}
+.chal-card.locked .chal-arrow{color:var(--gold);}
+.chal-card.done .chal-arrow{color:var(--g4);}
+
+/* ── CHALLENGE PAGE ──────────────────────────────────────── */
+.ch-progress{display:flex;align-items:center;justify-content:space-between;background:rgba(110,168,232,.05);border:1px solid rgba(110,168,232,.18);border-radius:11px;padding:10px 13px;margin-bottom:14px;}
+.ch-prog-dots{display:flex;gap:5px;}
+.ch-prog-dot{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);}
+.ch-prog-dot.done{background:var(--g4);border-color:var(--g4);box-shadow:0 0 4px rgba(116,198,157,.5);}
+.ch-prog-dot.current{background:#9ECCF5;border-color:#9ECCF5;box-shadow:0 0 6px rgba(110,168,232,.6);}
+.ch-prog-meta{font-size:11.5px;color:var(--tm);}
+.ch-prog-meta b{color:var(--tx);font-family:'Baloo 2',sans-serif;font-weight:800;}
+
+.ch-card{background:linear-gradient(160deg,#0F2618,#152C1F);border:1px solid rgba(116,198,157,.22);border-radius:18px;padding:16px;margin-bottom:10px;position:relative;overflow:hidden;}
+.ch-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g4),var(--gold),transparent);opacity:.7;}
+.ch-svg-wrap{display:flex;justify-content:center;margin:6px 0 14px;}
+.ch-svg-wrap svg{width:100%;max-width:160px;height:auto;}
+.ch-day-lbl{font-size:10px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;font-weight:700;}
+.ch-scenario-title{font-size:17px;color:var(--tx);font-family:'Baloo 2',sans-serif;font-weight:800;line-height:1.3;margin-bottom:8px;}
+.ch-scenario{font-size:13.5px;color:var(--ts);line-height:1.65;margin-bottom:16px;}
+.ch-q-lbl{font-size:10px;letter-spacing:.18em;color:var(--g4);text-transform:uppercase;margin-bottom:6px;font-weight:700;}
+.ch-question{font-size:14px;color:var(--tx);font-weight:600;line-height:1.5;margin-bottom:12px;}
+.ch-options{display:flex;flex-direction:column;gap:8px;}
+.ch-opt{background:var(--bgc);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;font-size:13.5px;color:var(--tx);cursor:pointer;transition:all .15s;text-align:left;font-family:'Hind',sans-serif;line-height:1.4;}
+.ch-opt:hover{border-color:var(--g4);background:rgba(116,198,157,.04);}
+.ch-opt:active{transform:scale(.99);}
+.ch-opt.correct{background:rgba(116,198,157,.12);border-color:var(--g4);color:var(--g4);font-weight:700;}
+.ch-opt.wrong{background:rgba(244,162,97,.08);border-color:rgba(244,162,97,.4);color:var(--a2);}
+.ch-opt.disabled{cursor:default;opacity:.6;}
+
+.ch-result-card{background:linear-gradient(160deg,#0F2618,#152C1F 80%,#1A3220);border:1px solid rgba(116,198,157,.3);border-radius:18px;padding:18px 16px;position:relative;overflow:hidden;}
+.ch-result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--g4),var(--gold));}
+.ch-result-icon{width:54px;height:54px;border-radius:50%;background:rgba(116,198,157,.16);border:2px solid var(--g4);display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--g4);margin:0 auto 10px;box-shadow:0 0 18px rgba(116,198,157,.3);}
+.ch-result-icon.soft{background:rgba(244,162,97,.14);border-color:var(--a2);color:var(--a2);box-shadow:0 0 18px rgba(244,162,97,.3);}
+.ch-result-title{font-size:17px;color:var(--tx);font-family:'Baloo 2',sans-serif;font-weight:800;text-align:center;margin-bottom:8px;line-height:1.3;}
+.ch-result-text{font-size:13.5px;color:var(--ts);line-height:1.65;margin-bottom:16px;}
+.ch-futures{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+.ch-future-block{border-radius:13px;padding:13px 14px;position:relative;}
+.ch-future-a{background:rgba(224,122,122,.06);border:1px solid rgba(224,122,122,.25);opacity:.92;}
+.ch-future-b{background:linear-gradient(135deg,rgba(240,192,64,.12),rgba(116,198,157,.06));border:1.5px solid rgba(240,192,64,.45);box-shadow:0 0 14px rgba(240,192,64,.12);}
+.ch-future-block-lbl{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:6px;}
+.ch-future-a .ch-future-block-lbl{color:var(--red);opacity:.85;}
+.ch-future-b .ch-future-block-lbl{color:var(--gold);}
+.ch-future-block-num{font-size:20px;font-family:'Baloo 2',sans-serif;font-weight:800;line-height:1.1;margin-bottom:6px;}
+.ch-future-a .ch-future-block-num{color:rgba(224,122,122,.85);}
+.ch-future-b .ch-future-block-num{color:var(--gold);text-shadow:0 0 10px rgba(240,192,64,.35);}
+.ch-future-block-text{font-size:12.5px;line-height:1.6;}
+.ch-future-a .ch-future-block-text{color:var(--ts);opacity:.85;}
+.ch-future-b .ch-future-block-text{color:var(--ts);}
+.ch-takeaway{background:rgba(116,198,157,.06);border-left:3px solid var(--g4);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--ts);line-height:1.6;}
+
+.ch-locked{text-align:center;padding:30px 16px;background:linear-gradient(160deg,#0F2618,#152C1F);border:1px solid rgba(116,198,157,.22);border-radius:18px;}
+.ch-locked-ico{font-size:48px;margin-bottom:14px;}
+.ch-locked-title{font-size:18px;color:var(--tx);font-family:'Baloo 2',sans-serif;font-weight:800;margin-bottom:8px;}
+.ch-locked-text{font-size:13.5px;color:var(--ts);line-height:1.65;margin-bottom:14px;}
+.ch-locked-countdown{font-size:14px;color:var(--gold);font-family:'Baloo 2',sans-serif;font-weight:700;background:rgba(240,192,64,.08);border:1px solid rgba(240,192,64,.3);border-radius:10px;padding:10px 14px;display:inline-block;}
+.ch-cert{background:linear-gradient(135deg,rgba(240,192,64,.12),rgba(244,162,97,.06));border:1.5px solid rgba(240,192,64,.4);border-radius:14px;padding:16px;margin-top:10px;}
+.ch-cert-lbl{font-size:10.5px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:5px;font-weight:700;}
+.ch-cert-name{font-size:22px;color:var(--gold);font-family:'Baloo 2',sans-serif;font-weight:800;text-shadow:0 0 10px rgba(240,192,64,.4);}
+
+
 /* ── DREAM REDESIGNED ──────────────────────────────────── */
 .dr-question{font-size:20px;color:var(--tx);font-family:'Baloo 2',sans-serif;font-weight:800;line-height:1.3;margin-bottom:6px;}
 .dr-sub{font-size:13px;color:var(--tm);margin-bottom:18px;line-height:1.5;}
@@ -935,6 +1015,19 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       </div>
     </div>
 
+    <!-- Daily Challenge Card -->
+    <div class="chal-card" id="chalCard" onclick="openChallenge()">
+      <div class="chal-card-l">
+        <div class="chal-ico-wrap"><span class="chal-ico">🎯</span></div>
+        <div class="chal-mid">
+          <div class="chal-lbl" id="chalCardLbl">AAJ KA CHALLENGE</div>
+          <div class="chal-title f8" id="chalCardTitle">Day 1 / 7</div>
+          <div class="chal-sub" id="chalCardSub">60 second mein ek paisa-faisla seekho</div>
+        </div>
+      </div>
+      <div class="chal-arrow">›</div>
+    </div>
+
     <!-- Salary distribution: stacked bar + chips -->
     <div class="pie-card" onclick="showPg('split')">
       <div class="pie-title-row">
@@ -1042,6 +1135,86 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       </div>
       <button class="btn" onclick="saveGhar()" id="ghSaveBtn">✓ Save Karein</button>
       <button class="btn btn-out" onclick="clearGhar()" id="ghClearBtn" style="margin-top:8px">Hatayein</button>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- DAILY CHALLENGE -->
+  <div id="pgChallenge" class="hidden">
+    <div class="shdr"><div class="back-btn" onclick="showPg('home')">←</div><div class="pg-title f8" id="chT">Aaj Ka Challenge</div></div>
+    <div class="pad">
+
+      <!-- Progress strip -->
+      <div class="ch-progress">
+        <div class="ch-prog-dots" id="chProgDots"></div>
+        <div class="ch-prog-meta" id="chProgMeta"></div>
+      </div>
+
+      <!-- STAGE 1: Scenario + Question -->
+      <div id="chStageQ">
+        <div class="ch-card">
+          <div class="ch-svg-wrap" id="chSvgWrap"></div>
+          <div class="ch-day-lbl" id="chDayLbl">DAY 1 — AWARENESS</div>
+          <div class="ch-scenario-title f8" id="chScTitle">—</div>
+          <div class="ch-scenario" id="chScenario">—</div>
+          <div class="ch-q-lbl" id="chQLbl">SAWAAL</div>
+          <div class="ch-question" id="chQuestion">—</div>
+          <div class="ch-options" id="chOptions"></div>
+        </div>
+      </div>
+
+      <!-- STAGE 2: Result -->
+      <div id="chStageR" class="hidden">
+        <div class="ch-result-card" id="chResultCard">
+          <div class="ch-result-icon" id="chResIco">✓</div>
+          <div class="ch-result-title f8" id="chResTitle">—</div>
+          <div class="ch-result-text" id="chResText">—</div>
+
+          <div class="ch-futures">
+            <div class="ch-future-block ch-future-a">
+              <div class="ch-future-block-lbl" id="chFutALbl">AGAR YEH AADAT CHALTI RAHI…</div>
+              <div class="ch-future-block-num f8" id="chFutANum">—</div>
+              <div class="ch-future-block-text" id="chFutAText">—</div>
+            </div>
+            <div class="ch-future-block ch-future-b">
+              <div class="ch-future-block-lbl" id="chFutBLbl">AGAR AAJ SE CONTROL KAREIN…</div>
+              <div class="ch-future-block-num f8" id="chFutBNum">—</div>
+              <div class="ch-future-block-text" id="chFutBText">—</div>
+            </div>
+          </div>
+
+          <div class="ch-takeaway" id="chTakeaway">—</div>
+
+          <button class="btn" onclick="finishChallenge()" id="chDoneBtn" style="width:100%;margin-top:14px">Done — Kal Phir Aayenge ✓</button>
+        </div>
+      </div>
+
+      <!-- STAGE 3: Locked / Already Done Today -->
+      <div id="chStageLocked" class="hidden">
+        <div class="ch-locked">
+          <div class="ch-locked-ico">🕐</div>
+          <div class="ch-locked-title f8" id="chLockTitle">Aaj ka challenge ho gaya</div>
+          <div class="ch-locked-text" id="chLockText">Kal phir milte hain. Roz ek paisa-faisla seekho.</div>
+          <div class="ch-locked-countdown" id="chLockCd">—</div>
+          <button class="btn btn-out" onclick="showPg('home')" id="chLockBackBtn" style="width:100%;margin-top:14px;font-size:14px;padding:12px">Wapas Home</button>
+        </div>
+      </div>
+
+      <!-- STAGE 4: Track Complete (after day 7) -->
+      <div id="chStageDone" class="hidden">
+        <div class="ch-locked">
+          <div class="ch-locked-ico">🏆</div>
+          <div class="ch-locked-title f8" id="chDoneTitle">Foundation Track Poora!</div>
+          <div class="ch-locked-text" id="chDoneText">7 din mein 7 paisa-faisle seekhe. Ab aap Money Aware ho gaye.</div>
+          <div class="ch-cert" id="chCert">
+            <div class="ch-cert-lbl" id="chCertLbl">AAPKA LEVEL</div>
+            <div class="ch-cert-name f8" id="chCertName">Money Aware</div>
+          </div>
+          <div class="ch-locked-text" id="chDoneText2" style="margin-top:12px">Agle hafte: Control Track — kharcha kaise control karein.</div>
+          <button class="btn btn-out" onclick="showPg('home')" id="chDoneBackBtn" style="width:100%;margin-top:14px;font-size:14px;padding:12px">Wapas Home</button>
+        </div>
+      </div>
+
     </div>
     <div class="nav-spacer"></div>
   </div>
@@ -1247,7 +1420,7 @@ var L='pk',C='SA',sal=1800,yrs=3,curSav=0,lowMode=false,uName='';
 var trData={months:{},chal:[]};
 var openFlowId=null,settOpen=null;
 var customSplit={home:55,own:20,ef:5,sav:15,sadqa:2}; // user adjustable
-var SK={lang:'sb_l',ctry:'sb_c',sal:'sb_s',yrs:'sb_y',sav:'sb_sv',started:'sb_st',tr:'sb_tr',chal:'sb_ch',gh:'sb_gh',logs:'sb_lg',low:'sb_lw',split:'sb_sp',ef:'sb_ef',salday:'sb_sd',dream:'sb_dr',name:'sb_nm',salrec:'sb_sr',iqama:'sb_iq',ghar:'sb_gj'};
+var SK={lang:'sb_l',ctry:'sb_c',sal:'sb_s',yrs:'sb_y',sav:'sb_sv',started:'sb_st',tr:'sb_tr',chal:'sb_ch',gh:'sb_gh',logs:'sb_lg',low:'sb_lw',split:'sb_sp',ef:'sb_ef',salday:'sb_sd',dream:'sb_dr',name:'sb_nm',salrec:'sb_sr',iqama:'sb_iq',ghar:'sb_gj',chDay:'sb_cd',chDone:'sb_cdn',chLast:'sb_clt'};
 
 function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 function ld(k,d){try{var v=localStorage.getItem(k);return v!==null?JSON.parse(v):d;}catch(e){return d;}}
@@ -1345,6 +1518,149 @@ pk:{
   tfAftSal:'Aapki salary',tfAftKh:'Plan ke saath',tfAftBch:'Confirm bachat',
   tfQuote:'"Khali haath wapas mat jaiye — aaj se shuru karein."',
   tfStartBtn:'Mera Plan Dekho →',
+  // ── Challenge UI ──
+  chT:'🎯 Aaj Ka Challenge',
+  chCardLbl:'AAJ KA CHALLENGE',
+  chCardSub:'60 second mein ek paisa-faisla seekho',
+  chDoneCardSub:'Aaj ka ho gaya — kal phir milte hain',
+  chLockedTitle:'Aaj ka challenge ho gaya',
+  chLockedText:'Kal phir milte hain. Roz ek paisa-faisla seekho.',
+  chLockCdPrefix:'Agla challenge: ',
+  chTrackDoneTitle:'Foundation Track Poora! 🏆',
+  chTrackDoneText:'7 din mein 7 paisa-faisle seekhe. Ab aap Money Aware ho gaye.',
+  chTrackDoneText2:'Agle hafte: Control Track — kharcha control kaise karein. (Jaldi aa raha hai)',
+  chPathALbl:'AGAR YEH AADAT CHALTI RAHI',
+  chPathBLbl:'AGAR AAJ SE CONTROL KAREIN',
+  chCertLbl:'AAPKA LEVEL',
+  chCertName:'Money Aware',
+  chProgMetaPrefix:'Streak: ',
+  chProgMetaSuffix:' din',
+  chDayLbls:['Day 1 — Awareness','Day 2 — Awareness','Day 3 — Awareness','Day 4 — Awareness','Day 5 — Awareness','Day 6 — Awareness','Day 7 — Awareness'],
+  chQLbl:'SAWAAL',
+  chFutureLbl:'5 SAAL BAAD…',
+  chCorrect:'Sahi faisla ✓',
+  chSoft:'Sochne wali baat',
+  chDoneBtn:'Done — Kal Phir Aayenge ✓',
+  chFinalBtn:'Foundation Track Poora! 🏆',
+  // ── Challenges (7) ──
+  challenges:[
+    { // DAY 1 — Tea/snack leak
+      svg:'tea',
+      title:'Rahman ki Choti Aadat',
+      scenario:'Rahman 4 saal se Riyadh mein hai. Roz subah workshop jate waqt chai ({V1}) aur biscuit ({V2}). Bus stand par sab dost yehi karte hain — "thodi der baith ke baat kar lo, dil halka ho jata hai." Mahine ke end mein jab ammi WhatsApp pe poochhti hain "beta thoda paisa zyada bhej dena, gas ka bill aa gaya hai" — Rahman sochta hai "agle mahine se bachat shuru karunga." Yeh sochte hue 4 saal nikal gaye.',
+      vals:{ V1:{SA:4,AE:4,QA:4,KW:0.4,BH:0.4,OM:0.4}, V2:{SA:5,AE:5,QA:5,KW:0.5,BH:0.5,OM:0.5} },
+      question:'Saal mein yeh chai-biscuit ka kharcha kitna ban jata hai?',
+      opts:['~{A}','~{B}','~{C}'],
+      optVals:{ A:{SA:1500,AE:1500,QA:1500,KW:150,BH:150,OM:150}, B:{SA:2000,AE:2000,QA:2000,KW:200,BH:200,OM:200}, C:{SA:3285,AE:3285,QA:3285,KW:328,BH:328,OM:328} },
+      correctIdx:2,
+      explain:'Sahi — {C} har saal. Bus stand pe baith ke chai peena bura nahi, lekin hisaab rakhna zaroori hai.',
+      futureBaseSAR:3285,
+      futureAHinglish:'5 saal mein {FV} chai mein chala jayega. Ammi har kuch din baad phone pe poochhti rahegi — kabhi gas, kabhi dawai. Rahman har baar "agle mahine" kahega. Wahi tension, wahi sharminda jawab.',
+      futureBHinglish:'Wahi {FV} 5 saal mein bachao to — ghar par ek chhote plot ka 30% advance ho jata hai. Ammi ko phone pe kehne ka maza alag hota hai ke "ammi, paisa rakh diya hai, fikar mat karein."',
+      futureABangla:'৫ বছরে {FV} চায়ে চলে যাবে। মা প্রায়ই ফোনে জিজ্ঞেস করবেন — কখনো গ্যাস, কখনো ওষুধ। রাকিব প্রতিবার "আগামী মাস" বলবে। একই টেনশন, একই লজ্জার উত্তর।',
+      futureBBangla:'একই {FV} ৫ বছরে বাঁচালে — দেশে ছোট জমির ৩০% অগ্রিম হয়ে যায়। মাকে ফোনে বলার সুখ আলাদা — "আম্মা, টাকা রেখেছি, চিন্তা করবেন না।"',
+      takeaway:'Sabaq: Chai chhodne ki baat nahi — hisaab rakhne ki baat hai. Aapki har choti aadat aapke ammi-abbu ke aaraam ka faisla hai.'
+    },
+    { // DAY 2 — Mobile upgrade
+      svg:'phone',
+      title:'Karim ka Naya Phone',
+      scenario:'Karim 6 saal se UAE mein construction site par hai. Har 18 mahine mein naya phone leta hai — naya model ({V1}). "Site pe baaki ladke nayi nayi cheez dikhate hain — main bhi kya purana phone chalata rahoon?" Lekin gaaon mein chhota bhai college start karna chahta hai, fees nahi hai. Karim ne abhi tak ek baar bhi help nahi ki — "main bhejunga, par abhi nahi" — yehi sochte sochte phone nikal gaye.',
+      vals:{ V1:{SA:2500,AE:2500,QA:2500,KW:250,BH:250,OM:250} },
+      question:'5 saal mein 3 phone upgrade par kitna gaya?',
+      opts:['{A} — kuchh nahi','{B} — chhoti raqam','{C} — kafi paisa'],
+      optVals:{ A:{SA:5000,AE:5000,QA:5000,KW:500,BH:500,OM:500}, B:{SA:6000,AE:6000,QA:6000,KW:600,BH:600,OM:600}, C:{SA:7500,AE:7500,QA:7500,KW:750,BH:750,OM:750} },
+      correctIdx:2,
+      explain:'Sahi — {C}. Phone toh wahi calls aur WhatsApp karta hai. Naya hone se zindagi nahi badalti.',
+      futureBaseSAR:11000,
+      futureAHinglish:'5 saal aur is aadat pe — wahi {C} har baar phone par. Chhota bhai college bhi nahi kar payega. Karim ko har Eid par ghar jaate waqt sharminda lagega — naya phone haath mein, par bhai ki padhai adhuri.',
+      futureBHinglish:'Wahi {V1} har 18 mahine gold ya bachat mein dalo — 5 saal baad {FV}. Chhote bhai ki 2 saal ki college fees aaram se nikal aati. Karim ke saamne bhai khada ho ke kahega "bhai, aap nahi hote toh main yahan nahi pahunchta."',
+      futureABangla:'৫ বছর এই অভ্যাসে — প্রতিবার ফোনে {C}। ছোট ভাই কলেজে পড়তে পারবে না। প্রতি ঈদে দেশে গেলে করিম লজ্জিত হবে — হাতে নতুন ফোন, ভাইয়ের পড়া অসমাপ্ত।',
+      futureBBangla:'একই {V1} প্রতি ১৮ মাসে স্বর্ণ বা সঞ্চয়ে রাখুন — ৫ বছর পরে {FV}। ছোট ভাইয়ের ২ বছরের কলেজ ফি সহজেই বের হয়। ভাই বলবে "ভাই, আপনি না থাকলে আমি এখানে পৌঁছাতাম না।"',
+      takeaway:'Sabaq: Phone "kharcha" hai, gold/bachat "asset" hai. Aapka paisa kis tarah ki yaad chhodega — naya phone ya ghar walon ka bhala — yeh aaj ka faisla hai.'
+    },
+    { // DAY 3 — Lending money
+      svg:'lend',
+      title:'"Bhai, {V1} Udhar Dena"',
+      scenario:'Rakib factory worker hai. Har mahine koi na koi room-mate ya dost aata hai — "bhai, mahine ke end tak lauta dunga, abhi {V1} de do." Rakib mana nahi kar pata — "musibat mein hai, kaise chhodun?" Lekin sach yeh hai ke 70% paisa wapas nahi aata. Roomate "bhool gaya," dost "aglay mahine pakka." Aur khud Rakib ki bachat mahine ke end mein zero hoti hai — apni biwi ko jewellery ka wada poora nahi ho pata.',
+      vals:{ V1:{SA:200,AE:200,QA:200,KW:20,BH:20,OM:20} },
+      question:'12 mahine mein Rakib kitna paisa wapas nahi aaya?',
+      opts:['{A} — kuchh nahi, dost hi hain','{B} — thoda','{C} — kafi zyada'],
+      optVals:{ A:{SA:0,AE:0,QA:0,KW:0,BH:0,OM:0}, B:{SA:800,AE:800,QA:800,KW:80,BH:80,OM:80}, C:{SA:1680,AE:1680,QA:1680,KW:168,BH:168,OM:168} },
+      correctIdx:2,
+      explain:'Sahi — {C}. 70% × 12 baar × {V1} = {C}. Mana karna mushkil hai, par "na" bolna seekhna zaroori hai — apne ghar wale ke liye.',
+      futureBaseSAR:8400,
+      futureAHinglish:'5 saal mein {FV} dost-yaaron mein chala gaya. Biwi ko jewellery ka wada poora nahi hua, bachhe ki padhai late ho gayi. Aur jab khud Rakib ko zarurat padi, koi paisa wapas nahi de raha.',
+      futureBHinglish:'Wahi {FV} 5 saal mein apne ghar ke liye rakho — emergency fund + biwi ki jewellery. Dost-yaaron se "bhai, main bhi tang hoon" kehna seekho — sache dost samjhenge, jhoothe khud chale jayenge.',
+      futureABangla:'৫ বছরে {FV} বন্ধুদের মাঝে চলে গেল। স্ত্রীকে গহনার প্রতিশ্রুতি পূরণ হলো না, বাচ্চার পড়া দেরি হলো। আর যখন রাকিবের নিজের দরকার পড়ল — কেউ ফেরত দিচ্ছে না।',
+      futureBBangla:'একই {FV} ৫ বছরে নিজের পরিবারের জন্য রাখুন — জরুরি ফান্ড + স্ত্রীর গহনা। বন্ধুদের "ভাই, আমিও কষ্টে আছি" বলা শিখুন — সত্যি বন্ধু বুঝবে, নকল চলে যাবে।',
+      takeaway:'Sabaq: Madad karna achhi baat hai, lekin apna ghar bechke nahi. Pehle apni biwi-bachhe, phir madad ki gunjaish.'
+    },
+    { // DAY 4 — Salary delay
+      svg:'salary',
+      title:'Salary 15 Din Late',
+      scenario:'Hasan ke ghar ka kharcha har mahine ki 1 tareekh ko bhejna hota hai — ammi ka medicine, bachhi ki school fees. Is mahine salary 15 din late hai. Ammi ka phone aaya "beta, dawa khatm ho gayi hai." Hasan ke saamne do raaste hain — kafeel se "thoda paisa pehle de do" maango (jiska markup lagega), ya emergency fund se nikalo (agar 1 mahine ka rakha ho). Yeh choice aaj nahi, 5 saal ke liye habit ban jati hai.',
+      vals:{},
+      question:'Hasan ko kya karna chahiye?',
+      opts:['Kafeel/dukaandar se loan le lo — turant paisa mil jata hai','Apne emergency fund se nikalo','Dost se udhar mango'],
+      correctIdx:1,
+      explain:'Sahi — emergency fund. Loan ki aadat lag jati hai, aur kafeel ke saamne aapki haisiyat girti hai. Emergency fund se nikalna izzat ke saath halat sambhalna hai.',
+      futureBaseSAR:5400,
+      futureAHinglish:'5 saal mein loan-route: ~{FV} sirf extra markup mein chala gaya. Aur kafeel ke saamne hamesha jhuk ke khade hone ki aadat lag gayi. Ammi ko har emergency ke baad pareshan dekhna.',
+      futureBHinglish:'1 mahine ka emergency fund + 3 mahine ki bachat — 5 saal baad aap kisi ke aage hath nahi failate. Ammi ki dawa, bachhi ki fees, sab apne dum par. Yehi asli izzat hai.',
+      futureABangla:'৫ বছরে ঋণ-পথে: ~{FV} শুধু অতিরিক্ত সুদে চলে গেল। আর কাফেলের সামনে সবসময় মাথা নিচু করা অভ্যাস হয়ে গেল। মাকে প্রতি জরুরিতে চিন্তিত দেখা।',
+      futureBBangla:'১ মাসের জরুরি ফান্ড + ৩ মাসের বাচাত — ৫ বছরে আপনি কারো সামনে হাত পাতবেন না। মায়ের ওষুধ, মেয়ের স্কুল ফি, সব নিজের জোরে। এটাই আসল সম্মান।',
+      takeaway:'Sabaq: 1 mahine ka emergency fund — sirf paisa nahi, sukoon hai. Bina iske aap kisi aur ki marzi pe jee rahe ho.'
+    },
+    { // DAY 5 — LEAK CONTROL DAY
+      svg:'leak',
+      title:'Shahidul ke 4 Leak',
+      scenario:'Shahidul technician hai. Salary {SAL}. Roz subah chai ({V1}), din mein 1 pack cigarette ({V2}), Friday biryani ({V3}), aur mahine ka SAR 150 online shopping. Khud ko kehta hai "thoda sa toh maza karna hi chahiye, dur ghar se hoon." Lekin ghar par biwi ne 2 saal se naya kapra nahi liya. "Is mahine pakka bhejunga." Yeh sab leak ek saath band karna mushkil hai — par 2 sab se badi leak band karna mumkin hai.',
+      vals:{ V1:{SA:8,AE:8,QA:8,KW:0.8,BH:0.8,OM:0.8}, V2:{SA:10,AE:10,QA:10,KW:1,BH:1,OM:1}, V3:{SA:25,AE:25,QA:25,KW:2.5,BH:2.5,OM:2.5}, V4:{SA:150,AE:150,QA:150,KW:15,BH:15,OM:15} },
+      question:'Sab se bara fark dalne ke liye kaunsi 2 leak pehle band karein?',
+      opts:['Chai aur biryani — chhoti aadat','Cigarette aur online shopping — sab se badi leak','Online shopping aur biryani','Sab band kar do ek dum'],
+      correctIdx:1,
+      explain:'Sahi — cigarette ({V2}/din = ~{C1}/saal) + online shopping ({V4}/mahine = ~{C2}/saal). Ye top 2 hai. Chai aur biryani chhoti baat hai, dost ke saath thoda khushi rehne dijiye.',
+      futureBaseSAR:12540,
+      futureAHinglish:'5 saal mein chaar leak chalti rahi to — ~{FV} kharch ke andar gaya. Biwi ki khwahishein adhuri reh gayi. Saal mein ek baar bhi acha kapra nahi le payi. Eid par bhi farak nahi pad raha.',
+      futureBHinglish:'Sirf 2 badi leak band karne se {FV} bach jata hai. Yeh 1 umrah trip + 6 mahine ka emergency fund hai. Aur biwi ko har Eid par kuch khaas, har saal ek bara hadiya — yeh sab is paise se aaram se ho jata hai.',
+      futureABangla:'৫ বছরে চারটি লিক চললে — ~{FV} অপচয়ে গেল। স্ত্রীর ইচ্ছা অপূর্ণ থাকল। বছরে একবারও ভালো কাপড় নিতে পারলেন না। ঈদেও পার্থক্য হলো না।',
+      futureBBangla:'শুধু ২টি বড় লিক বন্ধ করলে {FV} বাঁচে। ১টি ওমরা + ৬ মাসের জরুরি ফান্ড। আর স্ত্রীকে প্রতি ঈদে কিছু খাস, প্রতি বছর একটি বড় উপহার — সব এই টাকায় হয়ে যায়।',
+      takeaway:'Sabaq: Sab leak ek saath band nahi hoti. Sab se badi 2 chuno — bachat usi se shuru hoti hai. Choti khushiyan rakho, badi leak band karo.'
+    },
+    { // DAY 6 — Overtime as bonus vs salary
+      svg:'overtime',
+      title:'Overtime ka Paisa',
+      scenario:'Jamal Bahrain mein hai. Is mahine extra overtime laga — BHD 30 / SAR 300 extra mile. Ghar pe phone karke bata diya — sab khush. Biwi keh rahi hai "bachhon ko zoo le jaaiye is baar Eid pe," ammi bol rahi hain "tu kuch acha kha le, dubla ho gaya hai." Sab kuch sahi lagta hai. Lekin yehi extra paisa har baar "treat" ban gaya — toh 5 saal baad bhi Jamal wahi hoga jahan aaj hai.',
+      vals:{ V1:{SA:300,AE:300,QA:300,KW:30,BH:30,OM:30} },
+      question:'Overtime ko kya samjho?',
+      opts:['Bonus hai — family ke liye treat kar do','Aadhi bachat, aadhi treat','Saari bachat — yeh extra hai, isi pe nibhar nahi'],
+      correctIdx:2,
+      explain:'Sahi — overtime "kabhi kabhi" milta hai. Treat regular salary ke andar se karo. Overtime ka 100% bachat — yehi 5 saal baad ghar wapsi ka asli paisa banta hai.',
+      futureBaseSAR:18000,
+      futureAHinglish:'5 saal mein overtime "treat" ke naam pe ~{FV} kharch ho gaya. Har Eid par chhoti khushi mil gayi, lekin ghar wapsi ka koi badi capital nahi bana. Wahi naukri, wahi pareshani — kuch nahi badla.',
+      futureBHinglish:'Overtime ka 100% bachao — 5 saal mein {FV} alag. Yeh aapke ghar wapsi ka capital, ya ghar par ek chhota karobar shuru karne ki rakam. "Ek din wapas jaunga" sapna se haqeeqat ban jata hai.',
+      futureABangla:'৫ বছরে ওভারটাইম "ট্রিট"-এর নামে ~{FV} খরচ হলো। প্রতি ঈদে ছোট খুশি পেলেন, কিন্তু দেশে ফেরার বড় পুঁজি তৈরি হলো না। একই চাকরি, একই চিন্তা — কিছু বদলায়নি।',
+      futureBBangla:'ওভারটাইমের ১০০% বাঁচান — ৫ বছরে {FV} আলাদা। এটি দেশে ফেরার পুঁজি, বা দেশে ছোট ব্যবসা শুরু করার টাকা। "একদিন ফিরব" স্বপ্ন থেকে বাস্তব হয়ে যায়।',
+      takeaway:'Sabaq: Regular paisa = regular kharcha. Extra paisa = extra bachat. Yehi farak 5 saal baad aapko ghar mein pahuncha sakta hai ya yahin atka sakta hai.'
+    },
+    { // DAY 7 — Capstone
+      svg:'choice',
+      title:'Faisla — 2030 Mein Aap Kahan?',
+      scenario:'7 din se aap har roz ek faisla dekh rahe ho — chai, phone, udhar, salary delay, leak control, overtime. Sab kuch ek baat keh raha hai — chhote faisle, badi zindagi banate hain. Ab sab se asli sawal: aap kya karna chahte ho? Ek saath sab kuch badalne ki koshish karoge to thak ke chod doge. Ek aadat se shuru karoge to 5 saal baad pehchana nahi jaoge.',
+      vals:{},
+      question:'Aap kal subah uth ke kya karna chahte ho?',
+      opts:['Wahi purani aadat — "ek din ki baat hai, dekha jayega"','Ek leak band — sirf ek aadat aaj se','Sab kuch ek saath — full reset'],
+      correctIdx:1,
+      explain:'Sahi — sirf ek leak. Ek saath sab badalna nahi chalta, hum sab ne dekha hai. Ek aadat, 1 hafta, phir agli. Yehi raasta hai.',
+      futureBaseSAR:0,
+      futureOverride:'Aap ka 2030 — Aapke haath mein',
+      futureAHinglish:'2030 mein wahi naukri, wahi tension, wahi sharminda jawab ghar walon ko. Bachhe bade ho jayenge — aapne unke liye kya kiya, batane ko kuch nahi.',
+      futureBHinglish:'Aap ka 2030 — Apna ghar ya plot, qarz se aazadi, biwi-bachhon ke saamne sar uthake khada hone wala insaan. Bus aaj se ek aadat — kal se nayi raah.',
+      futureABangla:'২০৩০-এ একই চাকরি, একই টেনশন, পরিবারকে একই লজ্জার উত্তর। বাচ্চারা বড় হয়ে যাবে — তাদের জন্য কী করলেন, বলার কিছু নেই।',
+      futureBBangla:'আপনার ২০৩০ — নিজের ঘর বা জমি, ঋণমুক্তি, পরিবারের সামনে মাথা উঁচু করা মানুষ। শুধু আজ থেকে এক অভ্যাস — কাল থেকে নতুন পথ।',
+      takeaway:'Foundation Track poora. 7 din ki baat thi, lekin 7 sabaq aapke saath umar bhar rahenge. Aaj se ek aadat — Smart Bachat Saathi aapke saath hai.'
+    }
+  ],
   drQ:'Aapka sabse bada sapna kya hai?',drQSub:'Ek sapna chunein — uska poora roadmap dekhein.',
   drBack:'Wapas',drSizeQ:'Iska size kya hoga?',drSavQ:'Har mahine kitna bacha sakte ho?',
   drKarzLbl:'QARZ KI RAQAM',drKarzBtn:'Agla →',
@@ -1573,6 +1889,146 @@ bd:{
   tfAftSal:'আপনার বেতন',tfAftKh:'পরিকল্পনার সাথে',tfAftBch:'নিশ্চিত সঞ্চয়',
   tfQuote:'"খালি হাতে ফিরে যাবেন না — আজ থেকে শুরু করুন।"',
   tfStartBtn:'আমার প্ল্যান দেখুন →',
+  // ── Challenge UI (Bengali) ──
+  chT:'🎯 আজকের চ্যালেঞ্জ',
+  chCardLbl:'আজকের চ্যালেঞ্জ',
+  chCardSub:'৬০ সেকেন্ডে একটি টাকার সিদ্ধান্ত শিখুন',
+  chDoneCardSub:'আজকেরটা হয়ে গেছে — কাল আবার দেখা হবে',
+  chLockedTitle:'আজকের চ্যালেঞ্জ হয়ে গেছে',
+  chLockedText:'কাল আবার দেখা হবে। প্রতিদিন একটি টাকার সিদ্ধান্ত শিখুন।',
+  chLockCdPrefix:'পরের চ্যালেঞ্জ: ',
+  chTrackDoneTitle:'ফাউন্ডেশন ট্র্যাক সম্পূর্ণ! 🏆',
+  chTrackDoneText:'৭ দিনে ৭টি টাকার সিদ্ধান্ত শিখলেন। এখন আপনি Money Aware।',
+  chTrackDoneText2:'আগামী সপ্তাহ: Control Track — খরচ কীভাবে নিয়ন্ত্রণ করবেন। (শীঘ্রই আসছে)',
+  chCertLbl:'আপনার লেভেল',
+  chCertName:'Money Aware',
+  chProgMetaPrefix:'স্ট্রিক: ',
+  chProgMetaSuffix:' দিন',
+  chDayLbls:['দিন ১ — সচেতনতা','দিন ২ — সচেতনতা','দিন ৩ — সচেতনতা','দিন ৪ — সচেতনতা','দিন ৫ — সচেতনতা','দিন ৬ — সচেতনতা','দিন ৭ — সচেতনতা'],
+  chQLbl:'প্রশ্ন',
+  chFutureLbl:'৫ বছর পরে…',
+  chCorrect:'সঠিক সিদ্ধান্ত ✓',
+  chSoft:'ভাবার মতো বিষয়',
+  chDoneBtn:'হয়ে গেছে — কাল আবার ✓',
+  chFinalBtn:'ফাউন্ডেশন ট্র্যাক সম্পূর্ণ! 🏆',
+  challenges:[
+    { // DAY 1
+      svg:'tea',
+      title:'রাকিবের ছোট অভ্যাস',
+      scenario:'রাকিব ৪ বছর ধরে রিয়াদে আছে। প্রতিদিন সকালে ওয়ার্কশপে যাওয়ার পথে চা ({V1}) আর বিস্কুট ({V2})। বাস স্ট্যান্ডে সব বন্ধু এমনই করে — "একটু বসে গল্প করো, মনটা হালকা হয়।" মাস শেষে যখন মা WhatsApp-এ জিজ্ঞেস করেন "বাবা, একটু বেশি টাকা পাঠিও, গ্যাসের বিল এসেছে" — রাকিব ভাবে "পরের মাস থেকে সঞ্চয় শুরু করব।" এই ভাবতে ভাবতে ৪ বছর গেল।',
+      vals:{ V1:{SA:4,AE:4,QA:4,KW:0.4,BH:0.4,OM:0.4}, V2:{SA:5,AE:5,QA:5,KW:0.5,BH:0.5,OM:0.5} },
+      question:'বছরে এই চা-বিস্কুটের খরচ কত হয়?',
+      opts:['~{A}','~{B}','~{C}'],
+      optVals:{ A:{SA:1500,AE:1500,QA:1500,KW:150,BH:150,OM:150}, B:{SA:2000,AE:2000,QA:2000,KW:200,BH:200,OM:200}, C:{SA:3285,AE:3285,QA:3285,KW:328,BH:328,OM:328} },
+      correctIdx:2,
+      explain:'সঠিক — বছরে {C}। বাস স্ট্যান্ডে বসে চা খাওয়া খারাপ না, কিন্তু হিসাব রাখা জরুরি।',
+      futureBaseSAR:3285,
+      futureAHinglish:'5 saal mein {FV} chai mein chala jayega. Ammi har baar phone par poochhti rahegi — kabhi gas, kabhi dawa.',
+      futureBHinglish:'Wahi {FV} bachao to ghar par ek chhote plot ka 30% advance ho jata hai.',
+      futureABangla:'৫ বছরে {FV} চায়ে চলে যাবে। মা প্রায়ই ফোনে জিজ্ঞেস করবেন — কখনো গ্যাস, কখনো ওষুধ। রাকিব প্রতিবার "আগামী মাস" বলবে। একই টেনশন, একই লজ্জার উত্তর।',
+      futureBBangla:'একই {FV} ৫ বছরে বাঁচালে — দেশে ছোট জমির ৩০% অগ্রিম হয়ে যায়। মাকে ফোনে বলার সুখ আলাদা — "মা, টাকা রেখেছি, চিন্তা করবেন না।"',
+      takeaway:'শিক্ষা: চা ছাড়ার কথা না — হিসাব রাখার কথা। আপনার প্রতিটি ছোট অভ্যাস বাবা-মায়ের শান্তির সিদ্ধান্ত।'
+    },
+    { // DAY 2
+      svg:'phone',
+      title:'করিমের নতুন ফোন',
+      scenario:'করিম ৬ বছর ধরে UAE-এর কনস্ট্রাকশন সাইটে আছে। প্রতি ১৮ মাসে নতুন ফোন কেনে — নতুন মডেল ({V1})। "সাইটে অন্য ছেলেরা নতুন জিনিস দেখায় — আমিও কি পুরনো ফোন চালাব?" কিন্তু গ্রামে ছোট ভাই কলেজ শুরু করতে চায়, ফি নেই। করিম এখনো একবারও সাহায্য করেনি — "পাঠাব, কিন্তু এখন না" — এই ভাবতে ভাবতে ফোনগুলো গেল।',
+      vals:{ V1:{SA:2500,AE:2500,QA:2500,KW:250,BH:250,OM:250} },
+      question:'৫ বছরে ৩টি ফোন আপগ্রেডে কত গেল?',
+      opts:['{A} — কিছুই না','{B} — অল্প','{C} — অনেক টাকা'],
+      optVals:{ A:{SA:5000,AE:5000,QA:5000,KW:500,BH:500,OM:500}, B:{SA:6000,AE:6000,QA:6000,KW:600,BH:600,OM:600}, C:{SA:7500,AE:7500,QA:7500,KW:750,BH:750,OM:750} },
+      correctIdx:2,
+      explain:'সঠিক — {C}। ফোন তো সেই কল-হোয়াটসঅ্যাপই করে। নতুন হলে জীবন বদলায় না।',
+      futureBaseSAR:11000,
+      futureAHinglish:'5 saal aur is aadat pe — chhota bhai college bhi nahi kar payega. Karim ko sharminda lagega.',
+      futureBHinglish:'Wahi paisa bachao — 5 saal mein {FV}. Chhote bhai ki padhai poori ho jaye.',
+      futureABangla:'৫ বছর এই অভ্যাসে — প্রতিবার ফোনে {C}। ছোট ভাই কলেজে পড়তে পারবে না। প্রতি ঈদে দেশে গেলে করিম লজ্জিত হবে — হাতে নতুন ফোন, ভাইয়ের পড়া অসমাপ্ত।',
+      futureBBangla:'একই {V1} প্রতি ১৮ মাসে স্বর্ণ বা সঞ্চয়ে রাখুন — ৫ বছর পরে {FV}। ছোট ভাইয়ের ২ বছরের কলেজ ফি সহজেই বের হয়। ভাই বলবে "ভাই, আপনি না থাকলে আমি এখানে পৌঁছাতাম না।"',
+      takeaway:'শিক্ষা: ফোন "খরচ", স্বর্ণ/সঞ্চয় "সম্পদ"। আপনার টাকা কোন স্মৃতি রেখে যাবে — নতুন ফোন না পরিবারের কল্যাণ — এটা আজকের সিদ্ধান্ত।'
+    },
+    { // DAY 3
+      svg:'lend',
+      title:'"ভাই, {V1} ধার দাও"',
+      scenario:'রাকিব ফ্যাক্টরিতে কাজ করেন। প্রতি মাসে কোনো রুমমেট বা বন্ধু আসে — "ভাই, মাস শেষে ফিরিয়ে দেব, এখন {V1} দাও।" রাকিব না বলতে পারে না — "বিপদে আছে, কিভাবে ছাড়ি?" কিন্তু সত্যি কথা ৭০% টাকা ফেরত আসে না। রুমমেট "ভুলে গেছি," বন্ধু "পরের মাসে পাকা।" আর রাকিবের নিজের সঞ্চয় মাস শেষে শূন্য — স্ত্রীকে গহনার প্রতিশ্রুতি পূরণ হয় না।',
+      vals:{ V1:{SA:200,AE:200,QA:200,KW:20,BH:20,OM:20} },
+      question:'১২ মাসে রাকিবের কত টাকা ফেরত আসেনি?',
+      opts:['{A} — কিছুই না, বন্ধুই তো','{B} — অল্প','{C} — অনেক'],
+      optVals:{ A:{SA:0,AE:0,QA:0,KW:0,BH:0,OM:0}, B:{SA:800,AE:800,QA:800,KW:80,BH:80,OM:80}, C:{SA:1680,AE:1680,QA:1680,KW:168,BH:168,OM:168} },
+      correctIdx:2,
+      explain:'সঠিক — {C}। ৭০% × ১২ বার × {V1} = {C}। না বলা কঠিন, কিন্তু শেখা জরুরি — পরিবারের জন্য।',
+      futureBaseSAR:8400,
+      futureAHinglish:'5 saal mein {FV} dost-yaaron mein chala gaya. Biwi ko jewellery ka wada poora nahi hua.',
+      futureBHinglish:'Wahi paisa apne ghar ke liye rakho — emergency fund + biwi ki jewellery.',
+      futureABangla:'৫ বছরে {FV} বন্ধুদের মাঝে চলে গেল। স্ত্রীকে গহনার প্রতিশ্রুতি পূরণ হলো না, বাচ্চার পড়া দেরি হলো। আর যখন রাকিবের নিজের দরকার পড়ল — কেউ ফেরত দিচ্ছে না।',
+      futureBBangla:'একই {FV} ৫ বছরে নিজের পরিবারের জন্য রাখুন — জরুরি ফান্ড + স্ত্রীর গহনা। বন্ধুদের "ভাই, আমিও কষ্টে আছি" বলা শিখুন — সত্যি বন্ধু বুঝবে, নকল চলে যাবে।',
+      takeaway:'শিক্ষা: সাহায্য করা ভালো, কিন্তু নিজের ঘর বিক্রি করে নয়। আগে স্ত্রী-সন্তান, পরে সাহায্যের সুযোগ।'
+    },
+    { // DAY 4
+      svg:'salary',
+      title:'বেতন ১৫ দিন দেরি',
+      scenario:'হাসানের বাড়ির খরচ প্রতি মাসের ১ তারিখে পাঠাতে হয় — মায়ের ওষুধ, মেয়ের স্কুল ফি। এই মাসে বেতন ১৫ দিন দেরি। মা ফোন করলেন "বাবা, ওষুধ শেষ হয়ে গেছে।" হাসানের সামনে দুই পথ — কাফেলের কাছে "একটু আগে দাও" চাও (যাতে মার্কআপ লাগবে), নয়তো জরুরি ফান্ড থেকে নিন (যদি ১ মাসের রাখা থাকে)। এই সিদ্ধান্ত আজ না, ৫ বছরের অভ্যাস হয়ে যায়।',
+      vals:{},
+      question:'হাসানের কী করা উচিত?',
+      opts:['কাফেল/দোকানদার থেকে ঋণ — তৎক্ষণাৎ টাকা মেলে','নিজের জরুরি ফান্ড থেকে নিন','বন্ধু থেকে ধার চান'],
+      correctIdx:1,
+      explain:'সঠিক — জরুরি ফান্ড। ঋণের অভ্যাস তৈরি হয়, আর কাফেলের সামনে আপনার সম্মান কমে। ফান্ড থেকে নেওয়া সম্মানের সাথে অবস্থা সামলানো।',
+      futureBaseSAR:5400,
+      futureAHinglish:'5 saal mein loan-route: ~{FV} sirf extra markup. Kafeel ke saamne hamesha jhuk ke khada hone ki aadat.',
+      futureBHinglish:'Emergency fund — ammi ki dawa, bachhi ki fees, sab apne dum par. Yehi izzat hai.',
+      futureABangla:'৫ বছরে ঋণ-পথে: ~{FV} শুধু অতিরিক্ত সুদে চলে গেল। আর কাফেলের সামনে সবসময় মাথা নিচু করা অভ্যাস হয়ে গেল। মাকে প্রতি জরুরিতে চিন্তিত দেখা।',
+      futureBBangla:'১ মাসের জরুরি ফান্ড + ৩ মাসের বাচাত — ৫ বছরে আপনি কারো সামনে হাত পাতবেন না। মায়ের ওষুধ, মেয়ের স্কুল ফি, সব নিজের জোরে। এটাই আসল সম্মান।',
+      takeaway:'শিক্ষা: ১ মাসের জরুরি ফান্ড — শুধু টাকা না, শান্তি। এটা ছাড়া আপনি অন্যের ইচ্ছায় বাঁচছেন।'
+    },
+    { // DAY 5
+      svg:'leak',
+      title:'শহিদুলের ৪টি লিক',
+      scenario:'শহিদুল টেকনিশিয়ান। বেতন {SAL}। প্রতিদিন সকালে চা ({V1}), দিনে ১ প্যাকেট সিগারেট ({V2}), শুক্রবারে বিরিয়ানি ({V3}), আর মাসে {V4} অনলাইন শপিং। নিজেকে বলেন "একটু তো আনন্দ করতেই হবে, দূরে আছি।" কিন্তু বাড়িতে স্ত্রী ২ বছর নতুন কাপড় নেননি। "এই মাসে পাকা পাঠাব।" সব লিক একসাথে বন্ধ করা কঠিন — কিন্তু সবচেয়ে বড় ২টি বন্ধ করা সম্ভব।',
+      vals:{ V1:{SA:8,AE:8,QA:8,KW:0.8,BH:0.8,OM:0.8}, V2:{SA:10,AE:10,QA:10,KW:1,BH:1,OM:1}, V3:{SA:25,AE:25,QA:25,KW:2.5,BH:2.5,OM:2.5}, V4:{SA:150,AE:150,QA:150,KW:15,BH:15,OM:15} },
+      question:'সবচেয়ে বড় পার্থক্য আনতে কোন ২টি লিক আগে বন্ধ করবেন?',
+      opts:['চা ও বিরিয়ানি — ছোট অভ্যাস','সিগারেট ও অনলাইন শপিং — সবচেয়ে বড় লিক','অনলাইন শপিং ও বিরিয়ানি','একসাথে সব বন্ধ'],
+      correctIdx:1,
+      explain:'সঠিক — সিগারেট ({V2}/দিন = ~{C1}/বছর) + অনলাইন শপিং ({V4}/মাস = ~{C2}/বছর)। এই দুটি সবচেয়ে বড় লিক। চা-বিরিয়ানি ছোট, বন্ধুদের সাথে একটু আনন্দ থাকতে দিন।',
+      futureBaseSAR:12540,
+      futureAHinglish:'5 saal mein chaar leak chalti rahi to ~{FV} kharch mein chala gaya. Biwi ki khwahishein adhuri.',
+      futureBHinglish:'Sirf 2 badi leak band — {FV} bach jata hai. 1 umrah + 6 mahine ka emergency fund.',
+      futureABangla:'৫ বছরে চারটি লিক চললে — ~{FV} অপচয়ে গেল। স্ত্রীর ইচ্ছা অপূর্ণ থাকল। বছরে একবারও ভালো কাপড় নিতে পারলেন না। ঈদেও পার্থক্য হলো না।',
+      futureBBangla:'শুধু ২টি বড় লিক বন্ধ করলে {FV} বাঁচে। ১টি ওমরা + ৬ মাসের জরুরি ফান্ড। আর স্ত্রীকে প্রতি ঈদে কিছু খাস, প্রতি বছর একটি বড় উপহার — সব এই টাকায় হয়ে যায়।',
+      takeaway:'শিক্ষা: সব লিক একসাথে বন্ধ হয় না। সবচেয়ে বড় ২টি বেছে নিন — বাচাত সেখান থেকেই শুরু। ছোট আনন্দ রাখুন, বড় লিক বন্ধ করুন।'
+    },
+    { // DAY 6
+      svg:'overtime',
+      title:'ওভারটাইমের টাকা',
+      scenario:'জামাল বাহরাইনে আছেন। এই মাসে অতিরিক্ত ওভারটাইম পেলেন — BHD 30 / SAR 300 extra। বাড়িতে ফোন করে বললেন — সবাই খুশি। স্ত্রী বলছেন "এই ঈদে বাচ্চাদের চিড়িয়াখানায় নিয়ে যাইয়েন," মা বলছেন "তুই একটু ভালো কিছু খেয়ে নে, শুকিয়ে গেছিস।" সব ঠিক মনে হয়। কিন্তু এই অতিরিক্ত টাকা প্রতিবার "ট্রিট" হয়ে গেল — তাহলে ৫ বছর পরেও জামাল যেখানে আজ আছে সেখানেই থাকবে।',
+      vals:{ V1:{SA:300,AE:300,QA:300,KW:30,BH:30,OM:30} },
+      question:'ওভারটাইমকে কী মনে করবেন?',
+      opts:['বোনাস — পরিবারের জন্য ট্রিট','অর্ধেক বাচাত, অর্ধেক ট্রিট','সম্পূর্ণ বাচাত — এটি অতিরিক্ত, এর উপর নির্ভর নয়'],
+      correctIdx:2,
+      explain:'সঠিক — ওভারটাইম "কখনো-কখনো" আয়। ট্রিট নিয়মিত বেতন থেকে। ওভারটাইমের ১০০% বাচাত — এটাই ৫ বছর পরে দেশে ফেরার আসল পুঁজি।',
+      futureBaseSAR:18000,
+      futureAHinglish:'5 saal mein overtime "treat" mein ~{FV} kharch — wahi naukri, wahi pareshani.',
+      futureBHinglish:'Overtime ka 100% bachao — 5 saal mein {FV} alag. Ghar wapsi ka capital.',
+      futureABangla:'৫ বছরে ওভারটাইম "ট্রিট"-এর নামে ~{FV} খরচ হলো। প্রতি ঈদে ছোট খুশি পেলেন, কিন্তু দেশে ফেরার বড় পুঁজি তৈরি হলো না। একই চাকরি, একই চিন্তা — কিছু বদলায়নি।',
+      futureBBangla:'ওভারটাইমের ১০০% বাঁচান — ৫ বছরে {FV} আলাদা। এটি দেশে ফেরার পুঁজি, বা দেশে ছোট ব্যবসা শুরু করার টাকা। "একদিন ফিরব" স্বপ্ন থেকে বাস্তব হয়ে যায়।',
+      takeaway:'শিক্ষা: নিয়মিত টাকা = নিয়মিত খরচ। অতিরিক্ত টাকা = অতিরিক্ত বাচাত। এই পার্থক্যই আপনাকে দেশে ফেরাতে পারে বা এখানে আটকে রাখতে পারে।'
+    },
+    { // DAY 7
+      svg:'choice',
+      title:'সিদ্ধান্ত — ২০৩০-এ আপনি কোথায়?',
+      scenario:'৭ দিন ধরে আপনি প্রতিদিন একটি সিদ্ধান্ত দেখছেন — চা, ফোন, ধার, বেতন দেরি, লিক নিয়ন্ত্রণ, ওভারটাইম। সব কিছু একই কথা বলছে — ছোট সিদ্ধান্তই বড় জীবন গড়ে। এখন সবচেয়ে আসল প্রশ্ন: আপনি কী করতে চান? একসাথে সব বদলানোর চেষ্টা করলে ক্লান্ত হয়ে ছেড়ে দেবেন। একটি অভ্যাস থেকে শুরু করলে ৫ বছর পরে আপনাকে চেনা যাবে না।',
+      vals:{},
+      question:'কাল সকালে উঠে কী করতে চান?',
+      opts:['পুরনো অভ্যাস — "একদিনের ব্যাপার, দেখা যাবে"','একটি লিক বন্ধ — শুধু একটি অভ্যাস আজ থেকে','একসাথে সব — সম্পূর্ণ রিসেট'],
+      correctIdx:1,
+      explain:'সঠিক — শুধু একটি লিক। একসাথে সব বদলানো চলে না, আমরা সবাই দেখেছি। এক অভ্যাস, ১ সপ্তাহ, তারপর পরের। এটাই পথ।',
+      futureBaseSAR:0,
+      futureOverride:'আপনার ২০৩০ — আপনার হাতে',
+      futureAHinglish:'2030 mein wahi naukri, wahi tension. Bachhe bade ho jayenge, kuchh batane ko nahi.',
+      futureBHinglish:'Apna ghar, qarz se aazadi, ghar walon ke saamne sar uthake khada insaan.',
+      futureABangla:'২০৩০-এ একই চাকরি, একই টেনশন, পরিবারকে একই লজ্জার উত্তর। বাচ্চারা বড় হয়ে যাবে — তাদের জন্য কী করলেন, বলার কিছু নেই।',
+      futureBBangla:'আপনার ২০৩০ — নিজের ঘর বা জমি, ঋণমুক্তি, পরিবারের সামনে মাথা উঁচু করা মানুষ। শুধু আজ থেকে এক অভ্যাস — কাল থেকে নতুন পথ।',
+      takeaway:'ফাউন্ডেশন ট্র্যাক সম্পূর্ণ। ৭ দিনের কথা ছিল, কিন্তু ৭টি শিক্ষা আজীবন সাথে থাকবে। আজ থেকে এক অভ্যাস — Smart Bachat Saathi আপনার সাথে আছে।'
+    }
+  ],
   drQ:'আপনার সবচেয়ে বড় স্বপ্ন কী?',drQSub:'একটি স্বপ্ন বেছে নিন — পুরো পরিকল্পনা দেখুন।',
   drBack:'ফিরে',drSizeQ:'এর আকার কী হবে?',drSavQ:'প্রতি মাসে কত বাঁচাতে পারবেন?',
   drKarzLbl:'ঋণের পরিমাণ',drKarzBtn:'পরের →',
@@ -1819,13 +2275,14 @@ function getFlows(){
 }
 
 // ── NAVIGATION ───────────────────────────────────────────────
-var PAGES=['home','aurMadad','split','tracker','help','dream','shield','eosd','checklist','settings','salaryLog','iqamaSet','gharSet'];
+var PAGES=['home','aurMadad','split','tracker','help','dream','shield','eosd','checklist','settings','salaryLog','iqamaSet','gharSet','challenge'];
 function showPg(pg){
   PAGES.forEach(function(p){var e=G('pg'+p[0].toUpperCase()+p.slice(1));if(e)e.classList.toggle('hidden',p!==pg);});
   if(pg==='salaryLog')buildSalaryLog();
   else if(pg==='iqamaSet')buildIqamaSet();
   else if(pg==='gharSet')buildGharSet();
-  else if(pg==='home'){renderDonut();renderIqamaCard();renderGharCard();renderSalaryReceiptCard();}
+  else if(pg==='challenge')buildChallenge();
+  else if(pg==='home'){renderDonut();renderIqamaCard();renderGharCard();renderSalaryReceiptCard();renderChalCard();}
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1967,7 +2424,7 @@ function buildApp(){
     });
   });
   updateStats();
-  renderDonut();renderIqamaCard();renderGharCard();renderSalaryReceiptCard();
+  renderDonut();renderIqamaCard();renderGharCard();renderSalaryReceiptCard();renderChalCard();
   buildSplit();buildTracker();buildHelp();buildDream();buildShield();buildEosd();buildChecklist();buildSettings();updateBnLabels();
 }
 
@@ -3003,6 +3460,217 @@ function renderSalaryHistory(){
     row.querySelector('.slh-del').onclick=(function(idx){return function(e){e.stopPropagation();delSalaryLog(idx);};})(i);
     box.appendChild(row);
   });
+}
+
+// ── DAILY CHALLENGE ──────────────────────────────────────────
+var CHAL_TOTAL=7;
+function chalSvg(name){
+  var g4='#74C69D',gold='#F0C040',a2='#F4A261',cream='#F5F1E6',blue='#9ECCF5',red='#E07A7A';
+  var svgs={
+    tea:'<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="55" fill="rgba(116,198,157,.08)"/><path d="M35 70 L35 50 L75 50 L75 70 Q75 90 55 90 Q35 90 35 70 Z" fill="'+gold+'" opacity=".9"/><path d="M75 55 Q90 55 90 65 Q90 75 75 75" fill="none" stroke="'+gold+'" stroke-width="3"/><path d="M45 35 Q45 25 50 30 M55 35 Q55 25 60 30 M65 35 Q65 25 70 30" stroke="'+cream+'" stroke-width="2" fill="none" opacity=".7"/><circle cx="55" cy="62" r="3" fill="'+a2+'"/></svg>',
+    phone:'<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="55" fill="rgba(110,168,232,.08)"/><rect x="40" y="20" width="40" height="75" rx="6" fill="'+blue+'" opacity=".95"/><rect x="44" y="28" width="32" height="50" fill="#0F1A12"/><circle cx="60" cy="87" r="3" fill="#0F1A12"/><text x="60" y="58" fill="'+gold+'" font-family="sans-serif" font-size="14" font-weight="800" text-anchor="middle">$</text><path d="M85 30 L100 30 M85 35 L95 35" stroke="'+a2+'" stroke-width="2" stroke-linecap="round"/></svg>',
+    lend:'<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="55" fill="rgba(244,162,97,.08)"/><circle cx="40" cy="50" r="14" fill="'+g4+'"/><circle cx="80" cy="50" r="14" fill="'+a2+'"/><rect x="48" y="65" width="24" height="12" rx="2" fill="'+gold+'"/><path d="M55 70 L65 70" stroke="#0F1A12" stroke-width="1.5"/><path d="M44 68 Q60 80 76 68" fill="none" stroke="'+cream+'" stroke-width="2" stroke-dasharray="3 3"/></svg>',
+    salary:'<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="55" fill="rgba(240,192,64,.08)"/><rect x="30" y="40" width="60" height="45" rx="4" fill="'+gold+'" opacity=".95"/><path d="M30 40 L60 65 L90 40" fill="none" stroke="#0F1A12" stroke-width="2"/><circle cx="60" cy="70" r="9" fill="#0F1A12"/><text x="60" y="74" fill="'+gold+'" font-family="sans-serif" font-size="11" font-weight="800" text-anchor="middle">$</text><circle cx="92" cy="32" r="9" fill="'+red+'"/><text x="92" y="36" fill="'+cream+'" font-family="sans-serif" font-size="11" font-weight="800" text-anchor="middle">!</text></svg>',
+    leak:'<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="55" fill="rgba(224,122,122,.08)"/><path d="M30 35 L30 70 Q30 80 40 80 L80 80 Q90 80 90 70 L90 35 Z" fill="'+blue+'" opacity=".85"/><path d="M40 50 Q40 70 50 70 M55 55 Q55 70 65 70 M70 50 Q70 70 80 70" stroke="'+cream+'" stroke-width="2" fill="none" opacity=".6"/><circle cx="40" cy="92" r="4" fill="'+red+'"/><circle cx="60" cy="95" r="3" fill="'+red+'" opacity=".7"/><circle cx="78" cy="93" r="4" fill="'+red+'"/></svg>',
+    overtime:'<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="55" fill="rgba(116,198,157,.08)"/><circle cx="60" cy="60" r="32" fill="none" stroke="'+g4+'" stroke-width="3"/><path d="M60 38 L60 60 L75 70" stroke="'+gold+'" stroke-width="3" stroke-linecap="round" fill="none"/><text x="60" y="98" fill="'+gold+'" font-family="sans-serif" font-size="11" font-weight="800" text-anchor="middle">+SAR</text></svg>',
+    choice:'<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="55" fill="rgba(240,192,64,.08)"/><circle cx="60" cy="40" r="12" fill="'+gold+'"/><path d="M60 52 L60 70" stroke="'+cream+'" stroke-width="2.5"/><path d="M60 70 L35 95" stroke="'+a2+'" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 3"/><path d="M60 70 L85 95" stroke="'+g4+'" stroke-width="3" stroke-linecap="round"/><circle cx="35" cy="95" r="5" fill="'+a2+'" opacity=".6"/><circle cx="85" cy="95" r="6" fill="'+g4+'"/></svg>'
+  };
+  return svgs[name]||svgs.tea;
+}
+function chalState(){
+  var done=ld(SK.chDone,0);
+  var last=ld(SK.chLast,0);
+  var today=new Date();today.setHours(0,0,0,0);
+  var todayMs=today.getTime();
+  var canPlay=last<todayMs && done<CHAL_TOTAL;
+  var hoursToNext=last>=todayMs?Math.max(0,24-Math.floor((Date.now()-last)/(1000*60*60))):0;
+  return {done:done,last:last,today:todayMs,canPlay:canPlay,trackDone:done>=CHAL_TOTAL,hoursToNext:hoursToNext};
+}
+function renderChalCard(){
+  var p=pk(),st=s();
+  var c=chalState();
+  var card=G('chalCard');if(!card)return;
+  card.classList.remove('locked','done');
+  G('chalCardLbl').textContent=st.chCardLbl;
+  if(c.trackDone){
+    card.classList.add('done');
+    G('chalCardTitle').textContent=p?'🏆 Foundation Track Poora':'🏆 ফাউন্ডেশন সম্পূর্ণ';
+    G('chalCardSub').textContent=p?'Aapne 7/7 challenge khatm kiye':'৭/৭ চ্যালেঞ্জ সম্পূর্ণ';
+  } else if(c.canPlay){
+    G('chalCardTitle').textContent=(p?'Day ':'দিন ')+(c.done+1)+' / 7';
+    G('chalCardSub').textContent=st.chCardSub;
+  } else {
+    card.classList.add('locked');
+    G('chalCardTitle').textContent=p?'Aaj ka ho gaya ✓':'আজকেরটা হয়ে গেছে ✓';
+    G('chalCardSub').textContent=st.chDoneCardSub;
+  }
+}
+function openChallenge(){showPg('challenge');buildChallenge();}
+function buildChallenge(){
+  var p=pk(),st=s();
+  G('chT').textContent=st.chT;
+  var c=chalState();
+  // Progress dots
+  var dots=G('chProgDots');dots.innerHTML='';
+  for(var i=0;i<CHAL_TOTAL;i++){
+    var d=document.createElement('div');d.className='ch-prog-dot';
+    if(i<c.done)d.classList.add('done');
+    else if(i===c.done && c.canPlay)d.classList.add('current');
+    dots.appendChild(d);
+  }
+  G('chProgMeta').innerHTML='<b>'+c.done+'/'+CHAL_TOTAL+'</b> '+st.chProgMetaPrefix.replace(/^Streak: /,'')+' · '+(p?'Day':'দিন')+' '+Math.min(c.done+1,CHAL_TOTAL);
+  // Decide stage
+  ['chStageQ','chStageR','chStageLocked','chStageDone'].forEach(function(id){G(id).classList.add('hidden');});
+  if(c.trackDone){
+    showTrackDone();
+  } else if(!c.canPlay){
+    showLocked();
+  } else {
+    showQuestion(c.done);
+  }
+}
+function showLocked(){
+  var p=pk(),st=s();
+  G('chStageLocked').classList.remove('hidden');
+  G('chLockTitle').textContent=st.chLockedTitle;
+  G('chLockText').textContent=st.chLockedText;
+  // Countdown to tomorrow midnight
+  var now=new Date();
+  var tom=new Date(now);tom.setDate(tom.getDate()+1);tom.setHours(0,0,0,0);
+  var ms=tom-now;
+  var hrs=Math.floor(ms/(1000*60*60));
+  var mins=Math.floor((ms%(1000*60*60))/(1000*60));
+  G('chLockCd').textContent=st.chLockCdPrefix+hrs+(p?'h ':' ঘ ')+mins+(p?'m':' মি');
+}
+function showTrackDone(){
+  var p=pk(),st=s();
+  G('chStageDone').classList.remove('hidden');
+  G('chDoneTitle').textContent=st.chTrackDoneTitle;
+  G('chDoneText').textContent=st.chTrackDoneText;
+  G('chDoneText2').textContent=st.chTrackDoneText2;
+  G('chCertLbl').textContent=st.chCertLbl;
+  G('chCertName').textContent=st.chCertName;
+}
+function chalVal(map){
+  if(!map)return 0;
+  return map[C]!==undefined?map[C]:(map.SA||0);
+}
+function chalFmt(amt){
+  return cur()+' '+Math.round(amt).toLocaleString();
+}
+function chalFutureFmt(baseSAR){
+  // baseSAR is the canonical 5-year future amount in SAR for Saudi.
+  // For other Gulf countries, scale proportionally to their currency.
+  var scaleByCtry={SA:1,AE:1,QA:1,KW:0.1,BH:0.1,OM:0.1};
+  var localAmt=baseSAR*(scaleByCtry[C]||1);
+  // Now convert to user's home currency (PKR or BDT)
+  return lp()+' '+Math.round(localAmt*rate()).toLocaleString();
+}
+function chalInterpolate(tpl,ch){
+  if(!tpl)return '';
+  var out=tpl;
+  // Substitute SAL placeholder
+  out=out.replace(/\{SAL\}/g,cur()+' '+sal.toLocaleString());
+  // Substitute V1, V2, ... from challenge.vals
+  if(ch.vals){
+    Object.keys(ch.vals).forEach(function(k){
+      var v=chalVal(ch.vals[k]);
+      out=out.replace(new RegExp('\\{'+k+'\\}','g'),chalFmt(v));
+    });
+  }
+  // Substitute A, B, C from optVals
+  if(ch.optVals){
+    Object.keys(ch.optVals).forEach(function(k){
+      var v=chalVal(ch.optVals[k]);
+      out=out.replace(new RegExp('\\{'+k+'\\}','g'),chalFmt(v));
+    });
+  }
+  // Substitute FV (future value)
+  out=out.replace(/\{FV\}/g,chalFutureFmt(ch.futureBaseSAR||0));
+  // Substitute C1, C2 (yearly leak amounts for day 5)
+  if(ch.vals && ch.vals.V2 && ch.vals.V4){
+    var c1=chalVal(ch.vals.V2)*365;
+    var c2=chalVal(ch.vals.V4)*12;
+    out=out.replace(/\{C1\}/g,chalFmt(c1));
+    out=out.replace(/\{C2\}/g,chalFmt(c2));
+  }
+  return out;
+}
+function showQuestion(dayIdx){
+  var st=s();
+  G('chStageQ').classList.remove('hidden');
+  var ch=st.challenges[dayIdx];if(!ch)return;
+  G('chSvgWrap').innerHTML=chalSvg(ch.svg);
+  G('chDayLbl').textContent=st.chDayLbls[dayIdx];
+  G('chScTitle').textContent=ch.title;
+  G('chScenario').textContent=chalInterpolate(ch.scenario,ch);
+  G('chQLbl').textContent=st.chQLbl;
+  G('chQuestion').textContent=chalInterpolate(ch.question,ch);
+  var optsBox=G('chOptions');optsBox.innerHTML='';
+  ch.opts.forEach(function(optTpl,idx){
+    var btn=document.createElement('button');
+    btn.className='ch-opt';
+    btn.textContent=chalInterpolate(optTpl,ch);
+    btn.onclick=(function(i){return function(){onChalAnswer(dayIdx,i);};})(idx);
+    optsBox.appendChild(btn);
+  });
+}
+function onChalAnswer(dayIdx,chosenIdx){
+  var st=s(),p=pk();
+  var ch=st.challenges[dayIdx];if(!ch)return;
+  // Highlight options
+  var opts=document.querySelectorAll('#chOptions .ch-opt');
+  opts.forEach(function(b,i){
+    b.classList.add('disabled');
+    b.onclick=null;
+    if(i===ch.correctIdx)b.classList.add('correct');
+    else if(i===chosenIdx)b.classList.add('wrong');
+  });
+  // Show result after a beat
+  setTimeout(function(){showResult(dayIdx,chosenIdx===ch.correctIdx);},650);
+}
+function showResult(dayIdx,wasCorrect){
+  var st=s(),p=pk();
+  var ch=st.challenges[dayIdx];if(!ch)return;
+  G('chStageQ').classList.add('hidden');
+  G('chStageR').classList.remove('hidden');
+  var ico=G('chResIco');
+  if(wasCorrect){
+    ico.classList.remove('soft');
+    ico.textContent='✓';
+    G('chResTitle').textContent=st.chCorrect;
+  } else {
+    ico.classList.add('soft');
+    ico.textContent='💡';
+    G('chResTitle').textContent=st.chSoft;
+  }
+  G('chResText').textContent=chalInterpolate(ch.explain,ch);
+  // Two future paths
+  G('chFutALbl').textContent=st.chPathALbl;
+  G('chFutBLbl').textContent=st.chPathBLbl;
+  var pathAText=p?(ch.futureAHinglish||''):(ch.futureABangla||'');
+  var pathBText=p?(ch.futureBHinglish||''):(ch.futureBBangla||'');
+  G('chFutAText').textContent=chalInterpolate(pathAText,ch);
+  G('chFutBText').textContent=chalInterpolate(pathBText,ch);
+  // Numbers in each path block — derive small versions of FV
+  var fvHome=chalFutureFmt(ch.futureBaseSAR||0);
+  G('chFutANum').textContent=ch.futureOverride?(p?'Wahi 2030':'একই ২০৩০'):('-'+fvHome);
+  G('chFutBNum').textContent=ch.futureOverride||('+'+fvHome);
+  G('chTakeaway').textContent=ch.takeaway;
+  // Mark whether last challenge
+  var isLast=dayIdx===CHAL_TOTAL-1;
+  G('chDoneBtn').textContent=isLast?st.chFinalBtn:st.chDoneBtn;
+}
+function finishChallenge(){
+  var done=ld(SK.chDone,0);
+  done=done+1;
+  sv(SK.chDone,done);
+  var today=new Date();today.setHours(0,0,0,0);
+  sv(SK.chLast,today.getTime());
+  renderChalCard();
+  showPg('home');
+  var p=pk();
+  showToast(p?'✓ Aaj ka challenge poora — kal phir milte hain':'✓ আজকের চ্যালেঞ্জ সম্পূর্ণ — কাল আবার দেখা হবে');
 }
 
 
