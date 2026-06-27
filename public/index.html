@@ -862,11 +862,11 @@ function setT(id,v){var e=G(id);if(e)e.textContent=v;}
 function audioSrc(){
   /* Works both locally (file://) and on deployed site */
   var base=(window.location.protocol==='file:')?'https://smartsaathi.app':'';
-  return base+(curLang==='ur'?'/audio/landing-ur.mp3':'/audio/landing-bn.mp3');
+  return base+(curLang==='ur'?'/audios/landing-ur.mp3':'/audios/landing-bn.mp3');
 }
 function toggleAudio(){
   var a=G('heroAudio'),h=G('audioHero');
-  if(!a.src||!a.src.endsWith(audioSrc().replace('/audio/','/audio/'))){a.src=audioSrc();}
+  if(!a.src||!a.src.endsWith(audioSrc().replace('/audios/','/audios/'))){a.src=audioSrc();}
   if(a.paused){a.play().then(function(){h.classList.add('playing');G('audioPlayIcon').classList.add('hidden');G('audioPauseIcon').classList.remove('hidden');}).catch(function(err){console.warn('Audio play failed:',err);});}
   else{a.pause();onAudioEnded();}
 }
