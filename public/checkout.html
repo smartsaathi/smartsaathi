@@ -38,6 +38,48 @@ body::before{
 .lang-btn{padding:5px 13px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--bd);background:transparent;color:var(--tm);font-family:inherit;transition:all .2s;}
 .lang-btn.on{background:var(--g3);border-color:var(--g3);color:#fff;}
 
+/* ── AUDIO HINT (CHECKOUT) ── */
+.audio-hint{
+  display:flex;align-items:center;gap:12px;
+  margin:12px 16px 14px;padding:11px 14px 11px 11px;
+  background:linear-gradient(135deg,rgba(116,198,157,.14),rgba(240,192,64,.09));
+  border:1.5px solid rgba(240,192,64,.4);
+  border-radius:14px;cursor:pointer;
+  box-shadow:0 4px 18px rgba(240,192,64,.15);
+  transition:transform .15s;
+}
+.audio-hint:active{transform:scale(.98);}
+.audio-hint-icon{
+  position:relative;width:42px;height:42px;flex-shrink:0;
+  border-radius:50%;
+  background:linear-gradient(135deg,#F0C040,#F4A261);
+  display:flex;align-items:center;justify-content:center;
+  color:#1d1604;font-size:15px;font-weight:800;
+  box-shadow:0 3px 12px rgba(240,192,64,.45);
+}
+.audio-hint-ripple{
+  position:absolute;inset:0;border-radius:50%;
+  border:2px solid rgba(240,192,64,.65);
+  animation:audioHintRipple 2s infinite ease-out;
+}
+@keyframes audioHintRipple{
+  0%{transform:scale(1);opacity:.7;}
+  100%{transform:scale(1.55);opacity:0;}
+}
+.audio-hint.playing .audio-hint-ripple{animation:none;opacity:0;}
+.audio-hint.playing .audio-hint-icon{
+  background:linear-gradient(135deg,#74C69D,#A8DDBB);
+  box-shadow:0 0 0 4px rgba(116,198,157,.25);
+}
+.audio-hint-text{flex:1;text-align:left;line-height:1.3;}
+.audio-hint-label{
+  font-family:'Baloo 2',sans-serif;font-weight:800;
+  font-size:14px;color:#F5F1E6;margin-bottom:2px;
+}
+.audio-hint-sub{font-size:10.5px;color:rgba(245,241,230,.65);font-weight:500;}
+.hidden{display:none !important;}
+
+
 /* ── CARD ALERT — FIRST THING THEY SEE ── */
 .card-alert{
   background:linear-gradient(135deg,rgba(240,192,64,.1),rgba(240,192,64,.05));
@@ -265,6 +307,20 @@ body::before{
       <button class="lang-btn" id="btnBD" onclick="setLang('bd')">বাংলা</button>
     </div>
   </div>
+
+  <!-- AUDIO HINT BUTTON -->
+  <div class="audio-hint" id="audioHint" onclick="toggleAudio()">
+    <div class="audio-hint-icon" id="audioHintIcon">
+      <span class="audio-hint-play" id="audioHintPlay">▶</span>
+      <span class="audio-hint-pause hidden" id="audioHintPause">❚❚</span>
+      <span class="audio-hint-ripple"></span>
+    </div>
+    <div class="audio-hint-text">
+      <div class="audio-hint-label" id="audioHintLabel">Bhai, ek baat sun lein</div>
+      <div class="audio-hint-sub" id="audioHintSub">▸ Payment se pehle · 25 sec</div>
+    </div>
+  </div>
+  <audio id="checkoutAudio" preload="none" onended="onAudioEnded()"></audio>
 
 
   <!-- PAYMENT METHOD SELECTOR -->
@@ -525,7 +581,7 @@ var C={
     uStep1:'Apne Upaisa ya JazzCash app se <br><span class="highlight">+923046318640</span><br>par <b>PKR 825</b> send karein<br><b>Account Name: Sana</b>',
     uStep2:'',
     uStep3:'Apna <b>Naam, WhatsApp number aur payment ka screenshot</b> is number par bhejein:<br><span class="highlight">+923347341756</span>',
-    uStep4:'Confirmation ke baad <b>access code</b> aapke WhatsApp par aayega.<br>Phir yeh karo:<br>• <b>smartsaathi.app/redeem</b> par jaayein<br>• Apna <b>WhatsApp number</b> daalen<br>• <b>Access code</b> daalen<br>• App <b>turant</b> khul jaayega ✅',
+    uStep4:'Confirmation ke baad <b>access code</b> aapke WhatsApp par aayega — phir <b>smartsaathi.app/redeem</b> par jaayein',
     timeBadgeTxt:'<b>Maximum 90 minute</b> mein access code milega — payment confirm hote hi bhej diya jaayega',
     waSendBtn:'📲 Screenshot WhatsApp Par Bhejein',
     waNameLbl:'Aapka Naam',
@@ -562,7 +618,7 @@ var C={
     uStep1:'আপনার Upaisa বা JazzCash app থেকে<br><span class="highlight">+923046318640</span><br>-এ <b>PKR 825</b> পাঠান<br><b>Account Name: Sana</b>',
     uStep2:'',
     uStep3:'আপনার <b>নাম, WhatsApp নম্বর এবং পেমেন্টের screenshot</b> এই নম্বরে পাঠান:<br><span class="highlight">+923347341756</span>',
-    uStep4:'Confirmation-এর পর <b>access code</b> আপনার WhatsApp-এ আসবে।<br>তারপর এটা করুন:<br>• <b>smartsaathi.app/redeem</b>-এ যান<br>• আপনার <b>WhatsApp নম্বর</b> দিন<br>• <b>Access code</b> দিন<br>• App <b>সাথে সাথে</b> খুলবে ✅',
+    uStep4:'Confirmation-এর পর <b>access code</b> আপনার WhatsApp-এ আসবে — তারপর <b>smartsaathi.app/redeem</b>-এ যান',
     timeBadgeTxt:'<b>সর্বোচ্চ ২ ঘন্টায়</b> access code পাবেন — পেমেন্ট confirm হলেই পাঠানো হবে',
     waSendBtn:'📲 Screenshot WhatsApp-এ পাঠান',
     waNameLbl:'আপনার নাম',
@@ -579,6 +635,14 @@ function setT(id,v){var e=G(id);if(e)e.textContent=v;}
 
 function render(){
   var d=C[lang];
+  /* Audio button label switches with language */
+  if(lang==='ur'){
+    setT('audioHintLabel','Bhai, ek baat sun lein');
+    setT('audioHintSub','▸ Payment se pehle · 25 sec');
+  } else {
+    setT('audioHintLabel','ভাই, একটা কথা শুনে নিন');
+    setT('audioHintSub','▸ পেমেন্টের আগে · ২৮ সেকেন্ড');
+  }
   setH('caTitle',d.caTitle);
   setT('ca1',d.ca1);setT('ca2',d.ca2);setT('ca3',d.ca3);
   setT('ca4',d.ca4);setT('ca5',d.ca5);
@@ -598,7 +662,33 @@ function setLang(l){
   G('btnUR').classList.toggle('on',l==='ur');
   G('btnBD').classList.toggle('on',l==='bd');
   document.documentElement.lang=l==='ur'?'ur':'bn';
+  stopAudio();
   render();
+}
+
+/* ── CHECKOUT AUDIO ── */
+function audioSrc(){
+  var base=(window.location.protocol==='file:')?'https://smartsaathi.app':'';
+  return base+(lang==='ur'?'/audio/checkout-ur.mp3':'/audio/checkout-bn.mp3');
+}
+function toggleAudio(){
+  var a=G('checkoutAudio'),h=G('audioHint');
+  if(!a.src||a.src.indexOf(audioSrc().split('/').pop())===-1){a.src=audioSrc();}
+  if(a.paused){
+    a.play().then(function(){
+      h.classList.add('playing');
+      G('audioHintPlay').classList.add('hidden');
+      G('audioHintPause').classList.remove('hidden');
+    }).catch(function(err){console.warn('Audio play failed:',err);});
+  } else {
+    a.pause();onAudioEnded();
+  }
+}
+function stopAudio(){var a=G('checkoutAudio');if(a&&!a.paused){a.pause();}onAudioEnded();}
+function onAudioEnded(){
+  G('audioHint').classList.remove('playing');
+  G('audioHintPlay').classList.remove('hidden');
+  G('audioHintPause').classList.add('hidden');
 }
 
 function startCheckout(){
