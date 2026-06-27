@@ -81,6 +81,50 @@ a{color:var(--g4);text-decoration:none;}
 }
 .sticky-buy:active{transform:scale(.97);}
 
+/* ── AUDIO HERO BUTTON ── */
+.audio-hero{
+  position:relative;z-index:5;
+  display:flex;align-items:center;gap:14px;
+  margin:6px auto 18px;max-width:380px;width:calc(100% - 30px);
+  padding:13px 16px 13px 13px;
+  background:linear-gradient(135deg,rgba(116,198,157,.16),rgba(240,192,64,.10));
+  border:1.5px solid rgba(240,192,64,.4);
+  border-radius:16px;cursor:pointer;
+  box-shadow:0 6px 24px rgba(240,192,64,.18);
+  transition:transform .15s;
+}
+.audio-hero:active{transform:scale(.98);}
+.audio-hero-icon{
+  position:relative;width:48px;height:48px;flex-shrink:0;
+  border-radius:50%;
+  background:linear-gradient(135deg,#F0C040,#F4A261);
+  display:flex;align-items:center;justify-content:center;
+  color:#1d1604;font-size:18px;font-weight:800;
+  box-shadow:0 4px 14px rgba(240,192,64,.5);
+}
+.audio-ripple{
+  position:absolute;inset:0;border-radius:50%;
+  border:2px solid rgba(240,192,64,.65);
+  animation:audioRipple 2s infinite ease-out;
+}
+.audio-ripple.ar2{animation-delay:1s;}
+@keyframes audioRipple{
+  0%{transform:scale(1);opacity:.7;}
+  100%{transform:scale(1.6);opacity:0;}
+}
+.audio-hero.playing .audio-ripple{animation:none;opacity:0;}
+.audio-hero.playing .audio-hero-icon{
+  background:linear-gradient(135deg,#74C69D,#A8DDBB);
+  box-shadow:0 0 0 4px rgba(116,198,157,.25);
+}
+.audio-hero-text{flex:1;text-align:left;line-height:1.3;}
+.audio-hero-label{
+  font-family:'Baloo 2',sans-serif;font-weight:800;
+  font-size:15px;color:#F5F1E6;margin-bottom:2px;
+}
+.audio-hero-sub{font-size:11px;color:rgba(245,241,230,.65);font-weight:500;}
+.hidden{display:none !important;}
+
 /* ── HERO ── */
 .hero{
   position:relative;min-height:96vh;
@@ -446,6 +490,21 @@ footer{text-align:center;padding:24px 16px 120px;border-top:1px solid var(--bd);
 <!-- ══ HERO ══ -->
 <div class="hero">
 
+  <!-- ══ AUDIO INTRO BUTTON (NEW) ══ -->
+  <div class="audio-hero" id="audioHero" onclick="toggleAudio()">
+    <div class="audio-hero-icon" id="audioIcon">
+      <span class="audio-play-svg" id="audioPlayIcon">▶</span>
+      <span class="audio-pause-svg hidden" id="audioPauseIcon">❚❚</span>
+      <span class="audio-ripple"></span>
+      <span class="audio-ripple ar2"></span>
+    </div>
+    <div class="audio-hero-text">
+      <div class="audio-hero-label" id="audioLabel">Sun lein bhai — yeh app kya hai</div>
+      <div class="audio-hero-sub" id="audioSub">▸ Tap to listen · 22 seconds</div>
+    </div>
+  </div>
+  <audio id="heroAudio" preload="none" onended="onAudioEnded()"></audio>
+
   <!-- ══ 3 GENUINE TRUST MEDALS ══ -->
   <div class="medal-strip">
 
@@ -794,13 +853,36 @@ var PRICES=[
 ];
 
 var curLang='ur';
-function setLang(l){curLang=l;document.getElementById('btnUR').classList.toggle('on',l==='ur');document.getElementById('btnBD').classList.toggle('on',l==='bd');document.documentElement.lang=l==='ur'?'ur':'bn';render();}
+function setLang(l){curLang=l;document.getElementById('btnUR').classList.toggle('on',l==='ur');document.getElementById('btnBD').classList.toggle('on',l==='bd');document.documentElement.lang=l==='ur'?'ur':'bn';stopAudio();render();}
 function G(id){return document.getElementById(id);}
 function setH(id,v){var e=G(id);if(e)e.innerHTML=v;}
 function setT(id,v){var e=G(id);if(e)e.textContent=v;}
 
+/* ── HERO AUDIO ── */
+function audioSrc(){
+  /* Works both locally (file://) and on deployed site */
+  var base=(window.location.protocol==='file:')?'https://smartsaathi.app':'';
+  return base+(curLang==='ur'?'/audio/landing-ur.mp3':'/audio/landing-bn.mp3');
+}
+function toggleAudio(){
+  var a=G('heroAudio'),h=G('audioHero');
+  if(!a.src||!a.src.endsWith(audioSrc().replace('/audio/','/audio/'))){a.src=audioSrc();}
+  if(a.paused){a.play().then(function(){h.classList.add('playing');G('audioPlayIcon').classList.add('hidden');G('audioPauseIcon').classList.remove('hidden');}).catch(function(err){console.warn('Audio play failed:',err);});}
+  else{a.pause();onAudioEnded();}
+}
+function stopAudio(){var a=G('heroAudio');if(a&&!a.paused){a.pause();}onAudioEnded();}
+function onAudioEnded(){G('audioHero').classList.remove('playing');G('audioPlayIcon').classList.remove('hidden');G('audioPauseIcon').classList.add('hidden');}
+
 function render(){
   var d=CONTENT[curLang];
+  /* Audio button label switches with language */
+  if(curLang==='ur'){
+    setT('audioLabel','Sun lein bhai — yeh app kya hai');
+    setT('audioSub','▸ Tap to listen · 22 seconds');
+  } else {
+    setT('audioLabel','ভাই, শুনে নিন — এই অ্যাপটি কী');
+    setT('audioSub','▸ ট্যাপ করে শুনুন · ২২ সেকেন্ড');
+  }
   setH('medal1label',d.medal1label.replace('\n','<br>'));
   setT('medal1sub',d.medal1sub);
   setH('medal2label',d.medal2label.replace('\n','<br>'));
